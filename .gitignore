@@ -1,0 +1,18 @@
+# Build and Release Folders
+#bin/
+#bin-debug/
+#bin-release/
+
+# Other files and folders
+.settings/
+.metadata/
+ZendFramework/
+teamangels/ZendFramework/
+teamangels/bin-debug/*.swf
+teamangels/bin-debug/*.js
+teamangels/bin-debug/history/
+teamangels/html-template/
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
