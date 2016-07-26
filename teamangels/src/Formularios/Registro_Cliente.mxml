@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="412" height="656">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<s:Label x="23" y="28" text="Tipo Documento"/>
+	<s:DropDownList x="23" y="42" width="170"></s:DropDownList>
+	<s:Label x="209" y="28" text="Numero Documento"/>
+	<s:TextInput x="209" y="42" width="180"/>
+	<s:TextInput x="23" y="101" width="180"/>
+	<s:TextInput x="208" y="101" width="180"/>
+	<s:TextInput x="23" y="154" width="180"/>
+	<s:TextInput x="23" y="258" width="365"/>
+	<s:TextInput x="208" y="154" width="180"/>
+	<s:TextInput x="208" y="308" width="180"/>
+	<s:TextInput x="208" y="357" width="180"/>
+	<s:Label x="208" y="140" text="Segundo Apellido"/>
+	<s:Label x="23" y="140" text="Primer Apellido"/>
+	<s:Label x="208" y="87" text="Segundo Nombre"/>
+	<s:Label x="23" y="87" text="Primer Nombre"/>
+	<s:Label x="23" y="243" text="Direccion Residencia"/>
+	<s:TextInput x="23" y="411" width="365"/>
+	<s:Label x="23" y="396" text="Email"/>
+	<s:TextInput x="23" y="613" width="365"/>
+	<s:Label x="23" y="598" text="Fidelización"/>
+	<s:Label x="23" y="192" text="Departamento Residencia"/>
+	<s:Label x="208" y="192" text="Municipio Residencia"/>
+	<s:DropDownList x="208" y="206" width="170"></s:DropDownList>
+	<s:DropDownList x="23" y="206" width="170"></s:DropDownList>
+	<s:Label x="23" y="294" text="Telefono"/>
+	<s:DropDownList x="23" y="308" width="170"></s:DropDownList>
+	<s:Label x="23" y="343" text="Telefono"/>
+	<s:DropDownList x="23" y="357" width="170"></s:DropDownList>
+	<s:DropDownList x="23" y="470" width="170"></s:DropDownList>
+	<s:Label x="23" y="456" text="Genero"/>
+	<s:Label x="243" y="441" text="Fecha Nacimiento"/>
+	<s:Label x="240" y="456" text="Dia"/>
+	<s:DropDownList x="234" y="470" width="37"></s:DropDownList>
+	<s:Label x="284" y="456" text="Mes"/>
+	<s:Label x="329" y="456" text="Año"/>
+	<s:DropDownList x="323" y="470" width="37"></s:DropDownList>
+	<s:DropDownList x="278" y="470" width="37"></s:DropDownList>
+	<s:DropDownList x="23" y="519" width="365"></s:DropDownList>
+	<s:DropDownList x="23" y="566" width="365"></s:DropDownList>
+	<s:Label x="23" y="552" text="Lista de Precios"/>
+	<s:Label x="23" y="505" text="Tipo Cliente"/>
 </s:Group>
