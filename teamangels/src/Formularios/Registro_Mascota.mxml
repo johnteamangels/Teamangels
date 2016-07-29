@@ -35,7 +35,46 @@
 	<s:TextInput x="24" y="227" width="180"/>
 	<s:DropDownList id="Ddl_Estado_Reproductivo" x="210" y="228" width="180"
 					prompt="Estado Reproductivo"></s:DropDownList>
-	<s:DropDownList id="Ddl_Dia" x="396" y="227" width="55" prompt="   D"></s:DropDownList>
+	<s:DropDownList id="Ddl_Dia" x="396" y="227" width="55" prompt="   D">
+	
+	<s:dataProvider>
+		<s:ArrayList>
+			
+			<fx:String>01</fx:String>
+			<fx:String>02</fx:String>
+			<fx:String>03</fx:String>
+			<fx:String>04</fx:String>
+			<fx:String>05</fx:String>
+			<fx:String>06</fx:String>
+			<fx:String>07</fx:String>
+			<fx:String>08</fx:String>
+			<fx:String>09</fx:String>
+			<fx:String>10</fx:String>
+			<fx:String>11</fx:String>
+			<fx:String>12</fx:String>
+			<fx:String>13</fx:String>
+			<fx:String>14</fx:String>
+			<fx:String>15</fx:String>
+			<fx:String>16</fx:String>
+			<fx:String>17</fx:String>
+			<fx:String>18</fx:String>
+			<fx:String>19</fx:String>
+			<fx:String>20</fx:String>
+			<fx:String>21</fx:String>
+			<fx:String>22</fx:String>
+			<fx:String>23</fx:String>
+			<fx:String>24</fx:String>
+			<fx:String>25</fx:String>
+			<fx:String>26</fx:String>
+			<fx:String>27</fx:String>
+			<fx:String>28</fx:String>
+			<fx:String>29</fx:String>
+			<fx:String>30</fx:String>
+			<fx:String>31</fx:String>
+		</s:ArrayList>
+	</s:dataProvider>
+	
+	</s:DropDownList>
 	<s:DropDownList x="453" y="227" width="60" prompt="   M"></s:DropDownList>
 	<s:DropDownList x="515" y="227" width="60" prompt="   A"></s:DropDownList>
 	<s:Label x="582" y="215" text="Edad (Meses)"/>

@@ -20,26 +20,147 @@
 	<s:Label x="210" y="107" text="ID (CHIP)"/>
 	<s:TextInput id="Txt_Nombre_Mascota" x="24" y="118" width="180"/>
 	<s:TextInput id="Txt_Id_Chip" x="210" y="118" width="180"/>
-	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie"></s:DropDownList>
+	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie">
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				
+				<fx:String>AVES</fx:String>
+				<fx:String>BOVINOS</fx:String>
+				<fx:String>CANINOS</fx:String>
+				<fx:String>CAPRINOS</fx:String>
+				<fx:String>EQUINOS</fx:String>
+				<fx:String>ESPECIES SILVESTRES</fx:String>
+				<fx:String>FELINOS</fx:String>
+				<fx:String>OVINOS</fx:String>
+				<fx:String>PECES</fx:String>
+				<fx:String>PORCINOS</fx:String>
+				<fx:String>RESPTILES</fx:String>
+				<fx:String>ROEDORES</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	
+	
+	</s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
 	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"></s:DropDownList>
 	<s:Label x="24" y="159" text="Pelaje"/>
 	<s:Label x="396" y="159" text="Tamaño"/>
 	<s:Label x="210" y="159" text="Color"/>
 	<s:Label x="582" y="159" text="Genero"/>
-	<s:DropDownList x="24" y="171" width="180" prompt="Pelaje"></s:DropDownList>
+	<s:DropDownList id="Ddl_Pelaje" x="24" y="171" width="180" prompt="Pelaje">
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>CORTO</fx:String>
+				<fx:String>LARGO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	</s:DropDownList>
 	<s:DropDownList id="Ddl_Color" x="210" y="171" width="180" prompt="Color"></s:DropDownList>
-	<s:DropDownList id="Ddl_Tamano" x="396" y="171" width="180" prompt="Tamaño"></s:DropDownList>
-	<s:DropDownList id="Ddl_Genero" x="582" y="171" width="180" prompt="Genero"></s:DropDownList>
+	<s:DropDownList id="Ddl_Tamano" x="396" y="171" width="180" prompt="Tamaño">
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>TOY</fx:String>
+				<fx:String>PEQUEÑO</fx:String>
+				<fx:String>MEDIANO</fx:String>
+				<fx:String>GRANDE</fx:String>
+				<fx:String>GIGANTE</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+		
+	
+	
+	</s:DropDownList>
+	<s:DropDownList id="Ddl_Genero" x="582" y="171" width="180" prompt="Genero">
+	
+		
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>HEMBRA</fx:String>
+				<fx:String>MACHO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	
+	</s:DropDownList>
 	<s:Label x="24" y="215" text="Peso (KG)"/>
 	<s:Label x="210" y="216" text="Estado Reproductivo"/>
 	<s:Label x="396" y="215" text="Fecha Nacimiento"/>
 	<s:TextInput x="24" y="227" width="180"/>
 	<s:DropDownList id="Ddl_Estado_Reproductivo" x="210" y="228" width="180"
 					prompt="Estado Reproductivo"></s:DropDownList>
-	<s:DropDownList id="Ddl_Dia" x="396" y="227" width="55" prompt="   D"></s:DropDownList>
-	<s:DropDownList x="453" y="227" width="60" prompt="   M"></s:DropDownList>
-	<s:DropDownList x="515" y="227" width="60" prompt="   A"></s:DropDownList>
+	<s:DropDownList id="Ddl_Dia" x="396" y="227" width="55" prompt="   D">
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				
+				<fx:String>01</fx:String>
+				<fx:String>02</fx:String>
+				<fx:String>03</fx:String>
+				<fx:String>04</fx:String>
+				<fx:String>05</fx:String>
+				<fx:String>06</fx:String>
+				<fx:String>07</fx:String>
+				<fx:String>08</fx:String>
+				<fx:String>09</fx:String>
+				<fx:String>10</fx:String>
+				<fx:String>11</fx:String>
+				<fx:String>12</fx:String>
+				<fx:String>13</fx:String>
+				<fx:String>14</fx:String>
+				<fx:String>15</fx:String>
+				<fx:String>16</fx:String>
+				<fx:String>17</fx:String>
+				<fx:String>18</fx:String>
+				<fx:String>19</fx:String>
+				<fx:String>20</fx:String>
+				<fx:String>21</fx:String>
+				<fx:String>22</fx:String>
+				<fx:String>23</fx:String>
+				<fx:String>24</fx:String>
+				<fx:String>25</fx:String>
+				<fx:String>26</fx:String>
+				<fx:String>27</fx:String>
+				<fx:String>28</fx:String>
+				<fx:String>29</fx:String>
+				<fx:String>30</fx:String>
+				<fx:String>31</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	</s:DropDownList>
+	<s:DropDownList x="453" y="227" width="60" prompt="   M">
+	
+		
+		<s:dataProvider>
+			<s:ArrayList>
+				
+				<fx:String>01</fx:String>
+				<fx:String>02</fx:String>
+				<fx:String>03</fx:String>
+				<fx:String>04</fx:String>
+				<fx:String>05</fx:String>
+				<fx:String>06</fx:String>
+				<fx:String>07</fx:String>
+				<fx:String>08</fx:String>
+				<fx:String>09</fx:String>
+				<fx:String>10</fx:String>
+				<fx:String>11</fx:String>
+				<fx:String>12</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	
+	</s:DropDownList>
+	<s:DropDownList x="515" y="227" width="60" prompt="   A">
+	
+	
+	
+	</s:DropDownList>
 	<s:Label x="582" y="215" text="Edad (Meses)"/>
 	<s:TextInput x="582" y="226" width="180"/>
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
@@ -47,7 +168,21 @@
 	
 	<s:Label x="25" y="277" text="INFORMACION DE ALIMENTACION" textDecoration="underline"/>
 	<s:Label x="24" y="304" text="Tipo Alimentacion"/>
-	<s:DropDownList id="Ddl_Tipo_Alimentacion" x="25" y="317" width="180" prompt="Tipo Alimentacion"></s:DropDownList>
+	<s:DropDownList id="Ddl_Tipo_Alimentacion" x="25" y="317" width="180" prompt="Tipo Alimentacion">
+	
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>ALIMENTO HUMEDO</fx:String>
+				<fx:String>CASERA</fx:String>
+				<fx:String>CONCENTRADO</fx:String>
+				<fx:String>DIETA BARF</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	
+	
+	
+	</s:DropDownList>
 	<s:Label x="24" y="422" text="Referencia"/>
 	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca"></s:DropDownList>
 	<s:DropDownList x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
