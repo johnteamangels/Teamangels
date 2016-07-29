@@ -15,6 +15,7 @@
   </compiler>
   <applications>
     <application path="teamangels_v1.mxml"/>
+    <application path="Registro_Mascota.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
