@@ -13,6 +13,13 @@ teamangels/bin-debug/*.js
 teamangels/bin-debug/history/
 teamangels/html-template/
 
+teamangels_v1/ZendFramework/
+teamangels_v1/bin-debug/*.swf
+teamangels_v1/bin-debug/*.js
+teamangels_v1/bin-debug/history/
+teamangels_v1/html-template/
+
+
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
