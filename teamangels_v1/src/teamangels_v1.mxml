@@ -5,6 +5,6 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>	
-	
-	
+	<Formularios:Registro_Cliente x="97" y="127">
+	</Formularios:Registro_Cliente>
 </s:Application>

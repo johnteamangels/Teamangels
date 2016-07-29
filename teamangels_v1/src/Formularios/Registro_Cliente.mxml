@@ -1,53 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:tipodocumentoservice="services.tipodocumentoservice.*"
+		 xmlns:x="http://flex.apache.org/experimental/ns"
+		 xmlns:departamentosservice="services.departamentosservice.*"
+		 xmlns:municipiosservice="services.municipiosservice.*"
+		 width="400" height="300">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			protected function Ddl_Tipo_Documento_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllTipo_documentoResult.token = tipodocumentoService.getAllTipo_documento();
+			}
+		
+			protected function Ddl_Departamento_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllDepartamentosResult.token = departamentosService.getAllDepartamentos();
+			}
+						
+			protected function Ddl_Departamento_changeHandler(event:IndexChangeEvent):void
+			{
+				getAllMunicipiosByDepartamentoResult.token = municipiosService.getAllMunicipiosByDepartamento(Ddl_Departamento.selectedItem.Codigo);
+			}
+			
+			protected function getAllMunicipiosByDepartamentoResult_resultHandler(event:ResultEvent):void
+			{
+				Ddl_Municipio.dataProvider=getAllMunicipiosByDepartamentoResult.lastResult;
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+		<s:CallResponder id="getAllTipo_documentoResult"/>
+		<tipodocumentoservice:TipodocumentoService id="tipodocumentoService"
+												   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+												   showBusyCursor="true"/>
+		
+		<s:CallResponder id="getAllDepartamentosResult"/>
+		<departamentosservice:DepartamentosService id="departamentosService"
+												   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+												   showBusyCursor="true"/>
+		
+		<s:CallResponder id="getAllMunicipiosByDepartamentoResult" result="getAllMunicipiosByDepartamentoResult_resultHandler(event)"/>
+		<municipiosservice:MunicipiosService id="municipiosService"
+											 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+											 showBusyCursor="true"/>
+		
+		
 	</fx:Declarations>
+	
 	<s:Label x="23" y="28" text="Tipo Documento"/>
-	<s:DropDownList x="23" y="42" width="170"></s:DropDownList>
-	<s:Label x="214" y="28" text="Numero Documento"/>
-	<s:TextInput x="214" y="42" width="170"/>
+	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" 
+					creationComplete="Ddl_Tipo_Documento_creationCompleteHandler(event)"
+					labelField="Tipo_Documento" prompt="Tipo Documento">
+		<s:AsyncListView list="{getAllTipo_documentoResult.lastResult}"/>
+	</s:DropDownList>
+	
+	<s:Label x="291" y="28" text="Numero Documento"/>
+	<!--<x:MaskedTextInput id="Txt_Numero_Documento"  x="263" y="42" width="170" maskText="########" />-->
+	<s:TextInput id="Txt_Numero_Documento" x="263" y="42" width="170" restrict="0-9"/>
+	
 	<s:Label x="405" y="87" text="Primer Apellido"/>
-	<s:TextInput x="23" y="101" width="170"/>
+	<s:TextInput id="Txt_Nombre1" x="23" y="101" width="170"/>
+	
 	<s:Label x="214" y="87" text="Segundo Nombre"/>
-	<s:TextInput x="214" y="101" width="170"/>
+	<s:TextInput id="Txt_Nombre2" x="214" y="101" width="170"/>
+	
 	<s:Label x="23" y="87" text="Primer Nombre"/>
-	<s:TextInput x="405" y="101" width="170"/>
+	<s:TextInput id="Txt_Apellido1" x="405" y="101" width="170"/>
+	
 	<s:Label x="598" y="87" text="Segundo Apellido"/>
-	<s:TextInput x="598" y="101" width="170"/>
+	<s:TextInput id="Txt_Apellido2" x="598" y="101" width="170"/>
+	
 	<s:Label x="23" y="141" text="Departamento Residencia"/>
-	<s:DropDownList x="23" y="155" width="170"></s:DropDownList>
+	<s:DropDownList id="Ddl_Departamento" x="23" y="155" width="170" 
+					change="Ddl_Departamento_changeHandler(event)"
+					creationComplete="Ddl_Departamento_creationCompleteHandler(event)" 
+					prompt="Departamento" labelField="Departamento">
+		<s:AsyncListView list="{getAllDepartamentosResult.lastResult}"/>
+	</s:DropDownList>
+	
 	<s:Label x="214" y="141" text="Municipio Residencia"/>
-	<s:DropDownList x="214" y="155" width="170"></s:DropDownList>
+	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio" labelField="Municipio">
+	</s:DropDownList>
+	
 	<s:Label x="405" y="141" text="Direccion Residencia"/>
-	<s:TextInput x="405" y="155" width="365"/>
-	<s:Label x="23" y="191" text="Telefono"/>
-	<s:DropDownList x="23" y="205" width="170"></s:DropDownList>
-	<s:Label x="214" y="190" text="Numero"/>
-	<s:TextInput x="214" y="205" width="170"/>
+	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"/>
+	
+	<s:Label x="23" y="191" text="Telefono 1"/>
+	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono">
+	</s:DropDownList>
+	
+	<s:Label x="214" y="190" text="Numero Telefono"/>
+	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170"/>
+	
 	<s:Label x="406" y="190" text="Email"/>
-	<s:TextInput x="405" y="205" width="365"/>
-	<s:Label x="23" y="240" text="Telefono"/>
-	<s:DropDownList x="23" y="254" width="170"></s:DropDownList>
-	<s:Label x="214" y="239" text="Numero"/>	
-	<s:TextInput x="214" y="254" width="170"/>
+	<s:TextInput id="Txt_Email" x="405" y="205" width="365"/>
+	
+	<s:Label x="23" y="240" text="Telefono 2"/>
+	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono">
+	</s:DropDownList>
+	
+	<s:Label x="214" y="239" text="Numero Telefono"/>	
+	<s:TextInput id="Txt_Numero_Telefono2" x="214" y="254" width="170"/>
+	
 	<s:Label x="409" y="240" text="Genero"/>
-	<s:DropDownList x="405" y="254" width="170"></s:DropDownList>
+	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero">
+	</s:DropDownList>
+	
 	<s:Label x="628" y="238" text="Fecha Nacimiento"/>
 	<s:Label x="625" y="253" text="Dia"/>
-	<s:DropDownList x="619" y="267" width="37"></s:DropDownList>
+	<s:DropDownList id="Ddl_Dia" x="619" y="267" width="37"></s:DropDownList>
 	<s:Label x="669" y="253" text="Mes"/>
-	<s:DropDownList x="663" y="267" width="37"></s:DropDownList>
+	<s:DropDownList id="Ddl_Mes" x="663" y="267" width="37"></s:DropDownList>
 	<s:Label x="714" y="253" text="Año"/>
-	<s:DropDownList x="708" y="267" width="37"></s:DropDownList>
-	<s:Label x="23" y="293" text="Tipo Cliente"/>
-	<s:DropDownList x="23" y="307" width="365"></s:DropDownList>
-	<s:Label x="406" y="293" text="Lista de Precios"/>
-	<s:DropDownList x="405" y="307" width="365"></s:DropDownList>
-	<s:Label x="23" y="343" text="Fidelización"/>	
-	<s:TextInput x="23" y="358" width="365"/>
-
+	<s:DropDownList id="Ddl_Ano" x="708" y="267" width="37"></s:DropDownList>
 	
+	<s:Label x="23" y="293" text="Tipo Cliente"/>
+	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente">
+	</s:DropDownList>
+	
+	<s:Label x="406" y="293" text="Lista de Precios"/>
+	<s:DropDownList id="Ddl_Lista_Precios" x="405" y="307" width="365" prompt="Lista Precios">
+	</s:DropDownList>
+	
+	<s:Label x="23" y="343" text="Fidelización"/>	
+	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365"/>
 </s:Group>

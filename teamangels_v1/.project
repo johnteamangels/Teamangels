@@ -15,4 +15,21 @@
 		<nature>com.adobe.flexbuilder.project.flexnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>services/DepartamentosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/DepartamentosService.php</location>
+		</link>
+		<link>
+			<name>services/MunicipiosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MunicipiosService.php</location>
+		</link>
+		<link>
+			<name>services/TipodocumentoService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/TipodocumentoService.php</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -20,6 +20,7 @@
   </compiler>
   <applications>
     <application path="teamangels.mxml"/>
+    <application path="Registro_Mascota.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
