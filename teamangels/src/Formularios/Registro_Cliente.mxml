@@ -3,7 +3,8 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="412">
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+
 	</fx:Declarations>
 	<s:Label x="23" y="28" text="Tipo Documento"/>
 	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" prompt="Tipo Documento"></s:DropDownList>
@@ -23,8 +24,17 @@
 	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio"></s:DropDownList>
 	<s:Label x="405" y="141" text="Direccion Residencia"/>
 	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"/>
+	
 	<s:Label x="23" y="191" text="Telefono 1"/>
-	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono "></s:DropDownList>
+	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono " >
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FIJO</fx:String>
+				<fx:String>CELULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
 	<s:Label x="214" y="190" text="Numero Telefono"/>
 	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170"/>
 	<s:Label x="406" y="190" text="Email"/>
@@ -36,12 +46,12 @@
 	<s:Label x="409" y="240" text="Genero"/>
 	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero"></s:DropDownList>
 	<s:Label x="628" y="238" text="Fecha Nacimiento"/>
-	<s:Label x="625" y="253" text="Dia"/>
-	<s:DropDownList id="Ddl_Dia" x="619" y="267" width="37"></s:DropDownList>
-	<s:Label x="669" y="253" text="Mes"/>
-	<s:DropDownList id="Ddl_Mes" x="663" y="267" width="37"></s:DropDownList>
-	<s:Label x="714" y="253" text="Año"/>
-	<s:DropDownList id="Ddl_Ano" x="708" y="267" width="37"></s:DropDownList>
+	<s:Label x="601" y="253" text="Dia"/>
+	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55"></s:DropDownList>
+	<s:Label x="657" y="253" text="Mes"/>
+	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55"></s:DropDownList>
+	<s:Label x="719" y="253" text="Año"/>
+	<s:DropDownList id="Ddl_Ano" x="707" y="265" width="55"></s:DropDownList>
 	<s:Label x="23" y="293" text="Tipo Cliente"/>
 	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente"></s:DropDownList>
 	<s:Label x="406" y="293" text="Lista de Precios"/>

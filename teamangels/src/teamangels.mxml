@@ -8,6 +8,6 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:Label x="37" y="43" width="101" height="14" color="#001EFF" text="HELLO A TODOS"/>
-	<Formularios:Registro_Cliente x="97" y="127">
+	<Formularios:Registro_Cliente x="37" y="65">
 	</Formularios:Registro_Cliente>
 </s:Application>

@@ -17,7 +17,7 @@
 			
 			protected function Ddl_Tipo_Documento_creationCompleteHandler(event:FlexEvent):void
 			{
-				getAllTipo_documentoResult.token = tipodocumentoService.getAllTipo_documento();
+				getAllTipo_documentoResult.token = tipodocumentoService.getAllTipo_documento();	
 			}
 		
 			protected function Ddl_Departamento_creationCompleteHandler(event:FlexEvent):void
@@ -28,13 +28,14 @@
 			protected function Ddl_Departamento_changeHandler(event:IndexChangeEvent):void
 			{
 				getAllMunicipiosByDepartamentoResult.token = municipiosService.getAllMunicipiosByDepartamento(Ddl_Departamento.selectedItem.Codigo);
+				
 			}
 			
 			protected function getAllMunicipiosByDepartamentoResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Municipio.dataProvider=getAllMunicipiosByDepartamentoResult.lastResult;
 			}
-			
+		
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -53,6 +54,45 @@
 		<municipiosservice:MunicipiosService id="municipiosService"
 											 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 											 showBusyCursor="true"/>
+		
+	<s:NumberValidator id="Validacion_Documento"
+					   source="{Ddl_Tipo_Documento}"
+					   property="selectedIndex"
+					   allowNegative="false"
+					   negativeError="Este campo es obligatorio"
+					   triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDocumento"
+			source="{Txt_Numero_Documento}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionNombre"
+			source="{Txt_Nombre1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionApellido"
+			source="{Txt_Apellido1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+			
+		<mx:EmailValidator
+			id="ValidarEmail"
+			source="{Txt_Email}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
 		
 		
 	</fx:Declarations>
@@ -92,11 +132,17 @@
 	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio" labelField="Municipio">
 	</s:DropDownList>
 	
-	<s:Label x="405" y="141" text="Direccion Residencia"/>
+	<s:Label x="405" y="141" text="Dirección Residencia"/>
 	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"/>
 	
 	<s:Label x="23" y="191" text="Telefono 1"/>
 	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FIJO</fx:String>
+				<fx:String>CELULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	</s:DropDownList>
 	
 	<s:Label x="214" y="190" text="Numero Telefono"/>
@@ -107,6 +153,12 @@
 	
 	<s:Label x="23" y="240" text="Telefono 2"/>
 	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FIJO</fx:String>
+				<fx:String>CELULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	</s:DropDownList>
 	
 	<s:Label x="214" y="239" text="Numero Telefono"/>	
@@ -114,15 +166,77 @@
 	
 	<s:Label x="409" y="240" text="Genero"/>
 	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FEMENINO</fx:String>
+				<fx:String>MASCULINO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	</s:DropDownList>
 	
 	<s:Label x="628" y="238" text="Fecha Nacimiento"/>
-	<s:Label x="625" y="253" text="Dia"/>
-	<s:DropDownList id="Ddl_Dia" x="619" y="267" width="37"></s:DropDownList>
-	<s:Label x="669" y="253" text="Mes"/>
-	<s:DropDownList id="Ddl_Mes" x="663" y="267" width="37"></s:DropDownList>
-	<s:Label x="714" y="253" text="Año"/>
-	<s:DropDownList id="Ddl_Ano" x="708" y="267" width="37"></s:DropDownList>
+	<s:Label x="601" y="253" text="Dia"/>
+	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55" >
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>01</fx:String>
+				<fx:String>02</fx:String>
+				<fx:String>03</fx:String>
+				<fx:String>04</fx:String>
+				<fx:String>05</fx:String>
+				<fx:String>06</fx:String>
+				<fx:String>07</fx:String>
+				<fx:String>08</fx:String>
+				<fx:String>09</fx:String>
+				<fx:String>10</fx:String>
+				<fx:String>11</fx:String>
+				<fx:String>12</fx:String>
+				<fx:String>13</fx:String>
+				<fx:String>14</fx:String>
+				<fx:String>15</fx:String>
+				<fx:String>16</fx:String>
+				<fx:String>17</fx:String>
+				<fx:String>18</fx:String>
+				<fx:String>19</fx:String>
+				<fx:String>20</fx:String>
+				<fx:String>21</fx:String>
+				<fx:String>22</fx:String>
+				<fx:String>23</fx:String>
+				<fx:String>24</fx:String>
+				<fx:String>25</fx:String>
+				<fx:String>26</fx:String>
+				<fx:String>27</fx:String>
+				<fx:String>28</fx:String>
+				<fx:String>29</fx:String>
+				<fx:String>30</fx:String>
+				<fx:String>31</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="657" y="253" text="Mes"/>
+	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>01</fx:String>
+				<fx:String>02</fx:String>
+				<fx:String>03</fx:String>
+				<fx:String>04</fx:String>
+				<fx:String>05</fx:String>
+				<fx:String>06</fx:String>
+				<fx:String>07</fx:String>
+				<fx:String>08</fx:String>
+				<fx:String>09</fx:String>
+				<fx:String>10</fx:String>
+				<fx:String>11</fx:String>
+				<fx:String>12</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="719" y="253" text="Año"/>
+	<s:DropDownList id="Ddl_Ano" x="707" y="265" width="55">
+	</s:DropDownList>
 	
 	<s:Label x="23" y="293" text="Tipo Cliente"/>
 	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente">
