@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:especieservice="services.especieservice.*"
+		 width="400" height="300">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			
+			
+			protected function Ddl_Especie_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllEspecieResult.token = especieService.getAllEspecie();
+				
+			}
+			
+		
+			
+		]]>
+	</fx:Script>
 	
 	
 	
 	
 	<fx:Declarations>
+		<s:CallResponder id="getAllEspecieResult"/>
+		<especieservice:EspecieService id="especieService"
+									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+									   showBusyCursor="true"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:Label x="24" y="34" text="Propietario"/>
@@ -20,28 +43,8 @@
 	<s:Label x="210" y="107" text="ID (CHIP)"/>
 	<s:TextInput id="Txt_Nombre_Mascota" x="24" y="118" width="180"/>
 	<s:TextInput id="Txt_Id_Chip" x="210" y="118" width="180"/>
-	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie">
-	
-		<s:dataProvider>
-			<s:ArrayList>
-				
-				<fx:String>AVES</fx:String>
-				<fx:String>BOVINOS</fx:String>
-				<fx:String>CANINOS</fx:String>
-				<fx:String>CAPRINOS</fx:String>
-				<fx:String>EQUINOS</fx:String>
-				<fx:String>ESPECIES SILVESTRES</fx:String>
-				<fx:String>FELINOS</fx:String>
-				<fx:String>OVINOS</fx:String>
-				<fx:String>PECES</fx:String>
-				<fx:String>PORCINOS</fx:String>
-				<fx:String>RESPTILES</fx:String>
-				<fx:String>ROEDORES</fx:String>
-			</s:ArrayList>
-		</s:dataProvider>
-	
-	
-	
+	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie" creationComplete="Ddl_Especie_creationCompleteHandler(event)" labelField="Especie">
+		<s:AsyncListView list="{getAllEspecieResult.lastResult}"/>
 	</s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
 	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"></s:DropDownList>

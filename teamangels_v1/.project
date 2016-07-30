@@ -22,6 +22,11 @@
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/DepartamentosService.php</location>
 		</link>
 		<link>
+			<name>services/EspecieService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EspecieService.php</location>
+		</link>
+		<link>
 			<name>services/MunicipiosService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MunicipiosService.php</location>

@@ -393,4 +393,130 @@
     <id name="Codigo" type="string"/>
     <property name="Municipio" type="string"/>
   </entity>
+  <service name="EspecieService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">EspecieService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.especieservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">EspecieService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/EspecieService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EspecieService.php</item>
+      <item name="LINKED_FILE">EspecieService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">EspecieService</item>
+    </annotation>
+    <function name="getAllEspecie" return-type="Especie[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEspecieByID" return-type="Especie">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createEspecie" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Especie"/>
+    </function>
+    <function name="updateEspecie" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Especie"/>
+    </function>
+    <function name="deleteEspecie" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEspecie_paged" return-type="Especie[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Especie" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Especie</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">EspecieService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createEspecie</item>
+      <item name="update">updateEspecie</item>
+      <item name="get">getEspecieByID</item>
+      <item name="delete">deleteEspecie</item>
+      <item name="fillFunc">getAllEspecie,getEspecie_paged</item>
+      <item name="managingService">EspecieService</item>
+    </annotation>
+    <annotation name="getEspecieByID">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+    </annotation>
+    <annotation name="getAllEspecie">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+    </annotation>
+    <annotation name="getEspecie_paged">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Id_Especie" type="integer"/>
+    <property name="Especie" type="string"/>
+  </entity>
 </model>

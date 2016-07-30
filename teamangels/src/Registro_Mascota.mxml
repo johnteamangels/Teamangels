@@ -13,7 +13,7 @@
 	<s:BorderContainer  width="90%" height="100%">
 		
 		
-		<s:DataGrid id="dataGrid" x="232" y="763" width="1403" height="109">
+		<s:DataGrid id="dataGrid" x="232" y="766" width="1403" height="109">
 			<s:columns>
 				<s:ArrayList>
 					<!--<s:GridColumn dataField="Id_Servicio" headerText="Id_Servicio"></s:GridColumn>-->
@@ -52,7 +52,7 @@
 			</s:typicalItem>
 			
 		</s:DataGrid>
-		<s:Form x="207" y="33" width="50%" height="100%">
+		<s:Form x="208" y="67" width="50%" height="100%">
 				<Formularios:Registro_Mascota>
 				</Formularios:Registro_Mascota>
 			
@@ -60,6 +60,14 @@
 		<s:List id="Lst_Buscar_Propietario" x="1243" y="124" width="249" height="605"></s:List>
 		<s:List id="Lst_Buscar_Documento" x="1099" y="123" width="142" height="606"></s:List>
 		<s:Button id="Btn_Buscar_Documento" x="1099" y="94" label="Buscar"/>
+		<s:Button id="Btn_Buscar_Propietario" x="1099" y="94" label="Buscar"/>
+		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar"/>
+		
+		<s:HGroup x="250" y="22" width="200" height="25">
+			<s:Button id="Btn_Guardar" label="Guardar"/>
+			<s:Button id="Btn_Editar" label="Editar"/>
+			<s:Button id="Btn_Buscar" label="Buscar"/>
+		</s:HGroup>
 		
 	</s:BorderContainer>
 	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606"></s:List>
@@ -69,4 +77,8 @@
 		<s:RadioButton id="Rbtn_Propietario" label="Propietario" groupName="Buscar"/>
 	</s:HGroup>
 	<s:TextInput id="Txt_Buscar_Documento" x="1172" y="95" width="465"/>
+	
+	<s:TextInput id="Txt_Buscar_Propietario" x="1172" y="95" width="465"/>
+	
+	<s:TextInput id="Txt_Buscar_Mascota" x="1172" y="95" width="465"/>
 </s:Application>
