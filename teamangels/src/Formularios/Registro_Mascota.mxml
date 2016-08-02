@@ -75,7 +75,6 @@
 	
 	</s:DropDownList>
 	<s:DropDownList id="Ddl_Mes" x="266" y="227" width="60" prompt="   M"></s:DropDownList>
-	<s:DropDownList id="Ddl_Ano" x="328" y="227" width="60" prompt="   A"></s:DropDownList>
 	<s:Label x="396" y="215" text="Edad (Dias)"/>
 	<s:TextInput id="Txt_Edad_Dias" x="396" y="226" width="180"/>
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
@@ -102,5 +101,6 @@
 	<s:Label x="775" y="215" text="Edad(Años)"/>
 	<s:TextInput id="Edad_Anos" x="775" y="226" width="180"/>
 	<s:TextInput id="Txt_Color" x="24" y="171" width="180"/>
+	<s:TextInput id="Txt_Ano" x="327" y="226" width="60" prompt="A"/>
 	
 </s:Group>

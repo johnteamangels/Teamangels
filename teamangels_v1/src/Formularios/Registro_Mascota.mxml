@@ -175,7 +175,7 @@
 		</s:dataProvider>
 		
 	</s:DropDownList>
-	<s:DropDownList id="Mes" x="266" y="227" width="60" prompt="   M">
+	<s:DropDownList id="Ddl_Mes" x="266" y="227" width="60" prompt="   M">
 	
 		<s:dataProvider>
 			<s:ArrayList>
@@ -197,9 +197,9 @@
 	
 	
 	</s:DropDownList>
-	<s:DropDownList  id="Ano"  x="328" y="227" width="60" prompt="   A">
+	<s:TextInput id="Txt_Ano" x="327" y="226" width="60" prompt="A"/>
 	
-	</s:DropDownList>
+	
 	<s:Label x="396" y="215" text="Edad (Dias)"/>
 	<s:TextInput id="Txt_Edad_Dias" x="396" y="226" width="180"/>
 	<s:Label x="582" y="215" text="Edad(Meses)"/>
@@ -208,7 +208,7 @@
 	<s:TextInput id="Edad_Anos" x="775" y="226" width="180"/>
 	
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
-	<s:TextArea id="Txta_Señales_Particulares"  x="24" y="481" width="931" height="79"/>
+	<s:TextArea id="Txta_Senales_Particulares"  x="24" y="481" width="931" height="79"/>
 	<s:DropDownList id="Ddl_Temperamento" x="24" y="227" width="180" prompt="Temperamento">
 	
 		<s:dataProvider>
@@ -243,7 +243,7 @@
 	</s:DropDownList>
 	<s:Label x="24" y="422" text="Referencia"/>
 	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca"></s:DropDownList>
-	<s:DropDownList x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
+	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
 	<s:Label x="25" y="355" text="PRODUCTO" textDecoration="underline"/>
 	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" prompt="dddddddddddddddddddddddddddddd"/>
 	<s:TextInput id="Txt_Descripcion_Referencia" x="210" y="434" width="366"/>

@@ -8,6 +8,9 @@
 			import mx.events.FlexEvent;
 			import mx.events.ValidationResultEvent;
 			
+			import valueObjects.Mascotas;
+			[Bindable] private  var Fecha:Date = new Date();
+			
 			//SE DESACTIVA Y NO SE VISUALIZA LOS SIGUIENTES COMPONENTE AL INICIALIZAR
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -130,6 +133,37 @@
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
 				
+				var Reg:Mascotas = new Mascotas();
+				
+			    Reg.Documento_Propietario = "";
+				Reg.Propietario="";
+				Reg.Nombre_Mascota = Data_Model_Mascotas.Nombre_Mascota;
+				Reg.Id_Chif = Data_Model_Mascotas.Id_Chif;
+				Reg.Id_Especie = Data_Model_Mascotas.Id_Especie;
+				Reg.Especie = Data_Model_Mascotas.Especie;
+				Reg.Id_Raza = Data_Model_Mascotas.Id_Raza;
+				Reg.Raza =  Data_Model_Mascotas.Raza;
+				Reg.Pelaje = Data_Model_Mascotas.Pelaje;
+				Reg.Color = Data_Model_Mascotas.Color;
+				Reg.Tamano = Data_Model_Mascotas.Tamano;
+				Reg.Genero = Data_Model_Mascotas.Genero;
+				Reg.Peso = Data_Model_Mascotas.Peso;
+				Reg.Estado_Reproductivo = Data_Model_Mascotas.Estado_Reproductivo;
+				Reg.Temperamento = Data_Model_Mascotas.Temperamento;
+				Reg.Fecha_Nacimiento = Data_Model_Mascotas.Fecha_Nacimiento;
+				Reg.Edad_Dias = Data_Model_Mascotas.Edad_Dias;	
+				Reg.Edad_Meses = Data_Model_Mascotas.Edad_Meses;
+				Reg.Edad_Anos = Data_Model_Mascotas.Edad_Anos;
+				Reg.Tipo_Alimentacion = Data_Model_Mascotas.Tipo_Alimentacion;
+				Reg.Marca = Data_Model_Mascotas.Marca;
+				Reg.Descripcion_Marca = Data_Model_Mascotas.Descripcion_Marca;
+				Reg.Referencia = Data_Model_Mascotas.Referencia;
+				Reg.Descripcion_Referencia = Data_Model_Mascotas.Descripcion_Referencia;
+				Reg.Senales_Particulares = Data_Model_Mascotas.Senales_Particulares;
+				Reg.Observaciones = Data_Model_Mascotas.Observaciones;
+				Reg.Fecha = Fecha;
+				Reg.Usuario = "laura"
+				
 				
 				
 			}
@@ -141,7 +175,38 @@
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
-	
+		<fx:Model  id="Data_Model_Mascotas">
+			<Data>
+				<Id>{}</Id>	
+				<Nombre_Mascota>{registro_mascota.Txt_Nombre_Mascota.text}</Nombre_Mascota>
+				<Id_Chif>{registro_mascota.Txt_Id_Chip.text}</Id_Chif>
+				<Id_Especie>{registro_mascota.Ddl_Especie.selectedItem.Id_Especie}</Id_Especie>
+				<Especie>{registro_mascota.Ddl_Especie.selectedItem.Especie}</Especie>
+				<Id_Raza>{registro_mascota.Ddl_Raza.selectedItem.Id_Raza}</Id_Raza>
+				<Raza>{registro_mascota.Ddl_Raza.selectedItem.Raza}</Raza>
+				<Pelaje>{registro_mascota.Ddl_Pelaje.selectedItem}</Pelaje>
+				<Color>{registro_mascota.Txt_Color.text}</Color>
+				<Tamano>{registro_mascota.Ddl_Tamano.selectedItem}</Tamano>
+				<Genero>{registro_mascota.Ddl_Genero.selectedItem}</Genero>
+				<Peso>{registro_mascota.Txt_Peso.text}</Peso>
+				<Estado_Reproductivo>{registro_mascota.Ddl_Estado_Reproductivo.selectedItem}</Estado_Reproductivo>
+				<Temperamento>{registro_mascota.Ddl_Temperamento.selectedItem}</Temperamento>
+				<Edad_Dias>{registro_mascota.Txt_Edad_Dias.text}</Edad_Dias>
+				<Edad_Meses>{registro_mascota.Txt_Edad_Meses.text}</Edad_Meses>
+				<Edad_Anos>{registro_mascota.Edad_Anos.text}</Edad_Anos>
+				<Tipo_Alimentacion>{registro_mascota.Ddl_Tipo_Alimentacion.selectedItem}</Tipo_Alimentacion>
+				<Marca>{registro_mascota.Ddl_Marca.selectedItem}</Marca>
+				<Descripcion_Marca>{registro_mascota.Txt_Descripcion_Marca.text}</Descripcion_Marca>
+				<Referencia>{registro_mascota.Ddl_Referencia.selectedItem}</Referencia>
+				<Descripcion_Referencia>{registro_mascota.Txt_Descripcion_Referencia.text}</Descripcion_Referencia>
+				<Senales_Particulares>{registro_mascota.Txta_Senales_Particulares.text}</Senales_Particulares>
+				<Observaciones>{registro_mascota.Txta_Observaciones.text}</Observaciones>
+				<Fecha_Nacimiento>{registro_mascota.Ddl_Dia.selectedItem}-{registro_mascota.Ddl_Mes.selectedItem}-{registro_mascota.Txt_Ano.text}</Fecha_Nacimiento>
+			</Data>			
+		</fx:Model>	
+		
+		
+		
 	</fx:Declarations>
 	
 	
@@ -186,7 +251,7 @@
 			
 		</s:DataGrid>
 		<s:Form x="45" y="60" width="50%" height="100%">
-			<Formularios:Registro_Mascota>		
+			<Formularios:Registro_Mascota id="registro_mascota">		
 			</Formularios:Registro_Mascota>
 			
 			
