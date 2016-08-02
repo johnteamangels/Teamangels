@@ -3,21 +3,35 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:especieservice="services.especieservice.*"
+		 xmlns:razaservice="services.razaservice.*"
 		 width="400" height="300">
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.events.IndexChangeEvent;
 			
 			
-			
+			//SE LLENA EL DROP DOWN LIST CON LAS ESPECIES
 			protected function Ddl_Especie_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllEspecieResult.token = especieService.getAllEspecie();
 				
 			}
 			
-		
+			//METODO LLENAS LAS RAZAS SEGUN LA ESPECIE
+			protected function Ddl_Especie_changeHandler(event:IndexChangeEvent):void
+			{
+				getAllRazaByEspecieResult.token = razaService.getAllRazaByEspecie(Ddl_Especie.selectedItem.Id_Especie);
+			}
+			
+			//RESULTADO DEL METODO ANTERIOR, LLENA LAS RAZAS SEGUN ESPECIE
+			protected function getAllRazaByEspecieResult_resultHandler(event:ResultEvent):void
+			{
+				Ddl_Raza.dataProvider = getAllRazaByEspecieResult.lastResult;
+			}
 			
 		]]>
 	</fx:Script>
@@ -30,6 +44,10 @@
 		<especieservice:EspecieService id="especieService"
 									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 									   showBusyCursor="true"/>
+		<s:CallResponder id="getAllRazaByEspecieResult" result="getAllRazaByEspecieResult_resultHandler(event)"/>
+		<razaservice:RazaService id="razaService"
+								 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+								 showBusyCursor="true"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:Label x="24" y="34" text="Propietario"/>
@@ -43,11 +61,13 @@
 	<s:Label x="210" y="107" text="ID (CHIP)"/>
 	<s:TextInput id="Txt_Nombre_Mascota" x="24" y="118" width="180"/>
 	<s:TextInput id="Txt_Id_Chip" x="210" y="118" width="180"/>
-	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie" creationComplete="Ddl_Especie_creationCompleteHandler(event)" labelField="Especie">
+	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie" creationComplete="Ddl_Especie_creationCompleteHandler(event)" labelField="Especie"
+					change="Ddl_Especie_changeHandler(event)">
 		<s:AsyncListView list="{getAllEspecieResult.lastResult}"/>
 	</s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
-	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"></s:DropDownList>
+	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"
+					labelField="Raza"></s:DropDownList>
 	<s:Label x="24" y="159" text="Pelaje"/>
 	<s:Label x="396" y="159" text="Tamaño"/>
 	<s:Label x="210" y="159" text="Color"/>
@@ -136,7 +156,7 @@
 		</s:dataProvider>
 	
 	</s:DropDownList>
-	<s:DropDownList x="453" y="227" width="60" prompt="   M">
+	<s:DropDownList id="Mes" x="453" y="227" width="60" prompt="   M">
 	
 		
 		<s:dataProvider>
@@ -159,7 +179,7 @@
 	
 	
 	</s:DropDownList>
-	<s:DropDownList x="515" y="227" width="60" prompt="   A">
+	<s:DropDownList  id="Ano" x="515" y="227" width="60" prompt="   A">
 	
 	
 	

@@ -15,4 +15,11 @@
 		<nature>com.adobe.flexbuilder.project.flexnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>services/RazaService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/RazaService.php</location>
+		</link>
+	</linkedResources>
 </projectDescription>
