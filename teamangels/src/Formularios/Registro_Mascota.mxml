@@ -2,8 +2,8 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 width="786" height="710" chromeColor="#FFFFFF" contentBackgroundColor="#FFFFFF"
-		 focusColor="#FFFFFF" rollOverColor="#CEDBEF">
+		 chromeColor="#FFFFFF" contentBackgroundColor="#FFFFFF" focusColor="#FFFFFF"
+		 rollOverColor="#CEDBEF">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -21,21 +21,20 @@
 	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie"></s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
 	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"></s:DropDownList>
-	<s:Label x="24" y="159" text="Pelaje"/>
-	<s:Label x="396" y="159" text="Tamaño"/>
-	<s:Label x="210" y="159" text="Color"/>
-	<s:Label x="582" y="159" text="Genero"/>
-	<s:DropDownList x="24" y="171" width="180" prompt="Pelaje"></s:DropDownList>
-	<s:DropDownList id="Ddl_Color" x="210" y="171" width="180" prompt="Color"></s:DropDownList>
-	<s:DropDownList id="Ddl_Tamano" x="396" y="171" width="180" prompt="Tamaño"></s:DropDownList>
-	<s:DropDownList id="Ddl_Genero" x="582" y="171" width="180" prompt="Genero"></s:DropDownList>
-	<s:Label x="24" y="215" text="Peso (KG)"/>
-	<s:Label x="210" y="216" text="Estado Reproductivo"/>
-	<s:Label x="396" y="215" text="Fecha Nacimiento"/>
-	<s:TextInput x="24" y="227" width="180"/>
-	<s:DropDownList id="Ddl_Estado_Reproductivo" x="210" y="228" width="180"
+	<s:Label x="775" y="107" text="Pelaje"/>
+	<s:Label x="210" y="159" text="Tamaño"/>
+	<s:Label x="24" y="159" text="Color"/>
+	<s:Label x="396" y="159" text="Genero"/>
+	<s:DropDownList id="Ddl_Pelaje" x="775" y="118" width="180" prompt="Pelaje"></s:DropDownList>
+	<s:DropDownList id="Ddl_Tamano" x="210" y="171" width="180" prompt="Tamaño"></s:DropDownList>
+	<s:DropDownList id="Ddl_Genero" x="396" y="171" width="180" prompt="Genero"></s:DropDownList>
+	<s:Label x="582" y="159" text="Peso (KG)"/>
+	<s:Label x="775" y="159" text="Estado Reproductivo"/>
+	<s:Label x="210" y="215" text="Fecha Nacimiento"/>
+	<s:TextInput id="Txt_Peso" x="582" y="171" width="180"/>
+	<s:DropDownList id="Ddl_Estado_Reproductivo" x="775" y="171" width="180"
 					prompt="Estado Reproductivo"></s:DropDownList>
-	<s:DropDownList id="Ddl_Dia" x="396" y="227" width="55" prompt="   D">
+	<s:DropDownList id="Ddl_Dia" x="210" y="227" width="55" prompt="   D">
 	
 	<s:dataProvider>
 		<s:ArrayList>
@@ -75,12 +74,12 @@
 	</s:dataProvider>
 	
 	</s:DropDownList>
-	<s:DropDownList x="453" y="227" width="60" prompt="   M"></s:DropDownList>
-	<s:DropDownList x="515" y="227" width="60" prompt="   A"></s:DropDownList>
-	<s:Label x="582" y="215" text="Edad (Meses)"/>
-	<s:TextInput x="582" y="226" width="180"/>
+	<s:DropDownList id="Ddl_Mes" x="266" y="227" width="60" prompt="   M"></s:DropDownList>
+	<s:DropDownList id="Ddl_Ano" x="328" y="227" width="60" prompt="   A"></s:DropDownList>
+	<s:Label x="396" y="215" text="Edad (Dias)"/>
+	<s:TextInput id="Txt_Edad_Dias" x="396" y="226" width="180"/>
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
-	<s:TextArea x="24" y="481" width="738" height="79"/>
+	<s:TextArea x="24" y="481" width="931" height="79"/>
 	
 	<s:Label x="25" y="277" text="INFORMACION DE ALIMENTACION" textDecoration="underline"/>
 	<s:Label x="24" y="304" text="Tipo Alimentacion"/>
@@ -94,7 +93,14 @@
 	<s:Label x="210" y="378" text="Descripciòn"/>
 	<s:Label x="210" y="422" text="Descripciòn"/>
 	<s:Label x="24" y="570" text="OBSERVACIONES"/>
-	<s:TextArea x="24" y="580" width="738" height="79"/>
+	<s:TextArea x="24" y="580" width="931" height="79"/>
 	<s:Label x="25" y="378" text="Marca"/>
+	<s:DropDownList id="Ddl_Temperamento" x="24" y="227" width="180" prompt="Temperamento"></s:DropDownList>
+	<s:Label x="24" y="215" text="Temperamento"/>
+	<s:Label x="582" y="215" text="Edad(Meses)"/>
+	<s:TextInput id="Txt_Edad_Meses" x="582" y="226" width="180"/>
+	<s:Label x="775" y="215" text="Edad(Años)"/>
+	<s:TextInput id="Edad_Anos" x="775" y="226" width="180"/>
+	<s:TextInput id="Txt_Color" x="24" y="171" width="180"/>
 	
 </s:Group>

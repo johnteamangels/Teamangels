@@ -52,7 +52,7 @@
 			</s:typicalItem>
 			
 		</s:DataGrid>
-		<s:Form x="208" y="67" width="50%" height="100%">
+		<s:Form x="40" y="67" width="50%" height="100%">
 				<Formularios:Registro_Mascota>
 				</Formularios:Registro_Mascota>
 			
@@ -63,7 +63,7 @@
 		<s:Button id="Btn_Buscar_Propietario" x="1099" y="94" label="Buscar"/>
 		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar"/>
 		
-		<s:HGroup x="250" y="22" width="200" height="25">
+		<s:HGroup x="82" y="22" width="200" height="25">
 			<s:Button id="Btn_Guardar" label="Guardar"/>
 			<s:Button id="Btn_Editar" label="Editar"/>
 			<s:Button id="Btn_Buscar" label="Buscar"/>
