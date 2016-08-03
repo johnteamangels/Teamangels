@@ -11,6 +11,9 @@
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.events.ValidationResultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.events.IndexChangeEvent;
 			
 			import valueObjects.Clientes;
 			
@@ -62,6 +65,34 @@
 					clientesService.commit();
 
 				}
+			}
+			
+			protected function createClientesResult_resultHandler(event:ResultEvent):void
+			{
+				Limpiar();
+				
+			}
+			
+			protected function Lst_Cliente_changeHandler(event:IndexChangeEvent):void
+			{				
+				Data_Model_Clientes.Documento=Lst_Cliente.selectedItem.Documento;
+				Data_Model_Clientes.Primer_Nombre=Lst_Cliente.selectedItem.Primer_Nombre;
+				Data_Model_Clientes.Segundo_Nombre=Lst_Cliente.selectedItem.Segundo_Nombre;
+				Data_Model_Clientes.Primer_Apellido=Lst_Cliente.selectedItem.Primer_Apellido;
+				Data_Model_Clientes.Segundo_Apellido=Lst_Cliente.selectedItem.Segundo_Apellido;
+				
+				Data_Model_Clientes.Direccion_Residencia=Lst_Cliente.selectedItem.Direccion_Residencia;
+				Data_Model_Clientes.Numero1=Lst_Cliente.selectedItem.Numero_Uno;
+				
+				Data_Model_Clientes.Email=Lst_Cliente.selectedItem.Email;
+				Data_Model_Clientes.Fidelizacion=Lst_Cliente.selectedItem.Fidelizacion;
+										
+			}
+			
+			
+			protected function Lst_Cliente_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllClientesResult.token = clientesService.getAllClientes();
 			}
 			
 			private function desactivarcontroles():void{
@@ -137,10 +168,14 @@
 				Form_Cliente.Txt_Direccion_Residencia.errorString="";
 				Form_Cliente.Ddl_Telefono1.selectedIndex=-1;
 				Form_Cliente.Ddl_Telefono1.errorString="";
+				Form_Cliente.Txt_Numero_Telefono1.text="";
+				Form_Cliente.Txt_Numero_Telefono1.errorString="";
 				Form_Cliente.Txt_Email.text="";
 				Form_Cliente.Txt_Email.errorString="";
 				Form_Cliente.Ddl_Telefono2.selectedIndex=-1;
 				Form_Cliente.Ddl_Telefono2.errorString="";
+				Form_Cliente.Txt_Numero_Telefono2.text="";
+				Form_Cliente.Txt_Numero_Telefono2.errorString="";
 				Form_Cliente.Ddl_Genero.selectedIndex=-1;
 				Form_Cliente.Ddl_Genero.errorString="";
 				Form_Cliente.Ddl_Dia.selectedIndex=-1;
@@ -201,7 +236,8 @@
 				}
 				return rsp;
 			}		
-						
+				
+				
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -343,10 +379,12 @@
 						   allowNegative="false"
 						   negativeError="Este campo es obligatorio"
 						   triggerEvent=""/>
-		<s:CallResponder id="createClientesResult"/>
+		
+		<s:CallResponder id="createClientesResult" result="createClientesResult_resultHandler(event)"/>
 		<clientesservice:ClientesService id="clientesService"
 										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 										 showBusyCursor="true"/>
+		<s:CallResponder id="getAllClientesResult"/>
 		
 	</fx:Declarations>	
 	<s:Label x="48" y="39" fontSize="35" fontStyle="italic" text="Centro Veterinario"
@@ -367,7 +405,14 @@
 	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR"
 			  click="Btn_Guardar_clickHandler(event)"/>
 	
-	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"></s:List>
+	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"
+			change="Lst_Cliente_changeHandler(event)"
+			creationComplete="Lst_Cliente_creationCompleteHandler(event)"
+			labelField="Nombre_Completo">
+		<s:AsyncListView list="{getAllClientesResult.lastResult}"/>
+	</s:List>
+	
 	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
+	
 	<s:List x="78" y="592" width="1174"></s:List>
 </s:Application>
