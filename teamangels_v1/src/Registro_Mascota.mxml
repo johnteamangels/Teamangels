@@ -8,7 +8,6 @@
 			   creationComplete="application1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
-			import Formularios.Registro_Cliente;
 			
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
@@ -16,7 +15,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			import valueObjects.Mascotas;
-			[Bindable] private  var Fecha:Date = new Date();
+		
 			
 			//SE DESACTIVA Y NO SE VISUALIZA LOS SIGUIENTES COMPONENTE AL INICIALIZAR
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
@@ -225,52 +224,77 @@
 				
 				var Reg:Mascotas = new Mascotas();
 				
-			    Reg.Documento_Propietario = "";
-				Reg.Propietario="";
-				Reg.Nombre_Mascota = registro_mascota.Txt_Nombre_Mascota.text;
-				Reg.Id_Chif = registro_mascota.Txt_Id_Chip.text;
-				Reg.Id_Especie = registro_mascota.Ddl_Especie.selectedItem.Id_Especie;
-				Reg.Especie = registro_mascota.Ddl_Especie.selectedItem.Especie;
-				Reg.Id_Raza = registro_mascota.Ddl_Raza.selectedItem.Id_Raza;
-				Reg.Raza =  registro_mascota.Ddl_Raza.selectedItem.Raza;
-				Reg.Pelaje = registro_mascota.Ddl_Pelaje.selectedItem;
-				Reg.Color = registro_mascota.Txt_Color.text;
-				Reg.Tamano = registro_mascota.Ddl_Tamano.selectedItem;
-				Reg.Genero = registro_mascota.Ddl_Genero.selectedItem;
-				Reg.Peso = registro_mascota.Txt_Peso.text;
-				Reg.Estado_Reproductivo = registro_mascota.Ddl_Estado_Reproductivo.selectedItem;
-				Reg.Temperamento = registro_mascota.Ddl_Temperamento.selectedItem;
+			    Reg.Documento_Propietario = "101928323";
+				Reg.Propietario="maria juliana";
+				Reg.Nombre_Mascota = "maria juliana";
+				Reg.Id_Chif = "7";
+				Reg.Id_Especie = 5;
+				Reg.Especie = "maria juliana";
+				Reg.Id_Raza =3;
+				Reg.Raza =  "maria juliana";
+				Reg.Pelaje = "maria juliana";
+				Reg.Color = "maria juliana";
+				Reg.Tamano = "maria juliana";
+				Reg.Genero = "maria juliana";
+				Reg.Peso = "maria juliana";
+				Reg.Estado_Reproductivo = "maria juliana";
+				Reg.Temperamento = "maria juliana";
 				Reg.Fecha_Nacimiento = Data_Model_Mascotas.Fecha_Nacimiento;
-				Reg.Edad_Dias = registro_mascota.Txt_Edad_Dias.text;	
-				Reg.Edad_Meses = registro_mascota.Txt_Edad_Meses.text;
-				Reg.Edad_Anos = registro_mascota.Edad_Anos.text;
-				Reg.Tipo_Alimentacion = registro_mascota.Ddl_Tipo_Alimentacion.selectedItem;
-				Reg.Marca = "";
-				Reg.Descripcion_Marca = registro_mascota.Txt_Descripcion_Marca.text;
-				Reg.Referencia = "";
-				Reg.Descripcion_Referencia = registro_mascota.Txt_Descripcion_Referencia.text;
-				Reg.Senales_Particulares = registro_mascota.Txta_Senales_Particulares.text;
-				Reg.Observaciones = registro_mascota.Txta_Observaciones.text;
-				Reg.Fecha = Fecha;
-				Reg.Usuario = "laura"
+				Reg.Edad_Dias = "maria juliana";
+				Reg.Edad_Meses = "maria juliana";
+				Reg.Edad_Anos = "maria juliana";
+				Reg.Tipo_Alimentacion = "maria juliana";
+				Reg.Marca = "maria juliana";
+				Reg.Descripcion_Marca = "maria juliana";
+				Reg.Referencia = "maria juliana";
+				Reg.Descripcion_Referencia = "maria juliana";
+				Reg.Senales_Particulares = "maria juliana";
+				Reg.Observaciones = "maria juliana";
+				Reg.Fecha =  new Date();
+				Reg.Usuario = "laura";
 				
 				createMascotasResult.token = mascotasService.createMascotas(Reg);
 				mascotasService.commit();
-				
-				
+			
 				
 			}
 			
-			
 			//RESPONDE LO DEL CREATE
-			protected function createMascotasResult_resultHandler(event:ResultEvent):void
+			protected function createMascotasResult2_resultHandler(event:ResultEvent):void
 			{
 				Limpiar();
+				
 			}
 			
 			//ACTIVA LOS CAMPOS PARA UN NUEVO REGISTRO
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
 			{
+				
+				Rbtn_Documento.enabled=false;
+				Rbtn_Documento.visible=false;
+				Rbtn_Mascota.enabled=false;
+				Rbtn_Mascota.visible=false;
+				Rbtn_Propietario.enabled=false;
+				Rbtn_Propietario.visible=false;
+				Btn_Buscar_Documento.enabled=false;
+				Btn_Buscar_Documento.visible=false;
+				Btn_Buscar_Propietario.enabled=false;
+				Btn_Buscar_Propietario.visible=false;
+				Btn_Buscar_Mascota.enabled=false;
+				Btn_Buscar_Mascota.visible=false;
+				Txt_Buscar_Documento.enabled=false;
+				Txt_Buscar_Documento.visible=false;
+				Txt_Buscar_Propietario.enabled=false;
+				Txt_Buscar_Propietario.visible=false;
+				Txt_Buscar_Mascota.enabled=false;
+				Txt_Buscar_Mascota.visible=false;
+				Lst_Buscar_Documento.enabled=false;
+				Lst_Buscar_Documento.visible=false;
+				Lst_Buscar_Propietario.enabled=false;
+				Lst_Buscar_Propietario.visible=false;
+				Lst_Buscar_Mascota.enabled=false;
+				Lst_Buscar_Mascota.visible=false;
+				
 				registro_mascota.Txt_Nombre_Mascota.editable=true;
 				registro_mascota.Txt_Id_Chip.editable=true;
 				registro_mascota.Ddl_Especie.enabled=true;
@@ -298,28 +322,51 @@
 				
 			}
 			
+			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
+		
+		
+		<fx:Model  id="Data_Model_Mascotas">
+			<Data>
+				<Id></Id>	
+				<Nombre_Mascota>@{registro_mascota.Txt_Nombre_Mascota.text}</Nombre_Mascota>
+				<Id_Chif>@{registro_mascota.Txt_Id_Chip.text}</Id_Chif>
+				<Id_Especie>{registro_mascota.Ddl_Especie.selectedItem.Id_Especie}</Id_Especie>
+				<Especie>{registro_mascota.Ddl_Especie.selectedItem.Especie}</Especie>
+				<Id_Raza>{registro_mascota.Ddl_Raza.selectedItem.Id_Raza}</Id_Raza>
+				<Raza>{registro_mascota.Ddl_Raza.selectedItem.Raza}</Raza>
+				<Pelaje>{registro_mascota.Ddl_Pelaje.selectedItem}</Pelaje>
+				<Color>@{registro_mascota.Txt_Color.text}</Color>
+				<Tamano>{registro_mascota.Ddl_Tamano.selectedItem}</Tamano>
+				<Genero>{registro_mascota.Ddl_Genero.selectedItem}</Genero>
+				<Peso>@{registro_mascota.Txt_Peso.text}</Peso>
+				<Estado_Reproductivo>{registro_mascota.Ddl_Estado_Reproductivo.selectedItem}</Estado_Reproductivo>
+				<Temperamento>{registro_mascota.Ddl_Temperamento.selectedItem}</Temperamento>
+				<Edad_Dias>@{registro_mascota.Txt_Edad_Dias.text}</Edad_Dias>
+				<Edad_Meses>@{registro_mascota.Txt_Edad_Meses.text}</Edad_Meses>
+				<Edad_Anos>@{registro_mascota.Edad_Anos.text}</Edad_Anos>
+				<Tipo_Alimentacion>{registro_mascota.Ddl_Tipo_Alimentacion.selectedItem}</Tipo_Alimentacion>
+				<Descripcion_Marca>@{registro_mascota.Txt_Descripcion_Marca.text}</Descripcion_Marca>
+				<Descripcion_Referencia>@{registro_mascota.Txt_Descripcion_Referencia.text}</Descripcion_Referencia>
+				<Senales_Particulares>@{registro_mascota.Txta_Senales_Particulares.text}</Senales_Particulares>
+				<Observaciones>@{registro_mascota.Txta_Observaciones.text}</Observaciones>
+				<Fecha_Nacimiento>{registro_mascota.Ddl_Dia.selectedItem}-{registro_mascota.Ddl_Mes.selectedItem}-{registro_mascota.Txt_Ano.text}</Fecha_Nacimiento>
+			</Data>			
+		</fx:Model>	
+		
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
-		<fx:Model id="Data_Model_Mascotas">
-			
-		<Data>
-			<Id>{}</Id>
-			
-			<Fecha_Nacimiento>{registro_mascota.Ddl_Dia.selectedItem}-{registro_mascota.Ddl_Mes.selectedItem}-{registro_mascota.Txt_Ano.text}</Fecha_Nacimiento>
-			
-		</Data>
-		</fx:Model>
+	
 		
-		<s:CallResponder id="createMascotasResult" result="createMascotasResult_resultHandler(event)"/>
 		<mascotasservice:MascotasService id="mascotasService"
 										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 										 showBusyCursor="true"/>
+		<s:CallResponder id="createMascotasResult" result="createMascotasResult2_resultHandler(event)"/>
 		
 		
 		
@@ -330,8 +377,11 @@
 		
 		<s:HGroup x="550" y="735">
 			
-			<s:Button id="Btn_Guardar" label="Guardar" click="Btn_Guardar_clickHandler(event)"/>
-				
+			<s:Button id="Btn_Guardar" label="Guardar" click="Btn_Guardar_clickHandler(event)">
+		
+			</s:Button>
+		
+			<s:Label id="Lbl_Prueba"/>
 		</s:HGroup>
 	
 		<s:DataGrid id="dataGrid" x="80" y="763" width="1403" height="109">
