@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="232">
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
+			
+			protected function Cbx_Via_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Via.text=Cbx_Via.selectedItem;
+				//Txt_Direccion_Completa.text=Cbx_Via.selectedItem;
+			}
+			
+			protected function Txt_Numero_changeHandler(event:TextOperationEvent):void
+			{
+				Lbl_Numero1.text=Txt_Numero.text;
+				//Txt_Direccion_Completa.text=Txt_Numero.text;
+			}
+			
+			protected function Cbx_Letra1_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Letra1.text=Cbx_Letra1.selectedItem;
+				//Txt_Direccion_Completa.text=Cbx_Letra1.selectedItem;
+			}
+			
+			protected function Cbx_Bis_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Bis.text=Cbx_Bis.selectedItem;
+			}
+			
+			protected function Cbx_Letra2_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Letra2.text=Cbx_Letra2.selectedItem;
+			}
+			
+			protected function Cbx_Geografia1_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Geografia1.text=Cbx_Geografia1.selectedItem;
+			}
+			
+			protected function Txt_Numero2_changeHandler(event:TextOperationEvent):void
+			{
+				Lbl_Numero2.text=Txt_Numero2.text;
+			}
+			
+			protected function Cbx_Letra3_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Letra3.text=Cbx_Letra3.selectedItem;
+			}
+			
+			protected function Txt_Numero3_changeHandler(event:TextOperationEvent):void
+			{
+			     Lbl_Numero3.text=Txt_Numero3.text;
+			}
+			
+			protected function Cbx_Geografia2_changeHandler(event:IndexChangeEvent):void
+			{
+				LbL_Geografia2.text=Cbx_Geografia2.selectedItem;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:TextInput id="Txt_Direccion_Completa" y="29" width="450" enabled="false" horizontalCenter="1"/>
+	
+	<s:ComboBox id="Cbx_Via" y="72" width="343" change="Cbx_Via_changeHandler(event)"
+				horizontalCenter="0">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>AUTOPISTA</fx:String>
+				<fx:String>AVENIDA</fx:String>
+				<fx:String>AVENIDA CALLE</fx:String>
+				<fx:String>AVENIDA CARRERA</fx:String>
+				<fx:String>BULEVARD</fx:String>
+				<fx:String>CALLE</fx:String>
+				<fx:String>CARRERA</fx:String>
+				<fx:String>CIRCULAR</fx:String>
+				<fx:String>DIAGONAL</fx:String>
+				<fx:String>KILÓMETRO</fx:String>
+				<fx:String>PASAJE</fx:String>
+				<fx:String>PASEO</fx:String>
+				<fx:String>PEATONAL</fx:String>
+				<fx:String>TRONCAL</fx:String>
+				<fx:String>TRANSVERSAL</fx:String>
+				<fx:String>VARIANTE</fx:String>
+				<fx:String>VIA</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:TextInput id="Txt_Numero" x="10" y="119" width="110" change="Txt_Numero_changeHandler(event)"
+				 maxChars="5"/>
+	
+	<s:ComboBox id="Cbx_Letra1" x="143" y="119" width="80" change="Cbx_Letra1_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>A</fx:String>
+				<fx:String>B</fx:String>
+				<fx:String>C</fx:String>
+				<fx:String>D</fx:String>
+				<fx:String>E</fx:String>
+				<fx:String>F</fx:String>
+				<fx:String>G</fx:String>
+				<fx:String>H</fx:String>
+				<fx:String>I</fx:String>
+				<fx:String>J</fx:String>
+				<fx:String>K</fx:String>
+				<fx:String>L</fx:String>
+				<fx:String>M</fx:String>
+				<fx:String>N</fx:String>
+				<fx:String>O</fx:String>
+				<fx:String>P</fx:String>
+				<fx:String>R</fx:String>
+				<fx:String>S</fx:String>
+				<fx:String>T</fx:String>
+				<fx:String>U</fx:String>
+				<fx:String>V</fx:String>
+				<fx:String>W</fx:String>
+				<fx:String>X</fx:String>
+				<fx:String>Y</fx:String>
+				<fx:String>Z</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:ComboBox id="Cbx_Bis" x="244" y="119" width="80" change="Cbx_Bis_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>BIS</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:ComboBox id="Cbx_Letra2" x="344" y="119" width="85" change="Cbx_Letra2_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>A</fx:String>
+				<fx:String>B</fx:String>
+				<fx:String>C</fx:String>
+				<fx:String>D</fx:String>
+				<fx:String>E</fx:String>
+				<fx:String>F</fx:String>
+				<fx:String>G</fx:String>
+				<fx:String>H</fx:String>
+				<fx:String>I</fx:String>
+				<fx:String>J</fx:String>
+				<fx:String>K</fx:String>
+				<fx:String>L</fx:String>
+				<fx:String>M</fx:String>
+				<fx:String>N</fx:String>
+				<fx:String>O</fx:String>
+				<fx:String>P</fx:String>
+				<fx:String>R</fx:String>
+				<fx:String>S</fx:String>
+				<fx:String>T</fx:String>
+				<fx:String>U</fx:String>
+				<fx:String>V</fx:String>
+				<fx:String>W</fx:String>
+				<fx:String>X</fx:String>
+				<fx:String>Y</fx:String>
+				<fx:String>Z</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:ComboBox id="Cbx_Geografia1" x="446" y="119" change="Cbx_Geografia1_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>ESTE</fx:String>
+				<fx:String>NORTE</fx:String>
+				<fx:String>OESTE</fx:String>
+				<fx:String>SUR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:Label x="12" y="167" fontSize="13" text="Numero (#)"/>
+	
+	<s:TextInput id="Txt_Numero2" x="140" y="167" width="90"
+				 change="Txt_Numero2_changeHandler(event)" maxChars="4" restrict="0-9"/>
+	
+	<s:ComboBox id="Cbx_Letra3" x="244" y="167" width="80" change="Cbx_Letra3_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>A</fx:String>
+				<fx:String>B</fx:String>
+				<fx:String>C</fx:String>
+				<fx:String>D</fx:String>
+				<fx:String>E</fx:String>
+				<fx:String>F</fx:String>
+				<fx:String>G</fx:String>
+				<fx:String>H</fx:String>
+				<fx:String>I</fx:String>
+				<fx:String>J</fx:String>
+				<fx:String>K</fx:String>
+				<fx:String>L</fx:String>
+				<fx:String>M</fx:String>
+				<fx:String>N</fx:String>
+				<fx:String>O</fx:String>
+				<fx:String>P</fx:String>
+				<fx:String>R</fx:String>
+				<fx:String>S</fx:String>
+				<fx:String>T</fx:String>
+				<fx:String>U</fx:String>
+				<fx:String>V</fx:String>
+				<fx:String>W</fx:String>
+				<fx:String>X</fx:String>
+				<fx:String>Y</fx:String>
+				<fx:String>Z</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	<s:TextInput id="Txt_Numero3" x="344" y="167" width="90"
+				 change="Txt_Numero3_changeHandler(event)" maxChars="4" restrict="0-9"/>
+	<s:ComboBox id="Cbx_Geografia2" x="447" y="167" change="Cbx_Geografia2_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>ESTE</fx:String>
+				<fx:String>NORTE</fx:String>
+				<fx:String>OESTE</fx:String>
+				<fx:String>SUR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:HGroup y="36" width="445" height="22" horizontalCenter="0">
+		<s:Label id="Lbl_Via" x="4" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Numero1" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Letra1" x="104" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Bis" x="147" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Letra2" x="199" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Geografia1" x="235" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Numero2" x="281" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Letra3" x="331" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Numero3" x="364" y="8" verticalAlign="bottom"/>
+		<s:Label id="LbL_Geografia2" x="413" y="8" verticalAlign="bottom"/>
+	</s:HGroup>	
+</s:Group>

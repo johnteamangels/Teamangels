@@ -3,11 +3,139 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:Formularios="Formularios.*"
-			   minWidth="955" minHeight="600">
+			   height="714" minWidth="955" minHeight="600" 
+			   creationComplete="application1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				//Form_Cliente.enabled=false;
+				desactivarcontroles();
+			}
+			
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+			    ActivarControles();
+				//Form_Cliente.enabled=true;
+				
+			}
+			
+			private function desactivarcontroles():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Documento.editable=false;
+				Form_Cliente.Txt_Nombre1.editable=false;
+				Form_Cliente.Txt_Nombre2.editable=false;
+				Form_Cliente.Txt_Apellido1.editable=false;
+				Form_Cliente.Txt_Apellido2.editable=false;
+				Form_Cliente.Ddl_Departamento.openButton.enabled=false;
+				Form_Cliente.Ddl_Municipio.openButton.enabled=false;
+				Form_Cliente.Txt_Direccion_Residencia.editable=false;
+				Form_Cliente.Ddl_Telefono1.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Telefono1.editable=false;
+				Form_Cliente.Ddl_Telefono2.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Telefono2.editable=false;
+				Form_Cliente.Txt_Email.editable=false;
+				Form_Cliente.Ddl_Genero.openButton.enabled=false;
+				Form_Cliente.Ddl_Dia.openButton.enabled=false;
+				Form_Cliente.Ddl_Mes.openButton.enabled=false;
+				Form_Cliente.Txt_Ano.editable=false;
+				Form_Cliente.Ddl_Tipo_Cliente.openButton.enabled=false;
+				Form_Cliente.Ddl_Lista_Precios.openButton.enabled=false;
+				Form_Cliente.Txt_Fidelizacion.editable=false;				
+				
+			}
+			
+			private function ActivarControles():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Documento.editable=true;
+				Form_Cliente.Txt_Nombre1.editable=true;
+				Form_Cliente.Txt_Nombre2.editable=true;
+				Form_Cliente.Txt_Apellido1.editable=true;
+				Form_Cliente.Txt_Apellido2.editable=true;
+				Form_Cliente.Ddl_Departamento.openButton.enabled=true;
+				Form_Cliente.Ddl_Municipio.openButton.enabled=true;
+				Form_Cliente.Txt_Direccion_Residencia.editable=true;
+				Form_Cliente.Ddl_Telefono1.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Telefono1.editable=true;
+				Form_Cliente.Ddl_Telefono2.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Telefono2.editable=true;
+				Form_Cliente.Txt_Email.editable=true;
+				Form_Cliente.Ddl_Genero.openButton.enabled=true;
+				Form_Cliente.Ddl_Dia.openButton.enabled=true;
+				Form_Cliente.Ddl_Mes.openButton.enabled=true;
+				Form_Cliente.Txt_Ano.editable=true;
+				Form_Cliente.Ddl_Tipo_Cliente.openButton.enabled=true;
+				Form_Cliente.Ddl_Lista_Precios.openButton.enabled=true;
+				Form_Cliente.Txt_Fidelizacion.editable=true;			
+			}
+			
+			private function Limpiar():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.selectedIndex=-1;
+				Form_Cliente.Ddl_Tipo_Documento.errorString="";
+				Form_Cliente.Txt_Numero_Documento.text="";
+				Form_Cliente.Txt_Numero_Documento.errorString="";				
+				Form_Cliente.Txt_Nombre1.text="";
+				Form_Cliente.Txt_Nombre1.errorString="";
+				Form_Cliente.Txt_Nombre2.text="";	
+				Form_Cliente.Txt_Nombre2.errorString="";
+				Form_Cliente.Txt_Apellido1.text="";
+				Form_Cliente.Txt_Apellido1.errorString="";
+				Form_Cliente.Txt_Apellido2.text="";	
+				Form_Cliente.Txt_Apellido2.errorString="";
+				Form_Cliente.Ddl_Departamento.selectedIndex=-1;
+				Form_Cliente.Ddl_Departamento.errorString="";
+				Form_Cliente.Ddl_Municipio.selectedIndex=-1;
+				Form_Cliente.Ddl_Municipio.errorString="";
+				Form_Cliente.Txt_Direccion_Residencia.text="";
+				Form_Cliente.Txt_Direccion_Residencia.errorString="";
+				Form_Cliente.Ddl_Telefono1.selectedIndex=-1;
+				Form_Cliente.Ddl_Telefono1.errorString="";
+				Form_Cliente.Txt_Email.text="";
+				Form_Cliente.Txt_Email.errorString="";
+				Form_Cliente.Ddl_Telefono2.selectedIndex=-1;
+				Form_Cliente.Ddl_Telefono2.errorString="";
+				Form_Cliente.Ddl_Genero.selectedIndex=-1;
+				Form_Cliente.Ddl_Genero.errorString="";
+				Form_Cliente.Ddl_Dia.selectedIndex=-1;
+				Form_Cliente.Ddl_Dia.errorString="";
+				Form_Cliente.Ddl_Mes.selectedIndex=-1;
+				Form_Cliente.Ddl_Mes.errorString="";
+				Form_Cliente.Txt_Ano.text="";
+				Form_Cliente.Txt_Ano.errorString="";
+				Form_Cliente.Ddl_Tipo_Cliente.selectedIndex=-1;
+				Form_Cliente.Ddl_Tipo_Cliente.errorString="";
+				Form_Cliente.Ddl_Lista_Precios.selectedIndex=-1;
+				Form_Cliente.Ddl_Lista_Precios.errorString="";
+				Form_Cliente.Txt_Fidelizacion.text="";
+				Form_Cliente.Txt_Fidelizacion.errorString="";
+			}			
+			
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
 	</fx:Declarations>
-	<s:Label x="37" y="43" width="101" height="14" color="#001EFF" text="HELLO A TODOS"/>
-	<Formularios:Registro_Cliente x="37" y="65">
+	<s:Label x="48" y="39" fontSize="35" fontStyle="italic" text="Centro Veterinario"
+			 textDecoration="none"/>
+	
+	<Formularios:Registro_Cliente id="Form_Cliente" x="78" y="139">
 	</Formularios:Registro_Cliente>
+	
+	<s:Button id="Btn_Nuevo" x="102" y="113" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR"/>
+	<s:Button id="Btn_Buscar" x="310" y="113" width="90" label="BUSCAR"/>
+	<s:Button id="Btn_Registrar_Mascotas" x="729" y="140" label="REGISTRAR MASCOTA"/>
+	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR"/>
+	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"></s:List>
+	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
+	<s:List x="78" y="592" width="1174"></s:List>
+	
 </s:Application>

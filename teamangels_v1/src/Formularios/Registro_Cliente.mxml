@@ -6,7 +6,7 @@
 		 xmlns:x="http://flex.apache.org/experimental/ns"
 		 xmlns:departamentosservice="services.departamentosservice.*"
 		 xmlns:municipiosservice="services.municipiosservice.*"
-		 width="400" height="300">
+		 width="800" height="412" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -14,6 +14,12 @@
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
+						
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				Ddl_Municipio.openButton.enabled=false;				
+			}
 			
 			protected function Ddl_Tipo_Documento_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -29,13 +35,24 @@
 			{
 				getAllMunicipiosByDepartamentoResult.token = municipiosService.getAllMunicipiosByDepartamento(Ddl_Departamento.selectedItem.Codigo);
 				
+				Ddl_Municipio.openButton.enabled=true;
 			}
 			
 			protected function getAllMunicipiosByDepartamentoResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Municipio.dataProvider=getAllMunicipiosByDepartamentoResult.lastResult;
 			}
-		
+								
+			protected function convert(event:TextOperationEvent):void
+			{
+				Txt_Nombre1.text = Txt_Nombre1.text.toUpperCase();
+				Txt_Nombre2.text = Txt_Nombre2.text.toUpperCase();
+				Txt_Apellido1.text = Txt_Apellido1.text.toUpperCase();
+				Txt_Apellido2.text = Txt_Apellido2.text.toUpperCase();
+				
+			}
+			
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -63,7 +80,7 @@
 					   triggerEvent=""/>
 		
 		<mx:StringValidator
-			id="ValidacionDocumento"
+			id="ValidacionNumeroDocumento"
 			source="{Txt_Numero_Documento}"
 			property="text"
 			requiredFieldError="Este campo es obligatorio"
@@ -82,6 +99,41 @@
 			property="text"
 			requiredFieldError="Este campo es obligatorio"
 			triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Departamento"
+						   source="{Ddl_Departamento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Municipio"
+						   source="{Ddl_Municipio}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Tipo_Telefono"
+						   source="{Ddl_Telefono1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionTelefono"
+			source="{Txt_Numero_Telefono1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDireccion"
+			source="{Txt_Direccion_Residencia}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
 			
 		<mx:EmailValidator
 			id="ValidarEmail"
@@ -94,11 +146,47 @@
 			missingPeriodInDomainError="Necesita un nombre de dominio"
 			triggerEvent=""/>
 		
+		<s:NumberValidator id="Validacion_Genero"
+						   source="{Ddl_Genero}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Dia"
+						   source="{Ddl_Dia}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Mes"
+						   source="{Ddl_Mes}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Tipo_Cliente"
+						   source="{Ddl_Tipo_Cliente}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Precios"
+						   source="{Ddl_Lista_Precios}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
 		
 	</fx:Declarations>
 	
 	<s:Label x="23" y="28" text="Tipo Documento"/>
-	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" 
+	<s:Label x="23" y="28" text="Tipo Documento"/>
+	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" height="25" cornerRadius="8"
 					creationComplete="Ddl_Tipo_Documento_creationCompleteHandler(event)"
 					labelField="Tipo_Documento" prompt="Tipo Documento">
 		<s:AsyncListView list="{getAllTipo_documentoResult.lastResult}"/>
@@ -106,22 +194,22 @@
 	
 	<s:Label x="291" y="28" text="Numero Documento"/>
 	<!--<x:MaskedTextInput id="Txt_Numero_Documento"  x="263" y="42" width="170" maskText="########" />-->
-	<s:TextInput id="Txt_Numero_Documento" x="263" y="42" width="170" restrict="0-9"/>
-	
-	<s:Label x="405" y="87" text="Primer Apellido"/>
-	<s:TextInput id="Txt_Nombre1" x="23" y="101" width="170"/>
-	
-	<s:Label x="214" y="87" text="Segundo Nombre"/>
-	<s:TextInput id="Txt_Nombre2" x="214" y="101" width="170"/>
+	<s:TextInput id="Txt_Numero_Documento" x="263" y="42" width="170" height="25" restrict="0-9"/>
 	
 	<s:Label x="23" y="87" text="Primer Nombre"/>
-	<s:TextInput id="Txt_Apellido1" x="405" y="101" width="170"/>
+	<s:TextInput id="Txt_Nombre1" x="23" y="101" width="170" height="25"  change="convert(event)" restrict="^0-9"/>
+	
+	<s:Label x="214" y="87" text="Segundo Nombre"/>
+	<s:TextInput id="Txt_Nombre2" x="214" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
+	
+	<s:Label x="405" y="87" text="Primer Apellido"/>
+	<s:TextInput id="Txt_Apellido1" x="405" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="598" y="87" text="Segundo Apellido"/>
-	<s:TextInput id="Txt_Apellido2" x="598" y="101" width="170"/>
+	<s:TextInput id="Txt_Apellido2" x="598" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="23" y="141" text="Departamento Residencia"/>
-	<s:DropDownList id="Ddl_Departamento" x="23" y="155" width="170" 
+	<s:DropDownList id="Ddl_Departamento" x="23" y="155" width="170" height="25" cornerRadius="8"
 					change="Ddl_Departamento_changeHandler(event)"
 					creationComplete="Ddl_Departamento_creationCompleteHandler(event)" 
 					prompt="Departamento" labelField="Departamento">
@@ -129,14 +217,14 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="141" text="Municipio Residencia"/>
-	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio" labelField="Municipio">
+	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio" labelField="Municipio" height="25" cornerRadius="8">
 	</s:DropDownList>
 	
 	<s:Label x="405" y="141" text="Dirección Residencia"/>
-	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"/>
+	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365" height="25"/>
 	
 	<s:Label x="23" y="191" text="Telefono 1"/>
-	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono">
+	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono" height="25" cornerRadius="8">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FIJO</fx:String>
@@ -146,13 +234,14 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="190" text="Numero Telefono"/>
-	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170"/>
+	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170" height="25" maxChars="10"
+				 restrict="0-9"/>
 	
 	<s:Label x="406" y="190" text="Email"/>
-	<s:TextInput id="Txt_Email" x="405" y="205" width="365"/>
+	<s:TextInput id="Txt_Email" x="405" y="205" width="365" height="25"/>
 	
 	<s:Label x="23" y="240" text="Telefono 2"/>
-	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono">
+	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono" height="25" cornerRadius="8">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FIJO</fx:String>
@@ -162,10 +251,11 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="239" text="Numero Telefono"/>	
-	<s:TextInput id="Txt_Numero_Telefono2" x="214" y="254" width="170"/>
+	<s:TextInput id="Txt_Numero_Telefono2" x="214" y="254" width="170" height="25" maxChars="10"
+				 restrict="0-9"/>
 	
 	<s:Label x="409" y="240" text="Genero"/>
-	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero">
+	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero" height="25" cornerRadius="8">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FEMENINO</fx:String>
@@ -176,7 +266,7 @@
 	
 	<s:Label x="628" y="238" text="Fecha Nacimiento"/>
 	<s:Label x="601" y="253" text="Dia"/>
-	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55" >
+	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55" height="25" prompt="D" cornerRadius="8" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>01</fx:String>
@@ -215,7 +305,7 @@
 	</s:DropDownList>
 	
 	<s:Label x="657" y="253" text="Mes"/>
-	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55">
+	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55" height="25" prompt="M" cornerRadius="8">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>01</fx:String>
@@ -235,17 +325,32 @@
 	</s:DropDownList>
 	
 	<s:Label x="719" y="253" text="Año"/>
-	<s:DropDownList id="Ddl_Ano" x="707" y="265" width="55">
-	</s:DropDownList>
+	<s:TextInput id="Txt_Ano" x="707" y="265" width="55" height="25" restrict="0-9" maxChars="4" prompt="AAAA" />
 	
 	<s:Label x="23" y="293" text="Tipo Cliente"/>
-	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente">
+	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente" height="25" cornerRadius="8">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>EMPLEADO</fx:String>
+				<fx:String>DISTRIBUIDOR</fx:String>
+				<fx:String>FUNDACION</fx:String>
+				<fx:String>PARTICULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	</s:DropDownList>
 	
 	<s:Label x="406" y="293" text="Lista de Precios"/>
-	<s:DropDownList id="Ddl_Lista_Precios" x="405" y="307" width="365" prompt="Lista Precios">
+	<s:DropDownList id="Ddl_Lista_Precios" x="405" y="307" width="365" prompt="Lista Precios" height="25" cornerRadius="8">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>LISTA UNO</fx:String>
+				<fx:String>LISTA DOS</fx:String>
+				<fx:String>LISTA TRES</fx:String>
+				<fx:String>LISTA CUATRO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	</s:DropDownList>
 	
 	<s:Label x="23" y="343" text="Fidelización"/>	
-	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365"/>
+	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365" height="25"/>
 </s:Group>

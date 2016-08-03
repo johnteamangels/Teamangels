@@ -1,10 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx"  minWidth="955" minHeight="600" xmlns:Formularios="Formularios.*">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Formularios="Formularios.*"
+			   xmlns:clientesservice="services.clientesservice.*"
+			   minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ValidationResultEvent;
+			
+			import valueObjects.Clientes;
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				desactivarcontroles();
+				//Form_Cliente.enabled=false;
+			}
+			
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				ActivarControles();
+				//Form_Cliente.enabled=true;
+				
+			}
+			
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+				if(ValidarTodo()){
+					
+					var Reg:Clientes = new Clientes();
+					
+					Reg.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
+					Reg.Documento = Data_Model_Clientes.Documento;
+					Reg.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
+					Reg.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
+					Reg.Primer_Apellido = Data_Model_Clientes.Primer_Apellido;
+					Reg.Segundo_Apellido = Data_Model_Clientes.Segundo_Apellido;
+					Reg.Nombre_Completo = Data_Model_Clientes.Nombre_Completo;
+					Reg.Codigo_Departamento = Data_Model_Clientes.Codigo_Departamento;
+					Reg.Departamento = Data_Model_Clientes.Nombre_Departamento;
+					Reg.Codigo_Municipio = Data_Model_Clientes.Codigo_Municipio;
+					Reg.Municipio = Data_Model_Clientes.Nombre_Municipio;
+					Reg.Direccion_Residencia = Data_Model_Clientes.Direccion_Residencia;
+					Reg.Telefono_Uno = Data_Model_Clientes.Telefono1;
+					Reg.Numero_Uno = Data_Model_Clientes.Numero1;
+					Reg.Telefono_Dos = Data_Model_Clientes.Telefono2;
+					Reg.Numero_Dos = Data_Model_Clientes.Numero2;
+					Reg.Email = Data_Model_Clientes.Email;
+					Reg.Genero = Data_Model_Clientes.Genero;
+					Reg.Fecha_Nacimiento = Data_Model_Clientes.Fecha_Nacimiento;
+					Reg.Tipo_Cliente = Data_Model_Clientes.Tipo_Cliente;
+					Reg.Lista_Precios = Data_Model_Clientes.Lista_Precios;
+					Reg.Fidelizacion = Data_Model_Clientes.Fidelizacion;
+					Reg.Fecha = new Date();
+					Reg.Usuario = "ADMIN"; 
+					
+					createClientesResult.token = clientesService.createClientes(Reg);
+					clientesService.commit();
+
+				}
+			}
+			
+			private function desactivarcontroles():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Documento.editable=false;
+				Form_Cliente.Txt_Nombre1.editable=false;
+				Form_Cliente.Txt_Nombre2.editable=false;
+				Form_Cliente.Txt_Apellido1.editable=false;
+				Form_Cliente.Txt_Apellido2.editable=false;
+				Form_Cliente.Ddl_Departamento.openButton.enabled=false;
+				Form_Cliente.Ddl_Municipio.openButton.enabled=false;
+				Form_Cliente.Txt_Direccion_Residencia.editable=false;
+				Form_Cliente.Ddl_Telefono1.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Telefono1.editable=false;
+				Form_Cliente.Ddl_Telefono2.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Telefono2.editable=false;
+				Form_Cliente.Txt_Email.editable=false;
+				Form_Cliente.Ddl_Genero.openButton.enabled=false;
+				Form_Cliente.Ddl_Dia.openButton.enabled=false;
+				Form_Cliente.Ddl_Mes.openButton.enabled=false;
+				Form_Cliente.Txt_Ano.editable=false;
+				Form_Cliente.Ddl_Tipo_Cliente.openButton.enabled=false;
+				Form_Cliente.Ddl_Lista_Precios.openButton.enabled=false;
+				Form_Cliente.Txt_Fidelizacion.editable=false;				
+				
+			}
+			
+			private function ActivarControles():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Documento.editable=true;
+				Form_Cliente.Txt_Nombre1.editable=true;
+				Form_Cliente.Txt_Nombre2.editable=true;
+				Form_Cliente.Txt_Apellido1.editable=true;
+				Form_Cliente.Txt_Apellido2.editable=true;
+				Form_Cliente.Ddl_Departamento.openButton.enabled=true;
+				Form_Cliente.Ddl_Municipio.openButton.enabled=true;
+				Form_Cliente.Txt_Direccion_Residencia.editable=true;
+				Form_Cliente.Ddl_Telefono1.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Telefono1.editable=true;
+				Form_Cliente.Ddl_Telefono2.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Telefono2.editable=true;
+				Form_Cliente.Txt_Email.editable=true;
+				Form_Cliente.Ddl_Genero.openButton.enabled=true;
+				Form_Cliente.Ddl_Dia.openButton.enabled=true;
+				Form_Cliente.Ddl_Mes.openButton.enabled=true;
+				Form_Cliente.Txt_Ano.editable=true;
+				Form_Cliente.Ddl_Tipo_Cliente.openButton.enabled=true;
+				Form_Cliente.Ddl_Lista_Precios.openButton.enabled=true;
+				Form_Cliente.Txt_Fidelizacion.editable=true;			
+			}
+			
+			private function Limpiar():void{
+				
+				Form_Cliente.Ddl_Tipo_Documento.selectedIndex=-1;
+				Form_Cliente.Ddl_Tipo_Documento.errorString="";
+				Form_Cliente.Txt_Numero_Documento.text="";
+				Form_Cliente.Txt_Numero_Documento.errorString="";				
+				Form_Cliente.Txt_Nombre1.text="";
+				Form_Cliente.Txt_Nombre1.errorString="";
+				Form_Cliente.Txt_Nombre2.text="";	
+				Form_Cliente.Txt_Nombre2.errorString="";
+				Form_Cliente.Txt_Apellido1.text="";
+				Form_Cliente.Txt_Apellido1.errorString="";
+				Form_Cliente.Txt_Apellido2.text="";	
+				Form_Cliente.Txt_Apellido2.errorString="";
+				Form_Cliente.Ddl_Departamento.selectedIndex=-1;
+				Form_Cliente.Ddl_Departamento.errorString="";
+				Form_Cliente.Ddl_Municipio.selectedIndex=-1;
+				Form_Cliente.Ddl_Municipio.errorString="";
+				Form_Cliente.Txt_Direccion_Residencia.text="";
+				Form_Cliente.Txt_Direccion_Residencia.errorString="";
+				Form_Cliente.Ddl_Telefono1.selectedIndex=-1;
+				Form_Cliente.Ddl_Telefono1.errorString="";
+				Form_Cliente.Txt_Email.text="";
+				Form_Cliente.Txt_Email.errorString="";
+				Form_Cliente.Ddl_Telefono2.selectedIndex=-1;
+				Form_Cliente.Ddl_Telefono2.errorString="";
+				Form_Cliente.Ddl_Genero.selectedIndex=-1;
+				Form_Cliente.Ddl_Genero.errorString="";
+				Form_Cliente.Ddl_Dia.selectedIndex=-1;
+				Form_Cliente.Ddl_Dia.errorString="";
+				Form_Cliente.Ddl_Mes.selectedIndex=-1;
+				Form_Cliente.Ddl_Mes.errorString="";
+				Form_Cliente.Txt_Ano.text="";
+				Form_Cliente.Txt_Ano.errorString="";
+				Form_Cliente.Ddl_Tipo_Cliente.selectedIndex=-1;
+				Form_Cliente.Ddl_Tipo_Cliente.errorString="";
+				Form_Cliente.Ddl_Lista_Precios.selectedIndex=-1;
+				Form_Cliente.Ddl_Lista_Precios.errorString="";
+				Form_Cliente.Txt_Fidelizacion.text="";
+				Form_Cliente.Txt_Fidelizacion.errorString="";
+			}	
+			
+			private function ValidarTodo():Boolean{
+				
+				var Tipo_Documento:ValidationResultEvent=Validacion_Documento.validate();
+				var Documento:ValidationResultEvent=ValidacionNumeroDocumento.validate();
+				var Nombre:ValidationResultEvent=ValidacionNombre.validate();
+				var Apellido:ValidationResultEvent=ValidacionApellido.validate();
+				var Departamento:ValidationResultEvent=Validacion_Departamento.validate();
+				var Municipio:ValidationResultEvent=Validacion_Municipio.validate();
+				var Direccion:ValidationResultEvent=ValidacionDireccion.validate();
+				var Telefono1:ValidationResultEvent=Validacion_Tipo_Telefono.validate();
+				var NumeroTelefono:ValidationResultEvent=ValidacionTelefono.validate();
+				var Email:ValidationResultEvent=ValidarEmail.validate();
+				var Genero:ValidationResultEvent=Validacion_Genero.validate();
+				var Dia:ValidationResultEvent=Validacion_Dia.validate();
+				var Mes:ValidationResultEvent=Validacion_Mes.validate();
+				var Tipo_Cliente:ValidationResultEvent=Validacion_Tipo_Cliente.validate();
+				var Lista_Precios:ValidationResultEvent=Validacion_Precios.validate();
+				
+				
+				var rsp:Boolean=false;
+				
+				if( Tipo_Documento.type==ValidationResultEvent.VALID
+					&& Documento.type==ValidationResultEvent.VALID
+					&& Nombre.type==ValidationResultEvent.VALID
+					&& Apellido.type==ValidationResultEvent.VALID
+					&& Departamento.type==ValidationResultEvent.VALID
+					&& Municipio.type==ValidationResultEvent.VALID
+					&& Direccion.type==ValidationResultEvent.VALID
+					&& Telefono1.type==ValidationResultEvent.VALID
+					&& NumeroTelefono.type==ValidationResultEvent.VALID
+					&& Email.type==ValidationResultEvent.VALID
+					&& Genero.type==ValidationResultEvent.VALID
+					&& Dia.type==ValidationResultEvent.VALID
+					&& Mes.type==ValidationResultEvent.VALID
+					&& Tipo_Cliente.type==ValidationResultEvent.VALID
+					&& Lista_Precios.type==ValidationResultEvent.VALID
+					
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}		
+						
+		]]>
+	</fx:Script>
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+				
+		<fx:Model id="Data_Model_Clientes">
+			<Data>
+				<Id></Id>
+				<Codigo_Documento>{Form_Cliente.Ddl_Tipo_Documento.selectedItem.Codigo}</Codigo_Documento>
+				<Nombre_Documento>{Form_Cliente.Ddl_Tipo_Documento.selectedItem.Tipo_Documento}</Nombre_Documento>
+				<Documento>@{Form_Cliente.Txt_Numero_Documento.text}</Documento>
+				<Primer_Nombre>@{Form_Cliente.Txt_Nombre1.text}</Primer_Nombre>
+				<Segundo_Nombre>@{Form_Cliente.Txt_Nombre2.text}</Segundo_Nombre>
+				<Primer_Apellido>@{Form_Cliente.Txt_Apellido1.text}</Primer_Apellido>
+				<Segundo_Apellido>@{Form_Cliente.Txt_Apellido2.text}</Segundo_Apellido>
+				<Nombre_Completo>{Form_Cliente.Txt_Apellido1.text} {Form_Cliente.Txt_Apellido2.text} {Form_Cliente.Txt_Nombre1.text} {Form_Cliente.Txt_Nombre2.text}</Nombre_Completo>
+				<Codigo_Departamento>{Form_Cliente.Ddl_Departamento.selectedItem.Codigo}</Codigo_Departamento>
+				<Nombre_Departamento>{Form_Cliente.Ddl_Departamento.selectedItem.Departamento}</Nombre_Departamento>
+				<Codigo_Municipio>{Form_Cliente.Ddl_Municipio.selectedItem.Codigo}</Codigo_Municipio>
+				<Nombre_Municipio>{Form_Cliente.Ddl_Municipio.selectedItem.Municipio}</Nombre_Municipio>
+				<Direccion_Residencia>@{Form_Cliente.Txt_Direccion_Residencia.text}</Direccion_Residencia>
+				<Telefono1>{Form_Cliente.Ddl_Telefono1.selectedItem}</Telefono1>
+				<Numero1>@{Form_Cliente.Txt_Numero_Telefono1.text}</Numero1>
+				<Telefono2>{Form_Cliente.Ddl_Telefono2.selectedItem}</Telefono2>
+				<Numero2>@{Form_Cliente.Txt_Numero_Telefono2.text}</Numero2>
+				<Email>@{Form_Cliente.Txt_Email.text}</Email>
+				<Genero>{Form_Cliente.Ddl_Genero.selectedItem}</Genero>
+				<Fecha_Nacimiento>{Form_Cliente.Ddl_Dia.selectedItem}-{Form_Cliente.Ddl_Mes.selectedItem}-{Form_Cliente.Txt_Ano.text}</Fecha_Nacimiento>
+				<Tipo_Cliente>{Form_Cliente.Ddl_Tipo_Cliente.selectedItem}</Tipo_Cliente>
+				<Lista_Precios>{Form_Cliente.Ddl_Lista_Precios.selectedItem}</Lista_Precios>
+				<Fidelizacion>@{Form_Cliente.Txt_Fidelizacion.text}</Fidelizacion>
+			</Data>			
+		</fx:Model>
+		
+		<s:NumberValidator id="Validacion_Documento"
+						   source="{Form_Cliente.Ddl_Tipo_Documento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionNumeroDocumento"
+			source="{Form_Cliente.Txt_Numero_Documento}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionNombre"
+			source="{Form_Cliente.Txt_Nombre1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionApellido"
+			source="{Form_Cliente.Txt_Apellido1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Departamento"
+						   source="{Form_Cliente.Ddl_Departamento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Municipio"
+						   source="{Form_Cliente.Ddl_Municipio}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Tipo_Telefono"
+						   source="{Form_Cliente.Ddl_Telefono1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionTelefono"
+			source="{Form_Cliente.Txt_Numero_Telefono1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDireccion"
+			source="{Form_Cliente.Txt_Direccion_Residencia}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:EmailValidator
+			id="ValidarEmail"
+			source="{Form_Cliente.Txt_Email}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Genero"
+						   source="{Form_Cliente.Ddl_Genero}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Dia"
+						   source="{Form_Cliente.Ddl_Dia}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Mes"
+						   source="{Form_Cliente.Ddl_Mes}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Tipo_Cliente"
+						   source="{Form_Cliente.Ddl_Tipo_Cliente}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<s:NumberValidator id="Validacion_Precios"
+						   source="{Form_Cliente.Ddl_Lista_Precios}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		<s:CallResponder id="createClientesResult"/>
+		<clientesservice:ClientesService id="clientesService"
+										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+										 showBusyCursor="true"/>
+		
 	</fx:Declarations>	
-	<Formularios:Registro_Cliente x="97" y="127">
+	<s:Label x="48" y="39" fontSize="35" fontStyle="italic" text="Centro Veterinario"
+			 textDecoration="none"/>
+	
+	<Formularios:Registro_Cliente id="Form_Cliente" x="78" y="139">
 	</Formularios:Registro_Cliente>
+	
+	<s:Button id="Btn_Nuevo" x="102" y="113" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR"/>
+	
+	<s:Button id="Btn_Buscar" x="310" y="113" width="90" label="BUSCAR"/>
+	
+	<s:Button id="Btn_Registrar_Mascotas" x="729" y="140" label="REGISTRAR MASCOTA"/>
+	
+	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR"
+			  click="Btn_Guardar_clickHandler(event)"/>
+	
+	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"></s:List>
+	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
+	<s:List x="78" y="592" width="1174"></s:List>
 </s:Application>

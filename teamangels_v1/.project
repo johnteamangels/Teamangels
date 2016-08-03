@@ -17,6 +17,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/ClientesService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ClientesService.php</location>
+		</link>
+		<link>
 			<name>services/DepartamentosService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/DepartamentosService.php</location>
