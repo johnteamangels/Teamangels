@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" 
-			   minWidth="1024" minHeight="768" xmlns:Formularios="Formularios.*" creationComplete="application1_creationCompleteHandler(event)">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Formularios="Formularios.*"
+			   xmlns:mascotasservice="services.mascotasservice.*"
+			   minWidth="1024" minHeight="768"
+			   creationComplete="application1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
+			import Formularios.Registro_Cliente;
+			
+			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.events.ValidationResultEvent;
+			import mx.rpc.events.ResultEvent;
 			
 			import valueObjects.Mascotas;
 			[Bindable] private  var Fecha:Date = new Date();
@@ -39,6 +46,33 @@
 				Lst_Buscar_Propietario.visible=false;
 				Lst_Buscar_Mascota.enabled=false;
 				Lst_Buscar_Mascota.visible=false;
+				
+				registro_mascota.Txt_Documento.editable=false;
+				registro_mascota.Txt_Nombres_Y_Apellidos.editable=false;
+				registro_mascota.Txt_Nombre_Mascota.editable=false;
+				registro_mascota.Txt_Id_Chip.editable=false;
+				registro_mascota.Ddl_Especie.enabled=false;
+				registro_mascota.Ddl_Raza.enabled=false;
+				registro_mascota.Ddl_Pelaje.enabled=false;
+				registro_mascota.Txt_Color.editable=false;
+				registro_mascota.Ddl_Tamano.enabled=false;
+				registro_mascota.Ddl_Genero.enabled=false;
+				registro_mascota.Txt_Peso.editable=false;
+				registro_mascota.Ddl_Estado_Reproductivo.enabled=false;
+				registro_mascota.Ddl_Temperamento.enabled=false;
+				registro_mascota.Ddl_Dia.enabled=false;
+				registro_mascota.Ddl_Mes.enabled=false;
+				registro_mascota.Txt_Ano.editable=false;
+				registro_mascota.Txt_Edad_Dias.editable=false;
+				registro_mascota.Txt_Edad_Meses.editable=false;
+				registro_mascota.Edad_Anos.editable=false;
+				registro_mascota.Ddl_Tipo_Alimentacion.enabled=false;
+				registro_mascota.Ddl_Marca.enabled=false;
+				registro_mascota.Txt_Descripcion_Marca.editable=false;
+				registro_mascota.Ddl_Referencia.enabled=false;
+				registro_mascota.Txt_Descripcion_Referencia.editable=false;
+				registro_mascota.Txta_Senales_Particulares.editable=false;
+				registro_mascota.Txta_Observaciones.editable=false;
 				
 			}
 			
@@ -126,7 +160,63 @@
 				}
 			}
 			
-			
+			//LIMPIA LOS CAMPOS
+			private function Limpiar():void{	
+				
+			registro_mascota.Txt_Documento.text="";
+			registro_mascota.Txt_Documento.errorString="";
+			registro_mascota.Txt_Nombres_Y_Apellidos.text="";
+			registro_mascota.Txt_Nombres_Y_Apellidos.errorString="";
+			registro_mascota.Txt_Nombre_Mascota.text="";
+			registro_mascota.Txt_Nombre_Mascota.errorString="";
+			registro_mascota.Txt_Id_Chip.text="";
+			registro_mascota.Txt_Id_Chip.errorString="";
+			registro_mascota.Ddl_Especie.selectedIndex=-1;
+			registro_mascota.Ddl_Especie.errorString="";
+			registro_mascota.Ddl_Raza.selectedIndex=-1;
+			registro_mascota.Ddl_Raza.errorString="";
+			registro_mascota.Ddl_Pelaje.selectedIndex=-1;
+			registro_mascota.Ddl_Pelaje.errorString="";
+			registro_mascota.Txt_Color.text="";
+			registro_mascota.Txt_Color.errorString="";
+			registro_mascota.Ddl_Tamano.selectedIndex=-1;
+			registro_mascota.Ddl_Tamano.errorString="";
+			registro_mascota.Ddl_Genero.selectedIndex=-1;
+			registro_mascota.Ddl_Genero.errorString="";
+			registro_mascota.Txt_Peso.text="";
+			registro_mascota.Txt_Peso.errorString="";
+			registro_mascota.Ddl_Estado_Reproductivo.selectedIndex=-1;
+			registro_mascota.Ddl_Estado_Reproductivo.errorString="";
+			registro_mascota.Ddl_Temperamento.selectedIndex=-1;
+			registro_mascota.Ddl_Temperamento.errorString="";
+			registro_mascota.Ddl_Dia.selectedIndex=-1;
+			registro_mascota.Ddl_Dia.errorString="";
+			registro_mascota.Ddl_Mes.selectedIndex=-1;
+			registro_mascota.Ddl_Mes.errorString="";
+			registro_mascota.Txt_Ano.text="";
+			registro_mascota.Txt_Ano.errorString="";
+			registro_mascota.Txt_Edad_Dias.text="";
+			registro_mascota.Txt_Edad_Dias.errorString="";
+			registro_mascota.Txt_Edad_Meses.text="";
+			registro_mascota.Txt_Edad_Meses.errorString="";
+			registro_mascota.Edad_Anos.text="";
+			registro_mascota.Edad_Anos.errorString="";
+			registro_mascota.Ddl_Tipo_Alimentacion.selectedIndex=-1;
+			registro_mascota.Ddl_Tipo_Alimentacion.errorString="";
+			registro_mascota.Ddl_Marca.selectedIndex=-1;
+			registro_mascota.Ddl_Marca.errorString="";
+			registro_mascota.Txt_Descripcion_Marca.text="";
+			registro_mascota.Txt_Descripcion_Marca.errorString="";
+			registro_mascota.Ddl_Referencia.selectedIndex=-1;
+			registro_mascota.Ddl_Referencia.errorString="";
+			registro_mascota.Txt_Descripcion_Referencia.text="";
+			registro_mascota.Txt_Descripcion_Referencia.errorString="";
+			registro_mascota.Txta_Senales_Particulares.text="";
+			registro_mascota.Txta_Senales_Particulares.errorString="";
+			registro_mascota.Txta_Observaciones.text="";
+			registro_mascota.Txta_Observaciones.errorString="";
+		
+			}
 			
 			
 			//FUNCION DE GUARDADO DE LOS REGISTROS
@@ -137,34 +227,74 @@
 				
 			    Reg.Documento_Propietario = "";
 				Reg.Propietario="";
-				Reg.Nombre_Mascota = Data_Model_Mascotas.Nombre_Mascota;
-				Reg.Id_Chif = Data_Model_Mascotas.Id_Chif;
-				Reg.Id_Especie = Data_Model_Mascotas.Id_Especie;
-				Reg.Especie = Data_Model_Mascotas.Especie;
-				Reg.Id_Raza = Data_Model_Mascotas.Id_Raza;
-				Reg.Raza =  Data_Model_Mascotas.Raza;
-				Reg.Pelaje = Data_Model_Mascotas.Pelaje;
-				Reg.Color = Data_Model_Mascotas.Color;
-				Reg.Tamano = Data_Model_Mascotas.Tamano;
-				Reg.Genero = Data_Model_Mascotas.Genero;
-				Reg.Peso = Data_Model_Mascotas.Peso;
-				Reg.Estado_Reproductivo = Data_Model_Mascotas.Estado_Reproductivo;
-				Reg.Temperamento = Data_Model_Mascotas.Temperamento;
+				Reg.Nombre_Mascota = registro_mascota.Txt_Nombre_Mascota.text;
+				Reg.Id_Chif = registro_mascota.Txt_Id_Chip.text;
+				Reg.Id_Especie = registro_mascota.Ddl_Especie.selectedItem.Id_Especie;
+				Reg.Especie = registro_mascota.Ddl_Especie.selectedItem.Especie;
+				Reg.Id_Raza = registro_mascota.Ddl_Raza.selectedItem.Id_Raza;
+				Reg.Raza =  registro_mascota.Ddl_Raza.selectedItem.Raza;
+				Reg.Pelaje = registro_mascota.Ddl_Pelaje.selectedItem;
+				Reg.Color = registro_mascota.Txt_Color.text;
+				Reg.Tamano = registro_mascota.Ddl_Tamano.selectedItem;
+				Reg.Genero = registro_mascota.Ddl_Genero.selectedItem;
+				Reg.Peso = registro_mascota.Txt_Peso.text;
+				Reg.Estado_Reproductivo = registro_mascota.Ddl_Estado_Reproductivo.selectedItem;
+				Reg.Temperamento = registro_mascota.Ddl_Temperamento.selectedItem;
 				Reg.Fecha_Nacimiento = Data_Model_Mascotas.Fecha_Nacimiento;
-				Reg.Edad_Dias = Data_Model_Mascotas.Edad_Dias;	
-				Reg.Edad_Meses = Data_Model_Mascotas.Edad_Meses;
-				Reg.Edad_Anos = Data_Model_Mascotas.Edad_Anos;
-				Reg.Tipo_Alimentacion = Data_Model_Mascotas.Tipo_Alimentacion;
-				Reg.Marca = Data_Model_Mascotas.Marca;
-				Reg.Descripcion_Marca = Data_Model_Mascotas.Descripcion_Marca;
-				Reg.Referencia = Data_Model_Mascotas.Referencia;
-				Reg.Descripcion_Referencia = Data_Model_Mascotas.Descripcion_Referencia;
-				Reg.Senales_Particulares = Data_Model_Mascotas.Senales_Particulares;
-				Reg.Observaciones = Data_Model_Mascotas.Observaciones;
+				Reg.Edad_Dias = registro_mascota.Txt_Edad_Dias.text;	
+				Reg.Edad_Meses = registro_mascota.Txt_Edad_Meses.text;
+				Reg.Edad_Anos = registro_mascota.Edad_Anos.text;
+				Reg.Tipo_Alimentacion = registro_mascota.Ddl_Tipo_Alimentacion.selectedItem;
+				Reg.Marca = "";
+				Reg.Descripcion_Marca = registro_mascota.Txt_Descripcion_Marca.text;
+				Reg.Referencia = "";
+				Reg.Descripcion_Referencia = registro_mascota.Txt_Descripcion_Referencia.text;
+				Reg.Senales_Particulares = registro_mascota.Txta_Senales_Particulares.text;
+				Reg.Observaciones = registro_mascota.Txta_Observaciones.text;
 				Reg.Fecha = Fecha;
 				Reg.Usuario = "laura"
 				
+				createMascotasResult.token = mascotasService.createMascotas(Reg);
+				mascotasService.commit();
 				
+				
+				
+			}
+			
+			
+			//RESPONDE LO DEL CREATE
+			protected function createMascotasResult_resultHandler(event:ResultEvent):void
+			{
+				Limpiar();
+			}
+			
+			//ACTIVA LOS CAMPOS PARA UN NUEVO REGISTRO
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				registro_mascota.Txt_Nombre_Mascota.editable=true;
+				registro_mascota.Txt_Id_Chip.editable=true;
+				registro_mascota.Ddl_Especie.enabled=true;
+				registro_mascota.Ddl_Raza.enabled=true;
+				registro_mascota.Ddl_Pelaje.enabled=true;
+				registro_mascota.Txt_Color.editable=true;
+				registro_mascota.Ddl_Tamano.enabled=true;
+				registro_mascota.Ddl_Genero.enabled=true;
+				registro_mascota.Txt_Peso.editable=true;
+				registro_mascota.Ddl_Estado_Reproductivo.enabled=true;
+				registro_mascota.Ddl_Temperamento.enabled=true;
+				registro_mascota.Ddl_Dia.enabled=true;
+				registro_mascota.Ddl_Mes.enabled=true;
+				registro_mascota.Txt_Ano.editable=true;
+				registro_mascota.Txt_Edad_Dias.editable=true;
+				registro_mascota.Txt_Edad_Meses.editable=true;
+				registro_mascota.Edad_Anos.editable=true;
+				registro_mascota.Ddl_Tipo_Alimentacion.enabled=true;
+				registro_mascota.Ddl_Marca.enabled=true;
+				registro_mascota.Txt_Descripcion_Marca.editable=true;
+				registro_mascota.Ddl_Referencia.enabled=true;
+				registro_mascota.Txt_Descripcion_Referencia.editable=true;
+				registro_mascota.Txta_Senales_Particulares.editable=true;
+				registro_mascota.Txta_Observaciones.editable=true;
 				
 			}
 			
@@ -175,35 +305,21 @@
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
-		<fx:Model  id="Data_Model_Mascotas">
-			<Data>
-				<Id>{}</Id>	
-				<Nombre_Mascota>{registro_mascota.Txt_Nombre_Mascota.text}</Nombre_Mascota>
-				<Id_Chif>{registro_mascota.Txt_Id_Chip.text}</Id_Chif>
-				<Id_Especie>{registro_mascota.Ddl_Especie.selectedItem.Id_Especie}</Id_Especie>
-				<Especie>{registro_mascota.Ddl_Especie.selectedItem.Especie}</Especie>
-				<Id_Raza>{registro_mascota.Ddl_Raza.selectedItem.Id_Raza}</Id_Raza>
-				<Raza>{registro_mascota.Ddl_Raza.selectedItem.Raza}</Raza>
-				<Pelaje>{registro_mascota.Ddl_Pelaje.selectedItem}</Pelaje>
-				<Color>{registro_mascota.Txt_Color.text}</Color>
-				<Tamano>{registro_mascota.Ddl_Tamano.selectedItem}</Tamano>
-				<Genero>{registro_mascota.Ddl_Genero.selectedItem}</Genero>
-				<Peso>{registro_mascota.Txt_Peso.text}</Peso>
-				<Estado_Reproductivo>{registro_mascota.Ddl_Estado_Reproductivo.selectedItem}</Estado_Reproductivo>
-				<Temperamento>{registro_mascota.Ddl_Temperamento.selectedItem}</Temperamento>
-				<Edad_Dias>{registro_mascota.Txt_Edad_Dias.text}</Edad_Dias>
-				<Edad_Meses>{registro_mascota.Txt_Edad_Meses.text}</Edad_Meses>
-				<Edad_Anos>{registro_mascota.Edad_Anos.text}</Edad_Anos>
-				<Tipo_Alimentacion>{registro_mascota.Ddl_Tipo_Alimentacion.selectedItem}</Tipo_Alimentacion>
-				<Marca>{registro_mascota.Ddl_Marca.selectedItem}</Marca>
-				<Descripcion_Marca>{registro_mascota.Txt_Descripcion_Marca.text}</Descripcion_Marca>
-				<Referencia>{registro_mascota.Ddl_Referencia.selectedItem}</Referencia>
-				<Descripcion_Referencia>{registro_mascota.Txt_Descripcion_Referencia.text}</Descripcion_Referencia>
-				<Senales_Particulares>{registro_mascota.Txta_Senales_Particulares.text}</Senales_Particulares>
-				<Observaciones>{registro_mascota.Txta_Observaciones.text}</Observaciones>
-				<Fecha_Nacimiento>{registro_mascota.Ddl_Dia.selectedItem}-{registro_mascota.Ddl_Mes.selectedItem}-{registro_mascota.Txt_Ano.text}</Fecha_Nacimiento>
-			</Data>			
-		</fx:Model>	
+		
+		<fx:Model id="Data_Model_Mascotas">
+			
+		<Data>
+			<Id>{}</Id>
+			
+			<Fecha_Nacimiento>{registro_mascota.Ddl_Dia.selectedItem}-{registro_mascota.Ddl_Mes.selectedItem}-{registro_mascota.Txt_Ano.text}</Fecha_Nacimiento>
+			
+		</Data>
+		</fx:Model>
+		
+		<s:CallResponder id="createMascotasResult" result="createMascotasResult_resultHandler(event)"/>
+		<mascotasservice:MascotasService id="mascotasService"
+										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+										 showBusyCursor="true"/>
 		
 		
 		
@@ -212,7 +328,12 @@
 	
 	<s:BorderContainer  width="90%" height="100%">
 		
-		
+		<s:HGroup x="550" y="735">
+			
+			<s:Button id="Btn_Guardar" label="Guardar" click="Btn_Guardar_clickHandler(event)"/>
+				
+		</s:HGroup>
+	
 		<s:DataGrid id="dataGrid" x="80" y="763" width="1403" height="109">
 			<s:columns>
 				<s:ArrayList>
@@ -263,7 +384,7 @@
 		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar"/>
 		
 		<s:HGroup x="80" y="15" width="200" height="25">
-			<s:Button id="Btn_Guardar" label="Guardar" click="Btn_Guardar_clickHandler(event)"/>
+			<s:Button id="Btn_Nuevo" label="Nuevo" click="Btn_Nuevo_clickHandler(event)"/>
 			<s:Button id="Btn_Editar" label="Editar"/>
 			<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 		</s:HGroup>
@@ -281,4 +402,5 @@
 	<s:TextInput id="Txt_Buscar_Propietario" x="1172" y="95" width="465" prompt="PROPIETARIO"/>
 	
 	<s:TextInput id="Txt_Buscar_Mascota" x="1172" y="95" width="465" prompt="MASCOTA"/>
+	
 </s:Application>

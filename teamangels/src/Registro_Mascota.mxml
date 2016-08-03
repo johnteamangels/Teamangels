@@ -64,7 +64,7 @@
 		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar"/>
 		
 		<s:HGroup x="82" y="22" width="200" height="25">
-			<s:Button id="Btn_Guardar" label="Guardar"/>
+			<s:Button id="Btn_Guardar" label="Nuevo"/>
 			<s:Button id="Btn_Editar" label="Editar"/>
 			<s:Button id="Btn_Buscar" label="Buscar"/>
 		</s:HGroup>

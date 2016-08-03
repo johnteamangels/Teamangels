@@ -11,6 +11,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
 			
 			
 			//SE LLENA EL DROP DOWN LIST CON LAS ESPECIES
@@ -30,6 +31,67 @@
 			protected function getAllRazaByEspecieResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Raza.dataProvider = getAllRazaByEspecieResult.lastResult;
+			}
+			
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Nombres_Y_Apellidos_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Nombres_Y_Apellidos.text = Txt_Nombres_Y_Apellidos.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Nombre_Mascota_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Nombre_Mascota.text  = Txt_Nombre_Mascota.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Id_Chip_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Id_Chip.text = 	Txt_Id_Chip.text.toUpperCase();
+				
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Color_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Color.text = Txt_Color.text.toUpperCase();
+				
+			}
+			
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Peso_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Peso.text = Txt_Peso.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Ano_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Ano.text = Txt_Ano.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Edad_Dias_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Edad_Dias.text = Txt_Edad_Dias.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txta_Senales_Particulares_changeHandler(event:TextOperationEvent):void
+			{
+				Txta_Senales_Particulares.text = Txta_Senales_Particulares.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Descripcion_Marca_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Descripcion_Marca.text = Txt_Descripcion_Marca.text.toUpperCase();
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txt_Descripcion_Referencia_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Descripcion_Referencia.text = Txt_Descripcion_Referencia.text.toUpperCase();
+				
+			}
+			//CONVIERTE LOS TEXTOS A MAYUSCULAS
+			protected function Txta_Observaciones_changeHandler(event:TextOperationEvent):void
+			{
+				Txta_Observaciones.text = Txta_Observaciones.text.toUpperCase()
+				
 			}
 			
 		]]>
@@ -55,14 +117,14 @@
 	<s:Label x="24" y="34" text="Propietario"/>
 	<s:TextInput id="Txt_Documento" x="93" y="27" width="180"/>
 	<s:Label x="287" y="15" text="Nombres y Apellidos"/>
-	<s:TextInput id="Txt_Nombres_Y_Apellidos" x="287" y="27" width="400"/>
+	<s:TextInput id="Txt_Nombres_Y_Apellidos" x="287" y="27" width="400" change="Txt_Nombres_Y_Apellidos_changeHandler(event)"/>
 	<s:Label x="93" y="15" text="Documento"/>
 	<s:Label x="24" y="107" text="Nombre"/>
 	<s:Label x="280" y="72" text="DATOS MASCOTA" textDecoration="underline"/>
 	<s:Label x="396" y="107" text="Especie"/>
 	<s:Label x="210" y="107" text="ID (CHIP)"/>
-	<s:TextInput id="Txt_Nombre_Mascota" x="24" y="118" width="180"/>
-	<s:TextInput id="Txt_Id_Chip" x="210" y="118" width="180"/>
+	<s:TextInput id="Txt_Nombre_Mascota" x="24" y="118" width="180" change="Txt_Nombre_Mascota_changeHandler(event)"/>
+	<s:TextInput id="Txt_Id_Chip" x="210" y="118" width="180" change="Txt_Id_Chip_changeHandler(event)"/>
 	<s:DropDownList id="Ddl_Especie" x="396" y="118" width="180" prompt="Especie" creationComplete="Ddl_Especie_creationCompleteHandler(event)" labelField="Especie"
 					change="Ddl_Especie_changeHandler(event)">
 		<s:AsyncListView list="{getAllEspecieResult.lastResult}"/>
@@ -87,7 +149,7 @@
 	</s:DropDownList>
 	
 	<s:Label x="24" y="159" text="Color"/>
-	<s:TextInput id="Txt_Color" x="24" y="171" width="180"/>
+	<s:TextInput id="Txt_Color" x="24" y="171" width="180" change="Txt_Color_changeHandler(event)"/>
 
 	<s:DropDownList id="Ddl_Tamano" x="210" y="171" width="180" prompt="Tamaño">
 	
@@ -119,7 +181,7 @@
 	</s:DropDownList>
 	<s:Label x="582" y="159"  text="Peso (KG)"/>
 	<s:Label x="775" y="159" text="Estado Reproductivo"/>
-	<s:TextInput id="Txt_Peso" x="582" y="171" width="180"/>
+	<s:TextInput id="Txt_Peso" x="582" y="171" width="180" change="Txt_Peso_changeHandler(event)"/>
 	<s:DropDownList id="Ddl_Estado_Reproductivo" x="775" y="171" width="180"
 					prompt="Estado Reproductivo">
 	
@@ -197,18 +259,18 @@
 	
 	
 	</s:DropDownList>
-	<s:TextInput id="Txt_Ano" x="327" y="226" width="60" prompt="A"/>
+	<s:TextInput id="Txt_Ano" x="327" y="226" width="60" prompt="A" change="Txt_Ano_changeHandler(event)"/>
 	
 	
 	<s:Label x="396" y="215" text="Edad (Dias)"/>
-	<s:TextInput id="Txt_Edad_Dias" x="396" y="226" width="180"/>
+	<s:TextInput id="Txt_Edad_Dias" x="396" y="226" width="180" change="Txt_Edad_Dias_changeHandler(event)"/>
 	<s:Label x="582" y="215" text="Edad(Meses)"/>
 	<s:TextInput id="Txt_Edad_Meses" x="582" y="226" width="180"/>
 	<s:Label x="775" y="215" text="Edad(Años)"/>
 	<s:TextInput id="Edad_Anos" x="775" y="226" width="180"/>
 	
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
-	<s:TextArea id="Txta_Senales_Particulares"  x="24" y="481" width="931" height="79"/>
+	<s:TextArea id="Txta_Senales_Particulares"  x="24" y="481" width="931" height="79" change="Txta_Senales_Particulares_changeHandler(event)"/>
 	<s:DropDownList id="Ddl_Temperamento" x="24" y="227" width="180" prompt="Temperamento">
 	
 		<s:dataProvider>
@@ -245,12 +307,12 @@
 	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca"></s:DropDownList>
 	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
 	<s:Label x="25" y="355" text="PRODUCTO" textDecoration="underline"/>
-	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" prompt="dddddddddddddddddddddddddddddd"/>
-	<s:TextInput id="Txt_Descripcion_Referencia" x="210" y="434" width="366"/>
+	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" prompt="dddddddddddddddddddddddddddddd" change="Txt_Descripcion_Marca_changeHandler(event)"/>
+	<s:TextInput id="Txt_Descripcion_Referencia" x="210" y="434" width="366" change="Txt_Descripcion_Referencia_changeHandler(event)"/>
 	<s:Label x="210" y="378" text="Descripciòn"/>
 	<s:Label x="210" y="422" text="Descripciòn"/>
 	<s:Label x="24" y="570" text="OBSERVACIONES"/>
-	<s:TextArea id="Txta_Observaciones" x="24" y="580" width="931" height="79"/>
+	<s:TextArea id="Txta_Observaciones" x="24" y="580" width="931" height="79" change="Txta_Observaciones_changeHandler(event)"/>
 	<s:Label x="25" y="378" text="Marca"/>
 	<s:Label x="210" y="159" text="Tamaño"/>
 	
