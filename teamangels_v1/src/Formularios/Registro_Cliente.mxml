@@ -38,6 +38,11 @@
 				Ddl_Municipio.openButton.enabled=true;
 			}
 			
+			protected function Ddl_Municipio_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllMunicipiosResult.token = municipiosService.getAllMunicipios();
+			}
+			
 			protected function getAllMunicipiosByDepartamentoResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Municipio.dataProvider=getAllMunicipiosByDepartamentoResult.lastResult;
@@ -180,6 +185,7 @@
 						   allowNegative="false"
 						   negativeError="Este campo es obligatorio"
 						   triggerEvent=""/>
+		<s:CallResponder id="getAllMunicipiosResult"/>
 		
 		
 	</fx:Declarations>
@@ -217,7 +223,10 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="141" text="Municipio Residencia"/>
-	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio" labelField="Municipio" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" height="25" cornerRadius="8"
+					prompt="Municipio" labelField="Municipio"
+					creationComplete="Ddl_Municipio_creationCompleteHandler(event)">
+		<s:AsyncListView list="{getAllMunicipiosResult.lastResult}"/>
 	</s:DropDownList>
 	
 	<s:Label x="405" y="141" text="Dirección Residencia"/>

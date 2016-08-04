@@ -162,7 +162,7 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
          operation.resultElementType = valueObjects.Municipios;
         operations["getMunicipios_paged"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "getAllMunicipiosByDepartamento");
-         operation.resultElementType = Object;
+         operation.resultType = Object;
         operations["getAllMunicipiosByDepartamento"] = operation;
 
         _serviceControl.operations = operations;

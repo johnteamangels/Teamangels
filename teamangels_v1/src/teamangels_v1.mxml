@@ -28,6 +28,7 @@
 				ActivarControles();
 				//Form_Cliente.enabled=true;
 				
+				Limpiar();
 			}
 			
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
@@ -74,22 +75,64 @@
 			}
 			
 			protected function Lst_Cliente_changeHandler(event:IndexChangeEvent):void
-			{				
+			{		
+				CargarDocumento(Lst_Cliente.selectedItem.Codigo_Documento);
 				Data_Model_Clientes.Documento=Lst_Cliente.selectedItem.Documento;
 				Data_Model_Clientes.Primer_Nombre=Lst_Cliente.selectedItem.Primer_Nombre;
 				Data_Model_Clientes.Segundo_Nombre=Lst_Cliente.selectedItem.Segundo_Nombre;
 				Data_Model_Clientes.Primer_Apellido=Lst_Cliente.selectedItem.Primer_Apellido;
 				Data_Model_Clientes.Segundo_Apellido=Lst_Cliente.selectedItem.Segundo_Apellido;
-				
+				CargarDepartamento(Lst_Cliente.selectedItem.Codigo_Departamento);
+				CargarMunicipio(Lst_Cliente.selectedItem.Codigo_Municipio);
 				Data_Model_Clientes.Direccion_Residencia=Lst_Cliente.selectedItem.Direccion_Residencia;
+				Form_Cliente.Ddl_Telefono1.selectedItem=Lst_Cliente.selectedItem.Telefono_Uno;
 				Data_Model_Clientes.Numero1=Lst_Cliente.selectedItem.Numero_Uno;
-				
+				Form_Cliente.Ddl_Telefono2.selectedItem=Lst_Cliente.selectedItem.Telefono_Dos;
+				Data_Model_Clientes.Numero2=Lst_Cliente.selectedItem.Numero_Dos;
 				Data_Model_Clientes.Email=Lst_Cliente.selectedItem.Email;
+				Form_Cliente.Ddl_Genero.selectedItem=Lst_Cliente.selectedItem.Genero;	
+				Form_Cliente.Ddl_Tipo_Cliente.selectedItem=Lst_Cliente.selectedItem.Tipo_Cliente;
+				Form_Cliente.Ddl_Lista_Precios.selectedItem=Lst_Cliente.selectedItem.Lista_Precios;
+				
+				
 				Data_Model_Clientes.Fidelizacion=Lst_Cliente.selectedItem.Fidelizacion;
-										
+
 			}
 			
+			protected function CargarDocumento(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Cliente.Ddl_Tipo_Documento.dataProvider.length; i++){
+					data = Form_Cliente.Ddl_Tipo_Documento.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Cliente.Ddl_Tipo_Documento.selectedIndex = i;
+						Form_Cliente.Ddl_Tipo_Documento.errorString = "";
+					}
+				}
+			}
 			
+			protected function CargarDepartamento(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Cliente.Ddl_Departamento.dataProvider.length; i++){
+					data = Form_Cliente.Ddl_Departamento.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Cliente.Ddl_Departamento.selectedIndex = i;
+						Form_Cliente.Ddl_Departamento.errorString = "";
+					}
+				}
+			}
+			
+			protected function CargarMunicipio(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Cliente.Ddl_Municipio.dataProvider.length; i++){
+					data = Form_Cliente.Ddl_Municipio.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Cliente.Ddl_Municipio.selectedIndex = i;
+						Form_Cliente.Ddl_Municipio.errorString = "";
+					}
+				}
+			} 
+			
+		
 			protected function Lst_Cliente_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllClientesResult.token = clientesService.getAllClientes();
@@ -130,7 +173,7 @@
 				Form_Cliente.Txt_Apellido1.editable=true;
 				Form_Cliente.Txt_Apellido2.editable=true;
 				Form_Cliente.Ddl_Departamento.openButton.enabled=true;
-				Form_Cliente.Ddl_Municipio.openButton.enabled=true;
+				//Form_Cliente.Ddl_Municipio.openButton.enabled=true;
 				Form_Cliente.Txt_Direccion_Residencia.editable=true;
 				Form_Cliente.Ddl_Telefono1.openButton.enabled=true;
 				Form_Cliente.Txt_Numero_Telefono1.editable=true;
