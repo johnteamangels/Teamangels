@@ -49,8 +49,6 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
      * properties
      */
     private var _internal_Id : int;
-    private var _internal_Documento_Propietario : String;
-    private var _internal_Propietario : String;
     private var _internal_Nombre_Mascota : String;
     private var _internal_Id_Chif : String;
     private var _internal_Id_Especie : int;
@@ -64,14 +62,11 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     private var _internal_Peso : String;
     private var _internal_Estado_Reproductivo : String;
     private var _internal_Temperamento : String;
-    private var _internal_Fecha_Nacimiento : Date;
     private var _internal_Edad_Dias : String;
     private var _internal_Edad_Meses : String;
     private var _internal_Edad_Anos : String;
     private var _internal_Tipo_Alimentacion : String;
-    private var _internal_Marca : String;
     private var _internal_Descripcion_Marca : String;
-    private var _internal_Referencia : String;
     private var _internal_Descripcion_Referencia : String;
     private var _internal_Senales_Particulares : String;
     private var _internal_Observaciones : String;
@@ -104,18 +99,6 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     public function get Id() : int
     {
         return _internal_Id;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Documento_Propietario() : String
-    {
-        return _internal_Documento_Propietario;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Propietario() : String
-    {
-        return _internal_Propietario;
     }
 
     [Bindable(event="propertyChange")]
@@ -197,12 +180,6 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     }
 
     [Bindable(event="propertyChange")]
-    public function get Fecha_Nacimiento() : Date
-    {
-        return _internal_Fecha_Nacimiento;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get Edad_Dias() : String
     {
         return _internal_Edad_Dias;
@@ -227,21 +204,9 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     }
 
     [Bindable(event="propertyChange")]
-    public function get Marca() : String
-    {
-        return _internal_Marca;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get Descripcion_Marca() : String
     {
         return _internal_Descripcion_Marca;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Referencia() : String
-    {
-        return _internal_Referencia;
     }
 
     [Bindable(event="propertyChange")]
@@ -288,24 +253,6 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Id = value;
-        }
-    }
-
-    public function set Documento_Propietario(value:String) : void
-    {
-        var oldValue:String = _internal_Documento_Propietario;
-        if (oldValue !== value)
-        {
-            _internal_Documento_Propietario = value;
-        }
-    }
-
-    public function set Propietario(value:String) : void
-    {
-        var oldValue:String = _internal_Propietario;
-        if (oldValue !== value)
-        {
-            _internal_Propietario = value;
         }
     }
 
@@ -426,15 +373,6 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         }
     }
 
-    public function set Fecha_Nacimiento(value:Date) : void
-    {
-        var oldValue:Date = _internal_Fecha_Nacimiento;
-        if (oldValue !== value)
-        {
-            _internal_Fecha_Nacimiento = value;
-        }
-    }
-
     public function set Edad_Dias(value:String) : void
     {
         var oldValue:String = _internal_Edad_Dias;
@@ -471,30 +409,12 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         }
     }
 
-    public function set Marca(value:String) : void
-    {
-        var oldValue:String = _internal_Marca;
-        if (oldValue !== value)
-        {
-            _internal_Marca = value;
-        }
-    }
-
     public function set Descripcion_Marca(value:String) : void
     {
         var oldValue:String = _internal_Descripcion_Marca;
         if (oldValue !== value)
         {
             _internal_Descripcion_Marca = value;
-        }
-    }
-
-    public function set Referencia(value:String) : void
-    {
-        var oldValue:String = _internal_Referencia;
-        if (oldValue !== value)
-        {
-            _internal_Referencia = value;
         }
     }
 

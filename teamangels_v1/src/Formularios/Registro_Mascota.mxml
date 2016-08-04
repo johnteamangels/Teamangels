@@ -267,7 +267,7 @@
 	<s:Label x="582" y="215" text="Edad(Meses)"/>
 	<s:TextInput id="Txt_Edad_Meses" x="582" y="226" width="180"/>
 	<s:Label x="775" y="215" text="Edad(Años)"/>
-	<s:TextInput id="Edad_Anos" x="775" y="226" width="180"/>
+	<s:TextInput id="Txt_Edad_Anos" x="775" y="226" width="180"/>
 	
 	<s:Label x="24" y="469" text="SEÑALES PARTICULARES" textDecoration="none"/>
 	<s:TextArea id="Txta_Senales_Particulares"  x="24" y="481" width="931" height="79" change="Txta_Senales_Particulares_changeHandler(event)"/>

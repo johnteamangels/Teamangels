@@ -63,14 +63,13 @@ class MascotasService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Propietario, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Fecha_Nacimiento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Marca, $row->Descripcion_Marca, $row->Referencia, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
-	      $row->Fecha_Nacimiento = new DateTime($row->Fecha_Nacimiento);
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Propietario, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Fecha_Nacimiento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Marca, $row->Descripcion_Marca, $row->Referencia, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
@@ -98,10 +97,9 @@ class MascotasService {
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Propietario, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Fecha_Nacimiento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Marca, $row->Descripcion_Marca, $row->Referencia, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
 		
 		if(mysqli_stmt_fetch($stmt)) {
-	      $row->Fecha_Nacimiento = new DateTime($row->Fecha_Nacimiento);
 	      $row->Fecha = new DateTime($row->Fecha);
 	      return $row;
 		} else {
@@ -119,10 +117,10 @@ class MascotasService {
 	 */
 	public function createMascotas($item) {
 
-		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Documento_Propietario, Propietario, Nombre_Mascota, Id_Chif, Id_Especie, Especie, Id_Raza, Raza, Pelaje, Color, Tamano, Genero, Peso, Estado_Reproductivo, Temperamento, Fecha_Nacimiento, Edad_Dias, Edad_Meses, Edad_Anos, Tipo_Alimentacion, Marca, Descripcion_Marca, Referencia, Descripcion_Referencia, Senales_Particulares, Observaciones, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Nombre_Mascota, Id_Chif, Id_Especie, Especie, Id_Raza, Raza, Pelaje, Color, Tamano, Genero, Peso, Estado_Reproductivo, Temperamento, Edad_Dias, Edad_Meses, Edad_Anos, Tipo_Alimentacion, Descripcion_Marca, Descripcion_Referencia, Senales_Particulares, Observaciones, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->throwExceptionOnError();
 
-		mysqli_stmt_bind_param($stmt, 'ssssisisssssssssssssssssssss', $item->Documento_Propietario, $item->Propietario, $item->Nombre_Mascota, $item->Id_Chif, $item->Id_Especie, $item->Especie, $item->Id_Raza, $item->Raza, $item->Pelaje, $item->Color, $item->Tamano, $item->Genero, $item->Peso, $item->Estado_Reproductivo, $item->Temperamento, $item->Fecha_Nacimiento->toString('YYYY-MM-dd HH:mm:ss'), $item->Edad_Dias, $item->Edad_Meses, $item->Edad_Anos, $item->Tipo_Alimentacion, $item->Marca, $item->Descripcion_Marca, $item->Referencia, $item->Descripcion_Referencia, $item->Senales_Particulares, $item->Observaciones, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
+		mysqli_stmt_bind_param($stmt, 'ssisissssssssssssssssss', $item->Nombre_Mascota, $item->Id_Chif, $item->Id_Especie, $item->Especie, $item->Id_Raza, $item->Raza, $item->Pelaje, $item->Color, $item->Tamano, $item->Genero, $item->Peso, $item->Estado_Reproductivo, $item->Temperamento, $item->Edad_Dias, $item->Edad_Meses, $item->Edad_Anos, $item->Tipo_Alimentacion, $item->Descripcion_Marca, $item->Descripcion_Referencia, $item->Senales_Particulares, $item->Observaciones, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -146,10 +144,10 @@ class MascotasService {
 	 */
 	public function updateMascotas($item) {
 	
-		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Documento_Propietario=?, Propietario=?, Nombre_Mascota=?, Id_Chif=?, Id_Especie=?, Especie=?, Id_Raza=?, Raza=?, Pelaje=?, Color=?, Tamano=?, Genero=?, Peso=?, Estado_Reproductivo=?, Temperamento=?, Fecha_Nacimiento=?, Edad_Dias=?, Edad_Meses=?, Edad_Anos=?, Tipo_Alimentacion=?, Marca=?, Descripcion_Marca=?, Referencia=?, Descripcion_Referencia=?, Senales_Particulares=?, Observaciones=?, Fecha=?, Usuario=? WHERE Id=?");		
+		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Nombre_Mascota=?, Id_Chif=?, Id_Especie=?, Especie=?, Id_Raza=?, Raza=?, Pelaje=?, Color=?, Tamano=?, Genero=?, Peso=?, Estado_Reproductivo=?, Temperamento=?, Edad_Dias=?, Edad_Meses=?, Edad_Anos=?, Tipo_Alimentacion=?, Descripcion_Marca=?, Descripcion_Referencia=?, Senales_Particulares=?, Observaciones=?, Fecha=?, Usuario=? WHERE Id=?");		
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'ssssisisssssssssssssssssssssi', $item->Documento_Propietario, $item->Propietario, $item->Nombre_Mascota, $item->Id_Chif, $item->Id_Especie, $item->Especie, $item->Id_Raza, $item->Raza, $item->Pelaje, $item->Color, $item->Tamano, $item->Genero, $item->Peso, $item->Estado_Reproductivo, $item->Temperamento, $item->Fecha_Nacimiento->toString('YYYY-MM-dd HH:mm:ss'), $item->Edad_Dias, $item->Edad_Meses, $item->Edad_Anos, $item->Tipo_Alimentacion, $item->Marca, $item->Descripcion_Marca, $item->Referencia, $item->Descripcion_Referencia, $item->Senales_Particulares, $item->Observaciones, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Id);		
+		mysqli_stmt_bind_param($stmt, 'ssisissssssssssssssssssi', $item->Nombre_Mascota, $item->Id_Chif, $item->Id_Especie, $item->Especie, $item->Id_Raza, $item->Raza, $item->Pelaje, $item->Color, $item->Tamano, $item->Genero, $item->Peso, $item->Estado_Reproductivo, $item->Temperamento, $item->Edad_Dias, $item->Edad_Meses, $item->Edad_Anos, $item->Tipo_Alimentacion, $item->Descripcion_Marca, $item->Descripcion_Referencia, $item->Senales_Particulares, $item->Observaciones, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Id);		
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -230,14 +228,13 @@ class MascotasService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Propietario, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Fecha_Nacimiento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Marca, $row->Descripcion_Marca, $row->Referencia, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
-	      $row->Fecha_Nacimiento = new DateTime($row->Fecha_Nacimiento);
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Propietario, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Fecha_Nacimiento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Marca, $row->Descripcion_Marca, $row->Referencia, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);		

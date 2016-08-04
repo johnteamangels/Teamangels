@@ -20,14 +20,14 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Id", "Documento_Propietario", "Propietario", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Fecha_Nacimiento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Marca", "Descripcion_Marca", "Referencia", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
+    model_internal static var allProperties:Array = new Array("Id", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Descripcion_Marca", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array("Id");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Documento_Propietario", "Propietario", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Fecha_Nacimiento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Marca", "Descripcion_Marca", "Referencia", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Descripcion_Marca", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Id", "Documento_Propietario", "Propietario", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Fecha_Nacimiento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Marca", "Descripcion_Marca", "Referencia", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
+    model_internal static var dataProperties:Array = new Array("Id", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Descripcion_Marca", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("Id", "Documento_Propietario", "Propietario", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Fecha_Nacimiento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Marca", "Descripcion_Marca", "Referencia", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
+    model_internal static var nonDerivedProperties:Array = new Array("Id", "Nombre_Mascota", "Id_Chif", "Id_Especie", "Especie", "Id_Raza", "Raza", "Pelaje", "Color", "Tamano", "Genero", "Peso", "Estado_Reproductivo", "Temperamento", "Edad_Dias", "Edad_Meses", "Edad_Anos", "Tipo_Alimentacion", "Descripcion_Marca", "Descripcion_Referencia", "Senales_Particulares", "Observaciones", "Fecha", "Usuario");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -48,8 +48,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
             // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["Id"] = new Array();
-            model_internal::dependentsOnMap["Documento_Propietario"] = new Array();
-            model_internal::dependentsOnMap["Propietario"] = new Array();
             model_internal::dependentsOnMap["Nombre_Mascota"] = new Array();
             model_internal::dependentsOnMap["Id_Chif"] = new Array();
             model_internal::dependentsOnMap["Id_Especie"] = new Array();
@@ -63,14 +61,11 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
             model_internal::dependentsOnMap["Peso"] = new Array();
             model_internal::dependentsOnMap["Estado_Reproductivo"] = new Array();
             model_internal::dependentsOnMap["Temperamento"] = new Array();
-            model_internal::dependentsOnMap["Fecha_Nacimiento"] = new Array();
             model_internal::dependentsOnMap["Edad_Dias"] = new Array();
             model_internal::dependentsOnMap["Edad_Meses"] = new Array();
             model_internal::dependentsOnMap["Edad_Anos"] = new Array();
             model_internal::dependentsOnMap["Tipo_Alimentacion"] = new Array();
-            model_internal::dependentsOnMap["Marca"] = new Array();
             model_internal::dependentsOnMap["Descripcion_Marca"] = new Array();
-            model_internal::dependentsOnMap["Referencia"] = new Array();
             model_internal::dependentsOnMap["Descripcion_Referencia"] = new Array();
             model_internal::dependentsOnMap["Senales_Particulares"] = new Array();
             model_internal::dependentsOnMap["Observaciones"] = new Array();
@@ -84,8 +79,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
         // Property type Map
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["Id"] = "int";
-        model_internal::propertyTypeMap["Documento_Propietario"] = "String";
-        model_internal::propertyTypeMap["Propietario"] = "String";
         model_internal::propertyTypeMap["Nombre_Mascota"] = "String";
         model_internal::propertyTypeMap["Id_Chif"] = "String";
         model_internal::propertyTypeMap["Id_Especie"] = "int";
@@ -99,14 +92,11 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
         model_internal::propertyTypeMap["Peso"] = "String";
         model_internal::propertyTypeMap["Estado_Reproductivo"] = "String";
         model_internal::propertyTypeMap["Temperamento"] = "String";
-        model_internal::propertyTypeMap["Fecha_Nacimiento"] = "Date";
         model_internal::propertyTypeMap["Edad_Dias"] = "String";
         model_internal::propertyTypeMap["Edad_Meses"] = "String";
         model_internal::propertyTypeMap["Edad_Anos"] = "String";
         model_internal::propertyTypeMap["Tipo_Alimentacion"] = "String";
-        model_internal::propertyTypeMap["Marca"] = "String";
         model_internal::propertyTypeMap["Descripcion_Marca"] = "String";
-        model_internal::propertyTypeMap["Referencia"] = "String";
         model_internal::propertyTypeMap["Descripcion_Referencia"] = "String";
         model_internal::propertyTypeMap["Senales_Particulares"] = "String";
         model_internal::propertyTypeMap["Observaciones"] = "String";
@@ -348,18 +338,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]
-    public function get isDocumento_PropietarioAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get isPropietarioAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get isNombre_MascotaAvailable():Boolean
     {
         return true;
@@ -438,12 +416,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]
-    public function get isFecha_NacimientoAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get isEdad_DiasAvailable():Boolean
     {
         return true;
@@ -468,19 +440,7 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]
-    public function get isMarcaAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get isDescripcion_MarcaAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get isReferenciaAvailable():Boolean
     {
         return true;
     }
@@ -527,18 +487,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
 
     [Bindable(event="propertyChange")]   
     public function get IdStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get Documento_PropietarioStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get PropietarioStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
@@ -622,12 +570,6 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]   
-    public function get Fecha_NacimientoStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
     public function get Edad_DiasStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
@@ -652,19 +594,7 @@ internal class _MascotasEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]   
-    public function get MarcaStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
     public function get Descripcion_MarcaStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get ReferenciaStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
