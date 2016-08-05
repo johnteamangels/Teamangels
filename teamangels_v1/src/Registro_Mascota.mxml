@@ -13,6 +13,8 @@
 			import mx.events.ValidationResultEvent;
 			import mx.rpc.events.ResultEvent;
 			
+			import spark.events.IndexChangeEvent;
+			
 			import valueObjects.Mascotas;
 			
 		
@@ -360,32 +362,79 @@
 			}
 			
 		
-			
+			//LLENA EL GRID
 			protected function dataGrid_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
 			}
-			
+			//LLENA LA LISTA
 			protected function Lst_Buscar_Propietario_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
 			}
-			
+			//LLENA LA LISTA
 			protected function Lst_Buscar_Documento_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
 			}
-			
+			//LLENA LA LISTA
 			protected function Lst_Buscar_Mascota_clickHandler(event:MouseEvent):void
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
 				
 			}
+			//LLENA LA LISTA
+			protected function Lst_Buscar_Documento_changeHandler(event:IndexChangeEvent):void
+			{
+				Data_Model_Mascota.Id = Lst_Buscar_Documento.selectedItem.Id;
+				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Documento.selectedItem.Nombre_Mascota;
+				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Documento.selectedItem.Id_Chif;
+			    CargarEspecie(Lst_Buscar_Documento.selectedItem.Especie);
+				CargarRaza(Lst_Buscar_Documento.selectedItem.Raza)
+				
+			}
+			
+			//CARGA LA ESPECIE
+			protected function CargarEspecie(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Reg_Mascota.Ddl_Especie.dataProvider.length; i++){
+					data = Reg_Mascota.Ddl_Especie.dataProvider.getItemAt(i);
+					if(data["Especie"] == valor){
+						Reg_Mascota.Ddl_Especie.selectedIndex = i;
+						Reg_Mascota.Ddl_Especie.errorString = "";
+					}
+				}
+				
+			}		
+			
+			//CARGA LA RAZA
+			protected function CargarRaza(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Reg_Mascota.Ddl_Raza.dataProvider.length; i++){
+					data = Reg_Mascota.Ddl_Raza.dataProvider.getItemAt(i);
+					if(data["Raza"] == valor){
+						Reg_Mascota.Ddl_Raza.selectedIndex = i;
+						Reg_Mascota.Ddl_Raza.errorString = "";
+					}
+				}
+				
+			}		
 			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
+		
+		<fx:Model  id="Data_Model_Mascota">
+			<Data>
+				<Id>{}</Id>				
+				
+			</Data>			
+		</fx:Model>	
+		
+		
+		
+		
 		
 		
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
@@ -428,7 +477,7 @@
 			<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
 		</s:List>
 		<s:List id="Lst_Buscar_Documento" x="1099" y="123" width="142" height="606" creationComplete="Lst_Buscar_Documento_creationCompleteHandler(event)"
-				labelField="Documento">
+				labelField="Documento" change="Lst_Buscar_Documento_changeHandler(event)">
 			<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
 		</s:List>
 		<s:Button id="Btn_Buscar_Documento" x="1099" y="94" label="Buscar"/>
