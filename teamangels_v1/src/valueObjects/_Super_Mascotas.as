@@ -49,6 +49,8 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
      * properties
      */
     private var _internal_Id : int;
+    private var _internal_Documento : String;
+    private var _internal_Propietario : String;
     private var _internal_Nombre_Mascota : String;
     private var _internal_Id_Chif : String;
     private var _internal_Id_Especie : int;
@@ -99,6 +101,18 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     public function get Id() : int
     {
         return _internal_Id;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Documento() : String
+    {
+        return _internal_Documento;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Propietario() : String
+    {
+        return _internal_Propietario;
     }
 
     [Bindable(event="propertyChange")]
@@ -253,6 +267,24 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Id = value;
+        }
+    }
+
+    public function set Documento(value:String) : void
+    {
+        var oldValue:String = _internal_Documento;
+        if (oldValue !== value)
+        {
+            _internal_Documento = value;
+        }
+    }
+
+    public function set Propietario(value:String) : void
+    {
+        var oldValue:String = _internal_Propietario;
+        if (oldValue !== value)
+        {
+            _internal_Propietario = value;
         }
     }
 

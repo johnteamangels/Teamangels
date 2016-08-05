@@ -185,12 +185,12 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
         var dmQuery : mx.data.ManagedQuery;
 
         dmQuery = new mx.data.ManagedQuery("getAllMascotas");
-        dmQuery.propertySpecifier = "Id,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
         dmQuery.parameters = "";
         _mascotasRPCDataManager.addManagedOperation(dmQuery);
 
         dmQuery = new mx.data.ManagedQuery("getMascotas_paged");
-        dmQuery.propertySpecifier = "Id,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
