@@ -21,6 +21,9 @@
 			{
 				desactivarcontroles();
 				//Form_Cliente.enabled=false;
+				
+				Txt_Fecha_Nacimiento.visible=false;
+				Btn_Editar.enabled=false;
 			}
 			
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
@@ -28,54 +31,136 @@
 				ActivarControles();
 				//Form_Cliente.enabled=true;
 				
+				Btn_Guardar.visible=true;
+				
+				Txt_Fecha_Nacimiento.visible=false;
+				Form_Cliente.Ddl_Dia.visible=true;
+				Form_Cliente.Ddl_Mes.visible=true;
+				Form_Cliente.Txt_Ano.visible=true;
+				 
 				Limpiar();
 			}
-			
+
+			private var GuardarEditado:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
-				if(ValidarTodo()){
+				if(GuardarEditado==false){
 					
-					var Reg:Clientes = new Clientes();
+					if(ValidarTodo()){
+						
+						var Reg:Clientes = new Clientes();
+						
+						Reg.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
+						Reg.Documento = Data_Model_Clientes.Documento;
+						Reg.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
+						Reg.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
+						Reg.Primer_Apellido = Data_Model_Clientes.Primer_Apellido;
+						Reg.Segundo_Apellido = Data_Model_Clientes.Segundo_Apellido;
+						Reg.Nombre_Completo = Data_Model_Clientes.Nombre_Completo;
+						Reg.Codigo_Departamento = Data_Model_Clientes.Codigo_Departamento;
+						Reg.Departamento = Data_Model_Clientes.Nombre_Departamento;
+						Reg.Codigo_Municipio = Data_Model_Clientes.Codigo_Municipio;
+						Reg.Municipio = Data_Model_Clientes.Nombre_Municipio;
+						Reg.Direccion_Residencia = Data_Model_Clientes.Direccion_Residencia;
+						Reg.Telefono_Uno = Data_Model_Clientes.Telefono1;
+						Reg.Numero_Uno = Data_Model_Clientes.Numero1;
+						Reg.Telefono_Dos = Data_Model_Clientes.Telefono2;
+						Reg.Numero_Dos = Data_Model_Clientes.Numero2;
+						Reg.Email = Data_Model_Clientes.Email;
+						Reg.Genero = Data_Model_Clientes.Genero;
+						Reg.Fecha_Nacimiento = Data_Model_Clientes.Fecha_Nacimiento;
+						Reg.Tipo_Cliente = Data_Model_Clientes.Tipo_Cliente;
+						Reg.Lista_Precios = Data_Model_Clientes.Lista_Precios;
+						Reg.Fidelizacion = Data_Model_Clientes.Fidelizacion;
+						Reg.Fecha = new Date();
+						Reg.Usuario = "ADMIN"; 
+						
+						createClientesResult.token = clientesService.createClientes(Reg);
+						clientesService.commit();
+						
+					}
 					
-					Reg.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
-					Reg.Documento = Data_Model_Clientes.Documento;
-					Reg.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
-					Reg.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
-					Reg.Primer_Apellido = Data_Model_Clientes.Primer_Apellido;
-					Reg.Segundo_Apellido = Data_Model_Clientes.Segundo_Apellido;
-					Reg.Nombre_Completo = Data_Model_Clientes.Nombre_Completo;
-					Reg.Codigo_Departamento = Data_Model_Clientes.Codigo_Departamento;
-					Reg.Departamento = Data_Model_Clientes.Nombre_Departamento;
-					Reg.Codigo_Municipio = Data_Model_Clientes.Codigo_Municipio;
-					Reg.Municipio = Data_Model_Clientes.Nombre_Municipio;
-					Reg.Direccion_Residencia = Data_Model_Clientes.Direccion_Residencia;
-					Reg.Telefono_Uno = Data_Model_Clientes.Telefono1;
-					Reg.Numero_Uno = Data_Model_Clientes.Numero1;
-					Reg.Telefono_Dos = Data_Model_Clientes.Telefono2;
-					Reg.Numero_Dos = Data_Model_Clientes.Numero2;
-					Reg.Email = Data_Model_Clientes.Email;
-					Reg.Genero = Data_Model_Clientes.Genero;
-					Reg.Fecha_Nacimiento = Data_Model_Clientes.Fecha_Nacimiento;
-					Reg.Tipo_Cliente = Data_Model_Clientes.Tipo_Cliente;
-					Reg.Lista_Precios = Data_Model_Clientes.Lista_Precios;
-					Reg.Fidelizacion = Data_Model_Clientes.Fidelizacion;
-					Reg.Fecha = new Date();
-					Reg.Usuario = "ADMIN"; 
+				}else{
 					
-					createClientesResult.token = clientesService.createClientes(Reg);
-					clientesService.commit();
-
+					GuardarEditado=true;
+					
+					if(ValidarTodo()){
+						
+						var Reg2:Clientes = new Clientes();
+						
+						Reg2.Id = Data_Model_Clientes.Id;
+						Reg2.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
+						Reg2.Documento = Data_Model_Clientes.Documento;
+						Reg2.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
+						Reg2.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
+						Reg2.Primer_Apellido = Data_Model_Clientes.Primer_Apellido;
+						Reg2.Segundo_Apellido = Data_Model_Clientes.Segundo_Apellido;
+						Reg2.Nombre_Completo = Data_Model_Clientes.Nombre_Completo;
+						Reg2.Codigo_Departamento = Data_Model_Clientes.Codigo_Departamento;
+						Reg2.Departamento = Data_Model_Clientes.Nombre_Departamento;
+						Reg2.Codigo_Municipio = Data_Model_Clientes.Codigo_Municipio;
+						Reg2.Municipio = Data_Model_Clientes.Nombre_Municipio;
+						Reg2.Direccion_Residencia = Data_Model_Clientes.Direccion_Residencia;
+						Reg2.Telefono_Uno = Data_Model_Clientes.Telefono1;
+						Reg2.Numero_Uno = Data_Model_Clientes.Numero1;
+						Reg2.Telefono_Dos = Data_Model_Clientes.Telefono2;
+						Reg2.Numero_Dos = Data_Model_Clientes.Numero2;
+						Reg2.Email = Data_Model_Clientes.Email;
+						Reg2.Genero = Data_Model_Clientes.Genero;
+						Reg2.Fecha_Nacimiento = Data_Model_Clientes.Fecha_Nacimiento;
+						Reg2.Tipo_Cliente = Data_Model_Clientes.Tipo_Cliente;
+						Reg2.Lista_Precios = Data_Model_Clientes.Lista_Precios;
+						Reg2.Fidelizacion = Data_Model_Clientes.Fidelizacion;
+						Reg2.Fecha = new Date();
+						Reg2.Usuario = "ADMIN"; 
+						
+						updateClientesResult.token = clientesService.updateClientes(Reg2);
+						clientesService.commit();
+						
+					}
+					
+					Limpiar();
+					Btn_Editar.enabled=false;
+					GuardarEditado=false;
+					
 				}
+	
+				getAllClientesResult.token = clientesService.getAllClientes();
 			}
 			
 			protected function createClientesResult_resultHandler(event:ResultEvent):void
 			{
-				Limpiar();
+				getAllClientesResult.token = clientesService.getAllClientes();
+				Limpiar();				
+			}		
+			
+						
+			protected function Btn_Editar_clickHandler(event:MouseEvent):void
+			{
+				Btn_Guardar.visible=true;
+				GuardarEditado=true;
+				
+				Txt_Fecha_Nacimiento.visible=false;
+				Form_Cliente.Ddl_Dia.visible=true;
+				Form_Cliente.Ddl_Mes.visible=true;
+				Form_Cliente.Txt_Ano.visible=true;
+								
+				ActivarControles();	
 				
 			}
 			
 			protected function Lst_Cliente_changeHandler(event:IndexChangeEvent):void
-			{		
+			{	
+				Btn_Guardar.visible=false;
+				Btn_Editar.enabled=true;
+				GuardarEditado=false;
+				
+				Txt_Fecha_Nacimiento.visible=true;
+				Form_Cliente.Ddl_Dia.visible=false;
+				Form_Cliente.Ddl_Mes.visible=false;
+				Form_Cliente.Txt_Ano.visible=false;
+				
+				Data_Model_Clientes.Id=Lst_Cliente.selectedItem.Id;
 				CargarDocumento(Lst_Cliente.selectedItem.Codigo_Documento);
 				Data_Model_Clientes.Documento=Lst_Cliente.selectedItem.Documento;
 				Data_Model_Clientes.Primer_Nombre=Lst_Cliente.selectedItem.Primer_Nombre;
@@ -91,6 +176,7 @@
 				Data_Model_Clientes.Numero2=Lst_Cliente.selectedItem.Numero_Dos;
 				Data_Model_Clientes.Email=Lst_Cliente.selectedItem.Email;
 				Form_Cliente.Ddl_Genero.selectedItem=Lst_Cliente.selectedItem.Genero;	
+				Txt_Fecha_Nacimiento.text=Lst_Cliente.selectedItem.Fecha_Nacimiento;
 				Form_Cliente.Ddl_Tipo_Cliente.selectedItem=Lst_Cliente.selectedItem.Tipo_Cliente;
 				Form_Cliente.Ddl_Lista_Precios.selectedItem=Lst_Cliente.selectedItem.Lista_Precios;
 				
@@ -279,8 +365,8 @@
 				}
 				return rsp;
 			}		
-				
-				
+		
+						
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -428,6 +514,7 @@
 										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 										 showBusyCursor="true"/>
 		<s:CallResponder id="getAllClientesResult"/>
+		<s:CallResponder id="updateClientesResult" />
 		
 	</fx:Declarations>	
 	<s:Label x="48" y="39" fontSize="35" fontStyle="italic" text="Centro Veterinario"
@@ -439,14 +526,13 @@
 	<s:Button id="Btn_Nuevo" x="102" y="113" width="90" label="NUEVO"
 			  click="Btn_Nuevo_clickHandler(event)"/>
 	
-	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR"/>
+	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR" click="Btn_Editar_clickHandler(event)"/>
 	
 	<s:Button id="Btn_Buscar" x="310" y="113" width="90" label="BUSCAR"/>
 	
 	<s:Button id="Btn_Registrar_Mascotas" x="729" y="140" label="REGISTRAR MASCOTA"/>
 	
-	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR"
-			  click="Btn_Guardar_clickHandler(event)"/>
+	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
 	
 	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"
 			change="Lst_Cliente_changeHandler(event)"
@@ -456,6 +542,8 @@
 	</s:List>
 	
 	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
+	
+	<s:TextInput id="Txt_Fecha_Nacimiento" x="673" y="391" width="170" height="25" editable="false"/>
 	
 	<s:List x="78" y="592" width="1174"></s:List>
 </s:Application>

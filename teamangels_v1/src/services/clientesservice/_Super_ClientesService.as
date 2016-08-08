@@ -161,6 +161,12 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "getClientes_paged");
          operation.resultElementType = valueObjects.Clientes;
         operations["getClientes_paged"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllClientesByDocumento");
+         operation.resultType = Object;
+        operations["getAllClientesByDocumento"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllClientesByCliente");
+         operation.resultType = Object;
+        operations["getAllClientesByCliente"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -350,6 +356,42 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getClientes_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllClientesByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllClientesByDocumento(documento:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllClientesByDocumento");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllClientesByCliente' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllClientesByCliente(cliente:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllClientesByCliente");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(cliente) ;
         return _internal_token;
     }
      

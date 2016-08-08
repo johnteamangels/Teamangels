@@ -192,7 +192,7 @@
 	
 	<s:Label x="23" y="28" text="Tipo Documento"/>
 	<s:Label x="23" y="28" text="Tipo Documento"/>
-	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" height="25" cornerRadius="8"
+	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" 
 					creationComplete="Ddl_Tipo_Documento_creationCompleteHandler(event)"
 					labelField="Tipo_Documento" prompt="Tipo Documento">
 		<s:AsyncListView list="{getAllTipo_documentoResult.lastResult}"/>
@@ -200,22 +200,22 @@
 	
 	<s:Label x="291" y="28" text="Numero Documento"/>
 	<!--<x:MaskedTextInput id="Txt_Numero_Documento"  x="263" y="42" width="170" maskText="########" />-->
-	<s:TextInput id="Txt_Numero_Documento" x="263" y="42" width="170" height="25" restrict="0-9"/>
+	<s:TextInput id="Txt_Numero_Documento" x="263" y="42" width="170" restrict="0-9"/>
 	
 	<s:Label x="23" y="87" text="Primer Nombre"/>
-	<s:TextInput id="Txt_Nombre1" x="23" y="101" width="170" height="25"  change="convert(event)" restrict="^0-9"/>
+	<s:TextInput id="Txt_Nombre1" x="23" y="101" width="170"  change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="214" y="87" text="Segundo Nombre"/>
-	<s:TextInput id="Txt_Nombre2" x="214" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
+	<s:TextInput id="Txt_Nombre2" x="214" y="101" width="170" change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="405" y="87" text="Primer Apellido"/>
-	<s:TextInput id="Txt_Apellido1" x="405" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
+	<s:TextInput id="Txt_Apellido1" x="405" y="101" width="170" change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="598" y="87" text="Segundo Apellido"/>
-	<s:TextInput id="Txt_Apellido2" x="598" y="101" width="170" height="25" change="convert(event)" restrict="^0-9"/>
+	<s:TextInput id="Txt_Apellido2" x="598" y="101" width="170"  change="convert(event)" restrict="^0-9"/>
 	
 	<s:Label x="23" y="141" text="Departamento Residencia"/>
-	<s:DropDownList id="Ddl_Departamento" x="23" y="155" width="170" height="25" cornerRadius="8"
+	<s:DropDownList id="Ddl_Departamento" x="23" y="155" width="170" 
 					change="Ddl_Departamento_changeHandler(event)"
 					creationComplete="Ddl_Departamento_creationCompleteHandler(event)" 
 					prompt="Departamento" labelField="Departamento">
@@ -223,17 +223,17 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="141" text="Municipio Residencia"/>
-	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" height="25" cornerRadius="8"
+	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" 
 					prompt="Municipio" labelField="Municipio"
 					creationComplete="Ddl_Municipio_creationCompleteHandler(event)">
 		<s:AsyncListView list="{getAllMunicipiosResult.lastResult}"/>
 	</s:DropDownList>
 	
 	<s:Label x="405" y="141" text="Dirección Residencia"/>
-	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365" height="25"/>
+	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365" />
 	
 	<s:Label x="23" y="191" text="Telefono 1"/>
-	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FIJO</fx:String>
@@ -243,14 +243,14 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="190" text="Numero Telefono"/>
-	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170" height="25" maxChars="10"
+	<s:TextInput id="Txt_Numero_Telefono1" x="214" y="205" width="170"  maxChars="10"
 				 restrict="0-9"/>
 	
 	<s:Label x="406" y="190" text="Email"/>
-	<s:TextInput id="Txt_Email" x="405" y="205" width="365" height="25"/>
+	<s:TextInput id="Txt_Email" x="405" y="205" width="365" />
 	
 	<s:Label x="23" y="240" text="Telefono 2"/>
-	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Telefono2" x="23" y="254" width="170" prompt="Telefono">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FIJO</fx:String>
@@ -260,11 +260,11 @@
 	</s:DropDownList>
 	
 	<s:Label x="214" y="239" text="Numero Telefono"/>	
-	<s:TextInput id="Txt_Numero_Telefono2" x="214" y="254" width="170" height="25" maxChars="10"
+	<s:TextInput id="Txt_Numero_Telefono2" x="214" y="254" width="170"  maxChars="10"
 				 restrict="0-9"/>
 	
 	<s:Label x="409" y="240" text="Genero"/>
-	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Genero" x="405" y="254" width="170" prompt="Genero" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>FEMENINO</fx:String>
@@ -275,7 +275,7 @@
 	
 	<s:Label x="628" y="238" text="Fecha Nacimiento"/>
 	<s:Label x="601" y="253" text="Dia"/>
-	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55" height="25" prompt="D" cornerRadius="8" >
+	<s:DropDownList id="Ddl_Dia" x="586" y="265" width="55" prompt="D" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>01</fx:String>
@@ -314,7 +314,7 @@
 	</s:DropDownList>
 	
 	<s:Label x="657" y="253" text="Mes"/>
-	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55" height="25" prompt="M" cornerRadius="8">
+	<s:DropDownList id="Ddl_Mes" x="646" y="265" width="55"  prompt="M" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>01</fx:String>
@@ -334,10 +334,10 @@
 	</s:DropDownList>
 	
 	<s:Label x="719" y="253" text="Año"/>
-	<s:TextInput id="Txt_Ano" x="707" y="265" width="55" height="25" restrict="0-9" maxChars="4" prompt="AAAA" />
+	<s:TextInput id="Txt_Ano" x="707" y="265" width="55"  restrict="0-9" maxChars="4" prompt="AAAA" />
 	
 	<s:Label x="23" y="293" text="Tipo Cliente"/>
-	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Tipo_Cliente" x="23" y="307" width="365" prompt="Tipo Cliente" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>EMPLEADO</fx:String>
@@ -349,7 +349,7 @@
 	</s:DropDownList>
 	
 	<s:Label x="406" y="293" text="Lista de Precios"/>
-	<s:DropDownList id="Ddl_Lista_Precios" x="405" y="307" width="365" prompt="Lista Precios" height="25" cornerRadius="8">
+	<s:DropDownList id="Ddl_Lista_Precios" x="405" y="307" width="365" prompt="Lista Precios" >
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>LISTA UNO</fx:String>
@@ -361,5 +361,5 @@
 	</s:DropDownList>
 	
 	<s:Label x="23" y="343" text="Fidelización"/>	
-	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365" height="25"/>
+	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365" />
 </s:Group>

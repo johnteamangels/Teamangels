@@ -137,5 +137,9 @@
 	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"></s:List>
 	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
 	<s:List x="78" y="592" width="1174"></s:List>
+	<s:TextInput id="Txt_Fecha_Nacimiento" x="673" y="391" width="170" height="25" editable="false"/>
+	<s:Button id="Btn_Buscar_Cliente" x="1181" y="99" label="BUSCAR"/>
+	<Formularios:Asistente_de_Direccion x="577" y="289">
+	</Formularios:Asistente_de_Direccion>
 	
 </s:Application>

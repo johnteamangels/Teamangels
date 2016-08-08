@@ -53,9 +53,67 @@ class ClientesService {
 	 *
 	 * @return array
 	 */
+		
+	public function getAllClientesByDocumento($documento) {
+
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes WHERE Documento = ? ORDER BY  Nombre_Completo ASC ");		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_bind_param($stmt, 's', $documento);		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_execute($stmt);
+		$this->throwExceptionOnError();
+		
+		$rows = array();
+		
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		
+	    while (mysqli_stmt_fetch($stmt)) {
+	      $row->Fecha = new DateTime($row->Fecha);
+	      $rows[] = $row;
+	      $row = new stdClass();
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	    }
+		
+		mysqli_stmt_free_result($stmt);
+	    mysqli_close($this->connection);
+	
+	    return $rows;
+	}
+	
+	public function getAllClientesByCliente($cliente) {
+
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes WHERE Nombre_Completo LIKE ? ORDER BY  Nombre_Completo ASC");		
+		$this->throwExceptionOnError();
+		$cliente = '%' .$cliente.'%';
+						
+		mysqli_stmt_bind_param($stmt, 's', $cliente);		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_execute($stmt);
+		$this->throwExceptionOnError();
+		
+		$rows = array();
+		
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		
+	    while (mysqli_stmt_fetch($stmt)) {
+	      $row->Fecha = new DateTime($row->Fecha);
+	      $rows[] = $row;
+	      $row = new stdClass();
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	    }
+		
+		mysqli_stmt_free_result($stmt);
+	    mysqli_close($this->connection);
+	
+	    return $rows;
+	}
+	 
 	public function getAllClientes() {
 
-		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename");		
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes ORDER BY  Nombre_Completo ASC ");		
 		$this->throwExceptionOnError();
 		
 		mysqli_stmt_execute($stmt);
