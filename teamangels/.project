@@ -17,6 +17,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/MascotasService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/MascotasService.php</location>
+		</link>
+		<link>
 			<name>services/RazaService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/RazaService.php</location>

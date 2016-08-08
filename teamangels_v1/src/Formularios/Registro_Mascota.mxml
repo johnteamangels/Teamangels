@@ -27,6 +27,12 @@
 				getAllRazaByEspecieResult.token = razaService.getAllRazaByEspecie(Ddl_Especie.selectedItem.Id_Especie);
 			}
 			
+			//SE LLENA EL COMPONENTE DE RAZAS
+			protected function Ddl_Raza_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllRazaResult.token = razaService.getAllRaza();
+				
+			}
 			//RESULTADO DEL METODO ANTERIOR, LLENA LAS RAZAS SEGUN ESPECIE
 			protected function getAllRazaByEspecieResult_resultHandler(event:ResultEvent):void
 			{
@@ -93,7 +99,7 @@
 				Txta_Observaciones.text = Txta_Observaciones.text.toUpperCase()
 				
 			}
-			
+		
 		]]>
 	</fx:Script>
 	
@@ -109,6 +115,7 @@
 		<razaservice:RazaService id="razaService"
 								 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 								 showBusyCursor="true"/>
+		<s:CallResponder id="getAllRazaResult"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
@@ -131,7 +138,7 @@
 	</s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
 	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"
-					labelField="Raza"></s:DropDownList>
+					labelField="Raza" creationComplete="Ddl_Raza_creationCompleteHandler(event)"></s:DropDownList>
 	
 	<s:Label x="775" y="107" text="Pelaje"/>
 	<s:Label x="396" y="159" text="Genero"/>

@@ -161,15 +161,6 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "getMascotas_paged");
          operation.resultElementType = valueObjects.Mascotas;
         operations["getMascotas_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByDocumento");
-         operation.resultType = Object;
-        operations["getAllMascotasByDocumento"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByPropietario");
-         operation.resultType = Object;
-        operations["getAllMascotasByPropietario"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByMascota");
-         operation.resultType = Object;
-        operations["getAllMascotasByMascota"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -359,60 +350,6 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMascotas_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllMascotasByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllMascotasByDocumento(documento:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByDocumento");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllMascotasByPropietario' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllMascotasByPropietario(propietario:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByPropietario");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(propietario) ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllMascotasByMascota' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllMascotasByMascota(mascota:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByMascota");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(mascota) ;
         return _internal_token;
     }
      

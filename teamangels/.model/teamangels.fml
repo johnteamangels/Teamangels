@@ -140,4 +140,154 @@
     <id name="Id_Raza" type="integer"/>
     <property name="Raza" type="string"/>
   </entity>
+  <service name="MascotasService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">MascotasService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.mascotasservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">MascotasService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels/bin-debug/services/MascotasService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/MascotasService.php</item>
+      <item name="LINKED_FILE">MascotasService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">MascotasService</item>
+    </annotation>
+    <function name="getAllMascotas" return-type="Mascotas[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMascotasByID" return-type="Mascotas">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createMascotas" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Mascotas"/>
+    </function>
+    <function name="updateMascotas" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Mascotas"/>
+    </function>
+    <function name="deleteMascotas" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMascotas_paged" return-type="Mascotas[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Mascotas" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Mascotas</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MascotasService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createMascotas</item>
+      <item name="update">updateMascotas</item>
+      <item name="get">getMascotasByID</item>
+      <item name="delete">deleteMascotas</item>
+      <item name="fillFunc">getAllMascotas,getMascotas_paged</item>
+      <item name="managingService">MascotasService</item>
+    </annotation>
+    <annotation name="getMascotasByID">
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+    </annotation>
+    <annotation name="getAllMascotas">
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+    </annotation>
+    <annotation name="getMascotas_paged">
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Id" type="integer"/>
+    <property name="Documento" type="string"/>
+    <property name="Propietario" type="string"/>
+    <property name="Nombre_Mascota" type="string"/>
+    <property name="Id_Chif" type="string"/>
+    <property name="Id_Especie" type="integer"/>
+    <property name="Especie" type="string"/>
+    <property name="Id_Raza" type="integer"/>
+    <property name="Raza" type="string"/>
+    <property name="Pelaje" type="string"/>
+    <property name="Color" type="string"/>
+    <property name="Tamano" type="string"/>
+    <property name="Genero" type="string"/>
+    <property name="Peso" type="string"/>
+    <property name="Estado_Reproductivo" type="string"/>
+    <property name="Temperamento" type="string"/>
+    <property name="Edad_Dias" type="string"/>
+    <property name="Edad_Meses" type="string"/>
+    <property name="Edad_Anos" type="string"/>
+    <property name="Tipo_Alimentacion" type="string"/>
+    <property name="Descripcion_Marca" type="string"/>
+    <property name="Descripcion_Referencia" type="string"/>
+    <property name="Senales_Particulares" type="string"/>
+    <property name="Observaciones" type="string"/>
+    <property name="Fecha" type="date"/>
+    <property name="Usuario" type="string"/>
+  </entity>
 </model>

@@ -14,6 +14,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
 			
 			import valueObjects.Mascotas;
 			
@@ -104,6 +105,8 @@
 					Lst_Buscar_Propietario.visible=true;
 					Lst_Buscar_Mascota.enabled=true;
 					Lst_Buscar_Mascota.visible=true;
+					Txt_Buscar_Propietario.text="";
+					Txt_Buscar_Mascota.text="";
 					
 				}else{
 					
@@ -127,7 +130,8 @@
 					Lst_Buscar_Propietario.visible=true;
 					Lst_Buscar_Mascota.enabled=true;
 					Lst_Buscar_Mascota.visible=true;
-					
+					Txt_Buscar_Mascota.text="";
+					Txt_Buscar_Documento.text="";
 					
 				}else{
 					
@@ -151,7 +155,8 @@
 					Lst_Buscar_Propietario.visible=true;
 					Lst_Buscar_Mascota.enabled=true;
 					Lst_Buscar_Mascota.visible=true;
-					
+					Txt_Buscar_Documento.text="";
+					Txt_Buscar_Propietario.text="";
 				}else{
 					Btn_Buscar_Mascota.enabled=false;
 					Btn_Buscar_Mascota.visible=false;
@@ -219,9 +224,6 @@
 		
 			}
 			
-			
-			
-			
 			//RESPONDE LO DEL CREATE
 			protected function createMascotasResult2_resultHandler(event:ResultEvent):void
 			{
@@ -232,6 +234,7 @@
 			//ACTIVA LOS CAMPOS PARA UN NUEVO REGISTRO
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
 			{
+				EditarGuad=false;
 				
 				Rbtn_Documento.enabled=false;
 				Rbtn_Documento.visible=false;
@@ -283,42 +286,94 @@
 				Reg_Mascota.Txta_Senales_Particulares.editable=true;
 				Reg_Mascota.Txta_Observaciones.editable=true;
 				
+				Limpiar();
+			    
+				Buscar.selectedValue=null;
+				Lst_Buscar_Documento.selectedIndex=-1;
+				Lst_Buscar_Propietario.selectedIndex=-1;
+			    Lst_Buscar_Mascota.selectedIndex=-1;
+				
 			}
 			
 			//FUNCION DE GUARDAR
+			
+			private var EditarGuad:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
-				var Reg:Mascotas = new Mascotas();
 				
-				Reg.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
-				Reg.Documento = "1017195450";
-				Reg.Propietario = "LAURA OLARTE";
-				Reg.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
-				Reg.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
-				Reg.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
-				Reg.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
-				Reg.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
-				Reg.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
-				Reg.Color = Reg_Mascota.Txt_Color.text;
-				Reg.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
-				Reg.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
-				Reg.Peso = Reg_Mascota.Txt_Peso.text;
-				Reg.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
-				Reg.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
-				Reg.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
-				Reg.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
-				Reg.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
-				Reg.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
-				Reg.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
-				Reg.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
-				Reg.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
-				Reg.Observaciones = Reg_Mascota.Txta_Observaciones.text;
-				Reg.Fecha = new Date();
-				Reg.Usuario = "ADMIN"; 
+				if(EditarGuad == false){
+					
+					var Reg:Mascotas = new Mascotas();
+					
+					Reg.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
+					Reg.Documento = "1017195450";
+					Reg.Propietario = "LAURA OLARTE";
+					Reg.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
+					Reg.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
+					Reg.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
+					Reg.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
+					Reg.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
+					Reg.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
+					Reg.Color = Reg_Mascota.Txt_Color.text;
+					Reg.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
+					Reg.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
+					Reg.Peso = Reg_Mascota.Txt_Peso.text;
+					Reg.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
+					Reg.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
+					Reg.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
+					Reg.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
+					Reg.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
+					Reg.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
+					Reg.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
+					Reg.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
+					Reg.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
+					Reg.Observaciones = Reg_Mascota.Txta_Observaciones.text;
+					Reg.Fecha = new Date();
+					Reg.Usuario = "ADMIN"; 
+					
+					createMascotasResult.token = mascotasService.createMascotas(Reg);
+					mascotasService.commit();
+					
+				}else{
+					
+					
+					EditarGuad=true;
+					
+					var Reg2:Mascotas = new Mascotas();
+					
+					Reg2.Id = Data_Model_Mascota.Id;
+					Reg2.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
+					Reg2.Documento = "1017195450";
+					Reg2.Propietario = "LAURA OLARTE";
+					Reg2.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
+					Reg2.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
+					Reg2.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
+					Reg2.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
+					Reg2.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
+					Reg2.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
+					Reg2.Color = Reg_Mascota.Txt_Color.text;
+					Reg2.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
+					Reg2.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
+					Reg2.Peso = Reg_Mascota.Txt_Peso.text;
+					Reg2.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
+					Reg2.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
+					Reg2.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
+					Reg2.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
+					Reg2.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
+					Reg2.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
+					Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
+					Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
+					Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
+					Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
+					Reg2.Fecha = new Date();
+					Reg2.Usuario = "ADMIN"; 
+					
+					updateMascotasResult.token = mascotasService.updateMascotas(Reg2);
+					mascotasService.commit();
+					
+					Limpiar();
 				
-				createMascotasResult.token = mascotasService.createMascotas(Reg);
-				mascotasService.commit();
-				
+				}
 			}
 			
 			//RESPONDE EL SERVICIO DEL CREATE
@@ -327,38 +382,37 @@
 				Limpiar();
 			}
 			
-			//FUNCION DE ACTUALIZAR
+			//FUNCION ACTIVA LOS CAMPOS PARA ACTUALIZAR VARIABLE EN TRUE
 			protected function Btn_Editar_clickHandler(event:MouseEvent):void
 			{
 				
-				var Reg2:Mascotas = new Mascotas();
+				EditarGuad=true;
 				
-				Reg2.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
-				Reg2.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
-				Reg2.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
-				Reg2.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
-				Reg2.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
-				Reg2.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
-				Reg2.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
-				Reg2.Color = Reg_Mascota.Txt_Color.text;
-				Reg2.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
-				Reg2.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
-				Reg2.Peso = Reg_Mascota.Txt_Peso.text;
-				Reg2.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
-				Reg2.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
-				Reg2.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
-				Reg2.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
-				Reg2.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
-				Reg2.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
-				Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
-				Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
-				Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
-				Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
-				Reg2.Fecha = new Date();
-				Reg2.Usuario = "ADMIN"; 
-				
-				
-				
+				Reg_Mascota.Txt_Nombre_Mascota.editable=true;
+				Reg_Mascota.Txt_Id_Chip.editable=true;
+				Reg_Mascota.Ddl_Especie.enabled=true;
+				Reg_Mascota.Ddl_Raza.enabled=true;
+				Reg_Mascota.Ddl_Pelaje.enabled=true;
+				Reg_Mascota.Txt_Color.editable=true;
+				Reg_Mascota.Ddl_Tamano.enabled=true;
+				Reg_Mascota.Ddl_Genero.enabled=true;
+				Reg_Mascota.Txt_Peso.editable=true;
+				Reg_Mascota.Ddl_Estado_Reproductivo.enabled=true;
+				Reg_Mascota.Ddl_Temperamento.enabled=true;
+				Reg_Mascota.Ddl_Dia.enabled=true;
+				Reg_Mascota.Ddl_Mes.enabled=true;
+				Reg_Mascota.Txt_Ano.editable=true;
+				Reg_Mascota.Txt_Edad_Dias.editable=true;
+				Reg_Mascota.Txt_Edad_Meses.editable=true;
+				Reg_Mascota.Txt_Edad_Anos.editable=true;
+				Reg_Mascota.Ddl_Tipo_Alimentacion.enabled=true;
+				Reg_Mascota.Ddl_Marca.enabled=true;
+				Reg_Mascota.Txt_Descripcion_Marca.editable=true;
+				Reg_Mascota.Ddl_Referencia.enabled=true;
+				Reg_Mascota.Txt_Descripcion_Referencia.editable=true;
+				Reg_Mascota.Txta_Senales_Particulares.editable=true;
+				Reg_Mascota.Txta_Observaciones.editable=true;
+			
 			}
 			
 		
@@ -377,20 +431,105 @@
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
 			}
-			//LLENA LA LISTA
-			protected function Lst_Buscar_Mascota_clickHandler(event:MouseEvent):void
+			
+			//SE LLENA LA LISTA
+			protected function Lst_Buscar_Mascota_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllMascotasResult.token = mascotasService.getAllMascotas();
-				
 			}
-			//LLENA LA LISTA
+			
+			//CARGA LOS REGISTROS AL FORMULARIO
 			protected function Lst_Buscar_Documento_changeHandler(event:IndexChangeEvent):void
 			{
+				Lst_Buscar_Mascota.selectedIndex=-1;
+				Lst_Buscar_Propietario.selectedIndex=-1;
+				EditarGuad=false;
+				
+				
 				Data_Model_Mascota.Id = Lst_Buscar_Documento.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Documento.selectedItem.Nombre_Mascota;
 				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Documento.selectedItem.Id_Chif;
 			    CargarEspecie(Lst_Buscar_Documento.selectedItem.Especie);
-				CargarRaza(Lst_Buscar_Documento.selectedItem.Raza)
+				Reg_Mascota.Ddl_Raza.selectedItem =  Lst_Buscar_Documento.selectedItem.Raza; 
+				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Documento.selectedItem.Pelaje;
+				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Documento.selectedItem.Genero;
+				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Documento.selectedItem.Estado_Reproductivo;
+				Reg_Mascota.Ddl_Tamano.selectedItem = Lst_Buscar_Documento.selectedItem.Tamano;
+				Reg_Mascota.Ddl_Temperamento.selectedItem = Lst_Buscar_Documento.selectedItem.Temperamento;
+			    Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem = Lst_Buscar_Documento.selectedItem.Tipo_Alimentacion;
+				Reg_Mascota.Txt_Color.text = Lst_Buscar_Documento.selectedItem.Color;
+				Reg_Mascota.Txt_Peso.text = Lst_Buscar_Documento.selectedItem.Peso;
+				Reg_Mascota.Txt_Edad_Dias.text = Lst_Buscar_Documento.selectedItem.Edad_Dias;
+				Reg_Mascota.Txt_Edad_Meses.text = Lst_Buscar_Documento.selectedItem.Edad_Meses;
+				Reg_Mascota.Txt_Edad_Anos.text = Lst_Buscar_Documento.selectedItem.Edad_Anos;
+				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Documento.selectedItem.Descripcion_Marca;
+				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Documento.selectedItem.Descripcion_Referencia;
+				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Documento.selectedItem.Senales_Particulares;
+				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Documento.selectedItem.Observaciones;
+			
+			
+			}
+			//CARGA LOS REGISTROS AL FORMULARIO
+			protected function Lst_Buscar_Mascota_changeHandler(event:IndexChangeEvent):void
+			{
+				
+				Lst_Buscar_Documento.selectedIndex=-1;
+				Lst_Buscar_Propietario.selectedIndex=-1;
+				EditarGuad=false;
+				
+				
+				Data_Model_Mascota.Id = Lst_Buscar_Mascota.selectedItem.Id;
+				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Mascota.selectedItem.Nombre_Mascota;
+				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Mascota.selectedItem.Id_Chif;
+				CargarEspecie(Lst_Buscar_Mascota.selectedItem.Especie);
+			    Reg_Mascota.Ddl_Raza.selectedItem = Lst_Buscar_Mascota.selectedItem.Raza;
+				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Mascota.selectedItem.Pelaje;
+				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Mascota.selectedItem.Genero;
+				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Mascota.selectedItem.Estado_Reproductivo;
+				Reg_Mascota.Ddl_Tamano.selectedItem = Lst_Buscar_Mascota.selectedItem.Tamano;
+				Reg_Mascota.Ddl_Temperamento.selectedItem = Lst_Buscar_Mascota.selectedItem.Temperamento;
+				Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem = Lst_Buscar_Mascota.selectedItem.Tipo_Alimentacion;
+				Reg_Mascota.Txt_Color.text = Lst_Buscar_Mascota.selectedItem.Color;
+				Reg_Mascota.Txt_Peso.text = Lst_Buscar_Mascota.selectedItem.Peso;
+				Reg_Mascota.Txt_Edad_Dias.text = Lst_Buscar_Mascota.selectedItem.Edad_Dias;
+				Reg_Mascota.Txt_Edad_Meses.text = Lst_Buscar_Mascota.selectedItem.Edad_Meses;
+				Reg_Mascota.Txt_Edad_Anos.text = Lst_Buscar_Mascota.selectedItem.Edad_Anos;
+				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Mascota.selectedItem.Descripcion_Marca;
+				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Mascota.selectedItem.Descripcion_Referencia;
+				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Mascota.selectedItem.Senales_Particulares;
+				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Mascota.selectedItem.Observaciones;
+			
+			}
+			
+			//CARGA LOS REGISTROS AL FORMULARIO
+			protected function Lst_Buscar_Propietario_changeHandler(event:IndexChangeEvent):void
+			{
+				
+				Lst_Buscar_Mascota.selectedIndex=-1;
+				Lst_Buscar_Documento.selectedIndex=-1;
+				EditarGuad=false;
+				
+				
+				Data_Model_Mascota.Id = Lst_Buscar_Propietario.selectedItem.Id;
+				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Propietario.selectedItem.Nombre_Mascota;
+				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Propietario.selectedItem.Id_Chif;
+				CargarEspecie(Lst_Buscar_Propietario.selectedItem.Especie);
+				Reg_Mascota.Ddl_Raza.selectedItem = Lst_Buscar_Propietario.selectedItem.Raza;
+				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Propietario.selectedItem.Pelaje;
+				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Propietario.selectedItem.Genero;
+				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Propietario.selectedItem.Estado_Reproductivo;
+				Reg_Mascota.Ddl_Tamano.selectedItem = Lst_Buscar_Propietario.selectedItem.Tamano;
+				Reg_Mascota.Ddl_Temperamento.selectedItem = Lst_Buscar_Propietario.selectedItem.Temperamento;
+				Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem = Lst_Buscar_Propietario.selectedItem.Tipo_Alimentacion;
+				Reg_Mascota.Txt_Color.text = Lst_Buscar_Propietario.selectedItem.Color;
+				Reg_Mascota.Txt_Peso.text = Lst_Buscar_Propietario.selectedItem.Peso;
+				Reg_Mascota.Txt_Edad_Dias.text = Lst_Buscar_Propietario.selectedItem.Edad_Dias;
+				Reg_Mascota.Txt_Edad_Meses.text = Lst_Buscar_Propietario.selectedItem.Edad_Meses;
+				Reg_Mascota.Txt_Edad_Anos.text = Lst_Buscar_Propietario.selectedItem.Edad_Anos;
+				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Propietario.selectedItem.Descripcion_Marca;
+				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Propietario.selectedItem.Descripcion_Referencia;
+				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Propietario.selectedItem.Senales_Particulares;
+				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Propietario.selectedItem.Observaciones;
 				
 			}
 			
@@ -406,19 +545,57 @@
 				}
 				
 			}		
-			
-			//CARGA LA RAZA
-			protected function CargarRaza(valor:String):void{
-				var data:Object;
-				for(var i:Number=0; i<Reg_Mascota.Ddl_Raza.dataProvider.length; i++){
-					data = Reg_Mascota.Ddl_Raza.dataProvider.getItemAt(i);
-					if(data["Raza"] == valor){
-						Reg_Mascota.Ddl_Raza.selectedIndex = i;
-						Reg_Mascota.Ddl_Raza.errorString = "";
-					}
+			//LLAMA AL METODO QUE BUSCA POR DOCUMENTO
+			protected function Btn_Buscar_Documento_clickHandler(event:MouseEvent):void
+			{
+				
+				if(Txt_Buscar_Documento.text!=""){
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotasByDocumento(Txt_Buscar_Documento.text);
+				}else{
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotas();
 				}
 				
-			}		
+			}
+			//LLAMA AL METODO QUE BUSCA POR PROPIETARIO
+			protected function Btn_Buscar_Propietario_clickHandler(event:MouseEvent):void
+			{
+				
+				if(Txt_Buscar_Propietario.text!=""){
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotasByPropietario(Txt_Buscar_Propietario.text);
+					
+				}else{
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotas();
+				}
+			}
+			//LLAMA AL METODO QUE BUSCA POR MASCOTA
+			protected function Btn_Buscar_Mascota_clickHandler(event:MouseEvent):void
+			{
+				
+				if(Txt_Buscar_Mascota.text!=""){
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotasByMascota(Txt_Buscar_Mascota.text);
+				
+				}else{
+					
+					getAllMascotasResult.token = mascotasService.getAllMascotas();
+				}
+				
+			}
+			//CONVIERTE A MAYUSCULAS
+			protected function Txt_Buscar_Propietario_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Buscar_Propietario.text =Txt_Buscar_Propietario.text.toUpperCase();
+			}
+			//CONVIERTE A MAYUSCULAS
+			protected function Txt_Buscar_Mascota_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Buscar_Mascota.text = Txt_Buscar_Mascota.text.toUpperCase();
+				
+			}
 			
 		]]>
 	</fx:Script>
@@ -433,16 +610,16 @@
 		</fx:Model>	
 		
 		
-		
-		
-		
-		
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
 		<s:CallResponder id="createMascotasResult" result="createMascotasResult_resultHandler(event)"/>
 		<mascotasservice:MascotasService id="mascotasService"
 										 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 										 showBusyCursor="true"/>
 		<s:CallResponder id="getAllMascotasResult"/>
+		<s:CallResponder id="updateMascotasResult"/>
+		<s:CallResponder id="getAllMascotasByDocumentoResult"/>
+		<s:CallResponder id="getAllMascotasByPropietarioResult"/>
+		<s:CallResponder id="getAllMascotasByMascotaResult"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
@@ -473,16 +650,16 @@
 		
 		
 		<s:List id="Lst_Buscar_Propietario" x="1243" y="124" width="249" height="605" creationComplete="Lst_Buscar_Propietario_creationCompleteHandler(event)"
-				labelField="Propietario">
+				labelField="Propietario" change="Lst_Buscar_Propietario_changeHandler(event)">
 			<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
 		</s:List>
 		<s:List id="Lst_Buscar_Documento" x="1099" y="123" width="142" height="606" creationComplete="Lst_Buscar_Documento_creationCompleteHandler(event)"
 				labelField="Documento" change="Lst_Buscar_Documento_changeHandler(event)">
 			<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
 		</s:List>
-		<s:Button id="Btn_Buscar_Documento" x="1099" y="94" label="Buscar"/>
-		<s:Button id="Btn_Buscar_Propietario" x="1099" y="94" label="Buscar"/>
-		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar"/>
+		<s:Button id="Btn_Buscar_Documento" x="1099" y="94" label="Buscar" click="Btn_Buscar_Documento_clickHandler(event)"/>
+		<s:Button id="Btn_Buscar_Propietario" x="1099" y="94" label="Buscar" click="Btn_Buscar_Propietario_clickHandler(event)"/>
+		<s:Button id="Btn_Buscar_Mascota" x="1099" y="94" label="Buscar" click="Btn_Buscar_Mascota_clickHandler(event)"/>
 		
 		<s:HGroup x="24" y="10" width="200" height="25">
 			<s:Button id="Btn_Nuevo" label="Nuevo" click="Btn_Nuevo_clickHandler(event)"/>
@@ -492,14 +669,12 @@
 		
 		
 	</s:BorderContainer>
-	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606" click="Lst_Buscar_Mascota_clickHandler(event)"
-			labelField="Nombre_Mascota">
+	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606" creationComplete="Lst_Buscar_Mascota_creationCompleteHandler(event)"
+			labelField="Nombre_Mascota"  change="Lst_Buscar_Mascota_changeHandler(event)">
 		<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
 	
 	</s:List>
 
-	
-	
 	
 	
 	<s:HGroup x="1102" y="53" width="338" height="20">
@@ -507,10 +682,10 @@
 		<s:RadioButton id="Rbtn_Propietario" label="Propietario" groupName="Buscar" value="Pro"/>
 		<s:RadioButton id="Rbtn_Mascota" x="1290" y="53" label="Mascota" groupName="Buscar" value="Mas"/>
 	</s:HGroup>
-	<s:TextInput id="Txt_Buscar_Documento" x="1172" y="95" width="465" prompt="DOCUMENTO"/>
-	<s:TextInput id="Txt_Buscar_Propietario" x="1172" y="95" width="465" prompt="PROPIETARIO"/>
+	<s:TextInput id="Txt_Buscar_Documento" x="1172" y="95" width="465" prompt="DOCUMENTO" restrict="0-9"/>
+	<s:TextInput id="Txt_Buscar_Propietario" x="1172" y="95" width="465" prompt="PROPIETARIO" change="Txt_Buscar_Propietario_changeHandler(event)"/>
 	
-	<s:TextInput id="Txt_Buscar_Mascota" x="1172" y="95" width="465" prompt="MASCOTA"/>
+	<s:TextInput id="Txt_Buscar_Mascota" x="1172" y="95" width="465" prompt="MASCOTA" change="Txt_Buscar_Mascota_changeHandler(event)"/>
 	
 	<s:HGroup x="500" y="725">
 		
