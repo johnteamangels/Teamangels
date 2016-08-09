@@ -170,6 +170,9 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByMascota");
          operation.resultType = Object;
         operations["getAllMascotasByMascota"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getMascotasByNombre_Mascota");
+         operation.resultType = Object;
+        operations["getMascotasByNombre_Mascota"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -413,6 +416,24 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByMascota");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(mascota) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getMascotasByNombre_Mascota' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getMascotasByNombre_Mascota(Nombre_Mascota:String, documento:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMascotasByNombre_Mascota");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(Nombre_Mascota,documento) ;
         return _internal_token;
     }
      

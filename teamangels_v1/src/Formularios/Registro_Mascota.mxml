@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:especieservice="services.especieservice.*"
-		 xmlns:razaservice="services.razaservice.*">
+		 xmlns:razaservice="services.razaservice.*" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -13,6 +13,12 @@
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
 			
+			//DESACTIVA AL COMENZAR EL COMPONENTE
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				Txt_Otra_Raza.enabled=false;
+				Txt_Otra_Raza.visible=false;
+			}
 			
 			//SE LLENA EL DROP DOWN LIST CON LAS ESPECIES
 			protected function Ddl_Especie_creationCompleteHandler(event:FlexEvent):void
@@ -30,8 +36,7 @@
 			//SE LLENA EL COMPONENTE DE RAZAS
 			protected function Ddl_Raza_creationCompleteHandler(event:FlexEvent):void
 			{
-				getAllRazaResult.token = razaService.getAllRaza();
-				
+				getAllRazaResult2.token = razaService.getAllRaza();
 			}
 			//RESULTADO DEL METODO ANTERIOR, LLENA LAS RAZAS SEGUN ESPECIE
 			protected function getAllRazaByEspecieResult_resultHandler(event:ResultEvent):void
@@ -100,6 +105,23 @@
 				
 			}
 		
+	
+			
+			protected function Ddl_Raza_changeHandler(event:IndexChangeEvent):void
+			{
+				if(Ddl_Raza.selectedItem == "OTRO"){
+					Txt_Otra_Raza.enabled=true;
+				    Txt_Otra_Raza.visible=true;
+					
+				}else{
+					
+					Txt_Otra_Raza.enabled=false;
+					Txt_Otra_Raza.visible=false;
+				}
+			}
+			
+			
+			
 		]]>
 	</fx:Script>
 	
@@ -116,6 +138,7 @@
 								 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 								 showBusyCursor="true"/>
 		<s:CallResponder id="getAllRazaResult"/>
+		<s:CallResponder id="getAllRazaResult2"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
@@ -138,7 +161,9 @@
 	</s:DropDownList>
 	<s:Label x="582" y="107" text="Raza"/>
 	<s:DropDownList id="Ddl_Raza" x="582" y="118" width="180" prompt="Raza"
-					labelField="Raza" creationComplete="Ddl_Raza_creationCompleteHandler(event)"></s:DropDownList>
+					labelField="Raza" creationComplete="Ddl_Raza_creationCompleteHandler(event)" change="Ddl_Raza_changeHandler(event)">
+		<s:AsyncListView list="{getAllRazaResult2.lastResult}"/>
+	</s:DropDownList>
 	
 	<s:Label x="775" y="107" text="Pelaje"/>
 	<s:Label x="396" y="159" text="Genero"/>
@@ -314,7 +339,7 @@
 	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca"></s:DropDownList>
 	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
 	<s:Label x="25" y="355" text="PRODUCTO" textDecoration="underline"/>
-	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" prompt="dddddddddddddddddddddddddddddd" change="Txt_Descripcion_Marca_changeHandler(event)"/>
+	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" change="Txt_Descripcion_Marca_changeHandler(event)"/>
 	<s:TextInput id="Txt_Descripcion_Referencia" x="210" y="434" width="366" change="Txt_Descripcion_Referencia_changeHandler(event)"/>
 	<s:Label x="210" y="378" text="Descripciòn"/>
 	<s:Label x="210" y="422" text="Descripciòn"/>
@@ -322,5 +347,6 @@
 	<s:TextArea id="Txta_Observaciones" x="24" y="580" width="931" height="79" change="Txta_Observaciones_changeHandler(event)"/>
 	<s:Label x="25" y="378" text="Marca"/>
 	<s:Label x="210" y="159" text="Tamaño"/>
+	<s:TextInput id="Txt_Otra_Raza" x="582" y="77" width="180" prompt="CUAL"/>
 	
 </s:Group>

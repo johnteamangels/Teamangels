@@ -21,6 +21,7 @@
   <applications>
     <application path="teamangels_v1.mxml"/>
     <application path="Registro_Mascota.mxml"/>
+    <application path="Registro_Empresa.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

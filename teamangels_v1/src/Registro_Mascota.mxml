@@ -5,7 +5,7 @@
 			   xmlns:Formularios="Formularios.*"
 			   xmlns:mascotasservice="services.mascotasservice.*"
 			   minWidth="1024" minHeight="768"
-			   creationComplete="application1_creationCompleteHandler(event)">
+			   creationComplete="application1_creationCompleteHandler(event)" xmlns:valueObjects="valueObjects.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -23,7 +23,8 @@
 			//SE DESACTIVA Y NO SE VISUALIZA LOS SIGUIENTES COMPONENTE AL INICIALIZAR
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
-
+       
+				Btn_Editar.enabled=false;
 				Rbtn_Documento.enabled=false;
 				Rbtn_Documento.visible=false;
 				Rbtn_Mascota.enabled=false;
@@ -81,7 +82,6 @@
 			//SE ACTIVAN Y SE VISUALIZAN LOS SIGUIENTES COMPONENTES AL DAR CLICK EN BUSCAR
 			protected function Btn_Buscar_clickHandler(event:MouseEvent):void
 			{
-				
 				Rbtn_Documento.enabled=true;
 				Rbtn_Documento.visible=true;
 				Rbtn_Mascota.enabled=true;
@@ -224,13 +224,6 @@
 		
 			}
 			
-			//RESPONDE LO DEL CREATE
-			protected function createMascotasResult2_resultHandler(event:ResultEvent):void
-			{
-				Limpiar();
-				
-			}
-			
 			//ACTIVA LOS CAMPOS PARA UN NUEVO REGISTRO
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
 			{
@@ -295,13 +288,120 @@
 				
 			}
 			
-			//FUNCION DE GUARDAR
 			
+			
+			private function ValidarTodo():Boolean{
+				
+			
+				
+				var Nombre_Mascota:ValidationResultEvent=ValidacionNombre_Mascota.validate();
+				var Especie:ValidationResultEvent=Validacion_Especie.validate();
+				var Raza:ValidationResultEvent=Validacion_Raza.validate();
+				var Genero:ValidationResultEvent=Validacion_Genero.validate();
+				var Estado_Reproductivo:ValidationResultEvent=Validacion_Estado_Reproductivo.validate();
+				var Tamano:ValidationResultEvent=Validacion_Estado_Tamano.validate();
+				var Tipo_Alimentacion:ValidationResultEvent=Validacion_Tipo_Alimentacion.validate();
+				
+				
+				var rsp:Boolean=false;
+				
+				if( 
+					Nombre_Mascota.type==ValidationResultEvent.VALID
+					&& Especie.type==ValidationResultEvent.VALID
+					&& Raza.type==ValidationResultEvent.VALID
+					&& Genero.type==ValidationResultEvent.VALID
+					&& Estado_Reproductivo.type==ValidationResultEvent.VALID
+					&& Tamano.type==ValidationResultEvent.VALID
+					&& Tipo_Alimentacion.type==ValidationResultEvent.VALID
+				
+					
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}		
+			
+			
+			//FUNCION DE GUARDAR
 			private var EditarGuad:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
 				
 				if(EditarGuad == false){
+					
+					
+					if(ValidarTodo()){
+						
+						getMascotasByNombre_MascotaResult.token = mascotasService.getMascotasByNombre_Mascota(Reg_Mascota.Txt_Nombre_Mascota.text, Reg_Mascota.Txt_Documento.text);
+					
+				}
+			}
+				else{
+					
+					EditarGuad=true;
+					
+					
+					if(ValidarTodo()){
+						
+						
+						var Reg2:Mascotas = new Mascotas();
+						
+						Reg2.Id = Data_Model_Mascota.Id;
+						Reg2.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
+						Reg2.Documento = "1017195450";
+						Reg2.Propietario = "LAURA OLARTE";
+						Reg2.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
+						Reg2.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
+						Reg2.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
+						Reg2.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
+						Reg2.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
+						Reg2.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
+						Reg2.Color = Reg_Mascota.Txt_Color.text;
+						Reg2.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
+						Reg2.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
+						Reg2.Peso = Reg_Mascota.Txt_Peso.text;
+						Reg2.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
+						Reg2.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
+						Reg2.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
+						Reg2.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
+						Reg2.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
+						Reg2.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
+						Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
+						Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
+						Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
+						Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
+						Reg2.Fecha = new Date();
+						Reg2.Usuario = "ADMIN"; 
+						
+						updateMascotasResult.token = mascotasService.updateMascotas(Reg2);
+						mascotasService.commit();
+						
+						getAllMascotasResult.token = mascotasService.getAllMascotas();
+						
+						Limpiar();
+
+					}
+					
+				}
+		    }		
+			
+			
+			//RESPONDE EL METODO PAA NO GUARDAR SERVICIOS REPETIDOS
+			protected function getMascotasByNombre_MascotaResult_resultHandler(event:ResultEvent):void
+			{
+				DataserviceBy_Nom_Mascota = getMascotasByNombre_MascotaResult.lastResult as Mascotas
+				
+				
+				if(DataserviceBy_Nom_Mascota !=null){
+					
+					Lbl_Mensaje.text = "Mascota ya ingresada";
+				 
+					Limpiar();
+					
+				}else{
+					
 					
 					var Reg:Mascotas = new Mascotas();
 					
@@ -334,47 +434,12 @@
 					createMascotasResult.token = mascotasService.createMascotas(Reg);
 					mascotasService.commit();
 					
-				}else{
-					
-					
-					EditarGuad=true;
-					
-					var Reg2:Mascotas = new Mascotas();
-					
-					Reg2.Id = Data_Model_Mascota.Id;
-					Reg2.Nombre_Mascota = Reg_Mascota.Txt_Nombre_Mascota.text;
-					Reg2.Documento = "1017195450";
-					Reg2.Propietario = "LAURA OLARTE";
-					Reg2.Id_Chif = Reg_Mascota.Txt_Id_Chip.text;
-					Reg2.Id_Especie = Reg_Mascota.Ddl_Especie.selectedItem.Id_Especie;
-					Reg2.Especie = Reg_Mascota.Ddl_Especie.selectedItem.Especie;
-					Reg2.Id_Raza = Reg_Mascota.Ddl_Raza.selectedItem.Id_Raza;
-					Reg2.Raza = Reg_Mascota.Ddl_Raza.selectedItem.Raza;
-					Reg2.Pelaje= Reg_Mascota.Ddl_Pelaje.selectedItem;
-					Reg2.Color = Reg_Mascota.Txt_Color.text;
-					Reg2.Tamano = Reg_Mascota.Ddl_Tamano.selectedItem;
-					Reg2.Genero = Reg_Mascota.Ddl_Genero.selectedItem;
-					Reg2.Peso = Reg_Mascota.Txt_Peso.text;
-					Reg2.Estado_Reproductivo = Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem;
-					Reg2.Temperamento = Reg_Mascota.Ddl_Temperamento.selectedItem;		
-					Reg2.Edad_Dias = Reg_Mascota.Txt_Edad_Dias.text;
-					Reg2.Edad_Meses = Reg_Mascota.Txt_Edad_Meses.text;
-					Reg2.Edad_Anos = Reg_Mascota.Txt_Edad_Anos.text;
-					Reg2.Tipo_Alimentacion = Reg_Mascota.Ddl_Tipo_Alimentacion.selectedItem;
-					Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
-					Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
-					Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
-					Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
-					Reg2.Fecha = new Date();
-					Reg2.Usuario = "ADMIN"; 
-					
-					updateMascotasResult.token = mascotasService.updateMascotas(Reg2);
-					mascotasService.commit();
-					
-					Limpiar();
+					getAllMascotasResult.token = mascotasService.getAllMascotas();
 				
 				}
+			
 			}
+			
 			
 			//RESPONDE EL SERVICIO DEL CREATE
 			protected function createMascotasResult_resultHandler(event:ResultEvent):void
@@ -443,14 +508,13 @@
 			{
 				Lst_Buscar_Mascota.selectedIndex=-1;
 				Lst_Buscar_Propietario.selectedIndex=-1;
-				EditarGuad=false;
-				
+				Btn_Editar.enabled=true;
 				
 				Data_Model_Mascota.Id = Lst_Buscar_Documento.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Documento.selectedItem.Nombre_Mascota;
 				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Documento.selectedItem.Id_Chif;
 			    CargarEspecie(Lst_Buscar_Documento.selectedItem.Especie);
-				Reg_Mascota.Ddl_Raza.selectedItem =  Lst_Buscar_Documento.selectedItem.Raza; 
+				CargarRaza(Lst_Buscar_Documento.selectedItem.Raza);
 				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Documento.selectedItem.Pelaje;
 				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Documento.selectedItem.Genero;
 				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Documento.selectedItem.Estado_Reproductivo;
@@ -475,14 +539,13 @@
 				
 				Lst_Buscar_Documento.selectedIndex=-1;
 				Lst_Buscar_Propietario.selectedIndex=-1;
-				EditarGuad=false;
-				
+				Btn_Editar.enabled=true;
 				
 				Data_Model_Mascota.Id = Lst_Buscar_Mascota.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Mascota.selectedItem.Nombre_Mascota;
 				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Mascota.selectedItem.Id_Chif;
 				CargarEspecie(Lst_Buscar_Mascota.selectedItem.Especie);
-			    Reg_Mascota.Ddl_Raza.selectedItem = Lst_Buscar_Mascota.selectedItem.Raza;
+				CargarRaza(Lst_Buscar_Mascota.selectedItem.Raza);
 				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Mascota.selectedItem.Pelaje;
 				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Mascota.selectedItem.Genero;
 				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Mascota.selectedItem.Estado_Reproductivo;
@@ -507,14 +570,13 @@
 				
 				Lst_Buscar_Mascota.selectedIndex=-1;
 				Lst_Buscar_Documento.selectedIndex=-1;
-				EditarGuad=false;
-				
+				Btn_Editar.enabled=true;
 				
 				Data_Model_Mascota.Id = Lst_Buscar_Propietario.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Propietario.selectedItem.Nombre_Mascota;
 				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Propietario.selectedItem.Id_Chif;
 				CargarEspecie(Lst_Buscar_Propietario.selectedItem.Especie);
-				Reg_Mascota.Ddl_Raza.selectedItem = Lst_Buscar_Propietario.selectedItem.Raza;
+				CargarRaza(Lst_Buscar_Propietario.selectedItem.Raza);
 				Reg_Mascota.Ddl_Pelaje.selectedItem = Lst_Buscar_Propietario.selectedItem.Pelaje;
 				Reg_Mascota.Ddl_Genero.selectedItem = Lst_Buscar_Propietario.selectedItem.Genero;
 				Reg_Mascota.Ddl_Estado_Reproductivo.selectedItem = Lst_Buscar_Propietario.selectedItem.Estado_Reproductivo;
@@ -544,7 +606,20 @@
 					}
 				}
 				
+			}	
+			//CARGA LA RAZA
+			protected function CargarRaza(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Reg_Mascota.Ddl_Raza.dataProvider.length; i++){
+					data = Reg_Mascota.Ddl_Raza.dataProvider.getItemAt(i);
+					if(data["Raza"] == valor){
+						Reg_Mascota.Ddl_Raza.selectedIndex = i;
+						Reg_Mascota.Ddl_Raza.errorString = "";
+					}
+				}
+				
 			}		
+			
 			//LLAMA AL METODO QUE BUSCA POR DOCUMENTO
 			protected function Btn_Buscar_Documento_clickHandler(event:MouseEvent):void
 			{
@@ -596,7 +671,7 @@
 				Txt_Buscar_Mascota.text = Txt_Buscar_Mascota.text.toUpperCase();
 				
 			}
-			
+		
 		]]>
 	</fx:Script>
 	
@@ -610,6 +685,83 @@
 		</fx:Model>	
 		
 		
+	<!--	
+		<mx:StringValidator
+			id="ValidacionNumeroDocumento"
+			source="{Reg_Mascota.Txt_Documento}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		-->
+		
+	<!--	<mx:StringValidator
+			id="ValidacionPropietario"
+			source="{Reg_Mascota.Txt_Nombres_Y_Apellidos}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		
+		-->
+		<mx:StringValidator
+			id="ValidacionNombre_Mascota"
+			source="{Reg_Mascota.Txt_Nombre_Mascota}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Especie"
+						   source="{Reg_Mascota.Ddl_Especie}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Raza"
+						   source="{Reg_Mascota.Ddl_Raza}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+	
+		
+		<s:NumberValidator id="Validacion_Genero"
+						   source="{Reg_Mascota.Ddl_Genero}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Estado_Reproductivo"
+						   source="{Reg_Mascota.Ddl_Estado_Reproductivo}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Estado_Tamano"
+						   source="{Reg_Mascota.Ddl_Tamano}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Alimentacion"
+						   source="{Reg_Mascota.Ddl_Tipo_Alimentacion}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
 		<s:RadioButtonGroup id="Buscar" change="Buscar_changeHandler(event)"/>
 		<s:CallResponder id="createMascotasResult" result="createMascotasResult_resultHandler(event)"/>
 		<mascotasservice:MascotasService id="mascotasService"
@@ -620,6 +772,8 @@
 		<s:CallResponder id="getAllMascotasByDocumentoResult"/>
 		<s:CallResponder id="getAllMascotasByPropietarioResult"/>
 		<s:CallResponder id="getAllMascotasByMascotaResult"/>
+		<s:CallResponder id="getMascotasByNombre_MascotaResult" result="getMascotasByNombre_MascotaResult_resultHandler(event)"/>
+		<valueObjects:Mascotas id="DataserviceBy_Nom_Mascota"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
@@ -630,10 +784,37 @@
 	
 	<s:BorderContainer  width="90%" height="100%">
 	
-		<s:DataGrid id="dataGrid" x="24" y="763" width="1403" height="109" creationComplete="dataGrid_creationCompleteHandler(event)">
+		<s:DataGrid id="dataGrid" x="24" y="763" width="1403" height="109" 
+		creationComplete="dataGrid_creationCompleteHandler(event)" requestedRowCount="4">
 			<s:columns>
-				<s:AsyncListView list="{getAllMascotasResult.lastResult}"/>
-				
+				<s:ArrayList>
+					<s:GridColumn width="200" dataField="Documento" headerText="Documento"></s:GridColumn>
+					<s:GridColumn width="300" dataField="Propietario" headerText="Propietario"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Nombre_Mascota" headerText="Nombre_Mascota"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Id_Chif" headerText="Id_Chif"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Especie" headerText="Especie"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Raza" headerText="Raza"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Pelaje" headerText="Pelaje"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Color" headerText="Color"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Tamano" headerText="Tamano"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Genero" headerText="Genero"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Peso" headerText="Peso"></s:GridColumn>
+					<s:GridColumn dataField="Estado_Reproductivo" headerText="Estado_Reproductivo"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Temperamento" headerText="Temperamento"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Dias" headerText="Edad_Dias"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Meses" headerText="Edad_Meses"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Anos" headerText="Edad_Anos"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Tipo_Alimentacion"
+								  headerText="Tipo_Alimentacion"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Descripcion_Marca"
+								  headerText="Descripcion_Marca"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Descripcion_Referencia"
+								  headerText="Descripcion_Referencia"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Senales_Particulares"
+								  headerText="Senales_Particulares"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Observaciones" headerText="Observaciones"></s:GridColumn>
+				</s:ArrayList>
+			
 			</s:columns>
 			<s:typicalItem>
 				
@@ -667,7 +848,7 @@
 			<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 		</s:HGroup>
 		
-		
+		<s:Label id="Lbl_Mensaje" x="641" y="22"/>
 	</s:BorderContainer>
 	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606" creationComplete="Lst_Buscar_Mascota_creationCompleteHandler(event)"
 			labelField="Nombre_Mascota"  change="Lst_Buscar_Mascota_changeHandler(event)">
@@ -692,7 +873,7 @@
 		
 		<s:Button id="Btn_Guardar" x="754" y="600" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
 		
-		<s:Label id="Lbl_Prueba"/>
+		<s:Label id="Lbl_Prueba" x="309" y="27" color="#000000"/>
 	</s:HGroup>
 	
 	

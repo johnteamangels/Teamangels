@@ -68,6 +68,7 @@
 			<s:Button id="Btn_Editar" label="Editar"/>
 			<s:Button id="Btn_Buscar" label="Buscar"/>
 		</s:HGroup>
+		<s:Label id="Lbl_Mensaje" x="309" y="27" color="#000000"/>
 		
 	</s:BorderContainer>
 	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606"></s:List>

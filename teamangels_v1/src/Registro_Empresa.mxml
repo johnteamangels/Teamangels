@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  minWidth="955" minHeight="600" xmlns:Formularios="Formularios.*">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			
+			
+			
+			
+			
+			
+			
+			//FUNCION DE GUARDAR
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+				
+				
+				
+				
+			}
+		]]>
+	</fx:Script>
+	
+	
+	
+	
+<Formularios:Registro_Empresa id="Reg_Empresa">
+</Formularios:Registro_Empresa>
+
+<s:Button id="Btn_Guardar" x="250" y="770" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	
+</s:Application>
