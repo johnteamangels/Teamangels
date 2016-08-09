@@ -149,7 +149,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
          operation.resultType = valueObjects.Clientes;
         operations["getClientesByID"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "createClientes");
-         operation.resultType = int;
+         operation.resultType = String;
         operations["createClientes"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "updateClientes");
         operations["updateClientes"] = operation;
@@ -161,12 +161,12 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "getClientes_paged");
          operation.resultElementType = valueObjects.Clientes;
         operations["getClientes_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllClientesByDocumento");
-         operation.resultType = Object;
-        operations["getAllClientesByDocumento"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "getAllClientesByCliente");
          operation.resultType = Object;
         operations["getAllClientesByCliente"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllClientesByDocumento");
+         operation.resultType = Object;
+        operations["getAllClientesByDocumento"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -182,7 +182,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
 
         _clientesRPCDataManager.destination = "clientesRPCDataManager";
         _clientesRPCDataManager.service = _serviceControl;        
-        _clientesRPCDataManager.identities =  "Id";      
+        _clientesRPCDataManager.identities =  "Documento";      
         _clientesRPCDataManager.itemClass = valueObjects.Clientes; 
 
 
@@ -199,7 +199,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
         _clientesRPCDataManager.addManagedOperation(dmOperation);     
 
         dmQuery = new mx.data.ManagedQuery("getAllClientes");
-        dmQuery.propertySpecifier = "Id,Codigo_Documento,Documento,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Nombre_Completo,Codigo_Departamento,Departamento,Codigo_Municipio,Municipio,Direccion_Residencia,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Email,Genero,Fecha_Nacimiento,Tipo_Cliente,Lista_Precios,Fidelizacion,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Codigo_Documento,Tipo_Documento,Documento,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Nombre_Completo,Codigo_Departamento,Departamento,Codigo_Municipio,Municipio,Direccion_Residencia,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Email,Genero,Fecha_Nacimiento,Tipo_Cliente,Lista_Precios,Fidelizacion,Fecha,Usuario";
         dmQuery.parameters = "";
         _clientesRPCDataManager.addManagedOperation(dmQuery);
 
@@ -208,11 +208,11 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
         _clientesRPCDataManager.addManagedOperation(dmOperation);     
 
         dmOperation = new mx.data.ManagedOperation("getClientesByID", "get");
-        dmOperation.parameters = "Id";
+        dmOperation.parameters = "Documento";
         _clientesRPCDataManager.addManagedOperation(dmOperation);     
 
         dmQuery = new mx.data.ManagedQuery("getClientes_paged");
-        dmQuery.propertySpecifier = "Id,Codigo_Documento,Documento,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Nombre_Completo,Codigo_Departamento,Departamento,Codigo_Municipio,Municipio,Direccion_Residencia,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Email,Genero,Fecha_Nacimiento,Tipo_Cliente,Lista_Precios,Fidelizacion,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Codigo_Documento,Tipo_Documento,Documento,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Nombre_Completo,Codigo_Departamento,Departamento,Codigo_Municipio,Municipio,Direccion_Residencia,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Email,Genero,Fecha_Nacimiento,Tipo_Cliente,Lista_Precios,Fidelizacion,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
@@ -262,7 +262,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getClientesByID(itemID:int) : mx.data.ItemReference
+    public function getClientesByID(itemID:String) : mx.data.ItemReference
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getClientesByID");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(itemID) as mx.data.ItemReference;
@@ -316,7 +316,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteClientes(itemID:int) : mx.rpc.AsyncToken
+    public function deleteClientes(itemID:String) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteClientes");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(itemID) ;
@@ -360,24 +360,6 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getAllClientesByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllClientesByDocumento(documento:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllClientesByDocumento");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
-        return _internal_token;
-    }
-     
-    /**
       * This method is a generated wrapper used to call the 'getAllClientesByCliente' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
@@ -392,6 +374,24 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllClientesByCliente");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(cliente) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllClientesByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllClientesByDocumento(documento:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllClientesByDocumento");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
         return _internal_token;
     }
      

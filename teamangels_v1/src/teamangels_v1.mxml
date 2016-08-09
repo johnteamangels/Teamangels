@@ -14,6 +14,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
 			
 			import valueObjects.Clientes;
 			
@@ -31,6 +32,10 @@
 				ActivarControles();
 				//Form_Cliente.enabled=true;
 				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
+				Form_Cliente.Txt_Numero_Documento.editable=true;
+				
+				Btn_Editar.enabled=false;
 				Btn_Guardar.visible=true;
 				
 				Txt_Fecha_Nacimiento.visible=false;
@@ -51,6 +56,7 @@
 						var Reg:Clientes = new Clientes();
 						
 						Reg.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
+						Reg.Tipo_Documento = Data_Model_Clientes.Nombre_Documento;
 						Reg.Documento = Data_Model_Clientes.Documento;
 						Reg.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
 						Reg.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
@@ -90,6 +96,7 @@
 						
 						Reg2.Id = Data_Model_Clientes.Id;
 						Reg2.Codigo_Documento = Data_Model_Clientes.Codigo_Documento;
+						Reg2.Tipo_Documento = Data_Model_Clientes.Nombre_Documento;
 						Reg2.Documento = Data_Model_Clientes.Documento;
 						Reg2.Primer_Nombre = Data_Model_Clientes.Primer_Nombre;
 						Reg2.Segundo_Nombre = Data_Model_Clientes.Segundo_Nombre;
@@ -140,6 +147,9 @@
 				Btn_Guardar.visible=true;
 				GuardarEditado=true;
 				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Documento.editable=false;
+				
 				Txt_Fecha_Nacimiento.visible=false;
 				Form_Cliente.Ddl_Dia.visible=true;
 				Form_Cliente.Ddl_Mes.visible=true;
@@ -154,6 +164,9 @@
 				Btn_Guardar.visible=false;
 				Btn_Editar.enabled=true;
 				GuardarEditado=false;
+				
+				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
+				Form_Cliente.Txt_Numero_Documento.editable=false;
 				
 				Txt_Fecha_Nacimiento.visible=true;
 				Form_Cliente.Ddl_Dia.visible=false;
@@ -224,6 +237,64 @@
 				getAllClientesResult.token = clientesService.getAllClientes();
 			}
 			
+			protected function Btn_Buscar_changeHandler(event:IndexChangeEvent):void
+			{
+				if(Btn_Buscar.selectedIndex ==1){
+										
+					Btn_BC_Documento.visible=true;
+					Txt_BC_Documento.visible=true;	
+					
+					Btn_BC_Nombre.visible=false;
+					Txt_BC_Nombre.visible=false;
+					Txt_BC_Nombre.text="";					
+					
+				}else{
+					
+					Btn_BC_Documento.visible=false;
+					Txt_BC_Documento.visible=false;	
+					Txt_BC_Documento.text="";
+					
+					Btn_BC_Nombre.visible=true;
+					Txt_BC_Nombre.visible=true;
+					
+				}
+			}
+			
+			protected function convert(event:TextOperationEvent):void
+			{
+				Txt_BC_Nombre.text = Txt_BC_Nombre.text.toUpperCase();
+			}
+			
+			protected function Btn_BC_Nombre_clickHandler(event:MouseEvent):void
+			{
+				getAllClientesByClienteResult.token = clientesService.getAllClientesByCliente(Txt_BC_Nombre.text);
+				
+			}
+			
+			protected function getAllClientesByClienteResult_resultHandler(event:ResultEvent):void
+			{
+				Lst_Cliente.dataProvider=getAllClientesByClienteResult.lastResult;
+				
+			}
+			
+			protected function Btn_BC_Documento_clickHandler(event:MouseEvent):void
+			{
+				if(Txt_BC_Documento.text==""){
+					
+					getAllClientesResult.token = clientesService.getAllClientes();
+					
+				}else{
+					getAllClientesByDocumentoResult.token = clientesService.getAllClientesByDocumento(Txt_BC_Documento.text);					
+				}
+				
+			}
+			
+			protected function getAllClientesByDocumentoResult_resultHandler(event:ResultEvent):void
+			{
+				Lst_Cliente.dataProvider=getAllClientesByDocumentoResult.lastResult;
+				
+			}
+			
 			private function desactivarcontroles():void{
 				
 				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
@@ -252,8 +323,8 @@
 			
 			private function ActivarControles():void{
 				
-				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
-				Form_Cliente.Txt_Numero_Documento.editable=true;
+				//Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
+				//Form_Cliente.Txt_Numero_Documento.editable=true;
 				Form_Cliente.Txt_Nombre1.editable=true;
 				Form_Cliente.Txt_Nombre2.editable=true;
 				Form_Cliente.Txt_Apellido1.editable=true;
@@ -365,7 +436,7 @@
 				}
 				return rsp;
 			}		
-		
+	
 						
 		]]>
 	</fx:Script>
@@ -516,34 +587,51 @@
 		<s:CallResponder id="getAllClientesResult"/>
 		<s:CallResponder id="updateClientesResult" />
 		
+		<s:CallResponder id="getAllClientesByClienteResult" result="getAllClientesByClienteResult_resultHandler(event)"/>
+		<s:CallResponder id="getAllClientesByDocumentoResult" result="getAllClientesByDocumentoResult_resultHandler(event)"/>
+		
 	</fx:Declarations>	
+	
 	<s:Label x="48" y="39" fontSize="35" fontStyle="italic" text="Centro Veterinario"
 			 textDecoration="none"/>
-	
-	<Formularios:Registro_Cliente id="Form_Cliente" x="78" y="139">
-	</Formularios:Registro_Cliente>
 	
 	<s:Button id="Btn_Nuevo" x="102" y="113" width="90" label="NUEVO"
 			  click="Btn_Nuevo_clickHandler(event)"/>
 	
 	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR" click="Btn_Editar_clickHandler(event)"/>
 	
-	<s:Button id="Btn_Buscar" x="310" y="113" width="90" label="BUSCAR"/>
-	
 	<s:Button id="Btn_Registrar_Mascotas" x="729" y="140" label="REGISTRAR MASCOTA"/>
 	
+	<s:DropDownList id="Btn_Buscar"  x="310" y="113" width="120" prompt="BUSCAR" change="Btn_Buscar_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>NOMBRE</fx:String>
+				<fx:String>DOCUMENTO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<Formularios:Registro_Cliente id="Form_Cliente" x="78" y="139">
+	</Formularios:Registro_Cliente>	
+	
+	<s:TextInput id="Txt_Fecha_Nacimiento" x="673" y="391" width="170" height="25" editable="false"/>	
+	
 	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	
+	<s:TextInput id="Txt_BC_Nombre" x="937" y="98" width="245" prompt="Consulta Nombre" change="convert(event)" restrict="^0-9"/>
+	
+	<s:Button id="Btn_BC_Nombre" x="1181" y="98" label="BUSCAR" height="22" click="Btn_BC_Nombre_clickHandler(event)"/>	
+	
+	<s:TextInput id="Txt_BC_Documento" x="937" y="98" width="245" prompt="Consulta Documento" visible="false" restrict="0-9" maxChars="50" />
+	
+	<s:Button id="Btn_BC_Documento" x="1181" y="98" label="BUSCAR" visible="false" height="22" click="Btn_BC_Documento_clickHandler(event)"/>		
 	
 	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"
 			change="Lst_Cliente_changeHandler(event)"
 			creationComplete="Lst_Cliente_creationCompleteHandler(event)"
 			labelField="Nombre_Completo">
 		<s:AsyncListView list="{getAllClientesResult.lastResult}"/>
-	</s:List>
-	
-	<s:TextInput id="Txt_Buscar_Cliente" x="937" y="98" width="315"/>
-	
-	<s:TextInput id="Txt_Fecha_Nacimiento" x="673" y="391" width="170" height="25" editable="false"/>
-	
+	</s:List>	
+		
 	<s:List x="78" y="592" width="1174"></s:List>
 </s:Application>

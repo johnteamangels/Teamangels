@@ -50,6 +50,7 @@ public class _Super_Clientes extends flash.events.EventDispatcher implements com
      */
     private var _internal_Id : int;
     private var _internal_Codigo_Documento : int;
+    private var _internal_Tipo_Documento : String;
     private var _internal_Documento : String;
     private var _internal_Primer_Nombre : String;
     private var _internal_Segundo_Nombre : String;
@@ -106,6 +107,12 @@ public class _Super_Clientes extends flash.events.EventDispatcher implements com
     public function get Codigo_Documento() : int
     {
         return _internal_Codigo_Documento;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Tipo_Documento() : String
+    {
+        return _internal_Tipo_Documento;
     }
 
     [Bindable(event="propertyChange")]
@@ -269,6 +276,15 @@ public class _Super_Clientes extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Codigo_Documento = value;
+        }
+    }
+
+    public function set Tipo_Documento(value:String) : void
+    {
+        var oldValue:String = _internal_Tipo_Documento;
+        if (oldValue !== value)
+        {
+            _internal_Tipo_Documento = value;
         }
     }
 

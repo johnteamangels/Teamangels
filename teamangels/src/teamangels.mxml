@@ -131,7 +131,14 @@
 	<s:Button id="Btn_Nuevo" x="102" y="113" width="90" label="NUEVO"
 			  click="Btn_Nuevo_clickHandler(event)"/>
 	<s:Button id="Btn_Editar" x="206" y="113" width="90" label="EDITAR"/>
-	<s:Button id="Btn_Buscar" x="310" y="113" width="90" label="BUSCAR"/>
+	<s:DropDownList id="Btn_Buscar" x="310" y="113" width="120" prompt="BUSCAR">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>NOMBRE</fx:String>
+				<fx:String>DOCUMENTO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
 	<s:Button id="Btn_Registrar_Mascotas" x="729" y="140" label="REGISTRAR MASCOTA"/>
 	<s:Button id="Btn_Guardar" x="754" y="500" width="90" label="GUARDAR"/>
 	<s:List id="Lst_Cliente" x="937" y="139" width="315" height="412"></s:List>
@@ -139,7 +146,7 @@
 	<s:List x="78" y="592" width="1174"></s:List>
 	<s:TextInput id="Txt_Fecha_Nacimiento" x="673" y="391" width="170" height="25" editable="false"/>
 	<s:Button id="Btn_Buscar_Cliente" x="1181" y="99" label="BUSCAR"/>
-	<Formularios:Asistente_de_Direccion x="577" y="289">
-	</Formularios:Asistente_de_Direccion>
-	
+	<s:TextInput id="Txt_Buscar_Cliente2" x="937" y="98" width="245"/>
+	<s:Button id="Btn_Buscar_Cliente2" x="1181" y="98" label="BUSCAR"/>
+		
 </s:Application>

@@ -192,6 +192,7 @@
 	
 	<s:Label x="23" y="28" text="Tipo Documento"/>
 	<s:Label x="23" y="28" text="Tipo Documento"/>
+	
 	<s:DropDownList id="Ddl_Tipo_Documento" x="23" y="42" width="200" 
 					creationComplete="Ddl_Tipo_Documento_creationCompleteHandler(event)"
 					labelField="Tipo_Documento" prompt="Tipo Documento">

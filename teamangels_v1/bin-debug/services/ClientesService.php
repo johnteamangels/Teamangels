@@ -53,8 +53,8 @@ class ClientesService {
 	 *
 	 * @return array
 	 */
-		
-	public function getAllClientesByDocumento($documento) {
+	 
+    public function getAllClientesByDocumento($documento) {
 
 		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes WHERE Documento = ? ORDER BY  Nombre_Completo ASC ");		
 		$this->throwExceptionOnError();
@@ -67,21 +67,21 @@ class ClientesService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
 	    mysqli_close($this->connection);
 	
 	    return $rows;
-	}
-	
+	} 
+	 
 	public function getAllClientesByCliente($cliente) {
 
 		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes WHERE Nombre_Completo LIKE ? ORDER BY  Nombre_Completo ASC");		
@@ -96,24 +96,24 @@ class ClientesService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
 	    mysqli_close($this->connection);
 	
 	    return $rows;
-	}
+	} 
 	 
 	public function getAllClientes() {
 
-		$stmt = mysqli_prepare($this->connection, "SELECT * FROM clientes ORDER BY  Nombre_Completo ASC ");		
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename ORDER BY  Nombre_Completo ASC");		
 		$this->throwExceptionOnError();
 		
 		mysqli_stmt_execute($stmt);
@@ -121,13 +121,13 @@ class ClientesService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
@@ -146,7 +146,7 @@ class ClientesService {
 	 */
 	public function getClientesByID($itemID) {
 		
-		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename where Id=?");
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename where Documento=?");
 		$this->throwExceptionOnError();
 		
 		mysqli_stmt_bind_param($stmt, 'i', $itemID);		
@@ -155,7 +155,7 @@ class ClientesService {
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 		
 		if(mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
@@ -175,16 +175,16 @@ class ClientesService {
 	 */
 	public function createClientes($item) {
 
-		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Codigo_Documento, Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Nombre_Completo, Codigo_Departamento, Departamento, Codigo_Municipio, Municipio, Direccion_Residencia, Telefono_Uno, Numero_Uno, Telefono_Dos, Numero_Dos, Email, Genero, Fecha_Nacimiento, Tipo_Cliente, Lista_Precios, Fidelizacion, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Id, Codigo_Documento, Tipo_Documento, Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Nombre_Completo, Codigo_Departamento, Departamento, Codigo_Municipio, Municipio, Direccion_Residencia, Telefono_Uno, Numero_Uno, Telefono_Dos, Numero_Dos, Email, Genero, Fecha_Nacimiento, Tipo_Cliente, Lista_Precios, Fidelizacion, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->throwExceptionOnError();
 
-		mysqli_stmt_bind_param($stmt, 'isssssssssssssssssssssss', $item->Codigo_Documento, $item->Documento, $item->Primer_Nombre, $item->Segundo_Nombre, $item->Primer_Apellido, $item->Segundo_Apellido, $item->Nombre_Completo, $item->Codigo_Departamento, $item->Departamento, $item->Codigo_Municipio, $item->Municipio, $item->Direccion_Residencia, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Email, $item->Genero, $item->Fecha_Nacimiento, $item->Tipo_Cliente, $item->Lista_Precios, $item->Fidelizacion, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
+		mysqli_stmt_bind_param($stmt, 'iissssssssssssssssssssssss', $item->Id, $item->Codigo_Documento, $item->Tipo_Documento, $item->Documento, $item->Primer_Nombre, $item->Segundo_Nombre, $item->Primer_Apellido, $item->Segundo_Apellido, $item->Nombre_Completo, $item->Codigo_Departamento, $item->Departamento, $item->Codigo_Municipio, $item->Municipio, $item->Direccion_Residencia, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Email, $item->Genero, $item->Fecha_Nacimiento, $item->Tipo_Cliente, $item->Lista_Precios, $item->Fidelizacion, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
 		$this->throwExceptionOnError();
 
-		$autoid = mysqli_stmt_insert_id($stmt);
+		$autoid = $item->Documento;
 
 		mysqli_stmt_free_result($stmt);		
 		mysqli_close($this->connection);
@@ -202,10 +202,10 @@ class ClientesService {
 	 */
 	public function updateClientes($item) {
 	
-		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Codigo_Documento=?, Documento=?, Primer_Nombre=?, Segundo_Nombre=?, Primer_Apellido=?, Segundo_Apellido=?, Nombre_Completo=?, Codigo_Departamento=?, Departamento=?, Codigo_Municipio=?, Municipio=?, Direccion_Residencia=?, Telefono_Uno=?, Numero_Uno=?, Telefono_Dos=?, Numero_Dos=?, Email=?, Genero=?, Fecha_Nacimiento=?, Tipo_Cliente=?, Lista_Precios=?, Fidelizacion=?, Fecha=?, Usuario=? WHERE Id=?");		
+		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Id=?, Codigo_Documento=?, Tipo_Documento=?, Primer_Nombre=?, Segundo_Nombre=?, Primer_Apellido=?, Segundo_Apellido=?, Nombre_Completo=?, Codigo_Departamento=?, Departamento=?, Codigo_Municipio=?, Municipio=?, Direccion_Residencia=?, Telefono_Uno=?, Numero_Uno=?, Telefono_Dos=?, Numero_Dos=?, Email=?, Genero=?, Fecha_Nacimiento=?, Tipo_Cliente=?, Lista_Precios=?, Fidelizacion=?, Fecha=?, Usuario=? WHERE Documento=?");		
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'isssssssssssssssssssssssi', $item->Codigo_Documento, $item->Documento, $item->Primer_Nombre, $item->Segundo_Nombre, $item->Primer_Apellido, $item->Segundo_Apellido, $item->Nombre_Completo, $item->Codigo_Departamento, $item->Departamento, $item->Codigo_Municipio, $item->Municipio, $item->Direccion_Residencia, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Email, $item->Genero, $item->Fecha_Nacimiento, $item->Tipo_Cliente, $item->Lista_Precios, $item->Fidelizacion, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Id);		
+		mysqli_stmt_bind_param($stmt, 'iissssssssssssssssssssssss', $item->Id, $item->Codigo_Documento, $item->Tipo_Documento, $item->Primer_Nombre, $item->Segundo_Nombre, $item->Primer_Apellido, $item->Segundo_Apellido, $item->Nombre_Completo, $item->Codigo_Departamento, $item->Departamento, $item->Codigo_Municipio, $item->Municipio, $item->Direccion_Residencia, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Email, $item->Genero, $item->Fecha_Nacimiento, $item->Tipo_Cliente, $item->Lista_Precios, $item->Fidelizacion, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Documento);		
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -226,10 +226,10 @@ class ClientesService {
 	 */
 	public function deleteClientes($itemID) {
 				
-		$stmt = mysqli_prepare($this->connection, "DELETE FROM $this->tablename WHERE Id = ?");
+		$stmt = mysqli_prepare($this->connection, "DELETE FROM $this->tablename WHERE Documento = ?");
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'i', $itemID);
+		mysqli_stmt_bind_param($stmt, 's', $itemID);
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
@@ -286,13 +286,13 @@ class ClientesService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Codigo_Documento, $row->Tipo_Documento, $row->Documento, $row->Primer_Nombre, $row->Segundo_Nombre, $row->Primer_Apellido, $row->Segundo_Apellido, $row->Nombre_Completo, $row->Codigo_Departamento, $row->Departamento, $row->Codigo_Municipio, $row->Municipio, $row->Direccion_Residencia, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Email, $row->Genero, $row->Fecha_Nacimiento, $row->Tipo_Cliente, $row->Lista_Precios, $row->Fidelizacion, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);		
