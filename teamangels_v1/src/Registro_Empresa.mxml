@@ -12,6 +12,7 @@
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.events.ValidationResultEvent;
+			import mx.rpc.events.ResultEvent;
 			
 			import valueObjects.Empresa;
 			
@@ -20,15 +21,14 @@
 			//SE DESACTIVAN LOS CAMPOS
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
-				
 				Reg_Empresa.Txt_Nit.editable=false;
 				Reg_Empresa.Ddl_Tipo_Empresa.enabled=false;
 				Reg_Empresa.Ddl_Tipo_Regimen.enabled=false;
-				Reg_Empresa.Txt_Razon_Social.editable=false;
+				/* Reg_Empresa.Txt_Razon_Social.editable=false;
 				Reg_Empresa.Txt_Primer_Nombre_Empresa.editable=false;
 				Reg_Empresa.Txt_Segundo_Nombre_empresa.editable=false;
 				Reg_Empresa.Txt_Primer_Apellido_Empresa.editable=false;
-				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=false;
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=false; */
 				Reg_Empresa.Txt_Telefono_Empresa.editable=false;
 				Reg_Empresa.Txt_Direccion_Empresa.editable=false;
 				Reg_Empresa.Txt_Email_Empresa.editable=false;
@@ -40,6 +40,10 @@
 				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.editable=false;
 				Reg_Empresa.Txt_Tel_Representante.editable=false;
 				Reg_Empresa.Txt_Email_Representante.editable=false;	
+				Lbl_Empresa.enabled=false;
+				Lbl_Empresa.visible=false;
+				Lst_Buscar_Empresa.visible=false;
+				Lst_Buscar_Empresa.enabled=false;
 				
 			}
 			
@@ -48,15 +52,16 @@
 			//SE ACTIVAN LOS CAMPOS AL INGRESAR UN NUEVO REGISTRO
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
 			{
+				//EditarGuad=false;
 				Reg_Empresa.Txt_Nit.editable=true;
 				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.editable=true;
 				Reg_Empresa.Ddl_Tipo_Empresa.enabled=true;
 				Reg_Empresa.Ddl_Tipo_Regimen.enabled=true;
-				Reg_Empresa.Txt_Razon_Social.editable=true;
+				/* Reg_Empresa.Txt_Razon_Social.editable=true;
 				Reg_Empresa.Txt_Primer_Nombre_Empresa.editable=true;
 				Reg_Empresa.Txt_Segundo_Nombre_empresa.editable=true;
 				Reg_Empresa.Txt_Primer_Apellido_Empresa.editable=true;
-				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=true;
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=true; */
 				Reg_Empresa.Txt_Telefono_Empresa.editable=true;
 				Reg_Empresa.Txt_Direccion_Empresa.editable=true;
 				Reg_Empresa.Txt_Email_Empresa.editable=true;
@@ -68,9 +73,56 @@
 				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.editable=true;
 				Reg_Empresa.Txt_Tel_Representante.editable=true;
 				Reg_Empresa.Txt_Email_Representante.editable=true;
-				
+				Lbl_Empresa.enabled=false;
+				Lbl_Empresa.visible=false;
+				Lst_Buscar_Empresa.visible=false;
+				Lst_Buscar_Empresa.enabled=false;
 				
 			}
+			
+			//LIMPIA LOS CAMPOS
+			private function Limpiar():void{	
+				
+				Reg_Empresa.Txt_Nit.text="";
+				Reg_Empresa.Txt_Nit.errorString="";
+				Reg_Empresa.Ddl_Tipo_Empresa.selectedIndex=-1;
+				Reg_Empresa.Ddl_Tipo_Empresa.errorString="";
+				Reg_Empresa.Ddl_Tipo_Regimen.selectedIndex=-1;
+				Reg_Empresa.Txt_Razon_Social.text="";
+				Reg_Empresa.Txt_Razon_Social.errorString="";
+				Reg_Empresa.Txt_Primer_Nombre_Empresa.text="";
+				Reg_Empresa.Txt_Primer_Nombre_Empresa.errorString="";
+				Reg_Empresa.Txt_Segundo_Nombre_empresa.text="";
+				Reg_Empresa.Txt_Segundo_Nombre_empresa.errorString="";
+				Reg_Empresa.Txt_Primer_Apellido_Empresa.text="";
+				Reg_Empresa.Txt_Primer_Apellido_Empresa.errorString="";
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.text="";
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.errorString="";
+				Reg_Empresa.Txt_Telefono_Empresa.text="";
+				Reg_Empresa.Txt_Telefono_Empresa.errorString="";
+				Reg_Empresa.Txt_Direccion_Empresa.text="";
+				Reg_Empresa.Txt_Direccion_Empresa.errorString="";
+				Reg_Empresa.Txt_Email_Empresa.text="";
+				Reg_Empresa.Txt_Email_Empresa.errorString="";
+				Reg_Empresa.Ddl_Tipo_Documento.selectedIndex=-1;
+				Reg_Empresa.Ddl_Tipo_Documento.errorString="";
+				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.text="";
+				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.errorString="";
+				Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text="";
+				Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.errorString="";
+				Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text="";
+				Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.errorString="";
+				Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text="";
+				Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.errorString="";
+				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text="";
+				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.errorString="";
+				Reg_Empresa.Txt_Tel_Representante.text="";
+				Reg_Empresa.Txt_Tel_Representante.errorString="";
+				Reg_Empresa.Txt_Email_Representante.text="";
+				Reg_Empresa.Txt_Email_Representante.errorString="";
+			}
+			
+			
 			
 			//FUNCION DE VALIDAR TODO
 			private function ValidarTodo():Boolean{
@@ -78,6 +130,8 @@
 				var Nit:ValidationResultEvent=ValidacionNit.validate();
 				var Documento_Representante:ValidationResultEvent=ValidacionDocumento_Representante.validate();
 				var Dv:ValidationResultEvent=ValidacionDv.validate();
+				var Tipo_Empresa:ValidationResultEvent=Validacion_Tipo_Empresa.validate();
+				var Tipo_Regimen:ValidationResultEvent=Validacion_Tipo_Regimen.validate();
 				var Telefono_Empresa:ValidationResultEvent=ValidacionTelefonoEmpresa.validate();
 				var Direccion:ValidationResultEvent=ValidacionDireccion.validate();
 				var Email_Empresa:ValidationResultEvent=ValidarEmailEmpresa.validate();
@@ -93,6 +147,8 @@
 					&& Documento_Representante.type==ValidationResultEvent.VALID
 					&& Dv.type==ValidationResultEvent.VALID
 					&& Telefono_Empresa.type==ValidationResultEvent.VALID
+					&& Tipo_Empresa.type==ValidationResultEvent.VALID
+					&& Tipo_Regimen.type==ValidationResultEvent.VALID
 					&& Direccion.type==ValidationResultEvent.VALID
 					&& Email_Empresa.type==ValidationResultEvent.VALID
 					&& Tipo_Documento.type==ValidationResultEvent.VALID
@@ -113,54 +169,105 @@
 			//FUNCION DE GUARDAR
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
-				if(ValidarTodo()){
-					
-					var Reg:Empresa = new Empresa();
-					
-					Reg.Documento_Empresa = Reg_Empresa.Txt_Nit.text;
-					Reg.Dv_Empresa = Reg_Empresa.Lbl_DV.text;
-					Reg.Tipo_Empresa = Reg_Empresa.Ddl_Tipo_Empresa.selectedItem;
-					Reg.Tipo_Regimen = Reg_Empresa.Ddl_Tipo_Regimen.selectedItem;
-					Reg.Razon_Social = Reg_Empresa.Txt_Razon_Social.text;
-					Reg.Primer_Nombre_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text;
-					Reg.Segundo_Nombre_Em = Reg_Empresa.Txt_Segundo_Nombre_empresa.text;
-					Reg.Primer_Apellido_Em = Reg_Empresa.Txt_Primer_Apellido_Empresa.text;
-					Reg.Segundo_Apellido_Em = Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
-					Reg.Nombre_Completo_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " + Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " +  Reg_Empresa.Txt_Primer_Apellido_Empresa.text + " " + Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
-					Reg.Telefono_Empresa = Reg_Empresa.Txt_Telefono_Empresa.text;
-					Reg.Direccion_Empresa = Reg_Empresa.Txt_Direccion_Empresa.text;
-					Reg.Email_Empresa = Reg_Empresa.Txt_Email_Empresa.text;
-					Reg.Codigo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Codigo;
-					Reg.Tipo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Tipo_Documento;
-					Reg.Documento_Representante = Reg_Empresa.Txt_Nro_Documento_Repr_Legal.text;
-					Reg.Primer_Nombre_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text;
-					Reg.Segundo_Nombre_Rep = Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text;
-					Reg.Primer_Apellido_Rep = Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text;
-					Reg.Segundo_Apellido_Rep = Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
-					Reg.Nombre_Completo_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text + " " +  Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
-					Reg.Telefono_Representante = Reg_Empresa.Txt_Tel_Representante.text;
-					Reg.Email_Representante = Reg_Empresa.Txt_Email_Representante.text;
-					Reg.Fecha = new Date();
-					Reg.Usuario = "Lau";
-					
-					createEmpresaResult.token = empresaService.createEmpresa(Reg);
-					empresaService.commit();
-					
-					
-				}
+					if(ValidarTodo()){
+						
+						var Reg:Empresa = new Empresa();
+						
+						Reg.Documento_Empresa = Reg_Empresa.Txt_Nit.text;
+						Reg.Dv_Empresa = Reg_Empresa.Lbl_DV.text;
+						Reg.Tipo_Empresa = Reg_Empresa.Ddl_Tipo_Empresa.selectedItem;
+						Reg.Tipo_Regimen = Reg_Empresa.Ddl_Tipo_Regimen.selectedItem;
+						
+						if(Reg_Empresa.Txt_Razon_Social.text !=""){
+							
+							Reg.Nombre_Empresa = Reg_Empresa.Txt_Razon_Social.text
+							Reg.Razon_Social = Reg_Empresa.Txt_Razon_Social.text;	
+							Reg.Nombre_Completo_Em  ="";	
+						}else{
+							
+							Reg.Razon_Social = "";
+							Reg.Nombre_Completo_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " + Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " +  Reg_Empresa.Txt_Primer_Apellido_Empresa.text + " " + Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
+							Reg.Nombre_Empresa = Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " + Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " +  Reg_Empresa.Txt_Primer_Apellido_Empresa.text + " " + Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
+						}
+						
+						
+						
+						Reg.Primer_Nombre_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text;
+						Reg.Segundo_Nombre_Em = Reg_Empresa.Txt_Segundo_Nombre_empresa.text;
+						Reg.Primer_Apellido_Em = Reg_Empresa.Txt_Primer_Apellido_Empresa.text;
+						Reg.Segundo_Apellido_Em = Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
+						
+						Reg.Telefono_Empresa = Reg_Empresa.Txt_Telefono_Empresa.text;
+						Reg.Direccion_Empresa = Reg_Empresa.Txt_Direccion_Empresa.text;
+						Reg.Email_Empresa = Reg_Empresa.Txt_Email_Empresa.text;
+						Reg.Codigo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Codigo;
+						Reg.Tipo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Tipo_Documento;
+						Reg.Documento_Representante = Reg_Empresa.Txt_Nro_Documento_Repr_Legal.text;
+						Reg.Primer_Nombre_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text;
+						Reg.Segundo_Nombre_Rep = Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text;
+						Reg.Primer_Apellido_Rep = Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text;
+						Reg.Segundo_Apellido_Rep = Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
+						Reg.Nombre_Completo_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text + " " +  Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
+						Reg.Telefono_Representante = Reg_Empresa.Txt_Tel_Representante.text;
+						Reg.Email_Representante = Reg_Empresa.Txt_Email_Representante.text;
+						Reg.Fecha = new Date();
+						Reg.Usuario = "Lau";
+						
+						createEmpresaResult.token = empresaService.createEmpresa(Reg);
+						empresaService.commit();
+						
+						
+						getAllEmpresaResult.token = empresaService.getAllEmpresa();
+						
+						
+					}
+			
+			}
+			
+			//RESULTADO DEL METODO DEL CREATE
+			protected function createEmpresaResult_resultHandler(event:ResultEvent):void
+			{
+				Limpiar();
+				
 			}
 			
 		
+			protected function Btn_Editar_clickHandler(event:MouseEvent):void
+			{
+				//EditarGuad=true;
+				
+			}
 			
+			protected function Btn_Buscar_clickHandler(event:MouseEvent):void
+			{
+				//EditarGuad=false;
+				Lbl_Empresa.enabled=true;
+				Lbl_Empresa.visible=true;
+				Lst_Buscar_Empresa.visible=true;
+				Lst_Buscar_Empresa.enabled=true;
+				
+			}
+			
+			protected function Lst_Buscar_Empresa_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllEmpresaResult.token = empresaService.getAllEmpresa();
+			}
 			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
-		<s:CallResponder id="createEmpresaResult"/>
+		<s:CallResponder id="createEmpresaResult" result="createEmpresaResult_resultHandler(event)"/>
 		<empresaservice:EmpresaService id="empresaService"
 									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 									   showBusyCursor="true"/>
 		
+		
+		<fx:Model  id="Data_Model_Empresa">
+			<Data>
+				<Id>{}</Id>				
+				
+			</Data>			
+		</fx:Model>	
 		
 		
 		<mx:StringValidator
@@ -230,14 +337,14 @@
 			property="text"
 			requiredFieldError="Este campo es obligatorio"
 			triggerEvent=""/>
+	
 		
-		
-		<mx:StringValidator
-			id="ValidacionTipo_Documento"
-			source="{Reg_Empresa.Ddl_Tipo_Documento}"
-			property="text"
-			requiredFieldError="Este campo es obligatorio"
-			triggerEvent=""/>
+		<s:NumberValidator id="ValidacionTipo_Documento"
+						   source="{Reg_Empresa.Ddl_Tipo_Documento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
 		
 		<mx:StringValidator
 			id="ValidacionTelefonoRepre"
@@ -268,6 +375,8 @@
 			missingAtSignError="Necesita una @ en su email" 
 			missingPeriodInDomainError="Necesita un nombre de dominio"
 			triggerEvent=""/>
+		<s:CallResponder id="getAllEmpresaResult"/>
+		<s:CallResponder id="updateEmpresaResult"/>
 		
 		
 		
@@ -280,8 +389,16 @@
 </Formularios:Registro_Empresa>
 	<s:HGroup x="24" y="20" width="200" height="25">
 		<s:Button id="Btn_Nuevo" label="Nuevo" click="Btn_Nuevo_clickHandler(event)"/>
-		<s:Button id="Btn_Editar" label="Editar"/>
+		<s:Button id="Btn_Editar" label="Editar" click="Btn_Editar_clickHandler(event)"/>
+		<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 	</s:HGroup>
 <s:Button id="Btn_Guardar" x="250" y="800" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	
+	<s:List id="Lst_Buscar_Empresa" x="627" y="54" width="318" height="54" creationComplete="Lst_Buscar_Empresa_creationCompleteHandler(event)" labelField="Nombre_Empresa">
+		<s:AsyncListView list="{getAllEmpresaResult.lastResult}"/>
+	</s:List>
+	<s:Label x="627" y="41" text="Empresa" id="Lbl_Empresa"/>
+	
+		
 	
 </s:Application>

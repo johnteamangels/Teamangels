@@ -1127,13 +1127,13 @@
       <item name="managingService">EmpresaService</item>
     </annotation>
     <annotation name="getEmpresaByID">
-      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
     </annotation>
     <annotation name="getAllEmpresa">
-      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
     </annotation>
     <annotation name="getEmpresa_paged">
-      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario</item>
       <item name="pagingEnabled">true</item>
       <item name="positionalPagingParameters">true</item>
       <item name="countOperation">count</item>
@@ -1152,6 +1152,7 @@
     <property name="Primer_Apellido_Em" type="string"/>
     <property name="Segundo_Apellido_Em" type="string"/>
     <property name="Nombre_Completo_Em" type="string"/>
+    <property name="Nombre_Empresa" type="string"/>
     <property name="Telefono_Empresa" type="string"/>
     <property name="Direccion_Empresa" type="string"/>
     <property name="Email_Empresa" type="string"/>

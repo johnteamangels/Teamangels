@@ -63,13 +63,13 @@ class EmpresaService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
@@ -97,7 +97,7 @@ class EmpresaService {
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
 		
 		if(mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
@@ -117,10 +117,10 @@ class EmpresaService {
 	 */
 	public function createEmpresa($item) {
 
-		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Id, Documento_Empresa, Dv_Empresa, Tipo_Empresa, Tipo_Regimen, Razon_Social, Primer_Nombre_Em, Segundo_Nombre_Em, Primer_Apellido_Em, Segundo_Apellido_Em, Nombre_Completo_Em, Telefono_Empresa, Direccion_Empresa, Email_Empresa, Codigo_Doc_Representante, Tipo_Doc_Representante, Documento_Representante, Primer_Nombre_Rep, Segundo_Nombre_Rep, Primer_Apellido_Rep, Segundo_Apellido_Rep, Nombre_Completo_Rep, Telefono_Representante, Email_Representante, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Id, Documento_Empresa, Dv_Empresa, Tipo_Empresa, Tipo_Regimen, Razon_Social, Primer_Nombre_Em, Segundo_Nombre_Em, Primer_Apellido_Em, Segundo_Apellido_Em, Nombre_Completo_Em, Nombre_Empresa, Telefono_Empresa, Direccion_Empresa, Email_Empresa, Codigo_Doc_Representante, Tipo_Doc_Representante, Documento_Representante, Primer_Nombre_Rep, Segundo_Nombre_Rep, Primer_Apellido_Rep, Segundo_Apellido_Rep, Nombre_Completo_Rep, Telefono_Representante, Email_Representante, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->throwExceptionOnError();
 
-		mysqli_stmt_bind_param($stmt, 'isssssssssssssssssssssssss', $item->Id, $item->Documento_Empresa, $item->Dv_Empresa, $item->Tipo_Empresa, $item->Tipo_Regimen, $item->Razon_Social, $item->Primer_Nombre_Em, $item->Segundo_Nombre_Em, $item->Primer_Apellido_Em, $item->Segundo_Apellido_Em, $item->Nombre_Completo_Em, $item->Telefono_Empresa, $item->Direccion_Empresa, $item->Email_Empresa, $item->Codigo_Doc_Representante, $item->Tipo_Doc_Representante, $item->Documento_Representante, $item->Primer_Nombre_Rep, $item->Segundo_Nombre_Rep, $item->Primer_Apellido_Rep, $item->Segundo_Apellido_Rep, $item->Nombre_Completo_Rep, $item->Telefono_Representante, $item->Email_Representante, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
+		mysqli_stmt_bind_param($stmt, 'issssssssssssssssssssssssss', $item->Id, $item->Documento_Empresa, $item->Dv_Empresa, $item->Tipo_Empresa, $item->Tipo_Regimen, $item->Razon_Social, $item->Primer_Nombre_Em, $item->Segundo_Nombre_Em, $item->Primer_Apellido_Em, $item->Segundo_Apellido_Em, $item->Nombre_Completo_Em, $item->Nombre_Empresa, $item->Telefono_Empresa, $item->Direccion_Empresa, $item->Email_Empresa, $item->Codigo_Doc_Representante, $item->Tipo_Doc_Representante, $item->Documento_Representante, $item->Primer_Nombre_Rep, $item->Segundo_Nombre_Rep, $item->Primer_Apellido_Rep, $item->Segundo_Apellido_Rep, $item->Nombre_Completo_Rep, $item->Telefono_Representante, $item->Email_Representante, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -144,10 +144,10 @@ class EmpresaService {
 	 */
 	public function updateEmpresa($item) {
 	
-		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Id=?, Dv_Empresa=?, Tipo_Empresa=?, Tipo_Regimen=?, Razon_Social=?, Primer_Nombre_Em=?, Segundo_Nombre_Em=?, Primer_Apellido_Em=?, Segundo_Apellido_Em=?, Nombre_Completo_Em=?, Telefono_Empresa=?, Direccion_Empresa=?, Email_Empresa=?, Codigo_Doc_Representante=?, Tipo_Doc_Representante=?, Documento_Representante=?, Primer_Nombre_Rep=?, Segundo_Nombre_Rep=?, Primer_Apellido_Rep=?, Segundo_Apellido_Rep=?, Nombre_Completo_Rep=?, Telefono_Representante=?, Email_Representante=?, Fecha=?, Usuario=? WHERE Documento_Empresa=?");		
+		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Id=?, Dv_Empresa=?, Tipo_Empresa=?, Tipo_Regimen=?, Razon_Social=?, Primer_Nombre_Em=?, Segundo_Nombre_Em=?, Primer_Apellido_Em=?, Segundo_Apellido_Em=?, Nombre_Completo_Em=?, Nombre_Empresa=?, Telefono_Empresa=?, Direccion_Empresa=?, Email_Empresa=?, Codigo_Doc_Representante=?, Tipo_Doc_Representante=?, Documento_Representante=?, Primer_Nombre_Rep=?, Segundo_Nombre_Rep=?, Primer_Apellido_Rep=?, Segundo_Apellido_Rep=?, Nombre_Completo_Rep=?, Telefono_Representante=?, Email_Representante=?, Fecha=?, Usuario=? WHERE Documento_Empresa=?");		
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'isssssssssssssssssssssssss', $item->Id, $item->Dv_Empresa, $item->Tipo_Empresa, $item->Tipo_Regimen, $item->Razon_Social, $item->Primer_Nombre_Em, $item->Segundo_Nombre_Em, $item->Primer_Apellido_Em, $item->Segundo_Apellido_Em, $item->Nombre_Completo_Em, $item->Telefono_Empresa, $item->Direccion_Empresa, $item->Email_Empresa, $item->Codigo_Doc_Representante, $item->Tipo_Doc_Representante, $item->Documento_Representante, $item->Primer_Nombre_Rep, $item->Segundo_Nombre_Rep, $item->Primer_Apellido_Rep, $item->Segundo_Apellido_Rep, $item->Nombre_Completo_Rep, $item->Telefono_Representante, $item->Email_Representante, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Documento_Empresa);		
+		mysqli_stmt_bind_param($stmt, 'issssssssssssssssssssssssss', $item->Id, $item->Dv_Empresa, $item->Tipo_Empresa, $item->Tipo_Regimen, $item->Razon_Social, $item->Primer_Nombre_Em, $item->Segundo_Nombre_Em, $item->Primer_Apellido_Em, $item->Segundo_Apellido_Em, $item->Nombre_Completo_Em, $item->Nombre_Empresa, $item->Telefono_Empresa, $item->Direccion_Empresa, $item->Email_Empresa, $item->Codigo_Doc_Representante, $item->Tipo_Doc_Representante, $item->Documento_Representante, $item->Primer_Nombre_Rep, $item->Segundo_Nombre_Rep, $item->Primer_Apellido_Rep, $item->Segundo_Apellido_Rep, $item->Nombre_Completo_Rep, $item->Telefono_Representante, $item->Email_Representante, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Documento_Empresa);		
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -228,13 +228,13 @@ class EmpresaService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);		

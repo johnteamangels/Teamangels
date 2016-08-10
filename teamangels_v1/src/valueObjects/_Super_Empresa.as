@@ -59,6 +59,7 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
     private var _internal_Primer_Apellido_Em : String;
     private var _internal_Segundo_Apellido_Em : String;
     private var _internal_Nombre_Completo_Em : String;
+    private var _internal_Nombre_Empresa : String;
     private var _internal_Telefono_Empresa : String;
     private var _internal_Direccion_Empresa : String;
     private var _internal_Email_Empresa : String;
@@ -161,6 +162,12 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
     public function get Nombre_Completo_Em() : String
     {
         return _internal_Nombre_Completo_Em;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Nombre_Empresa() : String
+    {
+        return _internal_Nombre_Empresa;
     }
 
     [Bindable(event="propertyChange")]
@@ -357,6 +364,15 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
         if (oldValue !== value)
         {
             _internal_Nombre_Completo_Em = value;
+        }
+    }
+
+    public function set Nombre_Empresa(value:String) : void
+    {
+        var oldValue:String = _internal_Nombre_Empresa;
+        if (oldValue !== value)
+        {
+            _internal_Nombre_Empresa = value;
         }
     }
 

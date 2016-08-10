@@ -9,6 +9,8 @@
 	</fx:Declarations>
 	<Formularios:Registro_Empresa id="Reg_Empresa">
 	</Formularios:Registro_Empresa>
+	<s:List id="Lst_Buscar_Empresa" x="627" y="54" width="318" height="54"></s:List>
+	<s:Label x="627" y="41" text="Empresa"/>
 	
 	
 	

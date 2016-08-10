@@ -4,17 +4,26 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 xmlns:tipodocumentoservice="services.tipodocumentoservice.*">
+		 xmlns:tipodocumentoservice="services.tipodocumentoservice.*" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			import mx.events.ValidationResultEvent;
+			
+			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
 			private var Result:ValidationResultEvent;
 			
-			
-			
+			//SE DESACTIVAN AL COMIENZO PARA REALIZAR LA VALIDACION DE TIPO EMPRESA
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				Txt_Razon_Social.editable=false;
+				Txt_Primer_Nombre_Empresa.editable=false;
+				Txt_Segundo_Nombre_empresa.editable=false;
+				Txt_Primer_Apellido_Empresa.editable=false;
+				Txt_Segundo_Apellido_Empresa.editable=false;
+			}
 			
 			
 			//LLENA EL COMPONENTE DE TIPO DOCUMENTO
@@ -106,6 +115,36 @@
 				Txt_Segundo_Apellido_Representante_Legal.text = Txt_Segundo_Apellido_Representante_Legal.text.toUpperCase();
 			
 			}
+			//VALIDACION DE TIPO EMPRESA
+			protected function Ddl_Tipo_Empresa_changeHandler(event:IndexChangeEvent):void
+			{
+				if(Ddl_Tipo_Empresa.selectedItem == "JURIDICA"){
+					
+					Txt_Razon_Social.editable=true;
+					Txt_Primer_Nombre_Empresa.editable=false;
+					Txt_Segundo_Nombre_empresa.editable=false;
+					Txt_Primer_Apellido_Empresa.editable=false;
+					Txt_Segundo_Apellido_Empresa.editable=false;
+					
+					Txt_Primer_Nombre_Empresa.text="";
+					Txt_Segundo_Nombre_empresa.text="";
+					Txt_Primer_Apellido_Empresa.text="";
+					Txt_Segundo_Apellido_Empresa.text="";
+					
+				
+				}else{
+					Txt_Razon_Social.editable=false;
+					Txt_Primer_Nombre_Empresa.editable=true;
+					Txt_Segundo_Nombre_empresa.editable=true;
+					Txt_Primer_Apellido_Empresa.editable=true;
+					Txt_Segundo_Apellido_Empresa.editable=true;
+					Txt_Razon_Social.text="";
+					
+				}
+		
+			}
+			
+		
 			
 		]]>
 	</fx:Script>
@@ -196,7 +235,7 @@
 	
 	<s:Label x="251" y="67" width="112" height="23" fontSize="13" text="Tipo De Empresa"
 			 verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Empresa" x="251" y="87" width="155" prompt="Tipo De Empresa">
+	<s:DropDownList id="Ddl_Tipo_Empresa" x="251" y="87" width="155" prompt="Tipo De Empresa" change="Ddl_Tipo_Empresa_changeHandler(event)">
 	
 		<s:dataProvider>
 			<s:ArrayList>
@@ -229,27 +268,27 @@
 	
 	<s:Label x="35" y="119" width="92" height="22" fontSize="13" text="Razón Social"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="557"/>
+	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="557" change="convert(event)"/>
 	
 	
 	<s:Label x="35" y="178" width="106" height="22" fontSize="13" text="Primer Nombre"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Primer_Nombre_Empresa" x="35" y="196" width="170"/>
+	<s:TextInput id="Txt_Primer_Nombre_Empresa" x="35" y="196" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="234" y="178" width="116" height="22" fontSize="13" text="Segundo Nombre"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Segundo_Nombre_empresa" x="234" y="196" width="170"/>
+	<s:TextInput id="Txt_Segundo_Nombre_empresa" x="234" y="196" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="36" y="239" width="91" height="22" fontSize="13" text="Primer Apellido"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Primer_Apellido_Empresa" x="35" y="258" width="170"/>
+	<s:TextInput id="Txt_Primer_Apellido_Empresa" x="35" y="258" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="234" y="239" height="22" fontSize="13" text="Segundo Apellido"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Segundo_Apellido_Empresa" x="234" y="258" width="170"/>
+	<s:TextInput id="Txt_Segundo_Apellido_Empresa" x="234" y="258" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="234" y="296" height="22" fontSize="13" text="Dirección" verticalAlign="middle"/>
@@ -269,21 +308,21 @@
 	
 	<s:Label x="35" y="521" width="106" height="22" fontSize="13" text="Primer Nombre"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Primer_Nombre_Representante_Legal" x="35" y="538" width="170"/>
+	<s:TextInput id="Txt_Primer_Nombre_Representante_Legal" x="35" y="538" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="267" y="521" width="116" height="22" fontSize="13" text="Segundo Nombre"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Segundo_Nombre_Representante_Legal" x="267" y="538" width="170"/>
+	<s:TextInput id="Txt_Segundo_Nombre_Representante_Legal" x="267" y="538" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="36" y="581" width="91" height="22" fontSize="13" text="Primer Apellido"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Primer_Apellido_Representante_Legal" x="35" y="598" width="170"/>
+	<s:TextInput id="Txt_Primer_Apellido_Representante_Legal" x="35" y="598" width="170" change="convert(event)"/>
 	
 	<s:Label x="267" y="581" height="22" fontSize="13" text="Segundo Apellido"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Segundo_Apellido_Representante_Legal" x="267" y="598" width="170"/>
+	<s:TextInput id="Txt_Segundo_Apellido_Representante_Legal" x="267" y="598" width="170" change="convert(event)"/>
 	
 	
 	<s:Label x="35" y="460" width="120" height="23" fontSize="13" text="Tipo De Documento" verticalAlign="middle"/>
