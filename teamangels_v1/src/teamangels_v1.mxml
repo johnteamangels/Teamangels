@@ -18,6 +18,7 @@
 			
 			import valueObjects.Clientes;
 			
+			// FUNCION DE INICIALIZACION DE LA APLICACION. DESACTIVANDO LOS CONTROLES.
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
 				desactivarcontroles();
@@ -27,6 +28,8 @@
 				Btn_Editar.enabled=false;
 			}
 			
+			
+			// FUNCION DONDE ACTIVA Y LIMPIA LOS CONTROLES.
 			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
 			{
 				ActivarControles();
@@ -37,7 +40,8 @@
 				
 				Btn_Editar.enabled=false;
 				Btn_Guardar.visible=true;
-				
+				Btn_Buscar.selectedIndex=-1;
+								
 				Txt_Fecha_Nacimiento.visible=false;
 				Form_Cliente.Ddl_Dia.visible=true;
 				Form_Cliente.Ddl_Mes.visible=true;
@@ -46,6 +50,7 @@
 				Limpiar();
 			}
 
+			// FUNCION DONDE GUARDA Y AL MISMO TIEMPO EDITA CON LA CONDICION.
 			private var GuardarEditado:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
@@ -135,13 +140,14 @@
 				getAllClientesResult.token = clientesService.getAllClientes();
 			}
 			
+			// RESULTADO DEL METODO CREATE.
 			protected function createClientesResult_resultHandler(event:ResultEvent):void
 			{
 				getAllClientesResult.token = clientesService.getAllClientes();
 				Limpiar();				
 			}		
 			
-						
+			// FUNCION DONDE ACTIVA LOS CAMPOS PARA EDITAR.	
 			protected function Btn_Editar_clickHandler(event:MouseEvent):void
 			{
 				Btn_Guardar.visible=true;
@@ -159,6 +165,7 @@
 				
 			}
 			
+			// FUNCION DE LA LISTA DONDE CARGA LA INFORMACION A LOS CAMPOS.
 			protected function Lst_Cliente_changeHandler(event:IndexChangeEvent):void
 			{	
 				Btn_Guardar.visible=false;
@@ -198,6 +205,7 @@
 
 			}
 			
+			// CARGA EL CODIGO DEL DOCUMENTO.
 			protected function CargarDocumento(valor:String):void{
 				var data:Object;
 				for(var i:Number=0; i<Form_Cliente.Ddl_Tipo_Documento.dataProvider.length; i++){
@@ -209,6 +217,7 @@
 				}
 			}
 			
+			// CARGA EL CODIGO DEL DEPARTAMENTO.
 			protected function CargarDepartamento(valor:String):void{
 				var data:Object;
 				for(var i:Number=0; i<Form_Cliente.Ddl_Departamento.dataProvider.length; i++){
@@ -220,6 +229,7 @@
 				}
 			}
 			
+			// CARGA EL CODIGO DEL MUNICIPIO.
 			protected function CargarMunicipio(valor:String):void{
 				var data:Object;
 				for(var i:Number=0; i<Form_Cliente.Ddl_Municipio.dataProvider.length; i++){
@@ -231,12 +241,13 @@
 				}
 			} 
 			
-		
+		    // FUNCION DEL GETALL DE CLIENTE EN LA LISTA.
 			protected function Lst_Cliente_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllClientesResult.token = clientesService.getAllClientes();
 			}
 			
+			// FUNCION DONDE ESTA LA CONDICION DE BUSQUEDA POR NOMBRE O DOCUMENTO.
 			protected function Btn_Buscar_changeHandler(event:IndexChangeEvent):void
 			{
 				if(Btn_Buscar.selectedIndex ==1){
@@ -260,41 +271,48 @@
 				}
 			}
 			
+			// FUNCION DE CONVERTIR MINUSCULAS EN MAYUSCULAS.
 			protected function convert(event:TextOperationEvent):void
 			{
 				Txt_BC_Nombre.text = Txt_BC_Nombre.text.toUpperCase();
 			}
 			
+			// FUNCION DEL METODO DE BUSQUEDA DE CLIENTE POR NOMBRE.
 			protected function Btn_BC_Nombre_clickHandler(event:MouseEvent):void
 			{
 				getAllClientesByClienteResult.token = clientesService.getAllClientesByCliente(Txt_BC_Nombre.text);
 				
 			}
 			
+			// FUNCION DEL RESULTADO DEL METODO DE BUSQUEDA DE CLIENTE POR NOMBRE.
 			protected function getAllClientesByClienteResult_resultHandler(event:ResultEvent):void
 			{
 				Lst_Cliente.dataProvider=getAllClientesByClienteResult.lastResult;
 				
 			}
 			
+			// FUNCION DEL METODO DE BUSQUEDA DE CLIENTE POR DOCUMENTO Y CONDICION DE QUE CARGUE TODOS LOS REGISTROS A LA LISTA.
 			protected function Btn_BC_Documento_clickHandler(event:MouseEvent):void
 			{
-				if(Txt_BC_Documento.text==""){
+				if(Txt_BC_Documento.text !=""){
 					
-					getAllClientesResult.token = clientesService.getAllClientes();
+					getAllClientesByDocumentoResult.token = clientesService.getAllClientesByDocumento(Txt_BC_Documento.text);
 					
 				}else{
-					getAllClientesByDocumentoResult.token = clientesService.getAllClientesByDocumento(Txt_BC_Documento.text);					
+			
+					Lst_Cliente.dataProvider=getAllClientesResult.lastResult;
 				}
 				
 			}
 			
+			// FUNCION DEL RESULTADO DEL METODO DE BUSQUEDA DE CLIENTE POR DOCUMENTO.
 			protected function getAllClientesByDocumentoResult_resultHandler(event:ResultEvent):void
 			{
 				Lst_Cliente.dataProvider=getAllClientesByDocumentoResult.lastResult;
 				
 			}
 			
+			// FUNCION DONDE DESACTIVA TODOS LOS CONTROLES.
 			private function desactivarcontroles():void{
 				
 				Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=false;
@@ -321,6 +339,7 @@
 				
 			}
 			
+			// FUNCION DONDE ACTIVA TODOS LOS CONTROLES.
 			private function ActivarControles():void{
 				
 				//Form_Cliente.Ddl_Tipo_Documento.openButton.enabled=true;
@@ -346,6 +365,7 @@
 				Form_Cliente.Txt_Fidelizacion.editable=true;			
 			}
 			
+			// FUNCION DONDE LIMPIA TODOS LOS CAMPOS.
 			private function Limpiar():void{
 				
 				Form_Cliente.Ddl_Tipo_Documento.selectedIndex=-1;
@@ -392,6 +412,7 @@
 				Form_Cliente.Txt_Fidelizacion.errorString="";
 			}	
 			
+			// FUNCION DONDE VALIDA TODOS LOS CAMPOS.
 			private function ValidarTodo():Boolean{
 				
 				var Tipo_Documento:ValidationResultEvent=Validacion_Documento.validate();
@@ -436,8 +457,7 @@
 				}
 				return rsp;
 			}		
-	
-						
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>

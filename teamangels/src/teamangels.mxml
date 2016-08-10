@@ -59,7 +59,7 @@
 				Form_Cliente.Txt_Apellido2.editable=true;
 				Form_Cliente.Ddl_Departamento.openButton.enabled=true;
 				Form_Cliente.Ddl_Municipio.openButton.enabled=true;
-				Form_Cliente.Txt_Direccion_Residencia.editable=true;
+				//Form_Cliente.Txt_Direccion_Residencia.editable=true;
 				Form_Cliente.Ddl_Telefono1.openButton.enabled=true;
 				Form_Cliente.Txt_Numero_Telefono1.editable=true;
 				Form_Cliente.Ddl_Telefono2.openButton.enabled=true;
@@ -115,6 +115,7 @@
 				Form_Cliente.Txt_Fidelizacion.text="";
 				Form_Cliente.Txt_Fidelizacion.errorString="";
 			}			
+			
 			
 		]]>
 	</fx:Script>

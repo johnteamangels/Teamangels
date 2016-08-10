@@ -6,8 +6,16 @@
 		 width="800" height="412" >
 	<fx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
+			
 			import spark.events.TextOperationEvent;
 		
+
+			protected function Txt_Direccion_Residencia_clickHandler(event:MouseEvent):void
+			{
+				Form.visible=true;
+			}
+	
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -32,7 +40,8 @@
 	<s:Label x="214" y="141" text="Municipio Residencia"/>
 	<s:DropDownList id="Ddl_Municipio" x="214" y="155" width="170" prompt="Municipio"></s:DropDownList>
 	<s:Label x="405" y="141" text="Direccion Residencia"/>
-	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"/>
+	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365"
+				 click="Txt_Direccion_Residencia_clickHandler(event)" editable="false"/>
 	
 	<s:Label x="23" y="191" text="Telefono 1"/>
 	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono ">
@@ -68,4 +77,6 @@
 					prompt="Lista Precios"></s:DropDownList>
 	<s:Label x="23" y="343" text="Fidelización"/>	
 	<s:TextInput id="Txt_Fidelizacion" x="23" y="358" width="365"/>
+	<Formularios:Asistente_de_Direccion id="Form" visible="false">
+	</Formularios:Asistente_de_Direccion>
 </s:Group>

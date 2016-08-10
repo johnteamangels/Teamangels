@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="232">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="314">
 	<fx:Script>
 		<![CDATA[
 			import spark.events.IndexChangeEvent;
@@ -60,13 +60,46 @@
 				LbL_Geografia2.text=Cbx_Geografia2.selectedItem;
 			}
 			
+			protected function Cbx_Complemento_changeHandler(event:IndexChangeEvent):void
+			{
+				Lbl_Complemento1.text=Cbx_Complemento.selectedItem;
+			}
+			
+			protected function Txt_Complemento_changeHandler(event:TextOperationEvent):void
+			{
+				Lbl_Complemento2.text=Txt_Complemento.text;
+				
+			}
+			
+			protected function Txt_Barrio_changeHandler(event:TextOperationEvent):void
+			{
+				Lbl_Barrio.text=Txt_Barrio.text;
+			}
+						
+			protected function Btn_Cancelar_clickHandler(event:MouseEvent):void
+			{
+				Lbl_Via.text="";
+				Lbl_Numero1.text="";
+				Lbl_Letra1.text="";
+				Lbl_Bis.text="";
+				Lbl_Letra2.text="";
+				Lbl_Geografia1.text="";
+				Lbl_Numero2.text="";
+				Lbl_Letra3.text="";
+				Lbl_Numero3.text="";
+				LbL_Geografia2.text="";
+				Lbl_Complemento1.text="";
+				Lbl_Complemento2.text="";
+				Lbl_Barrio.text="";
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<s:TextInput id="Txt_Direccion_Completa" y="29" width="450" enabled="false" horizontalCenter="1"/>
+	<s:TextInput id="Txt_Direccion_Completa" y="29" width="550" enabled="false" horizontalCenter="1"/>
 	
 	<s:ComboBox id="Cbx_Via" y="72" width="343" change="Cbx_Via_changeHandler(event)"
 				horizontalCenter="0">
@@ -93,7 +126,7 @@
 		</s:dataProvider>
 	</s:ComboBox>
 	
-	<s:TextInput id="Txt_Numero" x="10" y="119" width="110" change="Txt_Numero_changeHandler(event)"
+	<s:TextInput id="Txt_Numero" x="12" y="119" width="110" change="Txt_Numero_changeHandler(event)"
 				 maxChars="5"/>
 	
 	<s:ComboBox id="Cbx_Letra1" x="143" y="119" width="80" change="Cbx_Letra1_changeHandler(event)">
@@ -234,7 +267,104 @@
 		</s:dataProvider>
 	</s:ComboBox>
 	
-	<s:HGroup y="36" width="445" height="22" horizontalCenter="0">
+	<s:ComboBox id="Cbx_Complemento" x="140" y="213" width="184"
+				change="Cbx_Complemento_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>-</fx:String>
+				<fx:String>Adelante</fx:String>
+	            <fx:String>Administración</fx:String>
+	            <fx:String>Aeropuerto</fx:String>
+	            <fx:String>Agencia</fx:String>
+	            <fx:String>Apartamento</fx:String>
+				<fx:String>Agrupación</fx:String>
+				<fx:String>Al lado</fx:String>
+				<fx:String>Almacen</fx:String>
+				<fx:String>Atrás</fx:String>
+				<fx:String>Área</fx:String>
+				<fx:String>Autopista</fx:String>
+				<fx:String>Avenida</fx:String>
+				<fx:String>Bloque</fx:String>
+				<fx:String>Bodega</fx:String>
+				<fx:String>Boulevard</fx:String>
+				<fx:String>Camino</fx:String>
+				<fx:String>Carretera</fx:String>
+				<fx:String>Casa</fx:String>
+				<fx:String>Caserio</fx:String>
+				<fx:String>Célula</fx:String>
+				<fx:String>Centro comercial</fx:String>
+				<fx:String>Circular</fx:String>
+				<fx:String>Circunvalar</fx:String>
+				<fx:String>Cuidadela</fx:String>
+				<fx:String>Conjunto</fx:String>
+				<fx:String>Conjunto residencial</fx:String>
+				<fx:String>Corregimiento</fx:String>
+				<fx:String>Consultorio</fx:String>
+				<fx:String>Depósito</fx:String>
+				<fx:String>Diagonal</fx:String>
+				<fx:String>Edificio</fx:String>
+				<fx:String>Entrada</fx:String>
+				<fx:String>Esquina</fx:String>
+				<fx:String>Etapa</fx:String>
+				<fx:String>Exterior</fx:String>
+				<fx:String>Finca</fx:String>
+				<fx:String>Garaje</fx:String>
+				<fx:String>Glorieta</fx:String>
+				<fx:String>Hacienda</fx:String>
+				<fx:String>Hangar</fx:String>
+				<fx:String>Inspección de policia</fx:String>
+				<fx:String>Inspeccion Departamental</fx:String>
+				<fx:String>Inspeccion Municipal</fx:String>
+				<fx:String>Interior</fx:String>
+				<fx:String>Kilometro</fx:String>
+				<fx:String>Local</fx:String>
+				<fx:String>Local mezzanine</fx:String>
+				<fx:String>Lote</fx:String>
+				<fx:String>Manzana</fx:String>
+				<fx:String>Mezanine</fx:String>
+				<fx:String>Módulo</fx:String>
+				<fx:String>Oficina</fx:String>
+				<fx:String>Paraje</fx:String>
+				<fx:String>Parcela</fx:String>
+				<fx:String>Pasaje</fx:String>
+				<fx:String>Paseo</fx:String>
+				<fx:String>Penthouse</fx:String>
+				<fx:String>Piso</fx:String>
+				<fx:String>Planta</fx:String>
+				<fx:String>Porteria</fx:String>
+				<fx:String>Predio</fx:String>
+				<fx:String>Puente</fx:String>
+				<fx:String>Puesto</fx:String>
+				<fx:String>Salón</fx:String>
+				<fx:String>Salón Comunal</fx:String>
+				<fx:String>Sector </fx:String>
+				<fx:String>Solar</fx:String>
+				<fx:String>Semi Sotano</fx:String>
+				<fx:String>Super Manzana</fx:String>
+				<fx:String>Suite</fx:String>
+				<fx:String>Terminal</fx:String>
+				<fx:String>Terraza</fx:String>
+				<fx:String>Torre</fx:String>
+				<fx:String>Transversal</fx:String>
+				<fx:String>Unidad</fx:String>
+				<fx:String>Unidad Residencial</fx:String>
+				<fx:String>Urbanización</fx:String>
+				<fx:String>Variante</fx:String>
+				<fx:String>Vereda</fx:String>
+				<fx:String>Via</fx:String>
+				<fx:String>Zona</fx:String>
+				<fx:String>Zona Franca</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ComboBox>
+	
+	<s:TextInput id="Txt_Complemento" x="344" y="214" width="249"
+				 change="Txt_Complemento_changeHandler(event)"/>
+	
+	<s:Label x="12" y="260" text="Barrio"/>
+	<s:TextInput id="Txt_Barrio" x="117" y="256" width="207" change="Txt_Barrio_changeHandler(event)"/>
+	
+	<s:HGroup y="36" width="545" height="22" horizontalCenter="0">
 		<s:Label id="Lbl_Via" x="4" y="8" verticalAlign="bottom"/>
 		<s:Label id="Lbl_Numero1" verticalAlign="bottom"/>
 		<s:Label id="Lbl_Letra1" x="104" y="8" verticalAlign="bottom"/>
@@ -245,5 +375,16 @@
 		<s:Label id="Lbl_Letra3" x="331" y="8" verticalAlign="bottom"/>
 		<s:Label id="Lbl_Numero3" x="364" y="8" verticalAlign="bottom"/>
 		<s:Label id="LbL_Geografia2" x="413" y="8" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Complemento1" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Complemento2" verticalAlign="bottom"/>
+		<s:Label id="Lbl_Barrio" verticalAlign="bottom"/>		
 	</s:HGroup>	
+	
+	<s:Label x="37" y="16" text="Dirección Completa"/>
+	<s:Label x="12" y="218" text="Tipo Complemento"/>
+	
+	<s:Button id="Btn_Cancelar" x="475" y="256" label="Cancelar"
+			  click="Btn_Cancelar_clickHandler(event)"/>
+	<s:Button id="Btn_Aceptar" x="386" y="256" label="Aceptar"/>
+		
 </s:Group>

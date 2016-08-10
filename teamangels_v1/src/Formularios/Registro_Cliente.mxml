@@ -16,21 +16,25 @@
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
 						
+			// FUNCION DE INICIALIZACION DEL COMPONENTE.
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				Ddl_Municipio.openButton.enabled=false;				
 			}
 			
+			// FUNCION DEL GETALL DE DOCUMENTO EN EL DROPDOWLIST.
 			protected function Ddl_Tipo_Documento_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllTipo_documentoResult.token = tipodocumentoService.getAllTipo_documento();	
 			}
 		
+			// FUNCION DEL GETALL DE DEPARTAMENTO EN EL DROPDOWLIST.
 			protected function Ddl_Departamento_creationCompleteHandler(event:FlexEvent):void
 			{
 				getAllDepartamentosResult.token = departamentosService.getAllDepartamentos();
 			}
-						
+				
+			// FUNCION CHANGE DEL DROPDOWLIST DEPARTAMENTO PARA QUE ACTIVE EL DROPDOWLIST MUNICIPIO Y LOS CARGUE DEACUERDO AL DEPARTAMENTO.
 			protected function Ddl_Departamento_changeHandler(event:IndexChangeEvent):void
 			{
 				getAllMunicipiosByDepartamentoResult.token = municipiosService.getAllMunicipiosByDepartamento(Ddl_Departamento.selectedItem.Codigo);
@@ -38,16 +42,19 @@
 				Ddl_Municipio.openButton.enabled=true;
 			}
 			
-			protected function Ddl_Municipio_creationCompleteHandler(event:FlexEvent):void
-			{
-				getAllMunicipiosResult.token = municipiosService.getAllMunicipios();
-			}
-			
+			// FUNCION DEL RESULTADO DEL METODO DE TRAER LOS MUNICIPIOS POR DEPARTAMENTO.
 			protected function getAllMunicipiosByDepartamentoResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Municipio.dataProvider=getAllMunicipiosByDepartamentoResult.lastResult;
 			}
-								
+			
+			// FUNCION DEL GETALL DE MUNICIPIO EN EL DROPDOWLIST.
+			protected function Ddl_Municipio_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllMunicipiosResult.token = municipiosService.getAllMunicipios();
+			}
+				
+			// FUNCION DONDE CONVIERTE LAS MINUSCULAS EN MAYUSCULAS.
 			protected function convert(event:TextOperationEvent):void
 			{
 				Txt_Nombre1.text = Txt_Nombre1.text.toUpperCase();
