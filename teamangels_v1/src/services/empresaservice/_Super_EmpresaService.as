@@ -185,7 +185,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
         var dmQuery : mx.data.ManagedQuery;
 
         dmQuery = new mx.data.ManagedQuery("getEmpresa_paged");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
@@ -205,7 +205,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
         _empresaRPCDataManager.addManagedOperation(dmOperation);     
 
         dmQuery = new mx.data.ManagedQuery("getAllEmpresa");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
         dmQuery.parameters = "";
         _empresaRPCDataManager.addManagedOperation(dmQuery);
 

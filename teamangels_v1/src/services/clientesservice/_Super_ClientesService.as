@@ -165,7 +165,7 @@ internal class _Super_ClientesService extends com.adobe.fiber.services.wrapper.R
          operation.resultType = Object;
         operations["getAllClientesByCliente"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "getAllClientesByDocumento");
-         operation.resultType = Object;
+         operation.resultElementType = Object;
         operations["getAllClientesByDocumento"] = operation;
 
         _serviceControl.operations = operations;

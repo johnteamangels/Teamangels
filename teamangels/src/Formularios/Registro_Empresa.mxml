@@ -43,24 +43,24 @@
 	
 	
 	<s:Label x="213" y="71" height="22" fontSize="13" text="DV" verticalAlign="middle"/>
-	<s:TextInput id="Txt_DV" x="209" y="87" width="28"/>
+	<s:TextInput id="Txt_DV" x="209" y="87" width="28" borderColor="#C5BFBF" chromeColor="#CCCCCC"/>
 	
 	
-	<s:Label x="247" y="67" width="112" height="23" fontSize="13" text="Tipo De Empresa"
+	<s:Label x="251" y="67" width="112" height="23" fontSize="13" text="Tipo De Empresa"
 			 verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Empresa" x="247" y="87" width="155" prompt="Tipo De Empresa"></s:DropDownList>
+	<s:DropDownList id="Ddl_Tipo_Empresa" x="251" y="87" width="155" prompt="Tipo De Empresa"></s:DropDownList>
 	
 	
-	<s:Label x="414" y="67" width="112" height="23" fontSize="13" text="Tipo de Régimen"
+	<s:Label x="420" y="67" width="112" height="23" fontSize="13" text="Tipo de Régimen"
 			 verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Regimen" x="414" y="87" width="172" prompt="Tipo De Regimen">
+	<s:DropDownList id="Ddl_Tipo_Regimen" x="420" y="87" width="172" prompt="Tipo De Regimen">
 	</s:DropDownList>
 	
 	
 	
 	<s:Label x="35" y="119" width="92" height="22" fontSize="13" text="Razón Social"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="551"/>
+	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="557"/>
 	
 	
 	<s:Label x="35" y="178" width="106" height="22" fontSize="13" text="Primer Nombre"
@@ -84,7 +84,7 @@
 	
 	
 	<s:Label x="234" y="296" height="22" fontSize="13" text="Dirección" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Direccion_Empresa" x="234" y="312" width="352"/>
+	<s:TextInput id="Txt_Direccion_Empresa" x="234" y="312" width="358"/>
 	
 	
 	<s:Label x="35" y="296" height="22" fontSize="13" text="Telefono" verticalAlign="middle"/>
@@ -92,7 +92,7 @@
 	
 	
 	<s:Label x="35" y="348" height="22" fontSize="13" text="E-mail" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Email_Empresa" x="35" y="364" width="551"/>
+	<s:TextInput id="Txt_Email_Empresa" x="35" y="364" width="557"/>
 	
 	
 	<s:Label x="35" y="424" width="261" fontSize="16" text="DATOS REPRESENTANTE LEGAL"/>
@@ -127,7 +127,7 @@
 	<s:TextInput id="Txt_Numero_Documento_Representante_Legal" x="267" y="479" width="170" restrict="0-9"/>
 	<s:Label x="35" y="647" text="Telefono"/>
 	<s:TextInput id="Txt_Tel_Representante" x="35" y="659" width="170"/>
-	<s:TextInput id="Txt_Email_Representante" x="35" y="710" width="551"/>
+	<s:TextInput id="Txt_Email_Representante" x="35" y="710" width="557"/>
 	<s:Label x="35" y="696" text="E-mail"/>
 	
 	

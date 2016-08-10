@@ -51,6 +51,8 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
     private var _internal_Id : int;
     private var _internal_Documento_Empresa : String;
     private var _internal_Dv_Empresa : String;
+    private var _internal_Tipo_Empresa : String;
+    private var _internal_Tipo_Regimen : String;
     private var _internal_Razon_Social : String;
     private var _internal_Primer_Nombre_Em : String;
     private var _internal_Segundo_Nombre_Em : String;
@@ -111,6 +113,18 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
     public function get Dv_Empresa() : String
     {
         return _internal_Dv_Empresa;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Tipo_Empresa() : String
+    {
+        return _internal_Tipo_Empresa;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Tipo_Regimen() : String
+    {
+        return _internal_Tipo_Regimen;
     }
 
     [Bindable(event="propertyChange")]
@@ -271,6 +285,24 @@ public class _Super_Empresa extends flash.events.EventDispatcher implements com.
         if (oldValue !== value)
         {
             _internal_Dv_Empresa = value;
+        }
+    }
+
+    public function set Tipo_Empresa(value:String) : void
+    {
+        var oldValue:String = _internal_Tipo_Empresa;
+        if (oldValue !== value)
+        {
+            _internal_Tipo_Empresa = value;
+        }
+    }
+
+    public function set Tipo_Regimen(value:String) : void
+    {
+        var oldValue:String = _internal_Tipo_Regimen;
+        if (oldValue !== value)
+        {
+            _internal_Tipo_Regimen = value;
         }
     }
 

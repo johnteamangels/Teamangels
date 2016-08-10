@@ -3,20 +3,168 @@
 
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 xmlns:mx="library://ns.adobe.com/flex/mx">
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:tipodocumentoservice="services.tipodocumentoservice.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ValidationResultEvent;
+			import spark.events.TextOperationEvent;
+			private var Result:ValidationResultEvent;
+			
+			
+			
+			
+			
+			//LLENA EL COMPONENTE DE TIPO DOCUMENTO
+			protected function Ddl_Tipo_Documento_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllTipo_documentoResult.token = tipodocumentoService.getAllTipo_documento();
+				
+			}
+		
+			//EL CAMBIO DEL COMPONENTE PARA CUMPLIR LA FUNCION DEL DIGITO DE VERIFICACION
+			protected function ChangeHandler(event:Event):void{
+				
+				if(Txt_Nit.text !=""){
+					
+					Lbl_DV.enabled = true;
+					Lbl_DV.toolTip="Click para calcular el digito de verificación";
+					Lbl_DV.addEventListener(MouseEvent.CLICK, calcularDV);
+					
+				}else{
+					
+					Lbl_DV.enabled = false;
+					Lbl_DV.text = "";
+					Lbl_DV.toolTip="";
+					Lbl_DV.removeEventListener(MouseEvent.CLICK, calcularDV);
+					
+				}
+				
+			}
+			
+			//FUNCION CALCULA EL DIGITO DE VERIFICACION
+			protected function calcularDV(event:MouseEvent):void{
+				
+				var factor:Array = [3, 7, 13, 17, 19, 23, 29, 37, 41, 43, 47, 53, 59, 67, 71];
+				var cant:int = Txt_Nit.text.length;
+				var sum:int = 0;
+				
+				if(cant != 0){
+					
+					for (var i:int = 0; i < cant; i++){
+						var str:String = Txt_Nit.text.substr(i,1);
+						sum += (int(str) * factor[(cant - i)-1])	
+					}
+					
+					var mod:int = sum % 11;
+					if (mod > 1){
+						Lbl_DV.text = String(11 - mod);
+					}else{
+						Lbl_DV.text = String(mod);
+					}
+				}else{
+					Lbl_DV.text = "";
+				}
+			}
+			
+			//VALIDACION TELEFONO EMPRESA
+			protected function Txt_Telefono_Empresa_changeHandler(event:TextOperationEvent):void
+			{
+		
+				Result = Validacion_Telefono_Empresa.validate();
+				if(Result.type==ValidationResultEvent.VALID){
+					Txt_Telefono_Empresa.text = Formato_Telefono.format(Txt_Telefono_Empresa.text);
+					
+				}
+				
+			}
+			//VALIDACION TELEFONO REPRESENTANTE
+			protected function Txt_Tel_Representante_changeHandler(event:TextOperationEvent):void
+			{
+				Result = Validacion_Telefono_Representante.validate();
+				if(Result.type==ValidationResultEvent.VALID){
+					Txt_Tel_Representante.text = Formato_Telefono.format(Txt_Tel_Representante.text);
+					
+				}
+			}
+			
+			
+			//VALIDACION DIRECCION EMPRESA Y CONVERSION DE TEXT A MAYUSCULAS
+			protected function convert(event:TextOperationEvent):void
+			{
+				Txt_Direccion_Empresa.text = Txt_Direccion_Empresa.text.toUpperCase();
+				Txt_Razon_Social.text = Txt_Razon_Social.text.toUpperCase();
+				Txt_Primer_Nombre_Empresa.text = Txt_Primer_Nombre_Empresa.text.toUpperCase();
+				Txt_Segundo_Nombre_empresa.text = Txt_Segundo_Nombre_empresa.text.toUpperCase();
+				Txt_Primer_Apellido_Empresa.text = Txt_Primer_Apellido_Empresa.text.toUpperCase();
+				Txt_Segundo_Apellido_Empresa.text = Txt_Segundo_Apellido_Empresa.text.toUpperCase();
+				Txt_Primer_Nombre_Representante_Legal.text = Txt_Primer_Nombre_Representante_Legal.text.toUpperCase();
+				Txt_Segundo_Nombre_Representante_Legal.text = 	Txt_Segundo_Nombre_Representante_Legal.text.toUpperCase();
+				Txt_Primer_Apellido_Representante_Legal.text =  Txt_Primer_Apellido_Representante_Legal.text.toUpperCase();
+				Txt_Segundo_Apellido_Representante_Legal.text = Txt_Segundo_Apellido_Representante_Legal.text.toUpperCase();
+			
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		
+	
+		<s:CallResponder id="getAllTipo_documentoResult"/>
+		<tipodocumentoservice:TipodocumentoService id="tipodocumentoService"
+												   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+												   showBusyCursor="true"/>
+		
+		
+		
+		<mx:PhoneFormatter id="Formato_Telefono" formatString="###-####" validPatternChars="#-()"/>
+		
+		<mx:PhoneNumberValidator id="Validacion_Telefono_Empresa"
+								 source="{Txt_Telefono_Empresa}"
+								 property="text"
+								 minDigits="7"
+								 requiredFieldError="Este campo es obligatorio"
+								 triggerEvent=""/>
+		
+		
+		<mx:PhoneNumberValidator id="Validacion_Telefono_Representante"
+								 source="{Txt_Tel_Representante}"
+								 property="text"
+								 minDigits="7"
+								 requiredFieldError="Este campo es obligatorio"
+								 triggerEvent=""/>
+		
+		
+		
 		<mx:EmailValidator
-			id="ValidarEmail"
+			id="ValidarEmailEmpresa"
 			source="{Txt_Email_Empresa}"
 			requiredFieldError="Este campo es obligatorio"
 			property="text"
 			invalidCharError="Caracteres inválidos" 
 			invalidDomainError= "El dominio no es válido" 
 			missingAtSignError="Necesita una @ en su email" 
-			missingPeriodInDomainError="Necesita un nombre de dominio"
-			triggerEvent=""/>
+			missingPeriodInDomainError="Necesita un nombre de dominio"/>
 		
+		
+		<mx:EmailValidator
+			id="ValidarEmailRepresentante"
+			source="{Txt_Email_Representante}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"/>
+		
+		
+		<mx:StringValidator id="ValidacionDireccion"
+							source="{Txt_Direccion_Empresa}"
+							property="text"
+							requiredFieldError="Este campo es obligatorio"
+							triggerEvent=""/>
 		
 		<!--	
 		<mx:EmailValidator
@@ -38,29 +186,50 @@
 	
 	<s:Label x="35" y="30" width="143" height="16" fontSize="16" text="DATOS EMPRESA"/>
 	
-	<s:Label x="35" y="71" width="27" height="19" fontSize="13" text="Nit" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Nit" x="35" y="87" width="170" restrict="0-9"/>
+	<s:Label x="35" y="71" width="27" height="19" fontSize="13" text="Nit" verticalAlign="middle" id="Lbl_Nit"/>
+	<s:TextInput id="Txt_Nit" x="35" y="87" width="170" restrict="0-9" change="ChangeHandler(event)"/>
 	
 	
 	<s:Label x="213" y="71" height="22" fontSize="13" text="DV" verticalAlign="middle"/>
-	<s:TextInput id="Txt_DV" x="209" y="87" width="28"/>
+	<s:Label id="Lbl_DV" x="210" y="87" width="32" height="22"  color="#000000"
+			 backgroundColor="#c5bfbf" fontSize="14" textAlign="center" verticalAlign="middle"/>
 	
-	
-	<s:Label x="247" y="67" width="112" height="23" fontSize="13" text="Tipo De Empresa"
+	<s:Label x="251" y="67" width="112" height="23" fontSize="13" text="Tipo De Empresa"
 			 verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Empresa" x="247" y="87" width="155" prompt="Tipo De Empresa"></s:DropDownList>
+	<s:DropDownList id="Ddl_Tipo_Empresa" x="251" y="87" width="155" prompt="Tipo De Empresa">
+	
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>JURIDICA</fx:String>
+				<fx:String>NATURAL</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
 	
 	
-	<s:Label x="414" y="67" width="112" height="23" fontSize="13" text="Tipo de Régimen"
+	</s:DropDownList>
+	
+	
+	<s:Label x="420" y="67" width="112" height="23" fontSize="13" text="Tipo de Régimen"
 			 verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Regimen" x="414" y="87" width="172" prompt="Tipo De Regimen">
+	<s:DropDownList id="Ddl_Tipo_Regimen" x="420" y="87" width="172" prompt="Tipo De Regimen">
+		
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>COMUN</fx:String>
+				<fx:String>ESPECIAL</fx:String>
+				<fx:String>SIMPLIFICADO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+		
+		
+		
 	</s:DropDownList>
 	
 	
 	
 	<s:Label x="35" y="119" width="92" height="22" fontSize="13" text="Razón Social"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="551"/>
+	<s:TextInput id="Txt_Razon_Social" x="35" y="136" width="557"/>
 	
 	
 	<s:Label x="35" y="178" width="106" height="22" fontSize="13" text="Primer Nombre"
@@ -84,15 +253,15 @@
 	
 	
 	<s:Label x="234" y="296" height="22" fontSize="13" text="Dirección" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Direccion_Empresa" x="234" y="312" width="352"/>
+	<s:TextInput id="Txt_Direccion_Empresa" x="234" y="312" width="358" change="convert(event)"/>
 	
 	
 	<s:Label x="35" y="296" height="22" fontSize="13" text="Telefono" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Telefono_Empresa" x="35" y="312" width="170" restrict="0-9"/>
+	<s:TextInput id="Txt_Telefono_Empresa" x="35" y="312" width="170" maxChars="7" restrict="0-9" change="Txt_Telefono_Empresa_changeHandler(event)"/>
 	
 	
 	<s:Label x="35" y="348" height="22" fontSize="13" text="E-mail" verticalAlign="middle"/>
-	<s:TextInput id="Txt_Email_Empresa" x="35" y="364" width="551"/>
+	<s:TextInput id="Txt_Email_Empresa" x="35" y="364" width="557"/>
 	
 	
 	<s:Label x="35" y="424" width="261" fontSize="16" text="DATOS REPRESENTANTE LEGAL"/>
@@ -118,16 +287,18 @@
 	
 	
 	<s:Label x="35" y="460" width="120" height="23" fontSize="13" text="Tipo De Documento" verticalAlign="middle"/>
-	<s:DropDownList id="Ddl_Tipo_Documento" x="35" y="480" width="200" prompt="Tipo De Documento">
+	<s:DropDownList id="Ddl_Tipo_Documento" x="35" y="480" width="200" prompt="Tipo De Documento" creationComplete="Ddl_Tipo_Documento_creationCompleteHandler(event)"
+					labelField="Tipo_Documento">
+		<s:AsyncListView list="{getAllTipo_documentoResult.lastResult}"/>
 	</s:DropDownList> 
 	
 	
 	<s:Label x="267" y="460" height="22" fontSize="13" text=" Documento"
 			 verticalAlign="middle"/>
-	<s:TextInput id="Txt_Numero_Documento_Representante_Legal" x="267" y="479" width="170" restrict="0-9"/>
+	<s:TextInput id="Txt_Nro_Documento_Repr_Legal" x="267" y="479" width="170" restrict="0-9"/>
 	<s:Label x="35" y="647" text="Telefono"/>
-	<s:TextInput id="Txt_Tel_Representante" x="35" y="659" width="170"/>
-	<s:TextInput id="Txt_Email_Representante" x="35" y="710" width="551"/>
+	<s:TextInput id="Txt_Tel_Representante" x="35" y="659" width="170" maxChars="7" restrict="0-9" change="Txt_Tel_Representante_changeHandler(event)"/>
+	<s:TextInput id="Txt_Email_Representante" x="35" y="710" width="557"/>
 	<s:Label x="35" y="696" text="E-mail"/>
 	
 	

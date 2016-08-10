@@ -1,35 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx"  minWidth="955" minHeight="600" xmlns:Formularios="Formularios.*">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Formularios="Formularios.*"
+			   xmlns:empresaservice="services.empresaservice.*"
+			   minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ValidationResultEvent;
+			
+			import valueObjects.Empresa;
 			
 			
 			
-			
-			
-			
-			
-			
-			//FUNCION DE GUARDAR
-			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			//SE DESACTIVAN LOS CAMPOS
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
 				
+				Reg_Empresa.Txt_Nit.editable=false;
+				Reg_Empresa.Ddl_Tipo_Empresa.enabled=false;
+				Reg_Empresa.Ddl_Tipo_Regimen.enabled=false;
+				Reg_Empresa.Txt_Razon_Social.editable=false;
+				Reg_Empresa.Txt_Primer_Nombre_Empresa.editable=false;
+				Reg_Empresa.Txt_Segundo_Nombre_empresa.editable=false;
+				Reg_Empresa.Txt_Primer_Apellido_Empresa.editable=false;
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=false;
+				Reg_Empresa.Txt_Telefono_Empresa.editable=false;
+				Reg_Empresa.Txt_Direccion_Empresa.editable=false;
+				Reg_Empresa.Txt_Email_Empresa.editable=false;
+				Reg_Empresa.Ddl_Tipo_Documento.enabled=false;
+				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.editable=false;
+				Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.editable=false;
+				Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.editable=false;
+				Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.editable=false;
+				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.editable=false;
+				Reg_Empresa.Txt_Tel_Representante.editable=false;
+				Reg_Empresa.Txt_Email_Representante.editable=false;	
 				
+			}
+			
+			
+			
+			//SE ACTIVAN LOS CAMPOS AL INGRESAR UN NUEVO REGISTRO
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				Reg_Empresa.Txt_Nit.editable=true;
+				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.editable=true;
+				Reg_Empresa.Ddl_Tipo_Empresa.enabled=true;
+				Reg_Empresa.Ddl_Tipo_Regimen.enabled=true;
+				Reg_Empresa.Txt_Razon_Social.editable=true;
+				Reg_Empresa.Txt_Primer_Nombre_Empresa.editable=true;
+				Reg_Empresa.Txt_Segundo_Nombre_empresa.editable=true;
+				Reg_Empresa.Txt_Primer_Apellido_Empresa.editable=true;
+				Reg_Empresa.Txt_Segundo_Apellido_Empresa.editable=true;
+				Reg_Empresa.Txt_Telefono_Empresa.editable=true;
+				Reg_Empresa.Txt_Direccion_Empresa.editable=true;
+				Reg_Empresa.Txt_Email_Empresa.editable=true;
+				Reg_Empresa.Ddl_Tipo_Documento.enabled=true;
+				Reg_Empresa.Txt_Nro_Documento_Repr_Legal.editable=true;
+				Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.editable=true;
+				Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.editable=true;
+				Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.editable=true;
+				Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.editable=true;
+				Reg_Empresa.Txt_Tel_Representante.editable=true;
+				Reg_Empresa.Txt_Email_Representante.editable=true;
 				
 				
 			}
+			
+			//FUNCION DE VALIDAR TODO
+			private function ValidarTodo():Boolean{
+				
+				var Nit:ValidationResultEvent=ValidacionNit.validate();
+				var Documento_Representante:ValidationResultEvent=ValidacionDocumento_Representante.validate();
+				var Dv:ValidationResultEvent=ValidacionDv.validate();
+				var Telefono_Empresa:ValidationResultEvent=ValidacionTelefonoEmpresa.validate();
+				var Direccion:ValidationResultEvent=ValidacionDireccion.validate();
+				var Email_Empresa:ValidationResultEvent=ValidarEmailEmpresa.validate();
+				var Tipo_Documento:ValidationResultEvent=ValidacionTipo_Documento.validate();
+				var Primer_Nombre_Repre:ValidationResultEvent=ValidacionPrimer_Nombre.validate();
+				var Primer_Apellido_Repre:ValidationResultEvent=ValidacionPrimer_Apellido.validate();
+				var Telefono_Representante:ValidationResultEvent=ValidacionTelefonoRepre.validate();
+				var Email_Representante:ValidationResultEvent=ValidarEmailRepre.validate();
+				
+				var rsp:Boolean=false;
+				
+				if( Nit.type==ValidationResultEvent.VALID
+					&& Documento_Representante.type==ValidationResultEvent.VALID
+					&& Dv.type==ValidationResultEvent.VALID
+					&& Telefono_Empresa.type==ValidationResultEvent.VALID
+					&& Direccion.type==ValidationResultEvent.VALID
+					&& Email_Empresa.type==ValidationResultEvent.VALID
+					&& Tipo_Documento.type==ValidationResultEvent.VALID
+					&& Primer_Nombre_Repre.type==ValidationResultEvent.VALID
+					&& Primer_Apellido_Repre.type==ValidationResultEvent.VALID
+					&& Telefono_Representante.type==ValidationResultEvent.VALID
+					&& Email_Representante.type==ValidationResultEvent.VALID
+				
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}		
+			
+		
+			//FUNCION DE GUARDAR
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+				if(ValidarTodo()){
+					
+					var Reg:Empresa = new Empresa();
+					
+					Reg.Documento_Empresa = Reg_Empresa.Txt_Nit.text;
+					Reg.Dv_Empresa = Reg_Empresa.Lbl_DV.text;
+					Reg.Tipo_Empresa = Reg_Empresa.Ddl_Tipo_Empresa.selectedItem;
+					Reg.Tipo_Regimen = Reg_Empresa.Ddl_Tipo_Regimen.selectedItem;
+					Reg.Razon_Social = Reg_Empresa.Txt_Razon_Social.text;
+					Reg.Primer_Nombre_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text;
+					Reg.Segundo_Nombre_Em = Reg_Empresa.Txt_Segundo_Nombre_empresa.text;
+					Reg.Primer_Apellido_Em = Reg_Empresa.Txt_Primer_Apellido_Empresa.text;
+					Reg.Segundo_Apellido_Em = Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
+					Reg.Nombre_Completo_Em = Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " + Reg_Empresa.Txt_Primer_Nombre_Empresa.text + " " +  Reg_Empresa.Txt_Primer_Apellido_Empresa.text + " " + Reg_Empresa.Txt_Segundo_Apellido_Empresa.text;
+					Reg.Telefono_Empresa = Reg_Empresa.Txt_Telefono_Empresa.text;
+					Reg.Direccion_Empresa = Reg_Empresa.Txt_Direccion_Empresa.text;
+					Reg.Email_Empresa = Reg_Empresa.Txt_Email_Empresa.text;
+					Reg.Codigo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Codigo;
+					Reg.Tipo_Doc_Representante = Reg_Empresa.Ddl_Tipo_Documento.selectedItem.Tipo_Documento;
+					Reg.Documento_Representante = Reg_Empresa.Txt_Nro_Documento_Repr_Legal.text;
+					Reg.Primer_Nombre_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text;
+					Reg.Segundo_Nombre_Rep = Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text;
+					Reg.Primer_Apellido_Rep = Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text;
+					Reg.Segundo_Apellido_Rep = Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
+					Reg.Nombre_Completo_Rep = Reg_Empresa.Txt_Primer_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Segundo_Nombre_Representante_Legal.text + " " + Reg_Empresa.Txt_Primer_Apellido_Representante_Legal.text + " " +  Reg_Empresa.Txt_Segundo_Apellido_Representante_Legal.text;
+					Reg.Telefono_Representante = Reg_Empresa.Txt_Tel_Representante.text;
+					Reg.Email_Representante = Reg_Empresa.Txt_Email_Representante.text;
+					Reg.Fecha = new Date();
+					Reg.Usuario = "Lau";
+					
+					createEmpresaResult.token = empresaService.createEmpresa(Reg);
+					empresaService.commit();
+					
+					
+				}
+			}
+			
+		
+			
+			
 		]]>
 	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="createEmpresaResult"/>
+		<empresaservice:EmpresaService id="empresaService"
+									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+									   showBusyCursor="true"/>
+		
+		
+		
+		<mx:StringValidator
+			id="ValidacionNit"
+			source="{Reg_Empresa.Txt_Nit}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDocumento_Representante"
+			source="{Reg_Empresa.Txt_Nro_Documento_Repr_Legal}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDv"
+			source="{Reg_Empresa.Lbl_DV}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionDireccion"
+			source="{Reg_Empresa.Txt_Direccion_Empresa}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionPrimer_Nombre"
+			source="{Reg_Empresa.Txt_Primer_Nombre_Representante_Legal}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionPrimer_Apellido"
+			source="{Reg_Empresa.Txt_Primer_Apellido_Representante_Legal}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Empresa"
+						   source="{Reg_Empresa.Ddl_Tipo_Empresa}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Regimen"
+						   source="{Reg_Empresa.Ddl_Tipo_Regimen}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionTelefonoEmpresa"
+			source="{Reg_Empresa.Txt_Telefono_Empresa}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionTipo_Documento"
+			source="{Reg_Empresa.Ddl_Tipo_Documento}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionTelefonoRepre"
+			source="{Reg_Empresa.Txt_Tel_Representante}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<mx:EmailValidator
+			id="ValidarEmailEmpresa"
+			source="{Reg_Empresa.Txt_Email_Empresa}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
+		
+		<mx:EmailValidator
+			id="ValidarEmailRepre"
+			source="{Reg_Empresa.Txt_Email_Representante}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
+		
+		
+		
+	</fx:Declarations>
 	
 	
 	
 	
-<Formularios:Registro_Empresa id="Reg_Empresa">
+<Formularios:Registro_Empresa y="50" id="Reg_Empresa">
 </Formularios:Registro_Empresa>
-
-<s:Button id="Btn_Guardar" x="250" y="770" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	<s:HGroup x="24" y="20" width="200" height="25">
+		<s:Button id="Btn_Nuevo" label="Nuevo" click="Btn_Nuevo_clickHandler(event)"/>
+		<s:Button id="Btn_Editar" label="Editar"/>
+	</s:HGroup>
+<s:Button id="Btn_Guardar" x="250" y="800" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
 	
 </s:Application>

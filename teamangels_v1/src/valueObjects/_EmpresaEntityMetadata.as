@@ -20,14 +20,14 @@ internal class _EmpresaEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
+    model_internal static var allProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Tipo_Empresa", "Tipo_Regimen", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array("Documento_Empresa");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Tipo_Empresa", "Tipo_Regimen", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
+    model_internal static var dataProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Tipo_Empresa", "Tipo_Regimen", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
+    model_internal static var nonDerivedProperties:Array = new Array("Id", "Documento_Empresa", "Dv_Empresa", "Tipo_Empresa", "Tipo_Regimen", "Razon_Social", "Primer_Nombre_Em", "Segundo_Nombre_Em", "Primer_Apellido_Em", "Segundo_Apellido_Em", "Nombre_Completo_Em", "Telefono_Empresa", "Direccion_Empresa", "Email_Empresa", "Codigo_Doc_Representante", "Tipo_Doc_Representante", "Documento_Representante", "Primer_Nombre_Rep", "Segundo_Nombre_Rep", "Primer_Apellido_Rep", "Segundo_Apellido_Rep", "Nombre_Completo_Rep", "Telefono_Representante", "Email_Representante", "Fecha", "Usuario");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -50,6 +50,8 @@ internal class _EmpresaEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
             model_internal::dependentsOnMap["Id"] = new Array();
             model_internal::dependentsOnMap["Documento_Empresa"] = new Array();
             model_internal::dependentsOnMap["Dv_Empresa"] = new Array();
+            model_internal::dependentsOnMap["Tipo_Empresa"] = new Array();
+            model_internal::dependentsOnMap["Tipo_Regimen"] = new Array();
             model_internal::dependentsOnMap["Razon_Social"] = new Array();
             model_internal::dependentsOnMap["Primer_Nombre_Em"] = new Array();
             model_internal::dependentsOnMap["Segundo_Nombre_Em"] = new Array();
@@ -81,6 +83,8 @@ internal class _EmpresaEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
         model_internal::propertyTypeMap["Id"] = "int";
         model_internal::propertyTypeMap["Documento_Empresa"] = "String";
         model_internal::propertyTypeMap["Dv_Empresa"] = "String";
+        model_internal::propertyTypeMap["Tipo_Empresa"] = "String";
+        model_internal::propertyTypeMap["Tipo_Regimen"] = "String";
         model_internal::propertyTypeMap["Razon_Social"] = "String";
         model_internal::propertyTypeMap["Primer_Nombre_Em"] = "String";
         model_internal::propertyTypeMap["Segundo_Nombre_Em"] = "String";
@@ -350,6 +354,18 @@ internal class _EmpresaEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     }
 
     [Bindable(event="propertyChange")]
+    public function get isTipo_EmpresaAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isTipo_RegimenAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
     public function get isRazon_SocialAvailable():Boolean
     {
         return true;
@@ -499,6 +515,18 @@ internal class _EmpresaEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 
     [Bindable(event="propertyChange")]   
     public function get Dv_EmpresaStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get Tipo_EmpresaStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get Tipo_RegimenStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

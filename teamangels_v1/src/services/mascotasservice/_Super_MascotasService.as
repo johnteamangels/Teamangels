@@ -430,7 +430,7 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getMascotasByNombre_Mascota(Nombre_Mascota:String, documento:String) : mx.rpc.AsyncToken
+    public function getMascotasByNombre_Mascota(Nombre_Mascota:Object, documento:Object) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMascotasByNombre_Mascota");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(Nombre_Mascota,documento) ;
