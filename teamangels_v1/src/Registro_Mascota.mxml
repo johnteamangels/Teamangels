@@ -289,10 +289,8 @@
 			}
 			
 			
-			
+			//SE VALIDAN LOS CAMPOS OBLIGATORIOS
 			private function ValidarTodo():Boolean{
-				
-			
 				
 				var Nombre_Mascota:ValidationResultEvent=ValidacionNombre_Mascota.validate();
 				var Especie:ValidationResultEvent=Validacion_Especie.validate();
@@ -324,13 +322,13 @@
 			}		
 			
 			
+			
 			//FUNCION DE GUARDAR
 			private var EditarGuad:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
 			{
 				
 				if(EditarGuad == false){
-					
 					
 					if(ValidarTodo()){
 						
@@ -371,6 +369,7 @@
 						Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
 						Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
 						Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
+						Reg2.Otra_Raza = "CUAL";
 						Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
 						Reg2.Fecha = new Date();
 						Reg2.Usuario = "ADMIN"; 
@@ -428,6 +427,7 @@
 					Reg.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
 					Reg.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
 					Reg.Observaciones = Reg_Mascota.Txta_Observaciones.text;
+					Reg.Otra_Raza = "CUAL";
 					Reg.Fecha = new Date();
 					Reg.Usuario = "ADMIN"; 
 					
@@ -848,7 +848,11 @@
 			<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 		</s:HGroup>
 		
-		<s:Label id="Lbl_Mensaje" x="641" y="22"/>
+		<s:Button id="Btn_Ok"  x="1010" y="148" width="50" label="OK" >
+		</s:Button>
+		<s:Label id="Lbl_Mensaje" x="1015" y="121" color="#000000"/>
+		
+		
 	</s:BorderContainer>
 	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606" creationComplete="Lst_Buscar_Mascota_creationCompleteHandler(event)"
 			labelField="Nombre_Mascota"  change="Lst_Buscar_Mascota_changeHandler(event)">
@@ -873,7 +877,7 @@
 		
 		<s:Button id="Btn_Guardar" x="754" y="600" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
 		
-		<s:Label id="Lbl_Prueba" x="309" y="27" color="#000000"/>
+			
 	</s:HGroup>
 	
 	

@@ -68,7 +68,6 @@
 			<s:Button id="Btn_Editar" label="Editar"/>
 			<s:Button id="Btn_Buscar" label="Buscar"/>
 		</s:HGroup>
-		<s:Label id="Lbl_Mensaje" x="309" y="27" color="#000000"/>
 		
 	</s:BorderContainer>
 	<s:List id="Lst_Buscar_Mascota" x="1495" y="125" width="142" height="606"></s:List>
@@ -82,4 +81,7 @@
 	<s:TextInput id="Txt_Buscar_Propietario" x="1172" y="95" width="465"/>
 	
 	<s:TextInput id="Txt_Buscar_Mascota" x="1172" y="95" width="465"/>
+	<s:Button id="Btn_Ok"  x="1000" y="148" width="50" label="OK" >
+	</s:Button>
+	<s:Label id="Lbl_Mensaje" x="1014" y="121" color="#000000"/>
 </s:Application>
