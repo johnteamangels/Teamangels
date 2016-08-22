@@ -367,7 +367,7 @@ internal class _Super_RazaService extends com.adobe.fiber.services.wrapper.Remot
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllRazaByEspecie(especie:Object) : mx.rpc.AsyncToken
+    public function getAllRazaByEspecie(especie:int) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllRazaByEspecie");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(especie) ;

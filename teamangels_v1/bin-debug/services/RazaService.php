@@ -25,7 +25,7 @@ class RazaService {
 	var $server = "107.180.58.46";
 	var $port = "3306";
 	var $databasename = "bdteamangels1";
-	var $tablename = "Raza";
+	var $tablename = "raza";
 
 	var $connection;
 
@@ -46,9 +46,10 @@ class RazaService {
 		$this->throwExceptionOnError($this->connection);
 	}
 
+	
 	 public function getAllRazaByEspecie($especie) {
 
-		$stmt = mysqli_prepare($this->connection, "SELECT Id_Raza, Raza FROM Raza WHERE Id_Especie=?");		
+		$stmt = mysqli_prepare($this->connection, "SELECT Id_Raza, Raza FROM raza WHERE Id_Especie=?");		
 		$this->throwExceptionOnError();
 		
 		mysqli_stmt_bind_param($stmt, 'i', $especie);		
@@ -72,6 +73,7 @@ class RazaService {
 	
 	    return $rows;
 	}	
+	
 	
 	/**
 	 * Returns all the rows from the table.

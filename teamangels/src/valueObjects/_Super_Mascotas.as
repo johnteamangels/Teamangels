@@ -57,6 +57,7 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     private var _internal_Especie : String;
     private var _internal_Id_Raza : int;
     private var _internal_Raza : String;
+    private var _internal_Otra_Raza : String;
     private var _internal_Pelaje : String;
     private var _internal_Color : String;
     private var _internal_Tamano : String;
@@ -149,6 +150,12 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     public function get Raza() : String
     {
         return _internal_Raza;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Otra_Raza() : String
+    {
+        return _internal_Otra_Raza;
     }
 
     [Bindable(event="propertyChange")]
@@ -339,6 +346,15 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Raza = value;
+        }
+    }
+
+    public function set Otra_Raza(value:String) : void
+    {
+        var oldValue:String = _internal_Otra_Raza;
+        if (oldValue !== value)
+        {
+            _internal_Otra_Raza = value;
         }
     }
 

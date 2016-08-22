@@ -77,6 +77,11 @@
 				Reg_Mascota.Txta_Senales_Particulares.editable=false;
 				Reg_Mascota.Txta_Observaciones.editable=false;
 				
+				Lbl_Mensaje.enabled=false;
+				Lbl_Mensaje.visible=false;
+				Btn_Ok.enabled=false;
+				Btn_Ok.visible=false;
+				
 			}
 			
 			//SE ACTIVAN Y SE VISUALIZAN LOS SIGUIENTES COMPONENTES AL DAR CLICK EN BUSCAR
@@ -253,7 +258,6 @@
 				Lst_Buscar_Propietario.visible=false;
 				Lst_Buscar_Mascota.enabled=false;
 				Lst_Buscar_Mascota.visible=false;
-				
 				Reg_Mascota.Txt_Nombre_Mascota.editable=true;
 				Reg_Mascota.Txt_Id_Chip.editable=true;
 				Reg_Mascota.Ddl_Especie.enabled=true;
@@ -285,6 +289,7 @@
 				Lst_Buscar_Documento.selectedIndex=-1;
 				Lst_Buscar_Propietario.selectedIndex=-1;
 			    Lst_Buscar_Mascota.selectedIndex=-1;
+				dataGrid.dataProvider.removeAll();
 				
 			}
 			
@@ -369,7 +374,7 @@
 						Reg2.Descripcion_Marca = Reg_Mascota.Txt_Descripcion_Marca.text;
 						Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
 						Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
-						Reg2.Otra_Raza = "CUAL";
+						Reg2.Otra_Raza =  Reg_Mascota.Txt_Otra_Raza.text;
 						Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
 						Reg2.Fecha = new Date();
 						Reg2.Usuario = "ADMIN"; 
@@ -395,12 +400,16 @@
 				
 				if(DataserviceBy_Nom_Mascota !=null){
 					
+					Lbl_Mensaje.enabled=true;
+					Lbl_Mensaje.visible=true;
+					Btn_Ok.enabled=true;
+					Btn_Ok.visible=true;
+					
 					Lbl_Mensaje.text = "Mascota ya ingresada";
 				 
 					Limpiar();
 					
 				}else{
-					
 					
 					var Reg:Mascotas = new Mascotas();
 					
@@ -427,7 +436,7 @@
 					Reg.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
 					Reg.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
 					Reg.Observaciones = Reg_Mascota.Txta_Observaciones.text;
-					Reg.Otra_Raza = "CUAL";
+					Reg.Otra_Raza = Reg_Mascota.Txt_Otra_Raza.text;
 					Reg.Fecha = new Date();
 					Reg.Usuario = "ADMIN"; 
 					
@@ -440,11 +449,21 @@
 			
 			}
 			
+			//OCULTA EL LABEL DE MENSAJE
+			protected function Btn_Ok_clickHandler(event:MouseEvent):void
+			{
+				Lbl_Mensaje.enabled=false;
+				Lbl_Mensaje.visible=false;
+				Btn_Ok.enabled=false;
+				Btn_Ok.visible=false;
+			}
 			
 			//RESPONDE EL SERVICIO DEL CREATE
 			protected function createMascotasResult_resultHandler(event:ResultEvent):void
 			{
 				Limpiar();
+				Reg_Mascota.Txt_Otra_Raza.enabled=false;
+				Reg_Mascota.Txt_Otra_Raza.visible=false;
 			}
 			
 			//FUNCION ACTIVA LOS CAMPOS PARA ACTUALIZAR VARIABLE EN TRUE
@@ -477,6 +496,9 @@
 				Reg_Mascota.Txt_Descripcion_Referencia.editable=true;
 				Reg_Mascota.Txta_Senales_Particulares.editable=true;
 				Reg_Mascota.Txta_Observaciones.editable=true;
+				Reg_Mascota.Txt_Otra_Raza.editable=true;
+				
+				dataGrid.dataProvider.removeAll();
 			
 			}
 			
@@ -531,7 +553,24 @@
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Documento.selectedItem.Senales_Particulares;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Documento.selectedItem.Observaciones;
 			
-			
+				getAllMascotasByDocumento_PropietarioResult.token = mascotasService.getAllMascotasByDocumento_Propietario(Lst_Buscar_Documento.selectedItem.Documento);
+				
+				
+				if(Reg_Mascota.Ddl_Raza.selectedItem.Raza == "OTRA"){
+					
+					Reg_Mascota.Txt_Otra_Raza.enabled=true;
+					Reg_Mascota.Txt_Otra_Raza.visible=true;
+					Reg_Mascota.Txt_Otra_Raza.text = Lst_Buscar_Documento.selectedItem.Otra_Raza;
+					Reg_Mascota.Txt_Otra_Raza.editable=false;
+					
+				}else{
+					
+					Reg_Mascota.Txt_Otra_Raza.enabled=false;
+					Reg_Mascota.Txt_Otra_Raza.visible=false;
+					
+				}
+				
+				
 			}
 			//CARGA LOS REGISTROS AL FORMULARIO
 			protected function Lst_Buscar_Mascota_changeHandler(event:IndexChangeEvent):void
@@ -562,6 +601,25 @@
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Mascota.selectedItem.Senales_Particulares;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Mascota.selectedItem.Observaciones;
 			
+				//getAllMascotasByDocumento_PropietarioResult.token = mascotasService.getAllMascotasByDocumento_Propietario(Lst_Buscar_Mascota.selectedItem.Documento);
+			
+				 dataGrid.dataProvider.removeAll();
+				 
+				 if(Reg_Mascota.Ddl_Raza.selectedItem.Raza == "OTRA"){
+					 
+					 Reg_Mascota.Txt_Otra_Raza.enabled=true;
+					 Reg_Mascota.Txt_Otra_Raza.visible=true;
+					 Reg_Mascota.Txt_Otra_Raza.text = Lst_Buscar_Mascota.selectedItem.Otra_Raza;
+					 Reg_Mascota.Txt_Otra_Raza.editable=false;
+					 
+				 }else{
+					 
+					 Reg_Mascota.Txt_Otra_Raza.enabled=false;
+					 Reg_Mascota.Txt_Otra_Raza.visible=false;
+					 
+				 }
+				 
+				 
 			}
 			
 			//CARGA LOS REGISTROS AL FORMULARIO
@@ -593,7 +651,31 @@
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Propietario.selectedItem.Senales_Particulares;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Propietario.selectedItem.Observaciones;
 				
+				
+				getAllMascotasByDocumento_PropietarioResult.token = mascotasService.getAllMascotasByDocumento_Propietario(Lst_Buscar_Propietario.selectedItem.Documento);
+				
+				if(Reg_Mascota.Ddl_Raza.selectedItem.Raza == "OTRA"){
+					
+					Reg_Mascota.Txt_Otra_Raza.enabled=true;
+					Reg_Mascota.Txt_Otra_Raza.visible=true;
+					Reg_Mascota.Txt_Otra_Raza.text = Lst_Buscar_Propietario.selectedItem.Otra_Raza;
+					Reg_Mascota.Txt_Otra_Raza.editable=false;
+					
+				}else{
+					
+					Reg_Mascota.Txt_Otra_Raza.enabled=false;
+					Reg_Mascota.Txt_Otra_Raza.visible=false;
+				
+				}
 			}
+			
+			//RESPONE EL METODO DE MASCOTAS BY DOCUMENTO PROPIETARIO
+			protected function getAllMascotasByDocumento_PropietarioResult_resultHandler(event:ResultEvent):void
+			{
+				dataGrid.dataProvider = getAllMascotasByDocumento_PropietarioResult.lastResult;
+		
+			}
+			
 			
 			//CARGA LA ESPECIE
 			protected function CargarEspecie(valor:String):void{
@@ -672,6 +754,8 @@
 				
 			}
 		
+		
+			
 		]]>
 	</fx:Script>
 	
@@ -774,6 +858,7 @@
 		<s:CallResponder id="getAllMascotasByMascotaResult"/>
 		<s:CallResponder id="getMascotasByNombre_MascotaResult" result="getMascotasByNombre_MascotaResult_resultHandler(event)"/>
 		<valueObjects:Mascotas id="DataserviceBy_Nom_Mascota"/>
+		<s:CallResponder id="getAllMascotasByDocumento_PropietarioResult" result="getAllMascotasByDocumento_PropietarioResult_resultHandler(event)"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		
 		
@@ -784,14 +869,12 @@
 	
 	<s:BorderContainer  width="90%" height="100%">
 	
-		<s:DataGrid id="dataGrid" x="24" y="763" width="1403" height="109" 
+		<s:DataGrid id="dataGrid" x="24" y="763" width="950" height="120" 
 		creationComplete="dataGrid_creationCompleteHandler(event)" requestedRowCount="4">
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn width="200" dataField="Documento" headerText="Documento"></s:GridColumn>
-					<s:GridColumn width="300" dataField="Propietario" headerText="Propietario"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Nombre_Mascota" headerText="Nombre_Mascota"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Id_Chif" headerText="Id_Chif"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Nombre_Mascota" headerText="Nombre Mascota"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Id_Chif" headerText="Id Chif"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Especie" headerText="Especie"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Raza" headerText="Raza"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Pelaje" headerText="Pelaje"></s:GridColumn>
@@ -799,20 +882,19 @@
 					<s:GridColumn width="200" dataField="Tamano" headerText="Tamano"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Genero" headerText="Genero"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Peso" headerText="Peso"></s:GridColumn>
-					<s:GridColumn dataField="Estado_Reproductivo" headerText="Estado_Reproductivo"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Estado_Reproductivo" headerText="Estado Reproductivo"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Temperamento" headerText="Temperamento"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Edad_Dias" headerText="Edad_Dias"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Edad_Meses" headerText="Edad_Meses"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Edad_Anos" headerText="Edad_Anos"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Dias" headerText="Edad Dias"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Meses" headerText="Edad Meses"></s:GridColumn>
+					<s:GridColumn width="200" dataField="Edad_Anos" headerText="Edad Anos"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Tipo_Alimentacion"
-								  headerText="Tipo_Alimentacion"></s:GridColumn>
+								  headerText="Tipo Alimentacion"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Descripcion_Marca"
-								  headerText="Descripcion_Marca"></s:GridColumn>
+								  headerText="Descripcion Marca"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Descripcion_Referencia"
-								  headerText="Descripcion_Referencia"></s:GridColumn>
+								  headerText="Descripcion Referencia"></s:GridColumn>
 					<s:GridColumn width="200" dataField="Senales_Particulares"
-								  headerText="Senales_Particulares"></s:GridColumn>
-					<s:GridColumn width="200" dataField="Observaciones" headerText="Observaciones"></s:GridColumn>
+								  headerText="Senales Particulares"></s:GridColumn>
 				</s:ArrayList>
 			
 			</s:columns>
@@ -848,7 +930,7 @@
 			<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 		</s:HGroup>
 		
-		<s:Button id="Btn_Ok"  x="1010" y="148" width="50" label="OK" >
+		<s:Button id="Btn_Ok"  x="1010" y="148" width="50" label="OK" click="Btn_Ok_clickHandler(event)">
 		</s:Button>
 		<s:Label id="Lbl_Mensaje" x="1015" y="121" color="#000000"/>
 		

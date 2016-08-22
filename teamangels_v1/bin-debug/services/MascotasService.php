@@ -47,29 +47,35 @@ class MascotasService {
 	}
 
 	
-	
-	public function getMascotasByNombre_Mascota($Nombre_Mascota,$documento) {
-		
-		
-		
-		$stmt = mysqli_prepare($this->connection, "SELECT * FROM mascotas where Nombre_Mascota=? AND Documento=?");
+	public function getAllMascotasByDocumento_Propietario($documento) {
+
+		$stmt = mysqli_prepare($this->connection, "SELECT Nombre_Mascota, Id_Chif, Especie, Raza, Pelaje, Color, Tamano,  Genero, Peso, Estado_Reproductivo, Temperamento, Edad_Dias, Edad_Meses, Edad_Anos, Tipo_Alimentacion, Descripcion_Marca,  Descripcion_Referencia, Senales_Particulares   FROM mascotas WHERE Documento=? ");		
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'ss', $Nombre_Mascota,$documento);		
+		
+		mysqli_stmt_bind_param($stmt, 's', $documento);		
 		$this->throwExceptionOnError();
 		
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Otra_Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+		$rows = array();
 		
-		if(mysqli_stmt_fetch($stmt)) {
-	      $row->Fecha = new DateTime($row->Fecha);
-	      return $row;
-		} else {
-	      return null;
-		}
+		mysqli_stmt_bind_result($stmt,  $row->Nombre_Mascota, $row->Id_Chif,  $row->Especie, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares);
+		
+	    while (mysqli_stmt_fetch($stmt)) {
+	      //$row->Fecha = new DateTime($row->Fecha);
+	      $rows[] = $row;
+	      $row = new stdClass();
+	     mysqli_stmt_bind_result($stmt,  $row->Nombre_Mascota, $row->Id_Chif,  $row->Especie, $row->Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares);
+	    }
+		
+		mysqli_stmt_free_result($stmt);
+	    mysqli_close($this->connection);
+	
+	    return $rows;
 	}
+
 
 	
 		public function getAllMascotasByMascota($mascota) {
@@ -193,6 +199,29 @@ class MascotasService {
 	    return $rows;
 	}
 
+	
+	public function getMascotasByNombre_Mascota($Nombre_Mascota,$documento) {
+		
+		
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM mascotas where Nombre_Mascota=? AND Documento=?");
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_bind_param($stmt, 'ss', $Nombre_Mascota,$documento);		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_execute($stmt);
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento, $row->Propietario, $row->Nombre_Mascota, $row->Id_Chif, $row->Id_Especie, $row->Especie, $row->Id_Raza, $row->Raza, $row->Otra_Raza, $row->Pelaje, $row->Color, $row->Tamano, $row->Genero, $row->Peso, $row->Estado_Reproductivo, $row->Temperamento, $row->Edad_Dias, $row->Edad_Meses, $row->Edad_Anos, $row->Tipo_Alimentacion, $row->Descripcion_Marca, $row->Descripcion_Referencia, $row->Senales_Particulares, $row->Observaciones, $row->Fecha, $row->Usuario);
+		
+		if(mysqli_stmt_fetch($stmt)) {
+	      $row->Fecha = new DateTime($row->Fecha);
+	      return $row;
+		} else {
+	      return null;
+		}
+	}
+	
 	/**
 	 * Returns the item corresponding to the value specified for the primary key.
 	 *

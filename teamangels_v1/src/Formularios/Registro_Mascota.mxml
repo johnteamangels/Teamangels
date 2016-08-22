@@ -18,6 +18,7 @@
 			{
 				Txt_Otra_Raza.enabled=false;
 				Txt_Otra_Raza.visible=false;
+				Ddl_Raza.openButton.enabled=false;			
 			}
 			
 			//SE LLENA EL DROP DOWN LIST CON LAS ESPECIES
@@ -42,6 +43,7 @@
 			protected function getAllRazaByEspecieResult_resultHandler(event:ResultEvent):void
 			{
 				Ddl_Raza.dataProvider = getAllRazaByEspecieResult.lastResult;
+				Ddl_Raza.openButton.enabled=true;			
 			}
 			
 			//CONVIERTE LOS TEXTOS A MAYUSCULAS
@@ -105,11 +107,10 @@
 				
 			}
 		
-	
-			
+			//CAMBIA SEGUN ESCOJAN OTRA
 			protected function Ddl_Raza_changeHandler(event:IndexChangeEvent):void
 			{
-				if(Ddl_Raza.selectedItem == "OTRO"){
+				if(Ddl_Raza.selectedItem.Raza == "OTRA"){
 					Txt_Otra_Raza.enabled=true;
 				    Txt_Otra_Raza.visible=true;
 					
@@ -121,6 +122,11 @@
 			}
 			
 			
+			//CONVIERTE EL CAMPO DE CUAL A MAYUSCULAS
+			protected function Txt_Otra_Raza_changeHandler(event:TextOperationEvent):void
+			{
+				Txt_Otra_Raza.text = Txt_Otra_Raza.text.toUpperCase();
+			}
 			
 		]]>
 	</fx:Script>
@@ -328,7 +334,7 @@
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>ALIMENTO HUMEDO</fx:String>
-				<fx:String>CASERA</fx:String>
+				<fx:String>CASERO</fx:String>
 				<fx:String>CONCENTRADO</fx:String>
 				<fx:String>DIETA BARF</fx:String>
 			</s:ArrayList>
@@ -347,6 +353,6 @@
 	<s:TextArea id="Txta_Observaciones" x="24" y="580" width="931" height="79" change="Txta_Observaciones_changeHandler(event)"/>
 	<s:Label x="25" y="378" text="Marca"/>
 	<s:Label x="210" y="159" text="Tamaño"/>
-	<s:TextInput id="Txt_Otra_Raza" x="582" y="77" width="180" prompt="CUAL"/>
+	<s:TextInput id="Txt_Otra_Raza" x="582" y="77" width="180" prompt="CUAL" change="Txt_Otra_Raza_changeHandler(event)"/>
 	
 </s:Group>
