@@ -201,12 +201,12 @@ internal class _Super_EstablecimientosService extends com.adobe.fiber.services.w
         _establecimientosRPCDataManager.addManagedOperation(dmOperation);     
 
         dmQuery = new mx.data.ManagedQuery("getAllEstablecimientos");
-        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
         dmQuery.parameters = "";
         _establecimientosRPCDataManager.addManagedOperation(dmQuery);
 
         dmQuery = new mx.data.ManagedQuery("getEstablecimientos_paged");
-        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;

@@ -31,8 +31,8 @@
 				Form_Estab.Txt_Numero_Telefono1.editable=false;
 				Form_Estab.Ddl_Telefono2.openButton.enabled=false;
 				Form_Estab.Txt_Numero_Telefono2.editable=false;
-				Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=false;
-				Form_Estab.Txt_Documento_Facturacion.editable=false;				
+				/* Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=false;
+				Form_Estab.Txt_Documento_Facturacion.editable=false; */				
 				Form_Estab.Txt_Web_Site.editable=false;
 				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=false;
 				Form_Estab.Ddl_Banco1.openButton.enabled=false;
@@ -57,8 +57,8 @@
 				Form_Estab.Txt_Numero_Telefono1.editable=true;
 				Form_Estab.Ddl_Telefono2.openButton.enabled=true;
 				Form_Estab.Txt_Numero_Telefono2.editable=true;
-				Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=true;
-				Form_Estab.Txt_Documento_Facturacion.editable=true;				
+				/* Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=true;
+				Form_Estab.Txt_Documento_Facturacion.editable=true; */				
 				Form_Estab.Txt_Web_Site.editable=true;
 				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=true;
 				Form_Estab.Ddl_Banco1.openButton.enabled=true;
@@ -88,10 +88,10 @@
 				Form_Estab.Ddl_Telefono1.errorString="";
 				Form_Estab.Ddl_Telefono2.selectedIndex=-1;
 				Form_Estab.Ddl_Telefono2.errorString="";
-				Form_Estab.Ddl_Tipo_Regimen.selectedIndex=-1;
+				/* Form_Estab.Ddl_Tipo_Regimen.selectedIndex=-1;
 				Form_Estab.Ddl_Tipo_Regimen.errorString="";
 				Form_Estab.Txt_Documento_Facturacion.text="";
-				Form_Estab.Txt_Documento_Facturacion.errorString="";
+				Form_Estab.Txt_Documento_Facturacion.errorString=""; */
 				Form_Estab.Txt_Web_Site.text="";	
 				Form_Estab.Txt_Web_Site.errorString="";
 				
@@ -123,11 +123,17 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<Formularios:Registro_Establecimiento id="Form_Estab" horizontalCenter="0" verticalCenter="0">
+	
+	<s:Label y="23" left="80" fontFamily="Georgia" fontSize="20" text="REGISTRO ESTABLECIMIENTOS"/>
+	
+	<Formularios:Registro_Establecimiento id="Form_Estab" y="103" left="80">
 	</Formularios:Registro_Establecimiento>
 	
-	<s:Button id="Btn_Nuevo" width="90" label="NUEVO" click="Btn_Nuevo_clickHandler(event)"
-			  horizontalCenter="0" verticalCenter="-361"/>
+	<s:Button id="Btn_Nuevo" y="65" left="100" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
 	
-	<s:Button id="Btn_Guardar" x="727" y="802" width="90" label="GUARDAR"/>
+	<s:Button id="Btn_Guardar" x="636" y="709" width="90" label="GUARDAR"/>
+	<s:List id="Lst_Establecimientos" x="766" y="103" width="400" height="606"></s:List>
+	<s:Button id="Btn_Editar" x="199" y="66" width="90" label="EDITAR" enabled="false"/>
+		
 </s:Application>

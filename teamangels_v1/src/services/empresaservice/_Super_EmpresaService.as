@@ -161,6 +161,9 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
         operation = new mx.rpc.remoting.Operation(null, "getEmpresa_paged");
          operation.resultElementType = valueObjects.Empresa;
         operations["getEmpresa_paged"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresaByNit");
+         operation.resultType = Object;
+        operations["getAllEmpresaByNit"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -350,6 +353,24 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEmpresa_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllEmpresaByNit' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllEmpresaByNit(documento:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresaByNit");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
         return _internal_token;
     }
      

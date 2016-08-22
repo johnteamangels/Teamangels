@@ -63,13 +63,13 @@ class EstablecimientosService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Tipo_Regimen, $row->Documentacion_Facturacion, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Tipo_Regimen, $row->Documentacion_Facturacion, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);
@@ -97,7 +97,7 @@ class EstablecimientosService {
 		mysqli_stmt_execute($stmt);
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Tipo_Regimen, $row->Documentacion_Facturacion, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
 		
 		if(mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
@@ -117,10 +117,10 @@ class EstablecimientosService {
 	 */
 	public function createEstablecimientos($item) {
 
-		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Tipo_Establecimiento, Clase_Establecimiento, Nombre_Comercial, Email, Direccion_Establecimiento, Telefono_Uno, Numero_Uno, Telefono_Dos, Numero_Dos, Tipo_Regimen, Documentacion_Facturacion, Web_Site, Tipo_Cuenta_Uno, Codigo_Banco_Uno, Banco_Uno, Numero_Cuenta_Uno, Tipo_Cuenta_Dos, Codigo_Banco_Dos, Banco_Dos, Numero_Cuenta_Dos, Tipo_Cuenta_Tres, Codigo_Banco_Tres, Banco_tres, Numero_Cuenta_Tres, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = mysqli_prepare($this->connection, "INSERT INTO $this->tablename (Tipo_Establecimiento, Clase_Establecimiento, Nombre_Comercial, Email, Direccion_Establecimiento, Telefono_Uno, Numero_Uno, Telefono_Dos, Numero_Dos, Web_Site, Tipo_Cuenta_Uno, Codigo_Banco_Uno, Banco_Uno, Numero_Cuenta_Uno, Tipo_Cuenta_Dos, Codigo_Banco_Dos, Banco_Dos, Numero_Cuenta_Dos, Tipo_Cuenta_Tres, Codigo_Banco_Tres, Banco_tres, Numero_Cuenta_Tres, Fecha, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->throwExceptionOnError();
 
-		mysqli_stmt_bind_param($stmt, 'ssssssssssssssssssssssssss', $item->Tipo_Establecimiento, $item->Clase_Establecimiento, $item->Nombre_Comercial, $item->Email, $item->Direccion_Establecimiento, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Tipo_Regimen, $item->Documentacion_Facturacion, $item->Web_Site, $item->Tipo_Cuenta_Uno, $item->Codigo_Banco_Uno, $item->Banco_Uno, $item->Numero_Cuenta_Uno, $item->Tipo_Cuenta_Dos, $item->Codigo_Banco_Dos, $item->Banco_Dos, $item->Numero_Cuenta_Dos, $item->Tipo_Cuenta_Tres, $item->Codigo_Banco_Tres, $item->Banco_tres, $item->Numero_Cuenta_Tres, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
+		mysqli_stmt_bind_param($stmt, 'ssssssssssssssssssssssss', $item->Tipo_Establecimiento, $item->Clase_Establecimiento, $item->Nombre_Comercial, $item->Email, $item->Direccion_Establecimiento, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Web_Site, $item->Tipo_Cuenta_Uno, $item->Codigo_Banco_Uno, $item->Banco_Uno, $item->Numero_Cuenta_Uno, $item->Tipo_Cuenta_Dos, $item->Codigo_Banco_Dos, $item->Banco_Dos, $item->Numero_Cuenta_Dos, $item->Tipo_Cuenta_Tres, $item->Codigo_Banco_Tres, $item->Banco_tres, $item->Numero_Cuenta_Tres, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario);
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -144,10 +144,10 @@ class EstablecimientosService {
 	 */
 	public function updateEstablecimientos($item) {
 	
-		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Tipo_Establecimiento=?, Clase_Establecimiento=?, Nombre_Comercial=?, Email=?, Direccion_Establecimiento=?, Telefono_Uno=?, Numero_Uno=?, Telefono_Dos=?, Numero_Dos=?, Tipo_Regimen=?, Documentacion_Facturacion=?, Web_Site=?, Tipo_Cuenta_Uno=?, Codigo_Banco_Uno=?, Banco_Uno=?, Numero_Cuenta_Uno=?, Tipo_Cuenta_Dos=?, Codigo_Banco_Dos=?, Banco_Dos=?, Numero_Cuenta_Dos=?, Tipo_Cuenta_Tres=?, Codigo_Banco_Tres=?, Banco_tres=?, Numero_Cuenta_Tres=?, Fecha=?, Usuario=? WHERE Id=?");		
+		$stmt = mysqli_prepare($this->connection, "UPDATE $this->tablename SET Tipo_Establecimiento=?, Clase_Establecimiento=?, Nombre_Comercial=?, Email=?, Direccion_Establecimiento=?, Telefono_Uno=?, Numero_Uno=?, Telefono_Dos=?, Numero_Dos=?, Web_Site=?, Tipo_Cuenta_Uno=?, Codigo_Banco_Uno=?, Banco_Uno=?, Numero_Cuenta_Uno=?, Tipo_Cuenta_Dos=?, Codigo_Banco_Dos=?, Banco_Dos=?, Numero_Cuenta_Dos=?, Tipo_Cuenta_Tres=?, Codigo_Banco_Tres=?, Banco_tres=?, Numero_Cuenta_Tres=?, Fecha=?, Usuario=? WHERE Id=?");		
 		$this->throwExceptionOnError();
 		
-		mysqli_stmt_bind_param($stmt, 'ssssssssssssssssssssssssssi', $item->Tipo_Establecimiento, $item->Clase_Establecimiento, $item->Nombre_Comercial, $item->Email, $item->Direccion_Establecimiento, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Tipo_Regimen, $item->Documentacion_Facturacion, $item->Web_Site, $item->Tipo_Cuenta_Uno, $item->Codigo_Banco_Uno, $item->Banco_Uno, $item->Numero_Cuenta_Uno, $item->Tipo_Cuenta_Dos, $item->Codigo_Banco_Dos, $item->Banco_Dos, $item->Numero_Cuenta_Dos, $item->Tipo_Cuenta_Tres, $item->Codigo_Banco_Tres, $item->Banco_tres, $item->Numero_Cuenta_Tres, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Id);		
+		mysqli_stmt_bind_param($stmt, 'ssssssssssssssssssssssssi', $item->Tipo_Establecimiento, $item->Clase_Establecimiento, $item->Nombre_Comercial, $item->Email, $item->Direccion_Establecimiento, $item->Telefono_Uno, $item->Numero_Uno, $item->Telefono_Dos, $item->Numero_Dos, $item->Web_Site, $item->Tipo_Cuenta_Uno, $item->Codigo_Banco_Uno, $item->Banco_Uno, $item->Numero_Cuenta_Uno, $item->Tipo_Cuenta_Dos, $item->Codigo_Banco_Dos, $item->Banco_Dos, $item->Numero_Cuenta_Dos, $item->Tipo_Cuenta_Tres, $item->Codigo_Banco_Tres, $item->Banco_tres, $item->Numero_Cuenta_Tres, $item->Fecha->toString('YYYY-MM-dd HH:mm:ss'), $item->Usuario, $item->Id);		
 		$this->throwExceptionOnError();
 
 		mysqli_stmt_execute($stmt);		
@@ -228,13 +228,13 @@ class EstablecimientosService {
 		
 		$rows = array();
 		
-		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Tipo_Regimen, $row->Documentacion_Facturacion, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
 		
 	    while (mysqli_stmt_fetch($stmt)) {
 	      $row->Fecha = new DateTime($row->Fecha);
 	      $rows[] = $row;
 	      $row = new stdClass();
-	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Tipo_Regimen, $row->Documentacion_Facturacion, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Establecimiento, $row->Clase_Establecimiento, $row->Nombre_Comercial, $row->Email, $row->Direccion_Establecimiento, $row->Telefono_Uno, $row->Numero_Uno, $row->Telefono_Dos, $row->Numero_Dos, $row->Web_Site, $row->Tipo_Cuenta_Uno, $row->Codigo_Banco_Uno, $row->Banco_Uno, $row->Numero_Cuenta_Uno, $row->Tipo_Cuenta_Dos, $row->Codigo_Banco_Dos, $row->Banco_Dos, $row->Numero_Cuenta_Dos, $row->Tipo_Cuenta_Tres, $row->Codigo_Banco_Tres, $row->Banco_tres, $row->Numero_Cuenta_Tres, $row->Fecha, $row->Usuario);
 	    }
 		
 		mysqli_stmt_free_result($stmt);		

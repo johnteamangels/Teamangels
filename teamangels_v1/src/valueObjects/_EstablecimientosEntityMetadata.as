@@ -20,14 +20,14 @@ internal class _EstablecimientosEntityMetadata extends com.adobe.fiber.valueobje
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Tipo_Regimen", "Documentacion_Facturacion", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
+    model_internal static var allProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array("Id");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Tipo_Regimen", "Documentacion_Facturacion", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Tipo_Regimen", "Documentacion_Facturacion", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
+    model_internal static var dataProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Tipo_Regimen", "Documentacion_Facturacion", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
+    model_internal static var nonDerivedProperties:Array = new Array("Id", "Tipo_Establecimiento", "Clase_Establecimiento", "Nombre_Comercial", "Email", "Direccion_Establecimiento", "Telefono_Uno", "Numero_Uno", "Telefono_Dos", "Numero_Dos", "Web_Site", "Tipo_Cuenta_Uno", "Codigo_Banco_Uno", "Banco_Uno", "Numero_Cuenta_Uno", "Tipo_Cuenta_Dos", "Codigo_Banco_Dos", "Banco_Dos", "Numero_Cuenta_Dos", "Tipo_Cuenta_Tres", "Codigo_Banco_Tres", "Banco_tres", "Numero_Cuenta_Tres", "Fecha", "Usuario");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -57,8 +57,6 @@ internal class _EstablecimientosEntityMetadata extends com.adobe.fiber.valueobje
             model_internal::dependentsOnMap["Numero_Uno"] = new Array();
             model_internal::dependentsOnMap["Telefono_Dos"] = new Array();
             model_internal::dependentsOnMap["Numero_Dos"] = new Array();
-            model_internal::dependentsOnMap["Tipo_Regimen"] = new Array();
-            model_internal::dependentsOnMap["Documentacion_Facturacion"] = new Array();
             model_internal::dependentsOnMap["Web_Site"] = new Array();
             model_internal::dependentsOnMap["Tipo_Cuenta_Uno"] = new Array();
             model_internal::dependentsOnMap["Codigo_Banco_Uno"] = new Array();
@@ -91,8 +89,6 @@ internal class _EstablecimientosEntityMetadata extends com.adobe.fiber.valueobje
         model_internal::propertyTypeMap["Numero_Uno"] = "String";
         model_internal::propertyTypeMap["Telefono_Dos"] = "String";
         model_internal::propertyTypeMap["Numero_Dos"] = "String";
-        model_internal::propertyTypeMap["Tipo_Regimen"] = "String";
-        model_internal::propertyTypeMap["Documentacion_Facturacion"] = "String";
         model_internal::propertyTypeMap["Web_Site"] = "String";
         model_internal::propertyTypeMap["Tipo_Cuenta_Uno"] = "String";
         model_internal::propertyTypeMap["Codigo_Banco_Uno"] = "String";
@@ -398,18 +394,6 @@ internal class _EstablecimientosEntityMetadata extends com.adobe.fiber.valueobje
     }
 
     [Bindable(event="propertyChange")]
-    public function get isTipo_RegimenAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get isDocumentacion_FacturacionAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get isWeb_SiteAvailable():Boolean
     {
         return true;
@@ -565,18 +549,6 @@ internal class _EstablecimientosEntityMetadata extends com.adobe.fiber.valueobje
 
     [Bindable(event="propertyChange")]   
     public function get Numero_DosStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get Tipo_RegimenStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get Documentacion_FacturacionStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

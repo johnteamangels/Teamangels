@@ -53,6 +53,35 @@ class EmpresaService {
 	 *
 	 * @return array
 	 */
+	 
+	public function getAllEmpresaByNit($documento) {
+
+		$stmt = mysqli_prepare($this->connection, "SELECT Id, Tipo_Regimen FROM empresa WHERE Documento_Empresa = ? ");		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_bind_param($stmt, 's', $documento);		
+		$this->throwExceptionOnError();
+		
+		mysqli_stmt_execute($stmt);
+		$this->throwExceptionOnError();
+		
+		$rows = array();
+		
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Regimen);
+		
+	    while (mysqli_stmt_fetch($stmt)) {
+	      //$row->Fecha = new DateTime($row->Fecha);
+	      $rows[] = $row;
+	      $row = new stdClass();
+	      mysqli_stmt_bind_result($stmt, $row->Id, $row->Tipo_Regimen);
+	    }
+		
+		mysqli_stmt_free_result($stmt);
+	    mysqli_close($this->connection);
+	
+	    return $rows;
+	} 
+	 
 	public function getAllEmpresa() {
 
 		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename");		

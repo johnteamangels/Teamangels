@@ -58,8 +58,6 @@ public class _Super_Establecimientos extends flash.events.EventDispatcher implem
     private var _internal_Numero_Uno : String;
     private var _internal_Telefono_Dos : String;
     private var _internal_Numero_Dos : String;
-    private var _internal_Tipo_Regimen : String;
-    private var _internal_Documentacion_Facturacion : String;
     private var _internal_Web_Site : String;
     private var _internal_Tipo_Cuenta_Uno : String;
     private var _internal_Codigo_Banco_Uno : String;
@@ -156,18 +154,6 @@ public class _Super_Establecimientos extends flash.events.EventDispatcher implem
     public function get Numero_Dos() : String
     {
         return _internal_Numero_Dos;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Tipo_Regimen() : String
-    {
-        return _internal_Tipo_Regimen;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Documentacion_Facturacion() : String
-    {
-        return _internal_Documentacion_Facturacion;
     }
 
     [Bindable(event="propertyChange")]
@@ -355,24 +341,6 @@ public class _Super_Establecimientos extends flash.events.EventDispatcher implem
         if (oldValue !== value)
         {
             _internal_Numero_Dos = value;
-        }
-    }
-
-    public function set Tipo_Regimen(value:String) : void
-    {
-        var oldValue:String = _internal_Tipo_Regimen;
-        if (oldValue !== value)
-        {
-            _internal_Tipo_Regimen = value;
-        }
-    }
-
-    public function set Documentacion_Facturacion(value:String) : void
-    {
-        var oldValue:String = _internal_Documentacion_Facturacion;
-        if (oldValue !== value)
-        {
-            _internal_Documentacion_Facturacion = value;
         }
     }
 
