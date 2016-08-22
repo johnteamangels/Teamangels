@@ -161,15 +161,18 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "getMascotas_paged");
          operation.resultElementType = valueObjects.Mascotas;
         operations["getMascotas_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByDocumento");
+        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByDocumento_Propietario");
          operation.resultType = Object;
-        operations["getAllMascotasByDocumento"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByPropietario");
-         operation.resultType = Object;
-        operations["getAllMascotasByPropietario"] = operation;
+        operations["getAllMascotasByDocumento_Propietario"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByMascota");
          operation.resultType = Object;
         operations["getAllMascotasByMascota"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByPropietario");
+         operation.resultType = Object;
+        operations["getAllMascotasByPropietario"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllMascotasByDocumento");
+         operation.resultType = Object;
+        operations["getAllMascotasByDocumento"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "getMascotasByNombre_Mascota");
          operation.resultType = Object;
         operations["getMascotasByNombre_Mascota"] = operation;
@@ -197,12 +200,12 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
         var dmQuery : mx.data.ManagedQuery;
 
         dmQuery = new mx.data.ManagedQuery("getAllMascotas");
-        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Marca,Referencia,Fecha_Nacimiento,Senales_Particulares,Observaciones,Fecha,Usuario";
         dmQuery.parameters = "";
         _mascotasRPCDataManager.addManagedOperation(dmQuery);
 
         dmQuery = new mx.data.ManagedQuery("getMascotas_paged");
-        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario";
+        dmQuery.propertySpecifier = "Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Marca,Referencia,Fecha_Nacimiento,Senales_Particulares,Observaciones,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
@@ -366,7 +369,7 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getAllMascotasByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getAllMascotasByDocumento_Propietario' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -376,28 +379,10 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllMascotasByDocumento(documento:String) : mx.rpc.AsyncToken
+    public function getAllMascotasByDocumento_Propietario(documento:Object) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByDocumento");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByDocumento_Propietario");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllMascotasByPropietario' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllMascotasByPropietario(propietario:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByPropietario");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(propietario) ;
         return _internal_token;
     }
      
@@ -412,10 +397,46 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllMascotasByMascota(mascota:String) : mx.rpc.AsyncToken
+    public function getAllMascotasByMascota(mascota:Object) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByMascota");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(mascota) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllMascotasByPropietario' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllMascotasByPropietario(propietario:Object) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByPropietario");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(propietario) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getAllMascotasByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getAllMascotasByDocumento(documento:Object) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMascotasByDocumento");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
         return _internal_token;
     }
      
@@ -430,10 +451,10 @@ internal class _Super_MascotasService extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getMascotasByNombre_Mascota(Nombre_Mascota:Object, documento:Object) : mx.rpc.AsyncToken
+    public function getMascotasByNombre_Mascota(nombre_mascota:String, documento:String) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMascotasByNombre_Mascota");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(Nombre_Mascota,documento) ;
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nombre_mascota,documento) ;
         return _internal_token;
     }
      

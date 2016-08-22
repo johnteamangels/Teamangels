@@ -57,6 +57,7 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     private var _internal_Especie : String;
     private var _internal_Id_Raza : int;
     private var _internal_Raza : String;
+    private var _internal_Otra_Raza : String;
     private var _internal_Pelaje : String;
     private var _internal_Color : String;
     private var _internal_Tamano : String;
@@ -70,6 +71,9 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     private var _internal_Tipo_Alimentacion : String;
     private var _internal_Descripcion_Marca : String;
     private var _internal_Descripcion_Referencia : String;
+    private var _internal_Marca : String;
+    private var _internal_Referencia : String;
+    private var _internal_Fecha_Nacimiento : String;
     private var _internal_Senales_Particulares : String;
     private var _internal_Observaciones : String;
     private var _internal_Fecha : Date;
@@ -152,6 +156,12 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     }
 
     [Bindable(event="propertyChange")]
+    public function get Otra_Raza() : String
+    {
+        return _internal_Otra_Raza;
+    }
+
+    [Bindable(event="propertyChange")]
     public function get Pelaje() : String
     {
         return _internal_Pelaje;
@@ -227,6 +237,24 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
     public function get Descripcion_Referencia() : String
     {
         return _internal_Descripcion_Referencia;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Marca() : String
+    {
+        return _internal_Marca;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Referencia() : String
+    {
+        return _internal_Referencia;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get Fecha_Nacimiento() : String
+    {
+        return _internal_Fecha_Nacimiento;
     }
 
     [Bindable(event="propertyChange")]
@@ -339,6 +367,15 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Raza = value;
+        }
+    }
+
+    public function set Otra_Raza(value:String) : void
+    {
+        var oldValue:String = _internal_Otra_Raza;
+        if (oldValue !== value)
+        {
+            _internal_Otra_Raza = value;
         }
     }
 
@@ -456,6 +493,33 @@ public class _Super_Mascotas extends flash.events.EventDispatcher implements com
         if (oldValue !== value)
         {
             _internal_Descripcion_Referencia = value;
+        }
+    }
+
+    public function set Marca(value:String) : void
+    {
+        var oldValue:String = _internal_Marca;
+        if (oldValue !== value)
+        {
+            _internal_Marca = value;
+        }
+    }
+
+    public function set Referencia(value:String) : void
+    {
+        var oldValue:String = _internal_Referencia;
+        if (oldValue !== value)
+        {
+            _internal_Referencia = value;
+        }
+    }
+
+    public function set Fecha_Nacimiento(value:String) : void
+    {
+        var oldValue:String = _internal_Fecha_Nacimiento;
+        if (oldValue !== value)
+        {
+            _internal_Fecha_Nacimiento = value;
         }
     }
 

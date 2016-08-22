@@ -229,19 +229,15 @@
       <parameter name="startIndex" type="integer"/>
       <parameter name="numItems" type="integer"/>
     </function>
-    <function name="getMascotasByNombre_Mascota" return-type="Mascotas">
+    <function name="getAllMascotasByDocumento_Propietario" return-type="opaque">
       <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+        <item name="analyzed">false</item>
       </annotation>
       <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
+        <item name="inputParams">opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
-      <parameter name="Nombre_Mascota" type="string"/>
-      <parameter name="documento" type="string"/>
+      <parameter name="documento" type="opaque"/>
     </function>
     <function name="getAllMascotasByMascota" return-type="opaque">
       <annotation name="analyze group">
@@ -273,14 +269,15 @@
       </annotation>
       <parameter name="documento" type="opaque"/>
     </function>
-    <function name="getAllMascotasByDocumento_Propietario" return-type="opaque">
+    <function name="getMascotasByNombre_Mascota" return-type="opaque">
       <annotation name="analyze group">
         <item name="analyzed">false</item>
       </annotation>
       <annotation name="original signature">
-        <item name="inputParams">opaque</item>
+        <item name="inputParams">opaque,opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
+      <parameter name="nombre_mascota" type="opaque"/>
       <parameter name="documento" type="opaque"/>
     </function>
   </service>
@@ -301,25 +298,21 @@
       <item name="delete">deleteMascotas</item>
       <item name="fillFunc">getAllMascotas,getMascotas_paged</item>
       <item name="managingService">MascotasService</item>
-      <item name="findItem">getMascotasByNombre_Mascota</item>
     </annotation>
     <annotation name="getMascotasByID">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Marca,Referencia,Fecha_Nacimiento,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <annotation name="getAllMascotas">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Marca,Referencia,Fecha_Nacimiento,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <annotation name="getMascotas_paged">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Marca,Referencia,Fecha_Nacimiento,Senales_Particulares,Observaciones,Fecha,Usuario</item>
       <item name="pagingEnabled">true</item>
       <item name="positionalPagingParameters">true</item>
       <item name="countOperation">count</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
-    </annotation>
-    <annotation name="getMascotasByNombre_Mascota">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <id name="Id" type="integer"/>
     <property name="Documento" type="string"/>
@@ -344,6 +337,9 @@
     <property name="Tipo_Alimentacion" type="string"/>
     <property name="Descripcion_Marca" type="string"/>
     <property name="Descripcion_Referencia" type="string"/>
+    <property name="Marca" type="string"/>
+    <property name="Referencia" type="string"/>
+    <property name="Fecha_Nacimiento" type="string"/>
     <property name="Senales_Particulares" type="string"/>
     <property name="Observaciones" type="string"/>
     <property name="Fecha" type="date"/>

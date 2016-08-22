@@ -342,7 +342,18 @@
 	
 	</s:DropDownList>
 	<s:Label x="24" y="422" text="Referencia"/>
-	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca"></s:DropDownList>
+	<s:DropDownList id="Ddl_Marca" x="25" y="389" width="180" prompt="Marca">
+		
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>DOG CHOW</fx:String>
+				<fx:String>PEDIGREE</fx:String>
+				<fx:String>VITAL</fx:String>
+				<fx:String>PURINA</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+		
+	</s:DropDownList>
 	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
 	<s:Label x="25" y="355" text="PRODUCTO" textDecoration="underline"/>
 	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" change="Txt_Descripcion_Marca_changeHandler(event)"/>

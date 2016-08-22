@@ -13,6 +13,7 @@
 			import mx.events.ValidationResultEvent;
 			import mx.rpc.events.ResultEvent;
 			
+			import spark.components.DropDownList;
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
 			
@@ -375,6 +376,9 @@
 						Reg2.Descripcion_Referencia = Reg_Mascota.Txt_Descripcion_Referencia.text;
 						Reg2.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
 						Reg2.Otra_Raza =  Reg_Mascota.Txt_Otra_Raza.text;
+						Reg2.Marca = Reg_Mascota.Ddl_Marca.selectedItem;
+						Reg2.Referencia = Reg_Mascota.Ddl_Referencia.selectedItem;
+						Reg2.Fecha_Nacimiento = Data_Model_Mascota.Fecha_Nacimiento;
 						Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
 						Reg2.Fecha = new Date();
 						Reg2.Usuario = "ADMIN"; 
@@ -437,6 +441,9 @@
 					Reg.Senales_Particulares = Reg_Mascota.Txta_Observaciones.text;
 					Reg.Observaciones = Reg_Mascota.Txta_Observaciones.text;
 					Reg.Otra_Raza = Reg_Mascota.Txt_Otra_Raza.text;
+					Reg.Marca = Reg_Mascota.Ddl_Marca.selectedItem;
+					Reg.Referencia = Reg_Mascota.Ddl_Referencia.selectedItem;
+					Reg.Fecha_Nacimiento = Data_Model_Mascota.Fecha_Nacimiento;
 					Reg.Fecha = new Date();
 					Reg.Usuario = "ADMIN"; 
 					
@@ -764,7 +771,7 @@
 		<fx:Model  id="Data_Model_Mascota">
 			<Data>
 				<Id>{}</Id>				
-				
+				<Fecha_Nacimiento>{Reg_Mascota.Ddl_Dia.selectedItem}-{Reg_Mascota.Ddl_Mes.selectedItem}-{Reg_Mascota.Txt_Ano.text}</Fecha_Nacimiento>
 			</Data>			
 		</fx:Model>	
 		
