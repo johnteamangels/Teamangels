@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="678" height="682">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Label x="42" y="34" text="Tipo Establecimiento"/>
+	<s:DropDownList id="Ddl_Tipo_Establecimiento" x="42" y="48" width="170"
+					prompt="Tipo Establecimiento">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>SUCURSAL</fx:String>
+				<fx:String>UNICO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="235" y="34" text="Clase de  Establecimiento"/>
+	<s:DropDownList id="Ddl_Clase_Establecimiento" x="235" y="48" width="207"
+					prompt="Clase de  Establecimiento">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>SUCURSAL</fx:String>
+				<fx:String>UNICO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	
+	<s:Label x="42" y="88" text="Nombre Comercial"/>
+	<s:TextInput id="Txt_Nombre_Comercial" x="42" y="102" width="400"/>
+	
+	<s:Label x="42" y="140" text="Email"/>
+	<s:TextInput id="Txt_Email" x="42" y="154" width="365"/>
+	
+	<s:Label x="42" y="193" text="Dirección"/>
+	<s:TextInput id="Txt_Direccion" x="42" y="207" width="365"/>
+	
+	<s:Label x="42" y="245" text="Telefono 1"/>
+	<s:DropDownList id="Ddl_Telefono1" x="42" y="259" width="170" prompt="Telefono ">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FIJO</fx:String>
+				<fx:String>CELULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="235" y="245" text="Numero Telefono"/>
+	<s:TextInput id="Txt_Numero_Telefono1" x="235" y="259" width="170" maxChars="10" restrict="0-9"/>
+	
+	<s:Label x="42" y="294" text="Telefono 2"/>
+	<s:DropDownList id="Ddl_Telefono2" x="42" y="308" width="170" prompt="Telefono">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>FIJO</fx:String>
+				<fx:String>CELULAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="235" y="294" text="Numero Telefono"/>
+	<s:TextInput id="Txt_Numero_Telefono2" x="235" y="308" width="170" maxChars="10" restrict="0-9"/>
+	
+	<s:Label x="42" y="393" text="Web Site"/>
+	<s:TextInput id="Txt_Web_Site" x="42" y="407" width="365"/>
+	
+	<s:Label x="42" y="342" width="112" fontSize="13" text="Tipo de Régimen" verticalAlign="middle"/>
+	<s:DropDownList id="Ddl_Tipo_Regimen" x="42" y="357" width="170" prompt="Tipo de Régimen">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>COMUN</fx:String>
+				<fx:String>SIMPLIFICADO</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="235" y="343" text="Documento Facturación"/>
+	<s:TextInput id="Txt_Documento_Facturacion" x="235" y="357" width="170"/>
+	
+	<s:Label x="42" y="466" text="CUENTAS BANCARIAS"/>
+	
+	<s:Label x="42" y="498" width="112" fontSize="13" text="Tipo de Cuenta" verticalAlign="middle"/>
+	<s:DropDownList id="Ddl_Tipo_Cuenta1" x="42" y="513" width="170" prompt="Tipo de Cuenta">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>AHORROS</fx:String>
+				<fx:String>CORRIENTE</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="42" y="552" width="112" fontSize="13" text="Tipo de Cuenta" verticalAlign="middle"/>
+	<s:DropDownList id="Ddl_Tipo_Cuenta2" x="42" y="567" width="170" prompt="Tipo de Cuenta">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>AHORROS</fx:String>
+				<fx:String>CORRIENTE</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="42" y="608" width="112" fontSize="13" text="Tipo de Cuenta" verticalAlign="middle"/>
+	<s:DropDownList id="Ddl_Tipo_Cuenta3" x="42" y="623" width="170" prompt="Tipo de Cuenta">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>AHORROS</fx:String>
+				<fx:String>CORRIENTE</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label x="235" y="498" text="Banco"/>
+	<s:DropDownList id="Ddl_Banco1" x="235" y="513" width="200" prompt="Banco">
+	</s:DropDownList>
+	
+	<s:Label x="235" y="552" text="Banco"/>
+	<s:DropDownList id="Ddl_Banco2" x="235" y="567" width="200" prompt="Banco">
+	</s:DropDownList>
+	
+	<s:Label x="235" y="608" text="Banco"/>
+	<s:DropDownList id="Ddl_Banco3" x="235" y="623" width="200" prompt="Banco">
+	</s:DropDownList>
+	
+	<s:Label x="453" y="498" text="Nº de Cuenta"/>
+	<s:TextInput id="Txt_Num_Cuenta1" x="453" y="513" width="200"/>
+	
+	<s:Label x="453" y="552" text="Nº de Cuenta"/>
+	<s:TextInput id="Txt_Num_Cuenta2" x="453" y="567" width="200"/>
+	
+	<s:Label x="453" y="608" text="Nº de Cuenta"/>
+	<s:TextInput id="Txt_Num_Cuenta3" x="453" y="623" width="200"/>
+	
+</s:Group>

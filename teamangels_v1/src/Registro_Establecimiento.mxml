@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Formularios="Formularios.*"
+			   xmlns:establecimientosservice="services.establecimientosservice.*"
+			   height="905" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ValidationResultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import valueObjects.Establecimientos;
+			
+			// FUNCION DE INICIALIZACION DE LA APLICACION. DESACTIVANDO LOS CONTROLES.
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				desactivarcontroles();
+			}
+			
+			// FUNCION DONDE ACTIVA Y LIMPIA LOS CONTROLES.
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				ActivarControles();
+				Limpiar();
+			}
+			
+			// FUNCION DONDE GUARDA.
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+				if(ValidarTodo()){
+					
+					var Reg:Establecimientos = new Establecimientos();
+					
+					Reg.Tipo_Establecimiento = Data_Model_Estab.Tipo_Estab;
+					Reg.Clase_Establecimiento = Data_Model_Estab.Clase_Estab;
+					Reg.Nombre_Comercial = Data_Model_Estab.Nombre_Comercial;
+					Reg.Email = Data_Model_Estab.Email;
+					Reg.Direccion_Establecimiento = Data_Model_Estab.Direccion_Estab;
+					Reg.Telefono_Uno = Data_Model_Estab.Telefono1;
+					Reg.Numero_Uno = Data_Model_Estab.Numero1;
+					Reg.Telefono_Dos = Data_Model_Estab.Telefono2;
+					Reg.Numero_Dos = Data_Model_Estab.Numero2;
+					Reg.Tipo_Regimen = Data_Model_Estab.Tipo_Regimen;
+					Reg.Documentacion_Facturacion = Data_Model_Estab.Documento_Fac;
+					Reg.Web_Site = Data_Model_Estab.Web_Site;
+					Reg.Tipo_Cuenta_Uno = Data_Model_Estab.Tipo_Cuenta_Uno;
+					Reg.Codigo_Banco_Uno = Data_Model_Estab.Tipo_Banco_Uno
+					Reg.Banco_Uno = Data_Model_Estab.Banco_Uno
+					Reg.Numero_Cuenta_Uno = Data_Model_Estab.Numero_Cuenta_Uno;
+					Reg.Tipo_Cuenta_Dos = Data_Model_Estab.Tipo_Cuenta_Dos;
+					Reg.Codigo_Banco_Dos = Data_Model_Estab.Tipo_Banco_Dos
+					Reg.Banco_Dos = Data_Model_Estab.Banco_Dos;
+					Reg.Numero_Cuenta_Dos = Data_Model_Estab.Numero_Cuenta_Dos;
+					Reg.Tipo_Cuenta_Tres = Data_Model_Estab.Tipo_Cuenta_Tres;
+					Reg.Codigo_Banco_Tres = Data_Model_Estab.Tipo_Banco_Tres
+					Reg.Banco_tres = Data_Model_Estab.Banco_Tres;
+					Reg.Numero_Cuenta_Tres = Data_Model_Estab.Numero_Cuenta_Tres;
+					Reg.Fecha = new Date();
+					Reg.Usuario = "ADMIN"; 
+					
+					createEstablecimientosResult.token = establecimientosService.createEstablecimientos(Reg);
+					establecimientosService.commit();
+
+				}
+				
+			}
+			
+			protected function createEstablecimientosResult_resultHandler(event:ResultEvent):void
+			{
+				Limpiar();
+				
+			}
+			
+			// FUNCION DONDE DESACTIVA TODOS LOS CONTROLES.
+			private function desactivarcontroles():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.openButton.enabled=false;
+				Form_Estab.Ddl_Clase_Establecimiento.openButton.enabled=false;
+				Form_Estab.Txt_Nombre_Comercial.editable=false;
+				Form_Estab.Txt_Email.editable=false;
+				Form_Estab.Txt_Direccion.editable=false;
+				Form_Estab.Ddl_Telefono1.openButton.enabled=false;
+				Form_Estab.Txt_Numero_Telefono1.editable=false;
+				Form_Estab.Ddl_Telefono2.openButton.enabled=false;
+				Form_Estab.Txt_Numero_Telefono2.editable=false;
+				Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=false;
+				Form_Estab.Txt_Documento_Facturacion.editable=false;				
+				Form_Estab.Txt_Web_Site.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=false;
+				Form_Estab.Ddl_Banco1.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta1.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta2.openButton.enabled=false;
+				Form_Estab.Ddl_Banco2.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta2.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta3.openButton.enabled=false;
+				Form_Estab.Ddl_Banco3.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta3.editable=false;			
+				
+			}
+			
+			// FUNCION DONDE ACTIVA TODOS LOS CONTROLES.
+			private function ActivarControles():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.openButton.enabled=true;
+				Form_Estab.Ddl_Clase_Establecimiento.openButton.enabled=true;
+				Form_Estab.Txt_Nombre_Comercial.editable=true;
+				Form_Estab.Txt_Email.editable=true;
+				Form_Estab.Txt_Direccion.editable=true;
+				Form_Estab.Ddl_Telefono1.openButton.enabled=true;
+				Form_Estab.Txt_Numero_Telefono1.editable=true;
+				Form_Estab.Ddl_Telefono2.openButton.enabled=true;
+				Form_Estab.Txt_Numero_Telefono2.editable=true;
+				Form_Estab.Ddl_Tipo_Regimen.openButton.enabled=true;
+				Form_Estab.Txt_Documento_Facturacion.editable=true;				
+				Form_Estab.Txt_Web_Site.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=true;
+				Form_Estab.Ddl_Banco1.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta1.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta2.openButton.enabled=true;
+				Form_Estab.Ddl_Banco2.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta2.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta3.openButton.enabled=true;
+				Form_Estab.Ddl_Banco3.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta3.editable=true;
+			}
+			
+			// FUNCION DONDE LIMPIA TODOS LOS CAMPOS.
+			private function Limpiar():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Establecimiento.errorString="";
+				Form_Estab.Ddl_Clase_Establecimiento.selectedIndex=-1;
+				Form_Estab.Ddl_Clase_Establecimiento.errorString="";
+				Form_Estab.Txt_Nombre_Comercial.text="";
+				Form_Estab.Txt_Nombre_Comercial.errorString="";
+				Form_Estab.Txt_Email.text="";
+				Form_Estab.Txt_Email.errorString="";
+				Form_Estab.Txt_Direccion.text="";
+				Form_Estab.Txt_Direccion.errorString="";
+				Form_Estab.Ddl_Telefono1.selectedIndex=-1;
+				Form_Estab.Ddl_Telefono1.errorString="";
+				Form_Estab.Txt_Numero_Telefono1.text="";
+				Form_Estab.Txt_Numero_Telefono1.errorString="";
+				Form_Estab.Ddl_Telefono2.selectedIndex=-1;
+				Form_Estab.Ddl_Telefono2.errorString="";
+				Form_Estab.Txt_Numero_Telefono2.text="";
+				Form_Estab.Txt_Numero_Telefono2.errorString="";
+				Form_Estab.Ddl_Tipo_Regimen.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Regimen.errorString="";
+				Form_Estab.Txt_Documento_Facturacion.text="";
+				Form_Estab.Txt_Documento_Facturacion.errorString="";
+				Form_Estab.Txt_Web_Site.text="";	
+				Form_Estab.Txt_Web_Site.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta1.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta1.errorString="";
+				Form_Estab.Ddl_Banco1.selectedIndex=-1;
+				Form_Estab.Ddl_Banco1.errorString="";
+				Form_Estab.Txt_Num_Cuenta1.text="";
+				Form_Estab.Txt_Num_Cuenta1.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta2.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta2.errorString="";
+				Form_Estab.Ddl_Banco2.selectedIndex=-1;
+				Form_Estab.Ddl_Banco2.errorString="";
+				Form_Estab.Txt_Num_Cuenta2.text="";
+				Form_Estab.Txt_Num_Cuenta2.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta3.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta3.errorString="";
+				Form_Estab.Ddl_Banco3.selectedIndex=-1;
+				Form_Estab.Ddl_Banco3.errorString="";
+				Form_Estab.Txt_Num_Cuenta3.text="";
+				Form_Estab.Txt_Num_Cuenta3.errorString="";
+				
+			}			
+			
+			// FUNCION DONDE VALIDA TODOS LOS CAMPOS.
+			private function ValidarTodo():Boolean{
+				
+				var Tipo_Establecimiento:ValidationResultEvent=Validacion_Estab.validate();				
+				var Clase_Establecimiento:ValidationResultEvent=Validacion_Clase_Estab.validate();				
+				var Nombre_Comercial:ValidationResultEvent=ValidacionNombreComerial.validate();
+				var Email:ValidationResultEvent=ValidarEmail.validate();
+				var Direccion:ValidationResultEvent=ValidacionDireccion.validate();
+				var Telefono1:ValidationResultEvent=Validacion_Tipo_Telefono.validate();
+				var NumeroTelefono:ValidationResultEvent=ValidacionTelefono.validate();
+				var Tipo_Cuenta:ValidationResultEvent=Validacion_Tipo_Cuenta.validate();				
+				var Banco:ValidationResultEvent=Validacion_Banco.validate();				
+				var Numero_Cuenta:ValidationResultEvent=ValidacionNumeroCuenta.validate();
+						
+				
+				var rsp:Boolean=false;
+				
+				if( Tipo_Establecimiento.type==ValidationResultEvent.VALID
+					
+					&& Clase_Establecimiento.type==ValidationResultEvent.VALID
+					&& Nombre_Comercial.type==ValidationResultEvent.VALID
+					&& Email.type==ValidationResultEvent.VALID
+					&& Direccion.type==ValidationResultEvent.VALID
+					&& Telefono1.type==ValidationResultEvent.VALID
+					&& NumeroTelefono.type==ValidationResultEvent.VALID	
+					&& Tipo_Cuenta.type==ValidationResultEvent.VALID
+					&& Banco.type==ValidationResultEvent.VALID
+					&& Numero_Cuenta.type==ValidationResultEvent.VALID
+					
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}
+			
+	
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<fx:Model id="Data_Model_Estab">
+			<Data>
+				<Id></Id>
+				<Tipo_Estab>{Form_Estab.Ddl_Tipo_Establecimiento.selectedItem}</Tipo_Estab>
+				<Clase_Estab>{Form_Estab.Ddl_Clase_Establecimiento.selectedItem.Clase_Establecimiento}</Clase_Estab>
+				<Nombre_Comercial>@{Form_Estab.Txt_Nombre_Comercial.text}</Nombre_Comercial>
+				<Email>@{Form_Estab.Txt_Email.text}</Email>
+				<Direccion_Estab>@{Form_Estab.Txt_Direccion.text}</Direccion_Estab>
+				<Telefono1>{Form_Estab.Ddl_Telefono1.selectedItem}</Telefono1>
+				<Numero1>@{Form_Estab.Txt_Numero_Telefono1.text}</Numero1>
+				<Telefono2>{Form_Estab.Ddl_Telefono2.selectedItem}</Telefono2>
+				<Numero2>@{Form_Estab.Txt_Numero_Telefono2.text}</Numero2>
+				<Tipo_Regimen>{Form_Estab.Ddl_Tipo_Regimen.selectedItem}</Tipo_Regimen>
+				<Documento_Fac>@{Form_Estab.Txt_Documento_Facturacion.text}</Documento_Fac>
+				<Web_Site>@{Form_Estab.Txt_Web_Site.text}</Web_Site>				
+				<Tipo_Cuenta_Uno>{Form_Estab.Ddl_Tipo_Cuenta1.selectedItem}</Tipo_Cuenta_Uno>
+				<Tipo_Banco_Uno>{Form_Estab.Ddl_Banco1.selectedItem.Codigo}</Tipo_Banco_Uno>
+				<Banco_Uno>{Form_Estab.Ddl_Banco1.selectedItem.Banco}</Banco_Uno>
+				<Numero_Cuenta_Uno>@{Form_Estab.Txt_Num_Cuenta1.text}</Numero_Cuenta_Uno>
+				<Tipo_Cuenta_Dos>{Form_Estab.Ddl_Tipo_Cuenta2.selectedItem}</Tipo_Cuenta_Dos>
+				<Tipo_Banco_Dos>{Form_Estab.Ddl_Banco2.selectedItem.Codigo}</Tipo_Banco_Dos>
+				<Banco_Dos>{Form_Estab.Ddl_Banco2.selectedItem.Banco}</Banco_Dos>
+				<Numero_Cuenta_Dos>@{Form_Estab.Txt_Num_Cuenta2.text}</Numero_Cuenta_Dos>
+				<Tipo_Cuenta_Tres>{Form_Estab.Ddl_Tipo_Cuenta3.selectedItem}</Tipo_Cuenta_Tres>
+				<Tipo_Banco_Tres>{Form_Estab.Ddl_Banco3.selectedItem.Codigo}</Tipo_Banco_Tres>
+				<Banco_Tres>{Form_Estab.Ddl_Banco3.selectedItem.Banco}</Banco_Tres>
+				<Numero_Cuenta_Tres>@{Form_Estab.Txt_Num_Cuenta3.text}</Numero_Cuenta_Tres>
+			</Data>			
+		</fx:Model>
+		
+		<s:NumberValidator id="Validacion_Estab"
+						   source="{Form_Estab.Ddl_Tipo_Establecimiento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Clase_Estab"
+						   source="{Form_Estab.Ddl_Clase_Establecimiento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionNombreComerial"
+			source="{Form_Estab.Txt_Nombre_Comercial}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<mx:EmailValidator
+			id="ValidarEmail"
+			source="{Form_Estab.Txt_Email}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionDireccion"
+			source="{Form_Estab.Txt_Direccion}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Telefono"
+						   source="{Form_Estab.Ddl_Telefono1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionTelefono"
+			source="{Form_Estab.Txt_Numero_Telefono1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Cuenta"
+						   source="{Form_Estab.Ddl_Tipo_Cuenta1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Banco"
+						   source="{Form_Estab.Ddl_Banco1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionNumeroCuenta"
+			source="{Form_Estab.Txt_Num_Cuenta1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:CallResponder id="createEstablecimientosResult" result="createEstablecimientosResult_resultHandler(event)"/>
+		<establecimientosservice:EstablecimientosService id="establecimientosService"
+														 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+														 showBusyCursor="true"/>
+		
+		
+	</fx:Declarations>
+	
+	<Formularios:Registro_Establecimiento id="Form_Estab" horizontalCenter="0" verticalCenter="0">
+	</Formularios:Registro_Establecimiento>
+	
+	<s:Button id="Btn_Nuevo" width="90" label="NUEVO" click="Btn_Nuevo_clickHandler(event)"
+			  horizontalCenter="0" verticalCenter="-361"/>
+	
+	<s:Button id="Btn_Guardar" x="902" y="806" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	
+</s:Application>

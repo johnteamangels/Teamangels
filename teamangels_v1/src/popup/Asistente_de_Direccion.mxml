@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="314">
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="314"
+			   close="removeMe()">
 	<fx:Script>
 		<![CDATA[
+			import mx.managers.PopUpManager;
+			
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
+			
+			public var DireccionCompleta:TextInput;
 			
 			protected function Cbx_Via_changeHandler(event:IndexChangeEvent):void
 			{
@@ -89,7 +94,7 @@
 			
 			protected function Txt_Numero3_changeHandler(event:TextOperationEvent):void
 			{
-			     Lbl_Numero3.text=Txt_Numero3.text;
+				Lbl_Numero3.text=Txt_Numero3.text;
 			}
 			
 			protected function Cbx_Geografia2_changeHandler(event:IndexChangeEvent):void
@@ -132,7 +137,7 @@
 					
 					Lbl_Complemento2.text=Txt_Complemento.text;
 				}
-								
+				
 			}
 			
 			protected function Txt_Barrio_changeHandler(event:TextOperationEvent):void
@@ -197,8 +202,15 @@
 				
 				Txt_Barrio.editable=false;
 				
+				DireccionCompleta.text=Txt_Direccion_Completa.text;
+				
+				removeMe();
 			}
-						
+			
+			private function removeMe():void {
+				PopUpManager.removePopUp(this);
+			}
+			
 			protected function Btn_Cancelar_clickHandler(event:MouseEvent):void
 			{
 				Lbl_Via.text="";
@@ -215,7 +227,7 @@
 				Lbl_Complemento2.text="";
 				Lbl_Barrio.text="";
 				
-			    Cbx_Via.selectedIndex=-1;
+				Cbx_Via.selectedIndex=-1;
 				Txt_Numero.text="";
 				Cbx_Letra1.selectedIndex=-1;
 				Cbx_Bis.selectedIndex=-1;
@@ -265,8 +277,10 @@
 				
 				Txt_Direccion_Completa.text="";
 				
+				Txt_Direccion_Completa.text="";
+				
 			}
-		
+			
 			
 		]]>
 	</fx:Script>
@@ -562,5 +576,5 @@
 			  click="Btn_Cancelar_clickHandler(event)"/>
 	<s:Button id="Btn_Aceptar" x="386" y="256" label="Aceptar"
 			  click="Btn_Aceptar_clickHandler(event)"/>
-		
-</s:Group>
+	
+</s:TitleWindow>

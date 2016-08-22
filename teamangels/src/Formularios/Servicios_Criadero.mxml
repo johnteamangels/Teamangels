@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="214" height="300">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="Rbt_Criadero"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup horizontalCenter="0" verticalCenter="0">
+		<s:RadioButton label="Bovinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Caninos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Caprinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Equinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Felinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Porcinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton label="Otro" groupName="Rbt_Criadero"/>
+	</s:VGroup>
+	<s:RadioButton x="59" y="52" label="CRIADERO"/>
+</s:Group>

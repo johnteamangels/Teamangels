@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="618" height="314">
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="618" height="360" borderAlpha="1">
 	<fx:Script>
 		<![CDATA[
+			import mx.controls.Text;
+			
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
+						
+			public var InfoDireccion:String;
 			
 			protected function Cbx_Via_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Via.text=Cbx_Via.selectedItem;
-				
+				//Txt_Direccion_Completa.text=Cbx_Via.selectedItem;
 			}
 			
 			protected function Txt_Numero_changeHandler(event:TextOperationEvent):void
 			{
 				Lbl_Numero1.text=Txt_Numero.text;
-				
+				//Txt_Direccion_Completa.text=Txt_Numero.text;
 			}
 			
 			protected function Cbx_Letra1_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Letra1.text=Cbx_Letra1.selectedItem;
+				//Txt_Direccion_Completa.text=Cbx_Letra1.selectedItem;
 				
-				if(Cbx_Letra1.selectedItem == '-'){
+				if(Cbx_Letra1.selectedItem == "-"){
 					
 					Lbl_Letra1.text="";
+					Lbl_Letra1.visible=false;
 					
 				}else{
 					
-					Lbl_Letra1.text=Cbx_Letra1.selectedItem;
+					Lbl_Letra1.visible=true;
 				}
-				
 			}
 			
 			protected function Cbx_Bis_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Bis.text=Cbx_Bis.selectedItem;
 				
-				if(Cbx_Bis.selectedItem == '-'){
+				if(Cbx_Bis.selectedItem == "-"){
 					
 					Lbl_Bis.text="";
+					Lbl_Bis.visible=false;
 					
 				}else{
 					
-					Lbl_Bis.text=Cbx_Bis.selectedItem;
+					Lbl_Bis.visible=true;
 				}
+				
+				
 			}
 			
 			protected function Cbx_Letra2_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Letra2.text=Cbx_Letra2.selectedItem;
 				
-				if(Cbx_Letra2.selectedItem == '-'){
+				if(Cbx_Letra2.selectedItem == "-"){
 					
 					Lbl_Letra2.text="";
+					Lbl_Letra2.visible=false;
 					
 				}else{
 					
-					Lbl_Letra2.text=Cbx_Letra2.selectedItem;
+					Lbl_Letra2.visible=true;
 				}
 			}
 			
@@ -66,13 +76,14 @@
 			{
 				Lbl_Geografia1.text=Cbx_Geografia1.selectedItem;
 				
-				if(Cbx_Geografia1.selectedItem == '-'){
+				if(Cbx_Geografia1.selectedItem == "-"){
 					
 					Lbl_Geografia1.text="";
+					Lbl_Geografia1.visible=false;
 					
 				}else{
 					
-					Lbl_Geografia1.text=Cbx_Geografia1.selectedItem;
+					Lbl_Geografia1.visible=true;
 				}
 			}
 			
@@ -84,121 +95,58 @@
 			protected function Cbx_Letra3_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Letra3.text=Cbx_Letra3.selectedItem;
-				
 			}
 			
 			protected function Txt_Numero3_changeHandler(event:TextOperationEvent):void
 			{
-			     Lbl_Numero3.text=Txt_Numero3.text;
+				Lbl_Numero3.text=Txt_Numero3.text;
 			}
 			
 			protected function Cbx_Geografia2_changeHandler(event:IndexChangeEvent):void
 			{
 				LbL_Geografia2.text=Cbx_Geografia2.selectedItem;
 				
-				if(Cbx_Geografia2.selectedItem == '-'){
+				if(Cbx_Geografia2.selectedItem == "-"){
 					
 					LbL_Geografia2.text="";
+					LbL_Geografia2.visible=false;
 					
 				}else{
 					
-					LbL_Geografia2.text=Cbx_Geografia2.selectedItem;
-				}
+					LbL_Geografia2.visible=true;
+				}				
+				
 			}
 			
 			protected function Cbx_Complemento_changeHandler(event:IndexChangeEvent):void
 			{
 				Lbl_Complemento1.text=Cbx_Complemento.selectedItem;
 				
-				if(Cbx_Complemento.selectedItem == '-'){
+				if(Cbx_Complemento.selectedItem == "-"){
 					
 					Lbl_Complemento1.text="";
+					Lbl_Complemento1.visible=false;
 					
 				}else{
 					
-					Lbl_Complemento1.text=Cbx_Complemento.selectedItem;
+					Lbl_Complemento1.visible=true;
 				}
+				
 			}
 			
-			protected function convert(event:TextOperationEvent):void
+			protected function Txt_Complemento_changeHandler(event:TextOperationEvent):void
 			{
 				Txt_Complemento.text=Txt_Complemento.text.toUpperCase();
+				Lbl_Complemento2.text=Txt_Complemento.text;				
 				
-				if(Txt_Complemento.text==""){
-					
-					Lbl_Complemento2.text="";
-					
-				}else{
-					
-					Lbl_Complemento2.text=Txt_Complemento.text;
-				}
-								
 			}
 			
 			protected function Txt_Barrio_changeHandler(event:TextOperationEvent):void
 			{
 				Txt_Barrio.text=Txt_Barrio.text.toUpperCase();
-				
-				Lbl_Barrio.text=Txt_Barrio.text;
-				
-				
+				Lbl_Barrio.text=Txt_Barrio.text;				
 			}
 			
-			protected function Btn_Aceptar_clickHandler(event:MouseEvent):void
-			{
-				Txt_Direccion_Completa.text= Lbl_Via.text +" "+ Lbl_Numero1.text +" "+ Lbl_Letra1.text +" "+ Lbl_Bis.text +" "+ Lbl_Letra2.text +" "+ Lbl_Geografia1.text +" # "+ Lbl_Numero2.text +" "+ Lbl_Letra3.text +" "+ Lbl_Numero3.text +" "+ LbL_Geografia2.text +" "+ Lbl_Complemento1.text +" "+ Lbl_Complemento2.text +" B/ "+ Lbl_Barrio.text;
-				
-				Lbl_Via.text="";
-				Lbl_Numero1.text="";
-				Lbl_Letra1.text="";
-				Lbl_Bis.text="";
-				Lbl_Letra2.text="";
-				Lbl_Geografia1.text="";
-				Lbl_Numero2.text="";
-				Lbl_Letra3.text="";
-				Lbl_Numero3.text="";
-				LbL_Geografia2.text="";
-				Lbl_Complemento1.text="";
-				Lbl_Complemento2.text="";
-				Lbl_Barrio.text="";
-				
-				
-				Cbx_Via.textInput.editable=false;
-				Cbx_Via.openButton.enabled=false;
-				
-				Txt_Numero.editable=false;
-				
-				Cbx_Letra1.textInput.editable=false;
-				Cbx_Letra1.openButton.enabled=false;
-				
-				Cbx_Bis.textInput.editable=false;
-				Cbx_Bis.openButton.enabled=false;
-				
-				Cbx_Letra2.textInput.editable=false;
-				Cbx_Letra2.openButton.enabled=false;
-				
-				Cbx_Geografia1.textInput.editable=false;
-				Cbx_Geografia1.openButton.enabled=false;
-				
-				Txt_Numero2.editable=false;
-				
-				Cbx_Letra3.textInput.editable=false;
-				Cbx_Letra3.openButton.enabled=false;
-				
-				Txt_Numero3.editable=false;
-				
-				Cbx_Geografia2.textInput.editable=false;
-				Cbx_Geografia2.openButton.enabled=false;
-				
-				Cbx_Complemento.textInput.editable=false;
-				Cbx_Complemento.openButton.enabled=false;
-				
-				Txt_Complemento.editable=false;
-				
-				Txt_Barrio.editable=false;
-				
-			}
-						
 			protected function Btn_Cancelar_clickHandler(event:MouseEvent):void
 			{
 				Lbl_Via.text="";
@@ -215,7 +163,7 @@
 				Lbl_Complemento2.text="";
 				Lbl_Barrio.text="";
 				
-			    Cbx_Via.selectedIndex=-1;
+				Cbx_Via.selectedIndex=-1;
 				Txt_Numero.text="";
 				Cbx_Letra1.selectedIndex=-1;
 				Cbx_Bis.selectedIndex=-1;
@@ -227,46 +175,31 @@
 				Cbx_Geografia2.selectedIndex=-1;
 				Cbx_Complemento.selectedIndex=-1;
 				Txt_Complemento.text="";
-				Txt_Barrio.text="";
-				
-				Cbx_Via.textInput.editable=true;
-				Cbx_Via.openButton.enabled=true;
-				
-				Txt_Numero.editable=true;
-				
-				Cbx_Letra1.textInput.editable=true;
-				Cbx_Letra1.openButton.enabled=true;
-				
-				Cbx_Bis.textInput.editable=true;
-				Cbx_Bis.openButton.enabled=true;
-				
-				Cbx_Letra2.textInput.editable=true;
-				Cbx_Letra2.openButton.enabled=true;
-				
-				Cbx_Geografia1.textInput.editable=true;
-				Cbx_Geografia1.openButton.enabled=true;
-				
-				Txt_Numero2.editable=true;
-				
-				Cbx_Letra3.textInput.editable=true;
-				Cbx_Letra3.openButton.enabled=true;
-				
-				Txt_Numero3.editable=true;
-				
-				Cbx_Geografia2.textInput.editable=true;
-				Cbx_Geografia2.openButton.enabled=true;
-				
-				Cbx_Complemento.textInput.editable=true;
-				Cbx_Complemento.openButton.enabled=true;
-				
-				Txt_Complemento.editable=true;
-				
-				Txt_Barrio.editable=true;
+				Txt_Barrio.text="";				
 				
 				Txt_Direccion_Completa.text="";
-				
 			}
-		
+			
+			protected function Btn_Aceptar_clickHandler(event:MouseEvent):void
+			{
+				Txt_Direccion_Completa.text= Lbl_Via.text +" "+ Lbl_Numero1.text +" "+ Lbl_Letra1.text +" "+ Lbl_Bis.text +" "+ Lbl_Letra2.text +" "+ Lbl_Geografia1.text +" # "+  Lbl_Numero2.text +" "+ Lbl_Letra3.text +" "+ Lbl_Numero3.text +" "+ LbL_Geografia2.text +" "+ Lbl_Complemento1.text +" "+ Lbl_Complemento2.text +" B/ "+ Lbl_Barrio.text;
+				
+				Lbl_Via.text="";
+				Lbl_Numero1.text="";
+				Lbl_Letra1.text="";
+				Lbl_Bis.text="";
+				Lbl_Letra2.text="";
+				Lbl_Geografia1.text="";
+				Lbl_Numero2.text="";
+				Lbl_Letra3.text="";
+				Lbl_Numero3.text="";
+				LbL_Geografia2.text="";
+				Lbl_Complemento1.text="";
+				Lbl_Complemento2.text="";
+				Lbl_Barrio.text="";
+				
+				InfoDireccion=Txt_Direccion_Completa.text;
+			}
 			
 		]]>
 	</fx:Script>
@@ -379,7 +312,7 @@
 		</s:dataProvider>
 	</s:ComboBox>
 	
-	<s:ComboBox id="Cbx_Geografia1" x="446" y="119" change="Cbx_Geografia1_changeHandler(event)">
+	<s:ComboBox id="Cbx_Geografia1" x="447" y="119" change="Cbx_Geografia1_changeHandler(event)">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>-</fx:String>
@@ -534,7 +467,7 @@
 	</s:ComboBox>
 	
 	<s:TextInput id="Txt_Complemento" x="344" y="214" width="249"
-				 change="convert(event)"/>
+				 change="Txt_Complemento_changeHandler(event)"/>
 	
 	<s:Label x="12" y="260" text="Barrio"/>
 	<s:TextInput id="Txt_Barrio" x="117" y="256" width="207" change="Txt_Barrio_changeHandler(event)"/>
@@ -558,9 +491,11 @@
 	<s:Label x="37" y="16" text="Dirección Completa"/>
 	<s:Label x="12" y="218" text="Tipo Complemento"/>
 	
+	<s:HGroup y="289" width="100%" height="40" horizontalAlign="center" verticalAlign="middle">		
 	<s:Button id="Btn_Cancelar" x="475" y="256" label="Cancelar"
 			  click="Btn_Cancelar_clickHandler(event)"/>
 	<s:Button id="Btn_Aceptar" x="386" y="256" label="Aceptar"
-			  click="Btn_Aceptar_clickHandler(event)"/>
-		
-</s:Group>
+			  click="Btn_Aceptar_clickHandler(event)"/>		
+	</s:HGroup>
+	
+</s:TitleWindow>

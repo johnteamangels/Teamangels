@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="Rbt_Tienda"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup horizontalCenter="0" verticalCenter="0">
+		<s:RadioButton label="Accesorios" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Agromercado" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Alimento" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Aseo Mascota" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Higiene Oral" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Juguetes" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Servicio a Domicilio" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Snack" groupName="Rbt_Tienda"/>
+		<s:RadioButton label="Otro" groupName="Rbt_Tienda"/>
+	</s:VGroup>
+	<s:RadioButton x="124" y="27" label="TIENDA"/>
+</s:Group>

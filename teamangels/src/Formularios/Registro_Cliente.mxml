@@ -13,7 +13,7 @@
 
 			protected function Txt_Direccion_Residencia_clickHandler(event:MouseEvent):void
 			{
-				Form.visible=true;
+				//Form.visible=true;
 			}
 	
 		]]>

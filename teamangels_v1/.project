@@ -17,6 +17,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/BancosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/BancosService.php</location>
+		</link>
+		<link>
+			<name>services/ClasesestablecimientosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ClasesestablecimientosService.php</location>
+		</link>
+		<link>
 			<name>services/ClientesService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ClientesService.php</location>
@@ -35,6 +45,11 @@
 			<name>services/EspecieService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EspecieService.php</location>
+		</link>
+		<link>
+			<name>services/EstablecimientosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EstablecimientosService.php</location>
 		</link>
 		<link>
 			<name>services/MascotasService.php</name>

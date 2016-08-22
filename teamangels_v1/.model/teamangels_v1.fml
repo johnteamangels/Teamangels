@@ -3,132 +3,6 @@
   <annotation name="ActionScriptGeneration">
     <item name="FullyQualifyReferences">true</item>
   </annotation>
-  <service name="TipodocumentoService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">TipodocumentoService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">services.tipodocumentoservice</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">TipodocumentoService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/TipodocumentoService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
-      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/TipodocumentoService.php</item>
-      <item name="LINKED_FILE">TipodocumentoService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">TipodocumentoService</item>
-    </annotation>
-    <function name="getAllTipo_documento" return-type="Tipo_documento[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getTipo_documentoByID" return-type="Tipo_documento">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="createTipo_documento" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Tipo_documento"/>
-    </function>
-    <function name="updateTipo_documento" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Tipo_documento"/>
-    </function>
-    <function name="deleteTipo_documento" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="count" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getTipo_documento_paged" return-type="Tipo_documento[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="startIndex" type="integer"/>
-      <parameter name="numItems" type="integer"/>
-    </function>
-  </service>
-  <entity name="Tipo_documento" persistent="true">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Tipo_documento</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">TipodocumentoService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="DataManagement">
-      <item name="create">createTipo_documento</item>
-      <item name="update">updateTipo_documento</item>
-      <item name="get">getTipo_documentoByID</item>
-      <item name="delete">deleteTipo_documento</item>
-      <item name="fillFunc">getAllTipo_documento,getTipo_documento_paged</item>
-      <item name="managingService">TipodocumentoService</item>
-    </annotation>
-    <annotation name="getTipo_documentoByID">
-      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
-    </annotation>
-    <annotation name="getAllTipo_documento">
-      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
-    </annotation>
-    <annotation name="getTipo_documento_paged">
-      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
-      <item name="pagingEnabled">true</item>
-      <item name="positionalPagingParameters">true</item>
-      <item name="countOperation">count</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-    <id name="Codigo" type="integer"/>
-    <property name="Tipo_Documento" type="string"/>
-  </entity>
   <service name="DepartamentosService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">DepartamentosService</item>
@@ -142,9 +16,9 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/DepartamentosService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
       <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/DepartamentosService.php</item>
       <item name="LINKED_FILE">DepartamentosService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
@@ -255,407 +129,6 @@
     <id name="Codigo" type="string"/>
     <property name="Departamento" type="string"/>
   </entity>
-  <service name="EspecieService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">EspecieService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">services.especieservice</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">EspecieService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/EspecieService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
-      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EspecieService.php</item>
-      <item name="LINKED_FILE">EspecieService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">EspecieService</item>
-    </annotation>
-    <function name="getAllEspecie" return-type="Especie[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getEspecieByID" return-type="Especie">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="createEspecie" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Especie"/>
-    </function>
-    <function name="updateEspecie" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Especie"/>
-    </function>
-    <function name="deleteEspecie" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="count" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getEspecie_paged" return-type="Especie[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="startIndex" type="integer"/>
-      <parameter name="numItems" type="integer"/>
-    </function>
-  </service>
-  <entity name="Especie" persistent="true">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Especie</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">EspecieService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="DataManagement">
-      <item name="create">createEspecie</item>
-      <item name="update">updateEspecie</item>
-      <item name="get">getEspecieByID</item>
-      <item name="delete">deleteEspecie</item>
-      <item name="fillFunc">getAllEspecie,getEspecie_paged</item>
-      <item name="managingService">EspecieService</item>
-    </annotation>
-    <annotation name="getEspecieByID">
-      <item name="propertySpecifier">Id_Especie,Especie</item>
-    </annotation>
-    <annotation name="getAllEspecie">
-      <item name="propertySpecifier">Id_Especie,Especie</item>
-    </annotation>
-    <annotation name="getEspecie_paged">
-      <item name="propertySpecifier">Id_Especie,Especie</item>
-      <item name="pagingEnabled">true</item>
-      <item name="positionalPagingParameters">true</item>
-      <item name="countOperation">count</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-    <id name="Id_Especie" type="integer"/>
-    <property name="Especie" type="string"/>
-  </entity>
-  <service name="RazaService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">RazaService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">services.razaservice</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">RazaService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/RazaService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
-      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/RazaService.php</item>
-      <item name="LINKED_FILE">RazaService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">RazaService</item>
-    </annotation>
-    <function name="getAllRaza" return-type="Raza[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getRazaByID" return-type="Raza">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="createRaza" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Raza"/>
-    </function>
-    <function name="updateRaza" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Raza"/>
-    </function>
-    <function name="deleteRaza" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="integer"/>
-    </function>
-    <function name="count" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getRaza_paged" return-type="Raza[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="startIndex" type="integer"/>
-      <parameter name="numItems" type="integer"/>
-    </function>
-    <function name="getAllRazaByEspecie" return-type="opaque">
-      <annotation name="analyze group">
-        <item name="analyzed">false</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="especie" type="integer"/>
-    </function>
-  </service>
-  <entity name="Raza" persistent="true">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Raza</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">RazaService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="DataManagement">
-      <item name="create">createRaza</item>
-      <item name="update">updateRaza</item>
-      <item name="get">getRazaByID</item>
-      <item name="delete">deleteRaza</item>
-      <item name="fillFunc">getAllRaza,getRaza_paged</item>
-      <item name="managingService">RazaService</item>
-    </annotation>
-    <annotation name="getRazaByID">
-      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
-    </annotation>
-    <annotation name="getAllRaza">
-      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
-    </annotation>
-    <annotation name="getRaza_paged">
-      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
-      <item name="pagingEnabled">true</item>
-      <item name="positionalPagingParameters">true</item>
-      <item name="countOperation">count</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-    <property name="Id_Especie" type="integer"/>
-    <id name="Id_Raza" type="integer"/>
-    <property name="Raza" type="string"/>
-  </entity>
-  <service name="MunicipiosService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">MunicipiosService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">services.municipiosservice</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">MunicipiosService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/MunicipiosService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
-      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MunicipiosService.php</item>
-      <item name="LINKED_FILE">MunicipiosService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">MunicipiosService</item>
-    </annotation>
-    <function name="getAllMunicipios" return-type="Municipios[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getMunicipiosByID" return-type="Municipios">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="string"/>
-    </function>
-    <function name="createMunicipios" return-type="string">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Municipios"/>
-    </function>
-    <function name="updateMunicipios" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="item" type="Municipios"/>
-    </function>
-    <function name="deleteMunicipios" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="itemID" type="string"/>
-    </function>
-    <function name="count" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getMunicipios_paged" return-type="Municipios[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="startIndex" type="integer"/>
-      <parameter name="numItems" type="integer"/>
-    </function>
-    <function name="getAllMunicipiosByDepartamento" return-type="opaque">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParamNames">departamento</item>
-        <item name="inputParams">opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="departamento" type="string"/>
-    </function>
-  </service>
-  <entity name="Municipios" persistent="true">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Municipios</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">MunicipiosService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="DataManagement">
-      <item name="create">createMunicipios</item>
-      <item name="update">updateMunicipios</item>
-      <item name="get">getMunicipiosByID</item>
-      <item name="delete">deleteMunicipios</item>
-      <item name="fillFunc">getAllMunicipios,getMunicipios_paged</item>
-      <item name="managingService">MunicipiosService</item>
-    </annotation>
-    <annotation name="getMunicipiosByID">
-      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
-    </annotation>
-    <annotation name="getAllMunicipios">
-      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
-    </annotation>
-    <annotation name="getMunicipios_paged">
-      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
-      <item name="pagingEnabled">true</item>
-      <item name="positionalPagingParameters">true</item>
-      <item name="countOperation">count</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-    <property name="Codigo_Departamento" type="string"/>
-    <id name="Codigo" type="string"/>
-    <property name="Municipio" type="string"/>
-  </entity>
   <service name="ClientesService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">ClientesService</item>
@@ -669,9 +142,9 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/ClientesService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
       <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ClientesService.php</item>
       <item name="LINKED_FILE">ClientesService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
@@ -826,6 +299,283 @@
     <property name="Fecha" type="date"/>
     <property name="Usuario" type="string"/>
   </entity>
+  <service name="EstablecimientosService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">EstablecimientosService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.establecimientosservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">EstablecimientosService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/EstablecimientosService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EstablecimientosService.php</item>
+      <item name="LINKED_FILE">EstablecimientosService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">EstablecimientosService</item>
+    </annotation>
+    <function name="getAllEstablecimientos" return-type="Establecimientos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEstablecimientosByID" return-type="Establecimientos">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createEstablecimientos" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Establecimientos"/>
+    </function>
+    <function name="updateEstablecimientos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Establecimientos"/>
+    </function>
+    <function name="deleteEstablecimientos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEstablecimientos_paged" return-type="Establecimientos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Establecimientos" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Establecimientos</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">EstablecimientosService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createEstablecimientos</item>
+      <item name="update">updateEstablecimientos</item>
+      <item name="get">getEstablecimientosByID</item>
+      <item name="delete">deleteEstablecimientos</item>
+      <item name="fillFunc">getAllEstablecimientos,getEstablecimientos_paged</item>
+      <item name="managingService">EstablecimientosService</item>
+    </annotation>
+    <annotation name="getEstablecimientosByID">
+      <item name="propertySpecifier">Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario</item>
+    </annotation>
+    <annotation name="getAllEstablecimientos">
+      <item name="propertySpecifier">Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario</item>
+    </annotation>
+    <annotation name="getEstablecimientos_paged">
+      <item name="propertySpecifier">Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Id" type="integer"/>
+    <property name="Tipo_Establecimiento" type="string"/>
+    <property name="Clase_Establecimiento" type="string"/>
+    <property name="Nombre_Comercial" type="string"/>
+    <property name="Email" type="string"/>
+    <property name="Direccion_Establecimiento" type="string"/>
+    <property name="Telefono_Uno" type="string"/>
+    <property name="Numero_Uno" type="string"/>
+    <property name="Telefono_Dos" type="string"/>
+    <property name="Numero_Dos" type="string"/>
+    <property name="Tipo_Regimen" type="string"/>
+    <property name="Documentacion_Facturacion" type="string"/>
+    <property name="Web_Site" type="string"/>
+    <property name="Tipo_Cuenta_Uno" type="string"/>
+    <property name="Codigo_Banco_Uno" type="string"/>
+    <property name="Banco_Uno" type="string"/>
+    <property name="Numero_Cuenta_Uno" type="string"/>
+    <property name="Tipo_Cuenta_Dos" type="string"/>
+    <property name="Codigo_Banco_Dos" type="string"/>
+    <property name="Banco_Dos" type="string"/>
+    <property name="Numero_Cuenta_Dos" type="string"/>
+    <property name="Tipo_Cuenta_Tres" type="string"/>
+    <property name="Codigo_Banco_Tres" type="string"/>
+    <property name="Banco_tres" type="string"/>
+    <property name="Numero_Cuenta_Tres" type="string"/>
+    <property name="Fecha" type="date"/>
+    <property name="Usuario" type="string"/>
+  </entity>
+  <service name="EspecieService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">EspecieService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.especieservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">EspecieService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/EspecieService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EspecieService.php</item>
+      <item name="LINKED_FILE">EspecieService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">EspecieService</item>
+    </annotation>
+    <function name="getAllEspecie" return-type="Especie[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEspecieByID" return-type="Especie">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createEspecie" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Especie"/>
+    </function>
+    <function name="updateEspecie" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Especie"/>
+    </function>
+    <function name="deleteEspecie" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEspecie_paged" return-type="Especie[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Especie" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Especie</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">EspecieService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createEspecie</item>
+      <item name="update">updateEspecie</item>
+      <item name="get">getEspecieByID</item>
+      <item name="delete">deleteEspecie</item>
+      <item name="fillFunc">getAllEspecie,getEspecie_paged</item>
+      <item name="managingService">EspecieService</item>
+    </annotation>
+    <annotation name="getEspecieByID">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+    </annotation>
+    <annotation name="getAllEspecie">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+    </annotation>
+    <annotation name="getEspecie_paged">
+      <item name="propertySpecifier">Id_Especie,Especie</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Id_Especie" type="integer"/>
+    <property name="Especie" type="string"/>
+  </entity>
   <service name="EmpresaService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">EmpresaService</item>
@@ -839,9 +589,9 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/EmpresaService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
       <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/EmpresaService.php</item>
       <item name="LINKED_FILE">EmpresaService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
@@ -990,9 +740,9 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/MascotasService.php</item>
-      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs/Teamangels</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
       <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MascotasService.php</item>
       <item name="LINKED_FILE">MascotasService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
@@ -1066,29 +816,16 @@
       <parameter name="startIndex" type="integer"/>
       <parameter name="numItems" type="integer"/>
     </function>
-    <function name="getMascotasByNombre_Mascota" return-type="Mascotas">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque,opaque</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="Nombre_Mascota" type="string"/>
-      <parameter name="documento" type="string"/>
-    </function>
-    <function name="getAllMascotasByMascota" return-type="opaque">
+    <function name="getAllMascotasByDocumento" return-type="opaque">
       <annotation name="analyze group">
         <item name="analyzed">false</item>
       </annotation>
       <annotation name="original signature">
+        <item name="inputParamNames">documento</item>
         <item name="inputParams">opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
-      <parameter name="mascota" type="opaque"/>
+      <parameter name="documento" type="string"/>
     </function>
     <function name="getAllMascotasByPropietario" return-type="opaque">
       <annotation name="analyze group">
@@ -1098,9 +835,9 @@
         <item name="inputParams">opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
-      <parameter name="propietario" type="opaque"/>
+      <parameter name="propietario" type="string"/>
     </function>
-    <function name="getAllMascotasByDocumento" return-type="opaque">
+    <function name="getAllMascotasByMascota" return-type="opaque">
       <annotation name="analyze group">
         <item name="analyzed">false</item>
       </annotation>
@@ -1108,6 +845,17 @@
         <item name="inputParams">opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
+      <parameter name="mascota" type="string"/>
+    </function>
+    <function name="getMascotasByNombre_Mascota" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="Nombre_Mascota" type="opaque"/>
       <parameter name="documento" type="opaque"/>
     </function>
   </service>
@@ -1128,25 +876,21 @@
       <item name="delete">deleteMascotas</item>
       <item name="fillFunc">getAllMascotas,getMascotas_paged</item>
       <item name="managingService">MascotasService</item>
-      <item name="findItem">getMascotasByNombre_Mascota</item>
     </annotation>
     <annotation name="getMascotasByID">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <annotation name="getAllMascotas">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <annotation name="getMascotas_paged">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
+      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
       <item name="pagingEnabled">true</item>
       <item name="positionalPagingParameters">true</item>
       <item name="countOperation">count</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
-    </annotation>
-    <annotation name="getMascotasByNombre_Mascota">
-      <item name="propertySpecifier">Id,Documento,Propietario,Nombre_Mascota,Id_Chif,Id_Especie,Especie,Id_Raza,Raza,Otra_Raza,Pelaje,Color,Tamano,Genero,Peso,Estado_Reproductivo,Temperamento,Edad_Dias,Edad_Meses,Edad_Anos,Tipo_Alimentacion,Descripcion_Marca,Descripcion_Referencia,Senales_Particulares,Observaciones,Fecha,Usuario</item>
     </annotation>
     <id name="Id" type="integer"/>
     <property name="Documento" type="string"/>
@@ -1157,7 +901,6 @@
     <property name="Especie" type="string"/>
     <property name="Id_Raza" type="integer"/>
     <property name="Raza" type="string"/>
-    <property name="Otra_Raza" type="string"/>
     <property name="Pelaje" type="string"/>
     <property name="Color" type="string"/>
     <property name="Tamano" type="string"/>
@@ -1175,5 +918,658 @@
     <property name="Observaciones" type="string"/>
     <property name="Fecha" type="date"/>
     <property name="Usuario" type="string"/>
+  </entity>
+  <service name="TipodocumentoService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">TipodocumentoService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.tipodocumentoservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">TipodocumentoService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/TipodocumentoService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/TipodocumentoService.php</item>
+      <item name="LINKED_FILE">TipodocumentoService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">TipodocumentoService</item>
+    </annotation>
+    <function name="getAllTipo_documento" return-type="Tipo_documento[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getTipo_documentoByID" return-type="Tipo_documento">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createTipo_documento" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Tipo_documento"/>
+    </function>
+    <function name="updateTipo_documento" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Tipo_documento"/>
+    </function>
+    <function name="deleteTipo_documento" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getTipo_documento_paged" return-type="Tipo_documento[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Tipo_documento" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Tipo_documento</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TipodocumentoService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createTipo_documento</item>
+      <item name="update">updateTipo_documento</item>
+      <item name="get">getTipo_documentoByID</item>
+      <item name="delete">deleteTipo_documento</item>
+      <item name="fillFunc">getAllTipo_documento,getTipo_documento_paged</item>
+      <item name="managingService">TipodocumentoService</item>
+    </annotation>
+    <annotation name="getTipo_documentoByID">
+      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
+    </annotation>
+    <annotation name="getAllTipo_documento">
+      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
+    </annotation>
+    <annotation name="getTipo_documento_paged">
+      <item name="propertySpecifier">Codigo,Tipo_Documento</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Codigo" type="integer"/>
+    <property name="Tipo_Documento" type="string"/>
+  </entity>
+  <service name="BancosService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">BancosService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.bancosservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">BancosService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/BancosService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/BancosService.php</item>
+      <item name="LINKED_FILE">BancosService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">BancosService</item>
+    </annotation>
+    <function name="getAllBancos" return-type="Bancos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getBancosByID" return-type="Bancos">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="createBancos" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Bancos"/>
+    </function>
+    <function name="updateBancos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Bancos"/>
+    </function>
+    <function name="deleteBancos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getBancos_paged" return-type="Bancos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Bancos" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Bancos</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">BancosService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createBancos</item>
+      <item name="update">updateBancos</item>
+      <item name="get">getBancosByID</item>
+      <item name="delete">deleteBancos</item>
+      <item name="fillFunc">getAllBancos,getBancos_paged</item>
+      <item name="managingService">BancosService</item>
+    </annotation>
+    <annotation name="getBancosByID">
+      <item name="propertySpecifier">Codigo,Banco</item>
+    </annotation>
+    <annotation name="getAllBancos">
+      <item name="propertySpecifier">Codigo,Banco</item>
+    </annotation>
+    <annotation name="getBancos_paged">
+      <item name="propertySpecifier">Codigo,Banco</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Codigo" type="string"/>
+    <property name="Banco" type="string"/>
+  </entity>
+  <service name="ClasesestablecimientosService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">ClasesestablecimientosService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.clasesestablecimientosservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">ClasesestablecimientosService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/ClasesestablecimientosService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ClasesestablecimientosService.php</item>
+      <item name="LINKED_FILE">ClasesestablecimientosService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">ClasesestablecimientosService</item>
+    </annotation>
+    <function name="getAllClases_establecimientos" return-type="Clases_establecimientos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getClases_establecimientosByID" return-type="Clases_establecimientos">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="createClases_establecimientos" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Clases_establecimientos"/>
+    </function>
+    <function name="updateClases_establecimientos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Clases_establecimientos"/>
+    </function>
+    <function name="deleteClases_establecimientos" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getClases_establecimientos_paged" return-type="Clases_establecimientos[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Clases_establecimientos" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Clases_establecimientos</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">ClasesestablecimientosService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createClases_establecimientos</item>
+      <item name="update">updateClases_establecimientos</item>
+      <item name="get">getClases_establecimientosByID</item>
+      <item name="delete">deleteClases_establecimientos</item>
+      <item name="fillFunc">getAllClases_establecimientos,getClases_establecimientos_paged</item>
+      <item name="managingService">ClasesestablecimientosService</item>
+    </annotation>
+    <annotation name="getClases_establecimientosByID">
+      <item name="propertySpecifier">Codigo,Clase_Establecimiento</item>
+    </annotation>
+    <annotation name="getAllClases_establecimientos">
+      <item name="propertySpecifier">Codigo,Clase_Establecimiento</item>
+    </annotation>
+    <annotation name="getClases_establecimientos_paged">
+      <item name="propertySpecifier">Codigo,Clase_Establecimiento</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <id name="Codigo" type="string"/>
+    <property name="Clase_Establecimiento" type="string"/>
+  </entity>
+  <service name="MunicipiosService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">MunicipiosService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.municipiosservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">MunicipiosService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/MunicipiosService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MunicipiosService.php</item>
+      <item name="LINKED_FILE">MunicipiosService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">MunicipiosService</item>
+    </annotation>
+    <function name="getAllMunicipios" return-type="Municipios[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMunicipiosByID" return-type="Municipios">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="createMunicipios" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Municipios"/>
+    </function>
+    <function name="updateMunicipios" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Municipios"/>
+    </function>
+    <function name="deleteMunicipios" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="string"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMunicipios_paged" return-type="Municipios[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+    <function name="getAllMunicipiosByDepartamento" return-type="opaque[]">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParamNames">departamento</item>
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="departamento" type="string"/>
+    </function>
+  </service>
+  <entity name="Municipios" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Municipios</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MunicipiosService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createMunicipios</item>
+      <item name="update">updateMunicipios</item>
+      <item name="get">getMunicipiosByID</item>
+      <item name="delete">deleteMunicipios</item>
+      <item name="fillFunc">getAllMunicipios,getMunicipios_paged</item>
+      <item name="managingService">MunicipiosService</item>
+    </annotation>
+    <annotation name="getMunicipiosByID">
+      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
+    </annotation>
+    <annotation name="getAllMunicipios">
+      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
+    </annotation>
+    <annotation name="getMunicipios_paged">
+      <item name="propertySpecifier">Codigo_Departamento,Codigo,Municipio</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="Codigo_Departamento" type="string"/>
+    <id name="Codigo" type="string"/>
+    <property name="Municipio" type="string"/>
+  </entity>
+  <service name="RazaService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">RazaService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">services.razaservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">RazaService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">teamangels_v1/bin-debug/services/RazaService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs\Teamangels</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\Teamangels\teamangels_v1\bin-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/RazaService.php</item>
+      <item name="LINKED_FILE">RazaService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8080/Teamangels/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8080/Teamangels/teamangels_v1/bin-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">RazaService</item>
+    </annotation>
+    <function name="getAllRaza" return-type="Raza[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getRazaByID" return-type="Raza">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createRaza" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Raza"/>
+    </function>
+    <function name="updateRaza" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Raza"/>
+    </function>
+    <function name="deleteRaza" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getRaza_paged" return-type="Raza[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+    <function name="getAllRazaByEspecie" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="especie" type="integer"/>
+    </function>
+  </service>
+  <entity name="Raza" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Raza</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">RazaService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createRaza</item>
+      <item name="update">updateRaza</item>
+      <item name="get">getRazaByID</item>
+      <item name="delete">deleteRaza</item>
+      <item name="fillFunc">getAllRaza,getRaza_paged</item>
+      <item name="managingService">RazaService</item>
+    </annotation>
+    <annotation name="getRazaByID">
+      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
+    </annotation>
+    <annotation name="getAllRaza">
+      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
+    </annotation>
+    <annotation name="getRaza_paged">
+      <item name="propertySpecifier">Id_Especie,Id_Raza,Raza</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="Id_Especie" type="integer"/>
+    <id name="Id_Raza" type="integer"/>
+    <property name="Raza" type="string"/>
   </entity>
 </model>

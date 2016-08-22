@@ -9,9 +9,14 @@
 		 width="800" height="412" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
+			import flashx.textLayout.tlf_internal;
+			
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
 			import mx.rpc.events.ResultEvent;
+			
+			import popup.Asistente_de_Direccion;
 			
 			import spark.events.IndexChangeEvent;
 			import spark.events.TextOperationEvent;
@@ -64,6 +69,24 @@
 				
 			}
 			
+			
+			// FUNCION DONDE SALE EL POPUP DE ASISTENTE DE DIRECCION.
+			protected function Txt_Direccion_Residencia_clickHandler(event:MouseEvent):void
+			{
+				if(Txt_Direccion_Residencia.editable==true){
+					
+					var Popup:Asistente_de_Direccion = Asistente_de_Direccion(
+						PopUpManager.createPopUp(this, Asistente_de_Direccion, true));
+					
+					Popup.title="Asistente de Dirección";
+					//Popup.closeButton.visible = false;
+					
+					Popup.DireccionCompleta = Txt_Direccion_Residencia;
+					PopUpManager.centerPopUp(Popup);
+					
+					
+				}
+			}
 			
 		]]>
 	</fx:Script>
@@ -238,7 +261,7 @@
 	</s:DropDownList>
 	
 	<s:Label x="405" y="141" text="Dirección Residencia"/>
-	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365" />
+	<s:TextInput id="Txt_Direccion_Residencia" x="405" y="155" width="365" click="Txt_Direccion_Residencia_clickHandler(event)"/>
 	
 	<s:Label x="23" y="191" text="Telefono 1"/>
 	<s:DropDownList id="Ddl_Telefono1" x="23" y="205" width="170" prompt="Telefono" >

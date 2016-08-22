@@ -1,8 +1,8 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - MunicipiosService.as.
+ * of this service wrapper you may modify the generated sub-class of this class - EstablecimientosService.as.
  */
-package services.municipiosservice
+package services.establecimientosservice
 {
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
@@ -21,25 +21,25 @@ import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
 import mx.rpc.remoting.RemoteObject;
-import valueObjects.Municipios;
+import valueObjects.Establecimientos;
 
 import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_EstablecimientosService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
-    private var _municipiosRPCDataManager : mx.data.RPCDataManager;
+    private var _establecimientosRPCDataManager : mx.data.RPCDataManager;
     private var managersArray : Array = new Array();
 
-    public const DATA_MANAGER_MUNICIPIOS : String = "Municipios";
+    public const DATA_MANAGER_ESTABLECIMIENTOS : String = "Establecimientos";
 
     public function getDataManager(dataManagerName:String) : mx.data.RPCDataManager
     {
         switch (dataManagerName)
         {
-             case (DATA_MANAGER_MUNICIPIOS):
-                return _municipiosRPCDataManager;
+             case (DATA_MANAGER_ESTABLECIMIENTOS):
+                return _establecimientosRPCDataManager;
             default:
                 return null;
         }
@@ -74,7 +74,7 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
      */
     public function commit(itemsOrCollections:Array=null, cascadeCommit:Boolean=false):mx.rpc.AsyncToken
     {
-        return _municipiosRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
+        return _establecimientosRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
     }
 
     /**
@@ -102,7 +102,7 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
         if (itemsOrCollections == null)
         {
             // Revert all changes
-            return _municipiosRPCDataManager.dataStore.revertChanges();
+            return _establecimientosRPCDataManager.dataStore.revertChanges();
         }
         else
         {
@@ -119,7 +119,7 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
                 }
                 else if (changeItem is mx.collections.ListCollectionView)
                 {
-                    anyChangeItemReverted ||= _municipiosRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
+                    anyChangeItemReverted ||= _establecimientosRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
                 }
                 else
                 {
@@ -131,90 +131,87 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
     }
 
     // Constructor
-    public function _Super_MunicipiosService()
+    public function _Super_EstablecimientosService()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
 
         // initialize RemoteClass alias for all entities returned by functions of this service
-        valueObjects.Municipios._initRemoteClassAlias();
+        valueObjects.Establecimientos._initRemoteClassAlias();
 
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "getAllMunicipios");
-         operation.resultElementType = valueObjects.Municipios;
-        operations["getAllMunicipios"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getMunicipiosByID");
-         operation.resultType = valueObjects.Municipios;
-        operations["getMunicipiosByID"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "createMunicipios");
-         operation.resultType = String;
-        operations["createMunicipios"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "updateMunicipios");
-        operations["updateMunicipios"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "deleteMunicipios");
-        operations["deleteMunicipios"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllEstablecimientos");
+         operation.resultElementType = valueObjects.Establecimientos;
+        operations["getAllEstablecimientos"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getEstablecimientosByID");
+         operation.resultType = valueObjects.Establecimientos;
+        operations["getEstablecimientosByID"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "createEstablecimientos");
+         operation.resultType = int;
+        operations["createEstablecimientos"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "updateEstablecimientos");
+        operations["updateEstablecimientos"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "deleteEstablecimientos");
+        operations["deleteEstablecimientos"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "count");
          operation.resultType = int;
         operations["count"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getMunicipios_paged");
-         operation.resultElementType = valueObjects.Municipios;
-        operations["getMunicipios_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllMunicipiosByDepartamento");
-         operation.resultElementType = Object;
-        operations["getAllMunicipiosByDepartamento"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getEstablecimientos_paged");
+         operation.resultElementType = valueObjects.Establecimientos;
+        operations["getEstablecimientos_paged"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "MunicipiosService";
+        _serviceControl.source = "EstablecimientosService";
         _serviceControl.endpoint = "gateway.php";
         var managedAssociation : mx.data.ManagedAssociation;
         var managedAssocsArray : Array;
-        // initialize Municipios data manager
-        _municipiosRPCDataManager = new mx.data.RPCDataManager();
-        managersArray.push(_municipiosRPCDataManager);
+        // initialize Establecimientos data manager
+        _establecimientosRPCDataManager = new mx.data.RPCDataManager();
+        managersArray.push(_establecimientosRPCDataManager);
 
         managedAssocsArray = new Array();
 
-        _municipiosRPCDataManager.destination = "municipiosRPCDataManager";
-        _municipiosRPCDataManager.service = _serviceControl;        
-        _municipiosRPCDataManager.identities =  "Codigo";      
-        _municipiosRPCDataManager.itemClass = valueObjects.Municipios; 
+        _establecimientosRPCDataManager.destination = "establecimientosRPCDataManager";
+        _establecimientosRPCDataManager.service = _serviceControl;        
+        _establecimientosRPCDataManager.identities =  "Id";      
+        _establecimientosRPCDataManager.itemClass = valueObjects.Establecimientos; 
 
 
 
         var dmOperation : mx.data.ManagedOperation;
         var dmQuery : mx.data.ManagedQuery;
 
-        dmOperation = new mx.data.ManagedOperation("createMunicipios", "create");
+        dmOperation = new mx.data.ManagedOperation("createEstablecimientos", "create");
         dmOperation.parameters = "item";
-        _municipiosRPCDataManager.addManagedOperation(dmOperation);     
+        _establecimientosRPCDataManager.addManagedOperation(dmOperation);     
 
-        dmQuery = new mx.data.ManagedQuery("getMunicipios_paged");
-        dmQuery.propertySpecifier = "Codigo_Departamento,Codigo,Municipio";
+        dmOperation = new mx.data.ManagedOperation("updateEstablecimientos", "update");
+        dmOperation.parameters = "item";
+        _establecimientosRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("deleteEstablecimientos", "delete");
+        dmOperation.parameters = "id";
+        _establecimientosRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("getEstablecimientosByID", "get");
+        dmOperation.parameters = "Id";
+        _establecimientosRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmQuery = new mx.data.ManagedQuery("getAllEstablecimientos");
+        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
+        dmQuery.parameters = "";
+        _establecimientosRPCDataManager.addManagedOperation(dmQuery);
+
+        dmQuery = new mx.data.ManagedQuery("getEstablecimientos_paged");
+        dmQuery.propertySpecifier = "Id,Tipo_Establecimiento,Clase_Establecimiento,Nombre_Comercial,Email,Direccion_Establecimiento,Telefono_Uno,Numero_Uno,Telefono_Dos,Numero_Dos,Tipo_Regimen,Documentacion_Facturacion,Web_Site,Tipo_Cuenta_Uno,Codigo_Banco_Uno,Banco_Uno,Numero_Cuenta_Uno,Tipo_Cuenta_Dos,Codigo_Banco_Dos,Banco_Dos,Numero_Cuenta_Dos,Tipo_Cuenta_Tres,Codigo_Banco_Tres,Banco_tres,Numero_Cuenta_Tres,Fecha,Usuario";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
         dmQuery.parameters = "startIndex,numItems";
-        _municipiosRPCDataManager.addManagedOperation(dmQuery);
-
-        dmQuery = new mx.data.ManagedQuery("getAllMunicipios");
-        dmQuery.propertySpecifier = "Codigo_Departamento,Codigo,Municipio";
-        dmQuery.parameters = "";
-        _municipiosRPCDataManager.addManagedOperation(dmQuery);
-
-        dmOperation = new mx.data.ManagedOperation("getMunicipiosByID", "get");
-        dmOperation.parameters = "Codigo";
-        _municipiosRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("updateMunicipios", "update");
-        dmOperation.parameters = "item";
-        _municipiosRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("deleteMunicipios", "delete");
-        dmOperation.parameters = "id";
-        _municipiosRPCDataManager.addManagedOperation(dmOperation);     
+        _establecimientosRPCDataManager.addManagedOperation(dmQuery);
 
         _serviceControl.managers = managersArray;
 
@@ -225,13 +222,13 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "MunicipiosService";
+        destination = "EstablecimientosService";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'getAllMunicipios' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getAllEstablecimientos' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -241,15 +238,15 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllMunicipios() : mx.rpc.AsyncToken
+    public function getAllEstablecimientos() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMunicipios");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEstablecimientos");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getMunicipiosByID' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'getEstablecimientosByID' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -259,15 +256,15 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getMunicipiosByID(itemID:String) : mx.data.ItemReference
+    public function getEstablecimientosByID(itemID:int) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMunicipiosByID");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEstablecimientosByID");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(itemID) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'createMunicipios' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'createEstablecimientos' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -277,15 +274,15 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function createMunicipios(item:valueObjects.Municipios) : mx.data.ItemReference
+    public function createEstablecimientos(item:valueObjects.Establecimientos) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createMunicipios");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createEstablecimientos");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'updateMunicipios' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'updateEstablecimientos' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -295,15 +292,15 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function updateMunicipios(item:valueObjects.Municipios) : mx.data.ItemReference
+    public function updateEstablecimientos(item:valueObjects.Establecimientos) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateMunicipios");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateEstablecimientos");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'deleteMunicipios' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'deleteEstablecimientos' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -313,9 +310,9 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteMunicipios(itemID:String) : mx.rpc.AsyncToken
+    public function deleteEstablecimientos(itemID:int) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteMunicipios");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteEstablecimientos");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(itemID) ;
         return _internal_token;
     }
@@ -339,7 +336,7 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getMunicipios_paged' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getEstablecimientos_paged' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -349,28 +346,10 @@ internal class _Super_MunicipiosService extends com.adobe.fiber.services.wrapper
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getMunicipios_paged() : mx.rpc.AsyncToken
+    public function getEstablecimientos_paged() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getMunicipios_paged");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEstablecimientos_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllMunicipiosByDepartamento' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllMunicipiosByDepartamento(departamento:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllMunicipiosByDepartamento");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(departamento) ;
         return _internal_token;
     }
      
