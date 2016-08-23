@@ -120,6 +120,7 @@
 	<s:TextInput id="Txt_Color" x="24" y="171" width="180"/>
 	<s:TextInput id="Txt_Ano" x="327" y="226" width="60" prompt="A"/>
 	<s:TextInput id="Txt_Otra_Raza" x="582" y="77" width="180" prompt="CUAL"/>
+	<s:TextInput id="Txt_Mostrar_Fecha" x="210" y="226" width="180"/>
 	
 	
 </s:Group>

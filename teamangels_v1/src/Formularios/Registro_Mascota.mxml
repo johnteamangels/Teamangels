@@ -354,7 +354,19 @@
 		</s:dataProvider>
 		
 	</s:DropDownList>
-	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia"></s:DropDownList>
+	<s:DropDownList id="Ddl_Referencia" x="25" y="434" width="180" prompt="Referencia">
+		
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>CACHORROS</fx:String>
+				<fx:String>ADULTOS</fx:String>
+				<fx:String>RAZAS GRANDES</fx:String>
+				<fx:String>RAZAS PEQUEÑAS</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+		
+		
+	</s:DropDownList>
 	<s:Label x="25" y="355" text="PRODUCTO" textDecoration="underline"/>
 	<s:TextInput id="Txt_Descripcion_Marca" x="210" y="389" width="366" change="Txt_Descripcion_Marca_changeHandler(event)"/>
 	<s:TextInput id="Txt_Descripcion_Referencia" x="210" y="434" width="366" change="Txt_Descripcion_Referencia_changeHandler(event)"/>
@@ -365,5 +377,5 @@
 	<s:Label x="25" y="378" text="Marca"/>
 	<s:Label x="210" y="159" text="Tamaño"/>
 	<s:TextInput id="Txt_Otra_Raza" x="582" y="77" width="180" prompt="CUAL" change="Txt_Otra_Raza_changeHandler(event)"/>
-	
+	<s:TextInput id="Txt_Mostrar_Fecha" x="210" y="226" width="180"/>
 </s:Group>

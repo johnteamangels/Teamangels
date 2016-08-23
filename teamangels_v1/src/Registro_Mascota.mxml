@@ -77,6 +77,8 @@
 				Reg_Mascota.Txt_Descripcion_Referencia.editable=false;
 				Reg_Mascota.Txta_Senales_Particulares.editable=false;
 				Reg_Mascota.Txta_Observaciones.editable=false;
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=false;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=false;
 				
 				Lbl_Mensaje.enabled=false;
 				Lbl_Mensaje.visible=false;
@@ -283,6 +285,11 @@
 				Reg_Mascota.Txt_Descripcion_Referencia.editable=true;
 				Reg_Mascota.Txta_Senales_Particulares.editable=true;
 				Reg_Mascota.Txta_Observaciones.editable=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=false;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=false;
+				Reg_Mascota.Ddl_Dia.visible=true;
+				Reg_Mascota.Ddl_Mes.visible=true;
+				Reg_Mascota.Txt_Ano.visible=true;
 				
 				Limpiar();
 			    
@@ -339,7 +346,6 @@
 					if(ValidarTodo()){
 						
 						getMascotasByNombre_MascotaResult.token = mascotasService.getMascotasByNombre_Mascota(Reg_Mascota.Txt_Nombre_Mascota.text, Reg_Mascota.Txt_Documento.text);
-					
 				}
 			}
 				else{
@@ -378,7 +384,7 @@
 						Reg2.Otra_Raza =  Reg_Mascota.Txt_Otra_Raza.text;
 						Reg2.Marca = Reg_Mascota.Ddl_Marca.selectedItem;
 						Reg2.Referencia = Reg_Mascota.Ddl_Referencia.selectedItem;
-						Reg2.Fecha_Nacimiento = Data_Model_Mascota.Fecha_Nacimiento;
+						Reg2.Fecha_Nacimiento = Reg_Mascota.Txt_Mostrar_Fecha.text;
 						Reg2.Observaciones = Reg_Mascota.Txta_Observaciones.text;
 						Reg2.Fecha = new Date();
 						Reg2.Usuario = "ADMIN"; 
@@ -388,10 +394,41 @@
 						
 						getAllMascotasResult.token = mascotasService.getAllMascotas();
 						
+						Reg_Mascota.Txt_Mostrar_Fecha.enabled=false;
+						Reg_Mascota.Txt_Mostrar_Fecha.visible=false;
+						Reg_Mascota.Ddl_Dia.enabled=true;
+						Reg_Mascota.Ddl_Dia.visible=true;
+						Reg_Mascota.Ddl_Mes.enabled=true;
+						Reg_Mascota.Ddl_Mes.visible=true;
+						Reg_Mascota.Txt_Ano.enabled=true;
+						Reg_Mascota.Txt_Ano.visible=true;
+						Rbtn_Documento.enabled=false;
+						Rbtn_Documento.visible=false;
+						Rbtn_Mascota.enabled=false;
+						Rbtn_Mascota.visible=false;
+						Rbtn_Propietario.enabled=false;
+						Rbtn_Propietario.visible=false;
+						Btn_Buscar_Documento.enabled=false;
+						Btn_Buscar_Documento.visible=false;
+						Btn_Buscar_Propietario.enabled=false;
+						Btn_Buscar_Propietario.visible=false;
+						Btn_Buscar_Mascota.enabled=false;
+						Btn_Buscar_Mascota.visible=false;
+						Txt_Buscar_Documento.enabled=false;
+						Txt_Buscar_Documento.visible=false;
+						Txt_Buscar_Propietario.enabled=false;
+						Txt_Buscar_Propietario.visible=false;
+						Txt_Buscar_Mascota.enabled=false;
+						Txt_Buscar_Mascota.visible=false;
+						Lst_Buscar_Documento.enabled=false;
+						Lst_Buscar_Documento.visible=false;
+						Lst_Buscar_Propietario.enabled=false;
+						Lst_Buscar_Propietario.visible=false;
+						Lst_Buscar_Mascota.enabled=false;
+						Lst_Buscar_Mascota.visible=false;
 						Limpiar();
 
 					}
-					
 				}
 		    }		
 			
@@ -471,6 +508,8 @@
 				Limpiar();
 				Reg_Mascota.Txt_Otra_Raza.enabled=false;
 				Reg_Mascota.Txt_Otra_Raza.visible=false;
+				
+				
 			}
 			
 			//FUNCION ACTIVA LOS CAMPOS PARA ACTUALIZAR VARIABLE EN TRUE
@@ -490,9 +529,9 @@
 				Reg_Mascota.Txt_Peso.editable=true;
 				Reg_Mascota.Ddl_Estado_Reproductivo.enabled=true;
 				Reg_Mascota.Ddl_Temperamento.enabled=true;
-				Reg_Mascota.Ddl_Dia.enabled=true;
-				Reg_Mascota.Ddl_Mes.enabled=true;
-				Reg_Mascota.Txt_Ano.editable=true;
+				Reg_Mascota.Ddl_Dia.enabled=false;
+				Reg_Mascota.Ddl_Mes.enabled=false;
+				Reg_Mascota.Txt_Ano.editable=false;
 				Reg_Mascota.Txt_Edad_Dias.editable=true;
 				Reg_Mascota.Txt_Edad_Meses.editable=true;
 				Reg_Mascota.Txt_Edad_Anos.editable=true;
@@ -504,6 +543,12 @@
 				Reg_Mascota.Txta_Senales_Particulares.editable=true;
 				Reg_Mascota.Txta_Observaciones.editable=true;
 				Reg_Mascota.Txt_Otra_Raza.editable=true;
+				
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=true;
+				Reg_Mascota.Ddl_Dia.visible=false;
+				Reg_Mascota.Ddl_Mes.visible=false;
+				Reg_Mascota.Txt_Ano.visible=false;
 				
 				dataGrid.dataProvider.removeAll();
 			
@@ -539,6 +584,16 @@
 				Lst_Buscar_Propietario.selectedIndex=-1;
 				Btn_Editar.enabled=true;
 				
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=true;
+				Reg_Mascota.Ddl_Dia.enabled=false;
+				Reg_Mascota.Ddl_Dia.visible=false;
+				Reg_Mascota.Ddl_Mes.enabled=false;
+				Reg_Mascota.Ddl_Mes.visible=false;
+				Reg_Mascota.Txt_Ano.enabled=false;
+				Reg_Mascota.Txt_Ano.visible=false;
+				
+				
 				Data_Model_Mascota.Id = Lst_Buscar_Documento.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Documento.selectedItem.Nombre_Mascota;
 				Reg_Mascota.Txt_Id_Chip.text = Lst_Buscar_Documento.selectedItem.Id_Chif;
@@ -558,6 +613,9 @@
 				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Documento.selectedItem.Descripcion_Marca;
 				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Documento.selectedItem.Descripcion_Referencia;
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Documento.selectedItem.Senales_Particulares;
+				Reg_Mascota.Ddl_Marca.selectedItem = Lst_Buscar_Documento.selectedItem.Marca;
+				Reg_Mascota.Ddl_Referencia.selectedItem = Lst_Buscar_Documento.selectedItem.Referencia;
+				Reg_Mascota.Txt_Mostrar_Fecha.text = Lst_Buscar_Documento.selectedItem.Fecha_Nacimiento;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Documento.selectedItem.Observaciones;
 			
 				getAllMascotasByDocumento_PropietarioResult.token = mascotasService.getAllMascotasByDocumento_Propietario(Lst_Buscar_Documento.selectedItem.Documento);
@@ -586,6 +644,16 @@
 				Lst_Buscar_Documento.selectedIndex=-1;
 				Lst_Buscar_Propietario.selectedIndex=-1;
 				Btn_Editar.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=true;
+				Reg_Mascota.Ddl_Dia.enabled=false;
+				Reg_Mascota.Ddl_Dia.visible=false;
+				Reg_Mascota.Ddl_Mes.enabled=false;
+				Reg_Mascota.Ddl_Mes.visible=false;
+				Reg_Mascota.Txt_Ano.enabled=false;
+				Reg_Mascota.Txt_Ano.visible=false;
+				
+				
 				
 				Data_Model_Mascota.Id = Lst_Buscar_Mascota.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Mascota.selectedItem.Nombre_Mascota;
@@ -606,6 +674,9 @@
 				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Mascota.selectedItem.Descripcion_Marca;
 				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Mascota.selectedItem.Descripcion_Referencia;
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Mascota.selectedItem.Senales_Particulares;
+				Reg_Mascota.Ddl_Marca.selectedItem = Lst_Buscar_Mascota.selectedItem.Marca;
+				Reg_Mascota.Ddl_Referencia.selectedItem = Lst_Buscar_Mascota.selectedItem.Referencia;
+				Reg_Mascota.Txt_Mostrar_Fecha.text = Lst_Buscar_Mascota.selectedItem.Fecha_Nacimiento;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Mascota.selectedItem.Observaciones;
 			
 				//getAllMascotasByDocumento_PropietarioResult.token = mascotasService.getAllMascotasByDocumento_Propietario(Lst_Buscar_Mascota.selectedItem.Documento);
@@ -636,6 +707,14 @@
 				Lst_Buscar_Mascota.selectedIndex=-1;
 				Lst_Buscar_Documento.selectedIndex=-1;
 				Btn_Editar.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.enabled=true;
+				Reg_Mascota.Txt_Mostrar_Fecha.visible=true;
+				Reg_Mascota.Ddl_Dia.enabled=false;
+				Reg_Mascota.Ddl_Dia.visible=false;
+				Reg_Mascota.Ddl_Mes.enabled=false;
+				Reg_Mascota.Ddl_Mes.visible=false;
+				Reg_Mascota.Txt_Ano.enabled=false;
+				Reg_Mascota.Txt_Ano.visible=false;
 				
 				Data_Model_Mascota.Id = Lst_Buscar_Propietario.selectedItem.Id;
 				Reg_Mascota.Txt_Nombre_Mascota.text = Lst_Buscar_Propietario.selectedItem.Nombre_Mascota;
@@ -656,6 +735,9 @@
 				Reg_Mascota.Txt_Descripcion_Marca.text = Lst_Buscar_Propietario.selectedItem.Descripcion_Marca;
 				Reg_Mascota.Txt_Descripcion_Referencia.text = Lst_Buscar_Propietario.selectedItem.Descripcion_Referencia;
 				Reg_Mascota.Txta_Senales_Particulares.text = Lst_Buscar_Propietario.selectedItem.Senales_Particulares;
+				Reg_Mascota.Ddl_Marca.selectedItem = Lst_Buscar_Propietario.selectedItem.Marca;
+				Reg_Mascota.Ddl_Referencia.selectedItem = Lst_Buscar_Propietario.selectedItem.Referencia;
+				Reg_Mascota.Txt_Mostrar_Fecha.text = Lst_Buscar_Propietario.selectedItem.Fecha_Nacimiento;
 				Reg_Mascota.Txta_Observaciones.text = Lst_Buscar_Propietario.selectedItem.Observaciones;
 				
 				
