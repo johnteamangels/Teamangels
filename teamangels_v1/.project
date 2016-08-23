@@ -67,6 +67,11 @@
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/RazaService.php</location>
 		</link>
 		<link>
+			<name>services/ResolucionfacestablecimientoService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ResolucionfacestablecimientoService.php</location>
+		</link>
+		<link>
 			<name>services/TipodocumentoService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/TipodocumentoService.php</location>

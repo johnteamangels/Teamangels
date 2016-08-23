@@ -277,8 +277,8 @@
         <item name="inputParams">opaque,opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
-      <parameter name="nombre_mascota" type="opaque"/>
-      <parameter name="documento" type="opaque"/>
+      <parameter name="nombre_mascota" type="string"/>
+      <parameter name="documento" type="string"/>
     </function>
   </service>
   <entity name="Mascotas" persistent="true">

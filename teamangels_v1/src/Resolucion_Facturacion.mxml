@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  minWidth="955" minHeight="600" xmlns:Formularios="Formularios.*">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Label y="23" left="80" fontFamily="Georgia" fontSize="20" text="RESOLUCION FACTURACION"/>
+	
+	<Formularios:Resolucion_Facturacion id="Form_Resolucion" y="103" left="80">
+	</Formularios:Resolucion_Facturacion>
+	
+</s:Application>

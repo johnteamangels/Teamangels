@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:empresaservice="services.empresaservice.*"
+		 width="496" height="544" currentState="Comun"
+		 width.Comun="510" height.Comun="646">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.events.TextOperationEvent;
+			
+			protected function Btn_Buscar_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento.text);
+			}
+			
+			
+			protected function getAllEmpresaByNitResult_resultHandler(event:ResultEvent):void
+			{			
+				var Resultado1:Object = getAllEmpresaByNitResult.lastResult;
+				
+				if (Resultado1 != null){
+					
+					Txt_Nombre_Empresa.text=Resultado1["Nombre_Empresa"];
+					Txt_Tipo_Regimen.text=Resultado1["Tipo_Regimen"];
+					
+				}else{
+					
+					Txt_Nombre_Empresa.text="";
+					Txt_Tipo_Regimen.text="";
+				}
+				
+				
+				if(Txt_Tipo_Regimen.text=="SIMPLIFICADO"){
+					
+					currentState="Simplificado";
+				}else{
+					currentState="Comun";
+					Lbl_Regimen.text="FACTURA";
+				}
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+	<s:states>
+		<s:State name="Comun"/>
+		<s:State name="Simplificado"/>
+	</s:states>
+	
+	<fx:Declarations>
+		
+		<s:CallResponder id="getAllEmpresaByNitResult" result="getAllEmpresaByNitResult_resultHandler(event)"/>
+		<empresaservice:EmpresaService id="empresaService"
+									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+									   showBusyCursor="true"/>
+		
+	</fx:Declarations>
+	
+	<s:Label x="35" y="31" text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento" x="35" y="45" width="200"/>
+	
+	<s:Button id="Btn_Buscar" x="235" y="45" height="22" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
+	
+	<s:Label x="35" y="86" text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa" x="35" y="100" width="400" editable="false"/>
+	
+	<s:Label x="35" y="141" text="Tipo Regimen"/>
+	<s:TextInput id="Txt_Tipo_Regimen" x="35" y="155" width="200" editable="false"/>
+	
+	<s:Label id="Lbl_Regimen" includeIn="Comun" x="243" y="155" width="192" height="22"  verticalAlign="middle"/>
+	
+	<s:Label includeIn="Comun" x="35" y="205" text="Resolución Facturación DIAN numero"/>
+	<s:TextInput id="Txt_Resolucion_Dian" includeIn="Comun" x="35" y="219" width="270"/>	
+	
+	<s:Label includeIn="Comun" x="35" y="259" text="Modalidad Facturación"/>	
+	<s:DropDownList id="Ddl_Modalidad_Facturacion" includeIn="Comun" x="35" y="273" width="270"
+					prompt="Modalidad Facturacion">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>PAPEL</fx:String>
+				<fx:String>POR COMPUTADOR</fx:String>
+				<fx:String>MAQUINA REGISTRADORA POS</fx:String>
+				<fx:String>ELECTRÓNICA</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:DropDownList>
+	
+	<s:Label includeIn="Comun" x="35" y="314" text="Prefijo"/>
+	<s:TextInput id="Txt_Prefijo" includeIn="Comun" x="35" y="328" width="55"/>
+	
+	<s:Label includeIn="Comun" x="101" y="314" text="Consecutivo Desde"/>
+	<s:TextInput id="Txt_Consecutivo_Desde" includeIn="Comun" x="101" y="328" width="110" restrict="0-9"/>
+	
+	<s:Label includeIn="Comun" x="224" y="314" text="Consecutivo Hasta"/>
+	<s:TextInput id="Txt_Consecutivo_Hasta" includeIn="Comun" x="224" y="328" width="110" restrict="0-9"/>
+	
+	<s:Label includeIn="Comun" x="346" y="314" text="Fecha Resolución"/>
+	<mx:DateField id="Dtf_Fecha_Resolucion" includeIn="Comun" x="346" y="328" yearNavigationEnabled="true"/>
+	
+	<s:Button includeIn="Comun" label="AGREGAR" horizontalCenter="0" verticalCenter="74"/>
+	
+	<mx:AdvancedDataGrid id="Dtg_Resolucion_Facturacion" includeIn="Comun" x="35" y="435" width="434"
+						 designViewDataType="flat">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="col1" headerText="Column 1"/>
+			<mx:AdvancedDataGridColumn dataField="col2" headerText="Column 2"/>
+			<mx:AdvancedDataGridColumn dataField="col3" headerText="Column 3"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	
+	<s:Label includeIn="Simplificado" x="35" y="194" text="Cuenta Cobro"/>
+	<s:TextInput id="Txt_Cuenta_Cobro" includeIn="Simplificado" x="35" y="208" width="200"/>
+	
+	<s:Label includeIn="Simplificado" x="35" y="248" text="Consecutivo Cuenta Cobro"/>
+	<s:TextInput id="Txt_Consecutivo_Cuenta_Cobro" includeIn="Simplificado" x="35" y="262" width="200"/>
+	
+	
+</s:Group>
