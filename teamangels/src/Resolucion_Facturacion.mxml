@@ -3,13 +3,30 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:Formularios="Formularios.*"
-			   minWidth="955" minHeight="600">
+			   height="811" minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+			
+				
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<s:Label y="23" left="80" fontFamily="Georgia" fontSize="20" text="RESOLUCION_FACTURACION"/>
+	<s:Label y="23" left="80" fontFamily="Georgia" fontSize="20" text="RESOLUCION FACTURACION"/>
 	
-	<Formularios:Resolucion_Facturacion x="10" y="13">
+	<Formularios:Resolucion_Facturacion y="95" left="80">
 	</Formularios:Resolucion_Facturacion>
+	
+	<s:Button id="Btn_Nuevo" y="65" left="100" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Guardar" x="501" y="753" width="90" label="GUARDAR"/>
+	
 </s:Application>

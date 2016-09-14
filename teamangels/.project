@@ -17,6 +17,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/EmpresaService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/EmpresaService.php</location>
+		</link>
+		<link>
 			<name>services/MascotasService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MascotasService.php</location>
@@ -25,6 +30,11 @@
 			<name>services/RazaService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/RazaService.php</location>
+		</link>
+		<link>
+			<name>services/ServiciocriadereroService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/ServiciocriadereroService.php</location>
 		</link>
 	</linkedResources>
 </projectDescription>

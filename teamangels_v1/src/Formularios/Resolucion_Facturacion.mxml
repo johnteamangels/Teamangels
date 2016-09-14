@@ -9,6 +9,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
+			import mx.events.ValidationResultEvent;
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.TextOperationEvent;
@@ -38,10 +39,100 @@
 				if(Txt_Tipo_Regimen.text=="SIMPLIFICADO"){
 					
 					currentState="Simplificado";
+								
+					Txt_Resolucion_Dian.text="";
+					Txt_Resolucion_Dian.errorString="";
+					
+					Ddl_Modalidad_Facturacion.selectedIndex=-1;
+					Ddl_Modalidad_Facturacion.errorString="";
+					
+					Txt_Prefijo.text="";
+					Txt_Prefijo.errorString="";
+					
+					Txt_Consecutivo_Desde.text="";
+					Txt_Consecutivo_Desde.errorString="";
+					
+					Txt_Consecutivo_Hasta.text="";
+					Txt_Consecutivo_Hasta.errorString="";
+					
+					Dtf_Fecha_Resolucion.text="";
+					Dtf_Fecha_Resolucion.errorString="";
+					
+					Dtg_Resolucion_Facturacion.dataProvider.removeAll();
+					
 				}else{
 					currentState="Comun";
 					Lbl_Regimen.text="FACTURA";
+					
+					Txt_Cuenta_Cobro.text="";
+					Txt_Cuenta_Cobro.errorString="";
+					
+					Txt_Consecutivo_Cuenta_Cobro.text="";
+					Txt_Consecutivo_Cuenta_Cobro.errorString="";
+					
 				}
+			}
+			
+			protected function ValidarResolucion():Boolean{
+			
+				var Resolucion:ValidationResultEvent = ValidacionTxtResolucion.validate();
+				var Modalidad_Facturacion:ValidationResultEvent = ValidacionModalidadFacturacion.validate();
+				var Prefijo:ValidationResultEvent = ValidacionTxtPrefijo.validate();
+				var Consecutivo_Desde :ValidationResultEvent = ValidacionTxtConsecutivo_Desde.validate();
+				var Consecutivo_Hasta :ValidationResultEvent = ValidacionTxtConsecutivo_Hasta.validate();
+				
+				
+				
+				var rsp:Boolean=false;
+				
+				if( Resolucion.type==ValidationResultEvent.VALID
+					&&Modalidad_Facturacion.type == ValidationResultEvent.VALID
+					&&Prefijo.type == ValidationResultEvent.VALID
+					&&Consecutivo_Desde.type == ValidationResultEvent.VALID
+					&&Consecutivo_Hasta.type == ValidationResultEvent.VALID
+					
+					
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}
+			
+			protected function Btn_Agregar_clickHandler(event:MouseEvent):void
+			{
+				if(ValidarResolucion()){
+					
+				Resolucion.addItem(
+					{
+						"Numero_Resolucion_Dian":Txt_Resolucion_Dian.text,
+						"Modalidad_Facturacion":Ddl_Modalidad_Facturacion.selectedItem,
+						"Prefijo":Txt_Prefijo.text,
+						"Consecutivo_Desde":Txt_Consecutivo_Desde.text,
+						"Consecutivo_Hasta":Txt_Consecutivo_Hasta.text,
+						"Fecha_Resolucion":Dtf_Fecha_Resolucion.selectedDate
+					}
+					
+				);
+				
+				Resolucion.refresh();
+				
+				Txt_Resolucion_Dian.text="";
+				Txt_Resolucion_Dian.errorString="";
+				Ddl_Modalidad_Facturacion.selectedIndex=-1;
+				Ddl_Modalidad_Facturacion.errorString="";
+				Txt_Prefijo.text="";
+				Txt_Prefijo.errorString="";
+				Txt_Consecutivo_Desde.text="";
+				Txt_Consecutivo_Desde.errorString="";
+				Txt_Consecutivo_Hasta.text="";
+				Txt_Consecutivo_Hasta.errorString="";
+				Dtf_Fecha_Resolucion.text="";
+				Dtf_Fecha_Resolucion.errorString="";
+				
+				}
+				
 			}
 			
 			
@@ -56,15 +147,60 @@
 	
 	<fx:Declarations>
 		
+		<s:ArrayCollection id="Resolucion"/>
+		
 		<s:CallResponder id="getAllEmpresaByNitResult" result="getAllEmpresaByNitResult_resultHandler(event)"/>
 		<empresaservice:EmpresaService id="empresaService"
 									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
 									   showBusyCursor="true"/>
+		<mx:StringValidator
+			id="ValidacionTxtResolucion"
+			source="{Txt_Resolucion_Dian}" 
+			property="text" 			
+			requiredFieldError="Este campo es obligatorio."
+			triggerEvent=""/>
+		
+		<s:NumberValidator id="ValidacionModalidadFacturacion"
+						   source="{Ddl_Modalidad_Facturacion}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		<mx:StringValidator
+			id="ValidacionTxtPrefijo"
+			source="{Txt_Prefijo}" 
+			property="text" 			
+			requiredFieldError="Este campo es obligatorio."
+			triggerEvent=""/> 
+		
+		
+		<mx:StringValidator
+			id="ValidacionTxtConsecutivo_Desde"
+			source="{Txt_Consecutivo_Desde}" 
+			property="text" 			
+			requiredFieldError="Este campo es obligatorio."
+			triggerEvent=""/> 
+		
+		
+		<mx:StringValidator
+			id="ValidacionTxtConsecutivo_Hasta"
+			source="{Txt_Consecutivo_Hasta}" 
+			property="text" 			
+			requiredFieldError="Este campo es obligatorio."
+			triggerEvent=""/> 
+		
+		<mx:DateValidator
+			id="ValidacionFechaResolucion"
+			source="{Dtf_Fecha_Resolucion}"
+			property="selectedDate"
+			allowedFormatChars="/"
+			triggerEvent=""/>
 		
 	</fx:Declarations>
 	
 	<s:Label x="35" y="31" text="Numero Documento"/>
-	<s:TextInput id="Txt_Numero_Documento" x="35" y="45" width="200"/>
+	<s:TextInput id="Txt_Numero_Documento" x="35" y="45" width="200" restrict="0-9"/>
 	
 	<s:Button id="Btn_Buscar" x="235" y="45" height="22" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
 	
@@ -104,14 +240,22 @@
 	<s:Label includeIn="Comun" x="346" y="314" text="Fecha Resolución"/>
 	<mx:DateField id="Dtf_Fecha_Resolucion" includeIn="Comun" x="346" y="328" yearNavigationEnabled="true"/>
 	
-	<s:Button includeIn="Comun" label="AGREGAR" horizontalCenter="0" verticalCenter="74"/>
+	<s:Button includeIn="Comun" label="AGREGAR" id="Btn_Agregar" horizontalCenter="0" verticalCenter="74" click="Btn_Agregar_clickHandler(event)"/>
 	
 	<mx:AdvancedDataGrid id="Dtg_Resolucion_Facturacion" includeIn="Comun" x="35" y="435" width="434"
-						 designViewDataType="flat">
+						 designViewDataType="flat" dataProvider="{Resolucion}">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="col1" headerText="Column 1"/>
-			<mx:AdvancedDataGridColumn dataField="col2" headerText="Column 2"/>
-			<mx:AdvancedDataGridColumn dataField="col3" headerText="Column 3"/>
+			<mx:AdvancedDataGridColumn width="300" dataField="Numero_Resolucion_Dian"
+									   headerText="Resolucion Factura DIAN Numero"/>
+			<mx:AdvancedDataGridColumn width="200" dataField="Modalidad_Facturacion"
+									   headerText="Modalidad Facturacion"/>
+			<mx:AdvancedDataGridColumn width="200" dataField="Prefijo" headerText="Prefijo"/>
+			<mx:AdvancedDataGridColumn width="200" dataField="Consecutivo_Desde"
+									   headerText="Consecutivo Desde"/>
+			<mx:AdvancedDataGridColumn width="200" dataField="Consecutivo_Hasta"
+									   headerText="Consecutivo Hasta"/>
+			<mx:AdvancedDataGridColumn width="200" dataField="Fecha_Resolucion"
+									   headerText="Fecha Resolucion"/>
 		</mx:columns>
 	</mx:AdvancedDataGrid>
 	

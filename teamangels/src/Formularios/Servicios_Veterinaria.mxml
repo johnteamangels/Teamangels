@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="490" height="482">
+	<s:states>
+		<s:State name="Servicios"/>
+		<s:State name="Criadero"/>
+	</s:states>
+	
+	<fx:Declarations>
+	
+		
+	</fx:Declarations>
+	
+	<s:RadioButton x="59" y="50" label="CRIADERO"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="100" label="FARMACIA VETERINARIA"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="150" label="GUARDERIA"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="200" label="LABORATO CLINICO "/>
+	<s:RadioButton includeIn="Servicios" x="59" y="250" label="PELUQUERIA GROOMING"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="300" label="SPA"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="350" label="TIENDA"/>
+	<s:RadioButton includeIn="Servicios" x="59" y="400" label="VETERINARIA"/>
+	
+	<s:VGroup includeIn="Criadero" x="75" y="75" horizontalAlign="justify" verticalAlign="top">
+		<s:RadioButton width="100" height="25" label="Bovinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Caninos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Caprinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Equinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Felinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Porcinos" groupName="Rbt_Criadero"/>
+		<s:RadioButton height="25" label="Otro" groupName="Rbt_Criadero"/>
+	</s:VGroup>
+	<s:Button id="Btn_Guardar_Criadero" includeIn="Criadero" x="210" y="324" label="GUARDAR"/>
+	
+</s:Group>

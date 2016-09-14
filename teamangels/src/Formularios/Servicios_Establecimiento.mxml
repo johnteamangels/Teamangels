@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:serviciocriadereroservice="services.serviciocriadereroservice.*"
+		 xmlns:empresaservice="services.empresaservice.*"
+		 width="700" height="600" currentState="INICIO"
+		 height.LABORATORIO="1250"
+		 height.VETERINARIA="1680">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import valueObjects.Servicio_criaderero;
+			
+			 private var ResultadoEmpresa:Object;
+	    	   
+			 private var GenericoEmpresa:String;
+			
+			 private var ResultadoEmpresa1:Object;
+			
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				Grp_Servicios.enabled=false;
+				Txt_Numero_Documento.editable=true;
+				Btn_Buscar.enabled=true;
+				
+				Lbl_Documento.visible=true;
+				Txt_Numero_Documento.visible=true;
+				Btn_Buscar.visible=true;
+				
+				Lbl_Nombre.visible=true;
+				Txt_Nombre_Empresa.visible=true;
+				
+				Grp_Servicios.y=250;
+				
+			}
+			
+			protected function Btn_Editar_clickHandler(event:MouseEvent):void
+			{
+				Lbl_Documento.visible=false;
+				Txt_Numero_Documento.visible=false;
+				Txt_Numero_Documento.text="";
+				Btn_Buscar.visible=false;
+				
+				Lbl_Nombre.visible=false;
+				Txt_Nombre_Empresa.visible=false;
+				Txt_Nombre_Empresa.text="";
+				
+				Grp_Servicios.enabled=true; 
+				Grp_Servicios.y=135;
+				
+				
+			}
+			
+			protected function Btn_Buscar_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento.text);
+			}
+			
+			protected function getAllEmpresaByNitResult_resultHandler(event:ResultEvent):void
+			{
+				
+			  ResultadoEmpresa = getAllEmpresaByNitResult.lastResult;
+				
+				if (ResultadoEmpresa != null){
+					
+					Txt_Nombre_Empresa.text=ResultadoEmpresa["Nombre_Empresa"];
+					Grp_Servicios.enabled=true;
+					GenericoEmpresa=ResultadoEmpresa["Nombre_Empresa"];
+					
+				}else{
+					
+					Txt_Nombre_Empresa.text="";
+					
+				}
+			}
+			
+			protected function Rbt_Servicios_changeHandler(event:Event):void
+			{
+				if(Rbt_Servicios.selectedValue==1){
+					
+					currentState="CRIADERO";
+				}
+				
+				if(Rbt_Servicios.selectedValue==2){
+					
+					currentState="FARMACIA";
+				}
+				
+				if(Rbt_Servicios.selectedValue==3){
+					
+					currentState="GUARDERIA";
+				}
+				
+				if(Rbt_Servicios.selectedValue==4){
+					
+					currentState="LABORATORIO";
+				}
+				
+				if(Rbt_Servicios.selectedValue==5){
+					
+					currentState="PELUQUERIA";
+				}
+				
+				if(Rbt_Servicios.selectedValue==6){
+					
+					currentState="SPA";
+				}
+				
+				if(Rbt_Servicios.selectedValue==7){
+					
+					currentState="TIENDA";
+				}
+				
+				if(Rbt_Servicios.selectedValue==8){
+					
+					currentState="VETERINARIA";
+				}
+			}
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			
+			protected function Btn_Nuevo_Criadero_clickHandler(event:MouseEvent):void
+			{
+				Chk_Criadero.y=88;
+				Vgp_Criadero.y=114;
+				
+				Chk_Criadero.enabled=true;
+							
+				Lbl_Documento_1.visible=false;
+				Txt_Numero_Documento_1.visible=false;
+				Txt_Numero_Documento_1.text="";
+				Btn_Buscar_1.visible=false;
+				Lbl_Nombre_1.visible=false;
+				Txt_Nombre_Empresa_1.visible=false;
+				Txt_Nombre_Empresa_1.text="";
+				Lst_Criadero.visible=false;
+			}
+			
+			protected function Btn_Editar_Criadero_clickHandler(event:MouseEvent):void
+			{
+				Chk_Criadero.y=195;
+				Vgp_Criadero.y=219;
+				
+				Lbl_Documento_1.visible=true;
+				Txt_Numero_Documento_1.visible=true;
+				Btn_Buscar_1.visible=true;
+				Lbl_Nombre_1.visible=true;
+				Txt_Nombre_Empresa_1.visible=true;
+				Lst_Criadero.visible=true;
+				
+				Vgp_Criadero.enabled=false;
+				Chk_Criadero.selected=false;
+				Chk_Bovinos.selected=false;
+				Chk_Caninos.selected=false;
+				Chk_Caprinos.selected=false;
+				Chk_Equinos.selected=false;
+				Chk_Felinos.selected=false;
+				Chk_Porcinos.selected=false;
+				Chk_Otro_Criadero.selected=false;
+				
+				
+			}
+			
+			protected function Btn_Buscar_1_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult2.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_1.text);
+			}
+			
+			protected function getAllEmpresaByNitResult2_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult2.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_1.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+										
+				}else{
+					
+					Txt_Nombre_Empresa_1.text="";
+					
+				}
+			}
+			
+			protected function Chk_Criadero_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Criadero.selected==true){
+					
+					Vgp_Criadero.enabled=true;
+				}else{
+					Vgp_Criadero.enabled=false;
+					
+					Chk_Bovinos.selected=false;
+					Chk_Caninos.selected=false;
+					Chk_Caprinos.selected=false;
+					Chk_Equinos.selected=false;
+					Chk_Felinos.selected=false;
+					Chk_Porcinos.selected=false;
+					Chk_Otro_Criadero.selected=false;
+				}
+			}
+			
+			protected function Btn_Guardar_Criadero_clickHandler(event:MouseEvent):void
+			{
+				var Reg:Servicio_criaderero = new Servicio_criaderero();
+				
+				Reg.Documento_Empresa=Txt_Numero_Documento.text;
+				Reg.Nombre_Empresa=GenericoEmpresa;
+				Reg.Criadero=Number(Chk_Criadero.selected);
+				Reg.Bovinos=Number(Chk_Bovinos.selected);
+				Reg.Caninos=Number(Chk_Caninos.selected);
+				Reg.Caprinos=Number(Chk_Caprinos.selected);
+				Reg.Equinos=Number(Chk_Equinos.selected);
+				Reg.Felinos=Number(Chk_Felinos.selected);
+				Reg.Porcinos=Number(Chk_Porcinos.selected);
+				Reg.Otro="";
+				
+				createServicio_criadereroResult.token = serviciocriadereroService.createServicio_criaderero(Reg);
+				serviciocriadereroService.commit();
+				
+			}
+			
+			protected function createServicio_criadereroResult_resultHandler(event:ResultEvent):void
+			{
+				currentState="INICIO";
+			}
+			
+			protected function Lst_Criadero_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllServicio_criadereroResult.token = serviciocriadereroService.getAllServicio_criaderero();
+			}
+			
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			
+			
+			protected function Btn_Nuevo_Farmacia_clickHandler(event:MouseEvent):void
+			{
+				Chk_Farmacia.y=88;
+				Vgp_Farmacia.y=114;
+				
+				Chk_Farmacia.enabled=true;
+				
+				Lbl_Documento_2.visible=false;
+				Txt_Numero_Documento_2.visible=false;
+				Txt_Numero_Documento_2.text="";
+				Btn_Buscar_2.visible=false;
+				Lbl_Nombre_2.visible=false;
+				Txt_Nombre_Empresa_2.visible=false;
+				Txt_Nombre_Empresa_2.text="";
+				
+			}
+			
+			protected function Btn_Editar_Farmacia_clickHandler(event:MouseEvent):void
+			{
+				Chk_Farmacia.y=195;
+				Vgp_Farmacia.y=219;
+				
+				Lbl_Documento_2.visible=true;
+				Txt_Numero_Documento_2.visible=true;
+				Btn_Buscar_2.visible=true;
+				Lbl_Nombre_2.visible=true;
+				Txt_Nombre_Empresa_2.visible=true;
+								
+				Vgp_Farmacia.enabled=false;
+				Chk_Antipulgas.selected=false;
+				Chk_Desparacitante.selected=false;
+				Chk_Medicamento.selected=false;
+				Chk_Suplemento.selected=false;
+				Chk_Otro_Farmacia.selected=false;
+				
+				
+			}
+			
+					
+			protected function Btn_Buscar_2_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult3.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_2.text);
+			}
+			
+						
+			protected function getAllEmpresaByNitResult3_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult3.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_2.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_2.text="";
+					
+				}
+			}
+			
+			protected function Chk_Farmacia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Farmacia.selected==true){
+					
+					Vgp_Farmacia.enabled=true;
+				}else{
+					Vgp_Farmacia.enabled=false;
+					
+					Chk_Antipulgas.selected=false;
+					Chk_Desparacitante.selected=false;
+					Chk_Medicamento.selected=false;
+					Chk_Suplemento.selected=false;
+					Chk_Otro_Farmacia.selected=false;
+				}
+			}
+			
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			
+			protected function Btn_Nuevo_Guarderia_clickHandler(event:MouseEvent):void
+			{
+				Chk_Guarderia.y=88;
+				Chk_Canina.y=114;
+				Vgp_Guarderia_Canina.y=134;
+				
+				Chk_Felina.y=240;
+				Vgp_Guarderia_Felina.y=260;
+				
+				Chk_Guarderia.enabled=true;
+				//Chk_Canina.enabled=true;
+				//Chk_Felina.enabled=true;
+				
+				Lbl_Documento_3.visible=false;
+				Txt_Numero_Documento_3.visible=false;
+				Txt_Numero_Documento_3.text="";
+				Btn_Buscar_3.visible=false;
+				Lbl_Nombre_3.visible=false;
+				Txt_Nombre_Empresa_3.visible=false;
+				Txt_Nombre_Empresa_3.text="";
+				
+				
+			}
+			
+			protected function Btn_Editar_Guarderia_clickHandler(event:MouseEvent):void
+			{
+				Chk_Guarderia.y=195;
+				Chk_Canina.y=219;
+				Vgp_Guarderia_Canina.y=239;
+				
+				Chk_Felina.y=345;
+			    Vgp_Guarderia_Felina.y=365;
+				
+				Lbl_Documento_3.visible=true;
+				Txt_Numero_Documento_3.visible=true;
+				Btn_Buscar_3.visible=true;
+				Lbl_Nombre_3.visible=true;
+				Txt_Nombre_Empresa_3.visible=true;
+				
+				Vgp_Guarderia_Canina.enabled=false;
+				Chk_Can_Campestre.selected=false;
+				Chk_Can_Urbana.selected=false;
+				Chk_Can_Otro.selected=false;
+			
+				Vgp_Guarderia_Felina.enabled=false;
+		    	Chk_Fel_Campestre.selected=false;
+				Chk_Fel_Urbana.selected=false;
+				Chk_Fel_Otro.selected=false;
+			}
+			
+			protected function Btn_Buscar_3_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult4.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_3.text);
+				
+			}
+		
+			
+			protected function getAllEmpresaByNitResult4_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult4.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_3.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_3.text="";
+					
+				}
+			}
+			
+			protected function Chk_Guarderia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Guarderia.selected==true){
+					
+					Chk_Canina.enabled=true;
+					Chk_Felina.enabled=true;
+					
+				}else{
+					Chk_Canina.enabled=false;
+					Vgp_Guarderia_Canina.enabled=false;
+					
+					Chk_Felina.enabled=false;
+					Vgp_Guarderia_Felina.enabled=false;
+					
+					Chk_Canina.selected=false;
+					Chk_Can_Campestre.selected=false;
+					Chk_Can_Urbana.selected=false;
+					Chk_Can_Otro.selected=false;
+					
+					Chk_Felina.selected=false;
+					Chk_Fel_Campestre.selected=false;
+					Chk_Fel_Urbana.selected=false;
+					Chk_Fel_Otro.selected=false;
+				}
+			}
+			
+			protected function Chk_Canina_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Canina.selected==true){
+					
+				    Vgp_Guarderia_Canina.enabled=true;
+					
+				}else{
+					
+					Vgp_Guarderia_Canina.enabled=false;
+					
+					Chk_Can_Campestre.selected=false;
+					Chk_Can_Urbana.selected=false;
+					Chk_Can_Otro.selected=false;
+
+				}
+			}
+			
+			protected function Chk_Felina_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Felina.selected==true){
+					
+					Vgp_Guarderia_Felina.enabled=true;
+					
+				}else{
+					
+					Vgp_Guarderia_Felina.enabled=false;
+					
+					Chk_Fel_Campestre.selected=false;
+					Chk_Fel_Urbana.selected=false;
+					Chk_Fel_Otro.selected=false;
+					
+				}
+			}
+			
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			protected function Btn_Nuevo_Laboratorio_clickHandler(event:MouseEvent):void
+			{
+				Chk_Laboratorio.y=88;
+				Vgp_Laboratorio.y=114;
+				
+				Chk_Laboratorio.enabled=true;
+				
+				Lbl_Documento_4.visible=false;
+				Txt_Numero_Documento_4.visible=false;
+				Txt_Numero_Documento_4.text="";
+				Btn_Buscar_4.visible=false;
+				Lbl_Nombre_4.visible=false;
+				Txt_Nombre_Empresa_4.visible=false;
+				Txt_Nombre_Empresa_4.text="";
+			}
+			
+			protected function Btn_Editar_Laboratorio_clickHandler(event:MouseEvent):void
+			{
+				Chk_Laboratorio.y=195;
+				Vgp_Laboratorio.y=219; 
+	
+				
+				Lbl_Documento_4.visible=true;
+				Txt_Numero_Documento_4.visible=true;
+				Btn_Buscar_4.visible=true;
+				Lbl_Nombre_4.visible=true;
+				Txt_Nombre_Empresa_4.visible=true;
+			
+				Vgp_Laboratorio.enabled=false;
+				Chk_Analisis_Liq.selected=false;
+				Chk_Citologia_Vet.selected=false;
+				Chk_Diagnostico_Hor.selected=false;
+				Chk_Examenes_Ind.selected=false;
+				Chk_Hematologia_Vet.selected=false;
+				Chk_Hispatologia.selected=false;
+				Chk_Microbiologia.selected=false;
+				Chk_Parasitologia.selected=false;				
+				Chk_Perfiles_Diagnosticos.selected=false;
+				Chk_PD_Grandes_Especies.selected=false;
+				Chk_Pruebas_Coa.selected=false;
+				Chk_PEV_Bovinos.selected=false;
+				Chk_PEV_Equinos.selected=false;
+				Chk_PEV_Caninos.selected=false;
+				Chk_PEV_Felinos.selected=false;
+				Chk_Quimica_Sanguinea.selected=false;				
+				Chk_Toxicologia.selected=false;
+				Chk_Uroanalisis.selected=false;
+				Chk_Otro_Laboratorio.selected=false;
+				
+			}
+			
+			protected function Btn_Buscar_4_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult5.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_4.text);
+			}
+			
+			protected function getAllEmpresaByNitResult5_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult5.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_4.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_4.text="";
+					
+				}
+			}
+			
+			protected function Chk_Laboratorio_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Laboratorio.selected==true){
+					
+					Vgp_Laboratorio.enabled=true;
+				}else{
+					Vgp_Laboratorio.enabled=false;
+					
+					Chk_Analisis_Liq.selected=false;
+					Chk_Citologia_Vet.selected=false;
+					Chk_Diagnostico_Hor.selected=false;
+					Chk_Examenes_Ind.selected=false;
+					Chk_Hematologia_Vet.selected=false;
+					Chk_Hispatologia.selected=false;
+					Chk_Microbiologia.selected=false;
+					Chk_Parasitologia.selected=false;				
+					Chk_Perfiles_Diagnosticos.selected=false;
+					Chk_PD_Grandes_Especies.selected=false;
+					Chk_Pruebas_Coa.selected=false;
+					Chk_PEV_Bovinos.selected=false;
+					Chk_PEV_Equinos.selected=false;
+					Chk_PEV_Caninos.selected=false;
+					Chk_PEV_Felinos.selected=false;
+					Chk_Quimica_Sanguinea.selected=false;				
+					Chk_Toxicologia.selected=false;
+					Chk_Uroanalisis.selected=false;
+					Chk_Otro_Laboratorio.selected=false;
+				}
+			}
+			
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			protected function Btn_Nuevo_Peluqueria_clickHandler(event:MouseEvent):void
+			{
+				Chk_Peluqueria.y=88;
+				Vgp_Peluqueria.y=114;
+				
+				Chk_Peluqueria.enabled=true;
+				
+				Lbl_Documento_5.visible=false;
+				Txt_Numero_Documento_5.visible=false;
+				Txt_Numero_Documento_5.text="";
+				Btn_Buscar_5.visible=false;
+				Lbl_Nombre_5.visible=false;
+				Txt_Nombre_Empresa_5.visible=false;
+				Txt_Nombre_Empresa_5.text="";
+				
+			}
+			
+			protected function Btn_Editar_Peluqueria_clickHandler(event:MouseEvent):void
+			{
+				Chk_Peluqueria.y=195;
+				Vgp_Peluqueria.y=219; 
+				
+				
+				Lbl_Documento_5.visible=true;
+				Txt_Numero_Documento_5.visible=true;
+				Btn_Buscar_5.visible=true;
+				Lbl_Nombre_5.visible=true;
+				Txt_Nombre_Empresa_5.visible=true;
+				
+				Vgp_Peluqueria.enabled=false;
+				
+				Chk_Corte_Estandar.selected=false;
+				Chk_Corte_Exibicion.selected=false;
+				Chk_Otro_Peluqueria.selected=false;
+								
+			}
+			
+		
+			protected function Btn_Buscar_5_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult6.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_5.text);
+				
+			}
+			
+			protected function getAllEmpresaByNitResult6_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult6.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_5.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_5.text="";
+					
+				}
+			}
+			
+			
+			
+			protected function Chk_Peluqueria_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Peluqueria.selected==true){
+					
+					Vgp_Peluqueria.enabled=true;
+				}else{
+					Vgp_Peluqueria.enabled=false;
+					
+					Chk_Corte_Estandar.selected=false;
+					Chk_Corte_Exibicion.selected=false;
+					Chk_Otro_Peluqueria.selected=false;
+				}
+			}
+			
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			
+			protected function Btn_Nuevo_Spa_clickHandler(event:MouseEvent):void
+			{
+				Chk_Spa.y=88;
+				Vgp_Spa.y=114;
+				
+				Chk_Spa.enabled=true;
+				
+				Lbl_Documento_6.visible=false;
+				Txt_Numero_Documento_6.visible=false;
+				Txt_Numero_Documento_6.text="";
+				Btn_Buscar_6.visible=false;
+				Lbl_Nombre_6.visible=false;
+				Txt_Nombre_Empresa_6.visible=false;
+				Txt_Nombre_Empresa_6.text="";
+				
+			}
+			
+			protected function Btn_Editar_Spa_clickHandler(event:MouseEvent):void
+			{
+				Chk_Spa.y=195;
+				Vgp_Spa.y=219; 
+				
+				
+				Lbl_Documento_6.visible=true;
+				Txt_Numero_Documento_6.visible=true;
+				Btn_Buscar_6.visible=true;
+				Lbl_Nombre_6.visible=true;
+				Txt_Nombre_Empresa_6.visible=true;
+				
+				Vgp_Spa.enabled=false;
+				
+				Chk_Aromaterapia.selected=false;
+				Chk_Hidroterapia.selected=false;
+				Chk_Otro_Spa.selected=false;
+			}
+			
+			protected function Btn_Buscar_6_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult7.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_6.text);
+			}
+			
+			
+			protected function getAllEmpresaByNitResult7_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult7.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_6.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_6.text="";
+					
+				}
+			}
+			
+			protected function Chk_Spa_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Spa.selected==true){
+					
+					Vgp_Spa.enabled=true;
+				}else{
+					Vgp_Spa.enabled=false;
+					
+					Chk_Aromaterapia.selected=false;
+					Chk_Hidroterapia.selected=false;
+					Chk_Otro_Spa.selected=false;
+				}
+			}
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			
+			protected function Btn_Nuevo_Tienda_clickHandler(event:MouseEvent):void
+			{
+				Chk_Tienda.y=88;
+				Vgp_Tienda.y=114;
+				
+				Chk_Tienda.enabled=true;
+				
+				Lbl_Documento_7.visible=false;
+				Txt_Numero_Documento_7.visible=false;
+				Txt_Numero_Documento_7.text="";
+				Btn_Buscar_7.visible=false;
+				Lbl_Nombre_7.visible=false;
+				Txt_Nombre_Empresa_7.visible=false;
+				Txt_Nombre_Empresa_7.text="";
+			}
+			
+			protected function Btn_Editar_Tienda_clickHandler(event:MouseEvent):void
+			{
+				Chk_Tienda.y=195;
+				Vgp_Tienda.y=219; 
+				
+				
+				Lbl_Documento_7.visible=true;
+				Txt_Numero_Documento_7.visible=true;
+				Btn_Buscar_7.visible=true;
+				Lbl_Nombre_7.visible=true;
+				Txt_Nombre_Empresa_7.visible=true;
+				
+				Vgp_Tienda.enabled=false;
+				
+				Chk_Accesorios.selected=false;
+				Chk_Agromercado.selected=false;
+				Chk_Alimento.selected=false;
+				Chk_Aseo_Mascotas.selected=false;
+				Chk_Higiene_Oral.selected=false;
+				Chk_Juguetes.selected=false;
+				Chk_Servicio_Domicilio.selected=false;
+				Chk_Snack.selected=false;
+				Chk_Otro_Tienda.selected=false;
+			}
+		
+			protected function Btn_Buscar_7_clickHandler(event:MouseEvent):void
+			{
+				getAllEmpresaByNitResult8.token = empresaService.getAllEmpresaByNit(Txt_Numero_Documento_7.text);
+			}
+			
+			
+			protected function getAllEmpresaByNitResult8_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEmpresa1 = getAllEmpresaByNitResult8.lastResult;
+				
+				if (ResultadoEmpresa1 != null){
+					
+					Txt_Nombre_Empresa_7.text=ResultadoEmpresa1["Nombre_Empresa"];
+					Vgp_Criadero.enabled=true;
+					
+				}else{
+					
+					Txt_Nombre_Empresa_7.text="";
+					
+				}
+			}			
+			
+			protected function Chk_Tienda_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Tienda.selected==true){
+					
+					Vgp_Tienda.enabled=true;
+				}else{
+					Vgp_Tienda.enabled=false;
+					
+					Chk_Accesorios.selected=false;
+					Chk_Agromercado.selected=false;
+					Chk_Alimento.selected=false;
+					Chk_Aseo_Mascotas.selected=false;
+					Chk_Higiene_Oral.selected=false;
+					Chk_Juguetes.selected=false;
+					Chk_Servicio_Domicilio.selected=false;
+					Chk_Snack.selected=false;
+					Chk_Otro_Tienda.selected=false;
+				}
+			}
+			
+			//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+			
+			protected function Btn_Nuevo_Veterinaria_clickHandler(event:MouseEvent):void
+			{	
+				
+				
+								
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="INICIO"/>
+		<s:State name="CRIADERO"/>
+		<s:State name="FARMACIA"/>
+		<s:State name="GUARDERIA"/>
+		<s:State name="LABORATORIO"/>
+		<s:State name="PELUQUERIA"/>
+		<s:State name="SPA"/>
+		<s:State name="TIENDA"/>
+		<s:State name="VETERINARIA"/>
+	</s:states>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="Rbt_Servicios" change.INICIO="Rbt_Servicios_changeHandler(event)"/>
+		<s:CallResponder id="createServicio_criadereroResult" result.CRIADERO="createServicio_criadereroResult_resultHandler(event)"/>
+		<serviciocriadereroservice:ServiciocriadereroService id="serviciocriadereroService"
+															 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+															 showBusyCursor="true"/>
+		
+		<s:CallResponder id="getAllEmpresaByNitResult" result.INICIO="getAllEmpresaByNitResult_resultHandler(event)"/>
+		<empresaservice:EmpresaService id="empresaService"
+									   fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+									   showBusyCursor="true"/>
+		
+		<s:CallResponder id="getAllEmpresaByNitResult2" result.CRIADERO="getAllEmpresaByNitResult2_resultHandler(event)"/>
+		<s:CallResponder id="getAllServicio_criadereroResult"/>
+		
+		<s:CallResponder id="getAllEmpresaByNitResult3" result.FARMACIA="getAllEmpresaByNitResult3_resultHandler(event)"/>
+		<s:CallResponder id="getAllEmpresaByNitResult4" result.GUARDERIA="getAllEmpresaByNitResult4_resultHandler(event)"/>
+		<s:CallResponder id="getAllEmpresaByNitResult5" result.LABORATORIO="getAllEmpresaByNitResult5_resultHandler(event)"/>
+		<s:CallResponder id="getAllEmpresaByNitResult6" result.PELUQUERIA="getAllEmpresaByNitResult6_resultHandler(event)"/>
+		<s:CallResponder id="getAllEmpresaByNitResult7" result.SPA="getAllEmpresaByNitResult7_resultHandler(event)"/>
+		<s:CallResponder id="getAllEmpresaByNitResult8" result.TIENDA="getAllEmpresaByNitResult8_resultHandler(event)"/>
+			
+		
+		
+	</fx:Declarations>
+	
+	<s:Label includeIn="INICIO" x="48" y="39" fontSize="24" fontStyle="italic"
+			 text="Registro Servicios" textDecoration="none"/>
+	
+	<s:Button id="Btn_Nuevo" includeIn="INICIO" x="52" y="98" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar" includeIn="INICIO" x="156" y="98" width="90" label="EDITAR"
+			  click="Btn_Editar_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Documento" includeIn="INICIO" visible="false" x="53" y="147"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento" includeIn="INICIO" visible="false" x="53" y="161"
+				 width="200" editable="false" restrict="0-9"/>
+	<s:Button id="Btn_Buscar" includeIn="INICIO" visible="false" x="253" y="161" height="22"
+			  label="Buscar" click="Btn_Buscar_clickHandler(event)" enabled="false"/>
+	
+	<s:Label id="Lbl_Nombre" includeIn="INICIO" visible="false" x="53" y="197" text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa" includeIn="INICIO" visible="false" x="53" y="211"
+				 width="400" editable="false"/>
+	
+	<s:Group id="Grp_Servicios" includeIn="INICIO" x="55" y="135" width="200" height="260"
+			 enabled="false">
+		<s:RadioButton x="15" y="10" label="CRIADERO" enabled="true" groupName="Rbt_Servicios"
+					   value="1"/>
+		<s:RadioButton x="15" y="40" label="FARMACIA" enabled="true" groupName="Rbt_Servicios"
+					   value="2"/>
+		<s:RadioButton x="15" y="70" label="GUARDERIA" enabled="true" groupName="Rbt_Servicios"
+					   value="3"/>
+		<s:RadioButton x="15" y="100" label="LABORATORIO" enabled="true" groupName="Rbt_Servicios"
+					   value="4"/>
+		<s:RadioButton x="15" y="130" label="PELUQUERIA" enabled="true" groupName="Rbt_Servicios"
+					   value="5"/>
+		<s:RadioButton x="15" y="160" label="SPA" enabled="true" groupName="Rbt_Servicios" 
+					   value="6"/>
+		<s:RadioButton x="15" y="190" label="TIENDA" enabled="true" groupName="Rbt_Servicios"
+					   value="7"/>
+		<s:RadioButton x="15" y="220" label="VETERINARIA" enabled="true" groupName="Rbt_Servicios"
+					   value="8"/>
+	</s:Group>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Criadero" includeIn="CRIADERO" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Criadero_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Criadero" includeIn="CRIADERO" x="156" y="40" width="90" label="EDITAR"
+			  click="Btn_Editar_Criadero_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Criadero" includeIn="CRIADERO" x="53" y="88" label="CRIADERO"
+				click="Chk_Criadero_clickHandler(event)" enabled="false"/>
+	
+	<s:VGroup id="Vgp_Criadero" includeIn="CRIADERO" x="63" y="114" width="100" height="214"
+			  enabled="false">
+		<s:CheckBox id="Chk_Bovinos" height="25" label="Bovinos"/>
+		<s:CheckBox id="Chk_Caninos" height="25" label="Caninos"/>
+		<s:CheckBox id="Chk_Caprinos" height="25" label="Caprinos"/>
+		<s:CheckBox id="Chk_Equinos" height="25" label="Equinos"/>
+		<s:CheckBox id="Chk_Felinos" height="25" label="Felinos"/>
+		<s:CheckBox id="Chk_Porcinos" height="25" label="Porcinos"/>
+		<s:CheckBox id="Chk_Otro_Criadero" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_1" includeIn="CRIADERO" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_1" includeIn="CRIADERO" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_1" includeIn="CRIADERO" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_1_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_1" includeIn="CRIADERO" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_1" includeIn="CRIADERO" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	<s:List id="Lst_Criadero" includeIn="CRIADERO" visible="false" x="172" y="197" width="292"
+			height="237" creationComplete="Lst_Criadero_creationCompleteHandler(event)"
+			labelField="Nombre_Empresa">
+		
+		<s:AsyncListView list="{getAllServicio_criadereroResult.lastResult}"/>
+	</s:List>
+	
+	<s:Button id="Btn_Guardar_Criadero" includeIn="CRIADERO" x="156" label="GUARDAR"
+			  click="Btn_Guardar_Criadero_clickHandler(event)" verticalCenter="165"/>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Farmacia" includeIn="FARMACIA" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Farmacia_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Farmacia" includeIn="FARMACIA" x="156" y="40" width="90" label="EDITAR"
+			  click="Btn_Editar_Farmacia_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Farmacia" includeIn="FARMACIA" x="53" y="88" label="FARMACIA"
+				click="Chk_Farmacia_clickHandler(event)" enabled="false"/>
+	
+	<s:VGroup id="Vgp_Farmacia" includeIn="FARMACIA" x="63" y="114" enabled="false" >
+		<s:CheckBox id="Chk_Antipulgas" height="25" label="Antipulgas y Antigarrapatas"/>
+		<s:CheckBox id="Chk_Desparacitante" height="25" label="Desparacitantes"/>
+		<s:CheckBox id="Chk_Medicamento" height="25" label="Medicamentos"/>
+		<s:CheckBox id="Chk_Suplemento" height="25" label="Suplementos"/>
+		<s:CheckBox id="Chk_Otro_Farmacia" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_2" includeIn="FARMACIA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_2" includeIn="FARMACIA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_2" includeIn="FARMACIA" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_2_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_2" includeIn="FARMACIA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_2" includeIn="FARMACIA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	
+	<s:Button id="Btn_Nuevo_Guarderia" includeIn="GUARDERIA" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Guarderia_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Guarderia" includeIn="GUARDERIA" x="156" y="40" width="90"
+			  label="EDITAR" click="Btn_Editar_Guarderia_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Guarderia" includeIn="GUARDERIA" x="53" y="88" label="GUARDERIA"
+				click="Chk_Guarderia_clickHandler(event)" enabled="false"/>
+		
+	<s:CheckBox id="Chk_Canina" includeIn="GUARDERIA" x="53" y="114" label="CANINA"
+				click="Chk_Canina_clickHandler(event)" enabled="false"/>	
+	<s:VGroup id="Vgp_Guarderia_Canina" includeIn="GUARDERIA" x="65" y="134" enabled="false" >
+	    <s:CheckBox id="Chk_Can_Campestre" x="68" y="149" height="25" label="Campestre"/>
+	    <s:CheckBox id="Chk_Can_Urbana" x="68" y="173" height="25" label="Urbana"/>
+	    <s:CheckBox id="Chk_Can_Otro" x="68" y="197" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:CheckBox id="Chk_Felina" includeIn="GUARDERIA" x="53" y="240" label="FELINA"
+				click="Chk_Felina_clickHandler(event)" enabled="false"/>
+	<s:VGroup id="Vgp_Guarderia_Felina" includeIn="GUARDERIA" x="65" y="260" enabled="false" >
+		<s:CheckBox id="Chk_Fel_Campestre" x="68" y="149" height="25" label="Campestre"/>
+		<s:CheckBox id="Chk_Fel_Urbana" x="68" y="173" height="25" label="Urbana"/>
+		<s:CheckBox id="Chk_Fel_Otro" x="68" y="197" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_3" includeIn="GUARDERIA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_3" includeIn="GUARDERIA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_3" includeIn="GUARDERIA" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_3_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_3" includeIn="GUARDERIA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_3" includeIn="GUARDERIA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Laboratorio" includeIn="LABORATORIO" x="53" y="40" width="90"
+			  label="NUEVO" click="Btn_Nuevo_Laboratorio_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Laboratorio" includeIn="LABORATORIO" x="156" y="40" width="90"
+			  label="EDITAR" click="Btn_Editar_Laboratorio_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Laboratorio" includeIn="LABORATORIO" x="53" y="88"
+				label="LABORATORIO CLINICO" click="Chk_Laboratorio_clickHandler(event)"
+				enabled="false"/>
+	
+	<s:VGroup id="Vgp_Laboratorio" includeIn="LABORATORIO" x="63" y="114" height="588"
+			  enabled="false">
+		<s:CheckBox id="Chk_Analisis_Liq" height="25" label="Analisis de Liquidos"/>
+		<s:CheckBox id="Chk_Citologia_Vet" height="25" label="Citologia Veterinaria"/>
+		<s:CheckBox id="Chk_Diagnostico_Hor" height="25" label="Diagnostico Hormonal"/>
+		<s:CheckBox id="Chk_Examenes_Ind" height="25" label="Examenes Individuales"/>
+		<s:CheckBox id="Chk_Hematologia_Vet" height="25" label="Hematologia Veterinaria"/>
+		<s:CheckBox id="Chk_Hispatologia" height="25" label="Hispatologia"/>
+		<s:CheckBox id="Chk_Microbiologia" height="25" label="Microbiologia"/>
+		<s:CheckBox id="Chk_Parasitologia" height="25" label="Parasitologia"/>
+		<s:CheckBox id="Chk_Perfiles_Diagnosticos" height="25" label="Perfiles Diagnosticos"/>
+		<s:CheckBox id="Chk_PD_Grandes_Especies" height="25"
+					label="Perfiles Diagnosticos en Grandes Especies"/>
+		<s:CheckBox id="Chk_Pruebas_Coa" height="25" label="Pruebas de Coagulación"/>
+		<s:CheckBox id="Chk_PEV_Bovinos" height="25" label="Pruebas de Enfermedades Virales Bovinos"/>
+		<s:CheckBox id="Chk_PEV_Equinos" height="25" label="Pruebas de Enfermedades Virales Equinos"/>
+		<s:CheckBox id="Chk_PEV_Caninos" height="25" label="Pruebas de Enfermedades Virales Caninos"/>
+		<s:CheckBox id="Chk_PEV_Felinos" height="25" label="Pruebas de Enfermedades Virales Felinos"/>
+		<s:CheckBox id="Chk_Quimica_Sanguinea" height="25" label="Quimica Sanguinea"/>
+		<s:CheckBox id="Chk_Toxicologia" height="25" label="Toxicologia"/>
+		<s:CheckBox id="Chk_Uroanalisis" height="25" label="Uroanalisis"/>
+		<s:CheckBox id="Chk_Otro_Laboratorio" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_4" includeIn="LABORATORIO" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_4" includeIn="LABORATORIO" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_4" includeIn="LABORATORIO" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_4_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_4" includeIn="LABORATORIO" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_4" includeIn="LABORATORIO" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Peluqueria" includeIn="PELUQUERIA" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Peluqueria_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Peluqueria" includeIn="PELUQUERIA" x="156" y="40" width="90"
+			  label="EDITAR" click="Btn_Editar_Peluqueria_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Peluqueria" includeIn="PELUQUERIA" x="53" y="88" label="PELUQUERIA GROOMING"
+				click="Chk_Peluqueria_clickHandler(event)" enabled="false"/>
+	
+	<s:VGroup id="Vgp_Peluqueria" includeIn="PELUQUERIA" x="63" y="114" enabled="false">
+		<s:CheckBox id="Chk_Corte_Estandar" height="25" label="Corte Standar"/>
+		<s:CheckBox id="Chk_Corte_Exibicion" height="25" label="Corte Exibición"/>
+		<s:CheckBox id="Chk_Otro_Peluqueria" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_5" includeIn="PELUQUERIA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_5" includeIn="PELUQUERIA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_5" includeIn="PELUQUERIA" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_5_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_5" includeIn="PELUQUERIA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_5" includeIn="PELUQUERIA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	
+	<s:Button id="Btn_Nuevo_Spa" includeIn="SPA" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Spa_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Spa" includeIn="SPA" x="156" y="40" width="90" label="EDITAR"
+			  click="Btn_Editar_Spa_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Spa" includeIn="SPA" x="53" y="88" label="SPA"
+				click="Chk_Spa_clickHandler(event)" enabled="false"/>
+	
+	<s:VGroup id="Vgp_Spa" includeIn="SPA" x="63" y="114" enabled="false">
+		<s:CheckBox id="Chk_Aromaterapia" height="25" label="Aromaterapia"/>
+		<s:CheckBox id="Chk_Hidroterapia" height="25" label="Hidroterapia"/>
+		<s:CheckBox id="Chk_Otro_Spa" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_6" includeIn="SPA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_6" includeIn="SPA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_6" includeIn="SPA" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_6_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_6" includeIn="SPA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_6" includeIn="SPA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Tienda" includeIn="TIENDA" x="53" y="40" width="90" label="NUEVO"
+			  click="Btn_Nuevo_Tienda_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Tienda" includeIn="TIENDA" x="156" y="40" width="90" label="EDITAR"
+			  click="Btn_Editar_Tienda_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Tienda" includeIn="TIENDA" x="53" y="88" label="TIENDA"
+				click="Chk_Tienda_clickHandler(event)" enabled="false"/>
+	
+	<s:VGroup id="Vgp_Tienda" includeIn="TIENDA" x="63" y="114" enabled="false">
+		<s:CheckBox id="Chk_Accesorios" height="25" label="Accesorios"/>
+		<s:CheckBox id="Chk_Agromercado" height="25" label="Agromercado"/>
+		<s:CheckBox id="Chk_Alimento" height="25" label="Alimento"/>
+		<s:CheckBox id="Chk_Aseo_Mascotas" height="25" label="Aseo Mascota"/>
+		<s:CheckBox id="Chk_Higiene_Oral" height="25" label="Higiene Oral"/>
+		<s:CheckBox id="Chk_Juguetes" height="25" label="Juguetes"/>
+		<s:CheckBox id="Chk_Servicio_Domicilio" height="25" label="Servicio a Domicilio"/>
+		<s:CheckBox id="Chk_Snack" height="25" label="Snack"/>
+		<s:CheckBox id="Chk_Otro_Tienda" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_7" includeIn="TIENDA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_7" includeIn="TIENDA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_7" includeIn="TIENDA" visible="false" x="253" y="96" height="22"
+			  label="Buscar" click="Btn_Buscar_7_clickHandler(event)"/>
+	
+	<s:Label id="Lbl_Nombre_7" includeIn="TIENDA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_7" includeIn="TIENDA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+	<!---->
+	<!---->
+	<!---->
+	
+	<s:Button id="Btn_Nuevo_Veterinaria" includeIn="VETERINARIA" x="53" y="40" width="90"
+			  label="NUEVO" click="Btn_Nuevo_Veterinaria_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar_Veterinaria" includeIn="VETERINARIA" x="156" y="40" width="90" label="EDITAR" 
+			 />
+	
+	<s:CheckBox id="Chk_Veterinaria" includeIn="VETERINARIA" x="53" y="88" label="VETERINARIA"
+				 enabled="false"/>
+	<s:CheckBox id="Chk_Consulta_General" includeIn="VETERINARIA" x="53" y="114"
+				label="CONSULTA GENERAL" enabled="false"/>
+	<s:CheckBox id="Chk_Chip" includeIn="VETERINARIA" x="53" y="140"
+				label="IMPLANTACION / LECTURA CHIP" enabled="false"/>
+	<s:CheckBox id="Chk_Urgencias" includeIn="VETERINARIA" x="53" y="166" label="URGENCIAS"
+				enabled="false"/>
+	<s:CheckBox id="Chk_Vacunacion" includeIn="VETERINARIA" x="53" y="192" label="VACUNACIÓN"
+				enabled="false"/>
+	<s:CheckBox id="Chk_Cirugia" includeIn="VETERINARIA" x="53" y="218" label="CIRUGIA"
+				enabled="false"/>
+	
+	
+	<s:VGroup id="Vgp_VET_Cirugia" includeIn="VETERINARIA" x="63" y="240" enabled="false">
+		<s:CheckBox id="Chk_Esterilización" height="25" label="Esterilización"/>
+		<s:CheckBox id="Chk_General" height="25" label="General"/>
+		<s:CheckBox id="Chk_Ortopedica" height="25" label="Ortopedica"/>
+		<s:CheckBox id="Chk_Otro_Vet_Cirugia" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:CheckBox id="Chk_Consulta_Especialista" includeIn="VETERINARIA" x="53" y="366"
+				label="CONSULTA ESPECIALISTA" enabled="false"/>
+	<s:VGroup id="Vgp_Vet_Consulta_Esp" includeIn="VETERINARIA" x="63" y="392" enabled="false">
+		<s:CheckBox id="Chk_Anestesiología" height="25" label="Anestesiología"/>
+		<s:CheckBox id="Chk_Cardiología" height="25" label="Cardiología"/>
+		<s:CheckBox id="Chk_Dermatología" height="25" label="Dermatología"/>
+		<s:CheckBox id="Chk_Etología" height="25" label="Etología"/>
+		<s:CheckBox id="Chk_Fisioterapia" height="25" label="Fisioterapia"/>
+		<s:CheckBox id="Chk_Gastroenterología" height="25" label="Gastroenterología"/>
+		<s:CheckBox id="Chk_Odontología" height="25" label="Odontología"/>
+		<s:CheckBox id="Chk_Oftamología" height="25" label="Oftamología"/>
+		<s:CheckBox id="Chk_Ortopedia" height="25" label="Ortopedia"/>
+		<s:CheckBox id="Chk_Urología" height="25" label="Nefrología y Urología"/>
+		<s:CheckBox id="Chk_Neurología" height="25" label="Neurología"/>
+		<s:CheckBox id="Chk_Nutrición" height="25" label="Nutrición"/>
+		<s:CheckBox id="Chk_Reproducción" height="25" label="Reproducción"/>
+		<s:CheckBox id="Chk_Otro_Vet_Consulta_Esp" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:CheckBox id="Chk_Hospitalizacion" includeIn="VETERINARIA" x="53" y="830"
+				label="HOPITALIZACIÓN" enabled="false"/>
+	<s:VGroup id="Vgp_Vet_Hospital" includeIn="VETERINARIA" x="63" y="856" enabled="false">
+		<s:CheckBox id="Chk_Contagiosas" height="25" label="Infectocontagiosas"/>
+		<s:CheckBox id="Chk_UCI" height="25" label="UCI"/>
+		<s:CheckBox id="Chk_24Horas" height="25" label="24 Horas"/>
+		<s:CheckBox id="Chk_12Horas" height="25" label="12 Horas"/>
+		<s:CheckBox id="Chk_Otro_Vet_Hospital" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:CheckBox id="Chk_Imagen" includeIn="VETERINARIA" x="53" y="1015" label="IMAGENEOLOGÍA"
+				enabled="false"/>
+	<s:VGroup id="Vgp_Vet_Imagen" includeIn="VETERINARIA" x="63" y="1041" enabled="false">
+		<s:CheckBox id="Chk_Ecografia" height="25" label="Ecografia"/>
+		<s:CheckBox id="Chk_Cardiografia" height="25" label="Eco Cardiografia"/>
+		<s:CheckBox id="Chk_Endoscopia" height="25" label="Endoscopia"/>
+		<s:CheckBox id="Chk_Rayos" height="25" label="Rayos X"/>
+		<s:CheckBox id="Chk_Otro_Vet_Imagen" height="25" label="Otro"/>
+	</s:VGroup>
+	
+	<s:Label id="Lbl_Documento_8" includeIn="VETERINARIA" visible="false" x="53" y="82"
+			 text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento_8" includeIn="VETERINARIA" visible="false" x="53" y="96"
+				 width="200" restrict="0-9"/>
+	<s:Button id="Btn_Buscar_8" includeIn="VETERINARIA" visible="false" x="253" y="96" height="22" label="Buscar" />
+	
+	<s:Label id="Lbl_Nombre_8" includeIn="VETERINARIA" visible="false" x="53" y="138"
+			 text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa_8" includeIn="VETERINARIA" visible="false" x="53" y="152"
+				 width="400" editable="false"/>
+	
+</s:Group>

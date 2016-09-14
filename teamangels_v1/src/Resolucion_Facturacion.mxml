@@ -1,15 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx"  minWidth="955" minHeight="600" xmlns:Formularios="Formularios.*">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Formularios="Formularios.*"
+			   xmlns:resolucionfacestablecimientoservice="services.resolucionfacestablecimientoservice.*"
+			   minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			import valueObjects.Resolucion_fac_establecimiento;
+			
+			// FUNCION DE INICIALIZACION DE LA APLICACION. DESACTIVANDO LOS CONTROLES.
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				desactivarcontroles();
+			}
+			
+			// FUNCION DONDE ACTIVA Y LIMPIA LOS CONTROLES.
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				ActivarControles();
+				
+			}
+			
+			
+			// FUNCION DONDE GUARDA.
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+					
+				for(var i:int =0; i <Form_Resolu.Resolucion.length; i++){
+					
+					var Reg:Resolucion_fac_establecimiento = new Resolucion_fac_establecimiento();
+					
+					Reg.Documento_Empresa=Data_Model_Resolucion.Numero_Documento;
+					Reg.Nombre_Empresa=Data_Model_Resolucion.Nombre_Empresa;
+					Reg.Tipo_Regimen=Data_Model_Resolucion.Tipo_Regimen;
+					Reg.Cuenta_Cobro=Data_Model_Resolucion.Cuenta_Cobro;
+					Reg.Consecutivo_Cuenta_Cobro=Data_Model_Resolucion.Consecutivo_Cuenta_Co;
+					Reg.Numero_Resolucion_Dian=Form_Resolu.Resolucion.getItemAt(i).Numero_Resolucion_Dian;
+					Reg.Modalidad_Facturacion=Form_Resolu.Resolucion.getItemAt(i).Modalidad_Facturacion;
+					Reg.Prefijo=Form_Resolu.Resolucion.getItemAt(i).Prefijo;
+					Reg.Consecutivo_Desde=Form_Resolu.Resolucion.getItemAt(i).Consecutivo_Desde;
+					Reg.Consecutivo_Hasta=Form_Resolu.Resolucion.getItemAt(i).Consecutivo_Hasta;
+					Reg.Fecha_Resolucion=Form_Resolu.Resolucion.getItemAt(i).Fecha_Resolucion;
+					Reg.Fecha = new Date();
+					Reg.Usuario = "ADMIN"; 
+					
+					createResolucion_fac_establecimientoResult.token = resolucionfacestablecimientoService.createResolucion_fac_establecimiento(Reg);
+					resolucionfacestablecimientoService.commit();
+					
+				}
+				
+				
+			}
+			
+			// FUNCION DONDE DESACTIVA TODOS LOS CONTROLES.
+			private function desactivarcontroles():void{
+				
+				Form_Resolu.Txt_Numero_Documento.editable=false;
+				Form_Resolu.Btn_Buscar.enabled=false;
+				Form_Resolu.Txt_Resolucion_Dian.editable=false;
+				Form_Resolu.Ddl_Modalidad_Facturacion.openButton.enabled=false;
+				Form_Resolu.Txt_Prefijo.editable=false;
+				Form_Resolu.Txt_Consecutivo_Desde.editable=false;
+				Form_Resolu.Txt_Consecutivo_Hasta.editable=false;
+				Form_Resolu.Dtf_Fecha_Resolucion.editable=false;
+				Form_Resolu.Dtf_Fecha_Resolucion.enabled=false;
+				Form_Resolu.Btn_Agregar.enabled=false;
+				
+				Form_Resolu.Txt_Cuenta_Cobro.editable=false;
+				Form_Resolu.Txt_Consecutivo_Cuenta_Cobro.editable=false;
+				
+			}
+			
+			// FUNCION DONDE ACTIVA TODOS LOS CONTROLES.
+			private function ActivarControles():void{
+				
+				Form_Resolu.Txt_Numero_Documento.editable=true;
+				Form_Resolu.Btn_Buscar.enabled=true;
+				Form_Resolu.Txt_Resolucion_Dian.editable=true;
+				Form_Resolu.Ddl_Modalidad_Facturacion.openButton.enabled=true;
+				Form_Resolu.Txt_Prefijo.editable=true;
+				Form_Resolu.Txt_Consecutivo_Desde.editable=true;
+				Form_Resolu.Txt_Consecutivo_Hasta.editable=true;
+				Form_Resolu.Dtf_Fecha_Resolucion.editable=true;
+				Form_Resolu.Dtf_Fecha_Resolucion.enabled=true;
+				Form_Resolu.Btn_Agregar.enabled=true;
+				
+				Form_Resolu.Txt_Cuenta_Cobro.editable=true;
+				Form_Resolu.Txt_Consecutivo_Cuenta_Cobro.editable=true;
+			}
+			
+			// FUNCION DONDE LIMPIA TODOS LOS CAMPOS.
+			private function Limpiar():void{
+				
+				Form_Resolu.Txt_Numero_Documento.text="";
+				Form_Resolu.Txt_Numero_Documento.errorString="";
+				
+				Form_Resolu.Txt_Nombre_Empresa.text="";
+				Form_Resolu.Txt_Nombre_Empresa.errorString="";
+				
+				Form_Resolu.Txt_Tipo_Regimen.text="";
+				Form_Resolu.Txt_Tipo_Regimen.errorString="";
+				
+				Form_Resolu.Txt_Resolucion_Dian.text="";
+				Form_Resolu.Txt_Resolucion_Dian.errorString="";
+				
+				Form_Resolu.Ddl_Modalidad_Facturacion.selectedIndex=-1;
+				Form_Resolu.Ddl_Modalidad_Facturacion.errorString="";
+				
+				Form_Resolu.Txt_Prefijo.text="";
+				Form_Resolu.Txt_Prefijo.errorString="";
+				
+				Form_Resolu.Txt_Consecutivo_Desde.text="";
+				Form_Resolu.Txt_Consecutivo_Desde.errorString="";
+				
+				Form_Resolu.Txt_Consecutivo_Hasta.text="";
+				Form_Resolu.Txt_Consecutivo_Hasta.errorString="";
+				
+				Form_Resolu.Dtf_Fecha_Resolucion.text="";
+				Form_Resolu.Dtf_Fecha_Resolucion.errorString="";
+				
+				Form_Resolu.Txt_Cuenta_Cobro.text="";
+				Form_Resolu.Txt_Cuenta_Cobro.errorString="";
+				
+				Form_Resolu.Txt_Consecutivo_Cuenta_Cobro.text="";
+				Form_Resolu.Txt_Consecutivo_Cuenta_Cobro.errorString="";
+				
+			}	
+			
+			
+		]]>
+	</fx:Script>
 	
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<fx:Model id="Data_Model_Resolucion">
+			<Data>
+				<Id></Id>
+				<Numero_Documento>@{Form_Resolu.Txt_Numero_Documento.text}</Numero_Documento>
+				<Nombre_Empresa>@{Form_Resolu.Txt_Nombre_Empresa.text}</Nombre_Empresa>
+				<Tipo_Regimen>@{Form_Resolu.Txt_Tipo_Regimen.text}</Tipo_Regimen>
+				<Resolucion_Dian>@{Form_Resolu.Txt_Resolucion_Dian.text}</Resolucion_Dian>
+				<Modulacion_Fac>{Form_Resolu.Ddl_Modalidad_Facturacion.selectedItem}</Modulacion_Fac>
+				<Prefijo>@{Form_Resolu.Txt_Prefijo.text}</Prefijo>
+				<Consecutivo_Desde>@{Form_Resolu.Txt_Consecutivo_Desde.text}</Consecutivo_Desde>
+				<Consecutivo_Hasta>@{Form_Resolu.Txt_Consecutivo_Hasta.text}</Consecutivo_Hasta>
+				<Resolucion_Fecha>@{Form_Resolu.Dtf_Fecha_Resolucion.selectedDate}</Resolucion_Fecha>
+				
+				<Cuenta_Cobro>@{Form_Resolu.Txt_Cuenta_Cobro.text}</Cuenta_Cobro>
+				<Consecutivo_Cuenta_Co>@{Form_Resolu.Txt_Consecutivo_Cuenta_Cobro.text}</Consecutivo_Cuenta_Co>
+				
+			</Data>			
+		</fx:Model>
+		<s:CallResponder id="createResolucion_fac_establecimientoResult"/>
+		<resolucionfacestablecimientoservice:ResolucionfacestablecimientoService id="resolucionfacestablecimientoService"
+																				 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+																				 showBusyCursor="true"/>
+		
 	</fx:Declarations>
 	
 	<s:Label y="23" left="80" fontFamily="Georgia" fontSize="20" text="RESOLUCION FACTURACION"/>
 	
-	<Formularios:Resolucion_Facturacion id="Form_Resolucion" y="103" left="80">
+	<Formularios:Resolucion_Facturacion id="Form_Resolu" y="95" left="80">
 	</Formularios:Resolucion_Facturacion>
+	
+	<s:Button id="Btn_Nuevo" y="65" left="100" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Guardar" x="501" y="753" width="90" label="GUARDAR" 
+			  click="Btn_Guardar_clickHandler(event)"/>
 	
 </s:Application>

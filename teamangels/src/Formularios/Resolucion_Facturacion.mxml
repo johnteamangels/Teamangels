@@ -25,7 +25,8 @@
 	<s:Label x="35" y="141" text="Tipo Regimen"/>
 	<s:TextInput id="Txt_Tipo_Regimen" x="35" y="155" width="200" enabled="false"/>
 	
-	<s:Label id="Lbl_Regimen" includeIn="Comun" x="243" y="155" width="192" height="22"/>
+	<s:Label id="Lbl_Regimen" includeIn="Comun" x="243" y="155" width="192" height="22"
+			 verticalAlign="middle"/>
 		
 	<s:Label includeIn="Comun" x="35" y="205" text="Resolución Facturación DIAN numero"/>
 	<s:TextInput id="Txt_Resolucion_Dian" includeIn="Comun" x="35" y="219" width="270"/>	

@@ -24,6 +24,7 @@
     <application path="Registro_Empresa.mxml"/>
     <application path="Registro_Establecimiento.mxml"/>
     <application path="Resolucion_Facturacion.mxml"/>
+    <application path="Registro_Servicios.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

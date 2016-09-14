@@ -72,6 +72,11 @@
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ResolucionfacestablecimientoService.php</location>
 		</link>
 		<link>
+			<name>services/ServiciocriadereroService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/ServiciocriadereroService.php</location>
+		</link>
+		<link>
 			<name>services/TipodocumentoService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/TipodocumentoService.php</location>

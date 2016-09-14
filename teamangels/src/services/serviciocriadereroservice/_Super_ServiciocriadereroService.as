@@ -1,8 +1,8 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - EmpresaService.as.
+ * of this service wrapper you may modify the generated sub-class of this class - ServiciocriadereroService.as.
  */
-package services.empresaservice
+package services.serviciocriadereroservice
 {
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
@@ -21,25 +21,25 @@ import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
 import mx.rpc.remoting.RemoteObject;
-import valueObjects.Empresa;
+import valueObjects.Servicio_criaderero;
 
 import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_ServiciocriadereroService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
-    private var _empresaRPCDataManager : mx.data.RPCDataManager;
+    private var _servicio_criadereroRPCDataManager : mx.data.RPCDataManager;
     private var managersArray : Array = new Array();
 
-    public const DATA_MANAGER_EMPRESA : String = "Empresa";
+    public const DATA_MANAGER_SERVICIO_CRIADERERO : String = "Servicio_criaderero";
 
     public function getDataManager(dataManagerName:String) : mx.data.RPCDataManager
     {
         switch (dataManagerName)
         {
-             case (DATA_MANAGER_EMPRESA):
-                return _empresaRPCDataManager;
+             case (DATA_MANAGER_SERVICIO_CRIADERERO):
+                return _servicio_criadereroRPCDataManager;
             default:
                 return null;
         }
@@ -74,7 +74,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
      */
     public function commit(itemsOrCollections:Array=null, cascadeCommit:Boolean=false):mx.rpc.AsyncToken
     {
-        return _empresaRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
+        return _servicio_criadereroRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
     }
 
     /**
@@ -102,7 +102,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
         if (itemsOrCollections == null)
         {
             // Revert all changes
-            return _empresaRPCDataManager.dataStore.revertChanges();
+            return _servicio_criadereroRPCDataManager.dataStore.revertChanges();
         }
         else
         {
@@ -119,7 +119,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
                 }
                 else if (changeItem is mx.collections.ListCollectionView)
                 {
-                    anyChangeItemReverted ||= _empresaRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
+                    anyChangeItemReverted ||= _servicio_criadereroRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
                 }
                 else
                 {
@@ -131,90 +131,90 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     }
 
     // Constructor
-    public function _Super_EmpresaService()
+    public function _Super_ServiciocriadereroService()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
 
         // initialize RemoteClass alias for all entities returned by functions of this service
-        valueObjects.Empresa._initRemoteClassAlias();
+        valueObjects.Servicio_criaderero._initRemoteClassAlias();
 
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresa");
-         operation.resultElementType = valueObjects.Empresa;
-        operations["getAllEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getEmpresaByID");
-         operation.resultType = valueObjects.Empresa;
-        operations["getEmpresaByID"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "createEmpresa");
-         operation.resultType = String;
-        operations["createEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "updateEmpresa");
-        operations["updateEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "deleteEmpresa");
-        operations["deleteEmpresa"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllServicio_criaderero");
+         operation.resultElementType = valueObjects.Servicio_criaderero;
+        operations["getAllServicio_criaderero"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getServicio_criadereroByID");
+         operation.resultType = valueObjects.Servicio_criaderero;
+        operations["getServicio_criadereroByID"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "createServicio_criaderero");
+         operation.resultType = int;
+        operations["createServicio_criaderero"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "updateServicio_criaderero");
+        operations["updateServicio_criaderero"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "deleteServicio_criaderero");
+        operations["deleteServicio_criaderero"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "count");
          operation.resultType = int;
         operations["count"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getEmpresa_paged");
-         operation.resultElementType = valueObjects.Empresa;
-        operations["getEmpresa_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresaByNit");
+        operation = new mx.rpc.remoting.Operation(null, "getServicio_criaderero_paged");
+         operation.resultElementType = valueObjects.Servicio_criaderero;
+        operations["getServicio_criaderero_paged"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getServicio_criadereroByDocumento");
          operation.resultType = Object;
-        operations["getAllEmpresaByNit"] = operation;
+        operations["getServicio_criadereroByDocumento"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "EmpresaService";
+        _serviceControl.source = "ServiciocriadereroService";
         _serviceControl.endpoint = "gateway.php";
         var managedAssociation : mx.data.ManagedAssociation;
         var managedAssocsArray : Array;
-        // initialize Empresa data manager
-        _empresaRPCDataManager = new mx.data.RPCDataManager();
-        managersArray.push(_empresaRPCDataManager);
+        // initialize Servicio_criaderero data manager
+        _servicio_criadereroRPCDataManager = new mx.data.RPCDataManager();
+        managersArray.push(_servicio_criadereroRPCDataManager);
 
         managedAssocsArray = new Array();
 
-        _empresaRPCDataManager.destination = "empresaRPCDataManager";
-        _empresaRPCDataManager.service = _serviceControl;        
-        _empresaRPCDataManager.identities =  "Documento_Empresa";      
-        _empresaRPCDataManager.itemClass = valueObjects.Empresa; 
+        _servicio_criadereroRPCDataManager.destination = "servicio_criadereroRPCDataManager";
+        _servicio_criadereroRPCDataManager.service = _serviceControl;        
+        _servicio_criadereroRPCDataManager.identities =  "Id";      
+        _servicio_criadereroRPCDataManager.itemClass = valueObjects.Servicio_criaderero; 
 
 
 
         var dmOperation : mx.data.ManagedOperation;
         var dmQuery : mx.data.ManagedQuery;
 
-        dmQuery = new mx.data.ManagedQuery("getEmpresa_paged");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
+        dmOperation = new mx.data.ManagedOperation("updateServicio_criaderero", "update");
+        dmOperation.parameters = "item";
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("getServicio_criadereroByID", "get");
+        dmOperation.parameters = "Id";
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmQuery = new mx.data.ManagedQuery("getServicio_criaderero_paged");
+        dmQuery.propertySpecifier = "Id,Documento_Empresa,Nombre_Empresa,Criadero,Bovinos,Caninos,Caprinos,Equinos,Felinos,Porcinos,Otro";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
         dmQuery.parameters = "startIndex,numItems";
-        _empresaRPCDataManager.addManagedOperation(dmQuery);
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmQuery);
 
-        dmOperation = new mx.data.ManagedOperation("updateEmpresa", "update");
-        dmOperation.parameters = "item";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("deleteEmpresa", "delete");
-        dmOperation.parameters = "id";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("getEmpresaByID", "get");
-        dmOperation.parameters = "Documento_Empresa";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmQuery = new mx.data.ManagedQuery("getAllEmpresa");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
+        dmQuery = new mx.data.ManagedQuery("getAllServicio_criaderero");
+        dmQuery.propertySpecifier = "Id,Documento_Empresa,Nombre_Empresa,Criadero,Bovinos,Caninos,Caprinos,Equinos,Felinos,Porcinos,Otro";
         dmQuery.parameters = "";
-        _empresaRPCDataManager.addManagedOperation(dmQuery);
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmQuery);
 
-        dmOperation = new mx.data.ManagedOperation("createEmpresa", "create");
+        dmOperation = new mx.data.ManagedOperation("deleteServicio_criaderero", "delete");
+        dmOperation.parameters = "id";
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("createServicio_criaderero", "create");
         dmOperation.parameters = "item";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
+        _servicio_criadereroRPCDataManager.addManagedOperation(dmOperation);     
 
         _serviceControl.managers = managersArray;
 
@@ -225,13 +225,13 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "EmpresaService";
+        destination = "ServiciocriadereroService";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'getAllEmpresa' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getAllServicio_criaderero' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -241,15 +241,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllEmpresa() : mx.rpc.AsyncToken
+    public function getAllServicio_criaderero() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllServicio_criaderero");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getEmpresaByID' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'getServicio_criadereroByID' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -259,15 +259,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getEmpresaByID(itemID:String) : mx.data.ItemReference
+    public function getServicio_criadereroByID(itemID:int) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEmpresaByID");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getServicio_criadereroByID");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(itemID) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'createEmpresa' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'createServicio_criaderero' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -277,15 +277,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function createEmpresa(item:valueObjects.Empresa) : mx.data.ItemReference
+    public function createServicio_criaderero(item:valueObjects.Servicio_criaderero) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createServicio_criaderero");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'updateEmpresa' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'updateServicio_criaderero' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -295,15 +295,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function updateEmpresa(item:valueObjects.Empresa) : mx.data.ItemReference
+    public function updateServicio_criaderero(item:valueObjects.Servicio_criaderero) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateServicio_criaderero");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'deleteEmpresa' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'deleteServicio_criaderero' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -313,9 +313,9 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteEmpresa(itemID:String) : mx.rpc.AsyncToken
+    public function deleteServicio_criaderero(itemID:int) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteServicio_criaderero");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(itemID) ;
         return _internal_token;
     }
@@ -339,7 +339,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getEmpresa_paged' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getServicio_criaderero_paged' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -349,15 +349,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getEmpresa_paged() : mx.rpc.AsyncToken
+    public function getServicio_criaderero_paged() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEmpresa_paged");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getServicio_criaderero_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getAllEmpresaByNit' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getServicio_criadereroByDocumento' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -367,9 +367,9 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllEmpresaByNit(documento:String) : mx.rpc.AsyncToken
+    public function getServicio_criadereroByDocumento(documento:String) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresaByNit");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getServicio_criadereroByDocumento");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
         return _internal_token;
     }
