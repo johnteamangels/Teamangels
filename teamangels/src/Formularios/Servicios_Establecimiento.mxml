@@ -205,6 +205,19 @@
 				}
 			}
 			
+			protected function Chk_Otro_Criadero_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Criadero.selected==true){
+					
+					Txt_Otro_Criadero.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Criadero.visible=false;
+				}
+				
+			}
+			
 			protected function Btn_Guardar_Criadero_clickHandler(event:MouseEvent):void
 			{
 				var Reg:Servicio_criaderero = new Servicio_criaderero();
@@ -816,6 +829,8 @@
 								
 			}
 			
+		
+			
 		]]>
 	</fx:Script>
 	
@@ -910,7 +925,7 @@
 	<s:CheckBox id="Chk_Criadero" includeIn="CRIADERO" x="53" y="88" label="CRIADERO"
 				click="Chk_Criadero_clickHandler(event)" enabled="false"/>
 	
-	<s:VGroup id="Vgp_Criadero" includeIn="CRIADERO" x="63" y="114" width="100" height="214"
+	<s:VGroup id="Vgp_Criadero" includeIn="CRIADERO" x="63" y="114" width="156" height="259"
 			  enabled="false">
 		<s:CheckBox id="Chk_Bovinos" height="25" label="Bovinos"/>
 		<s:CheckBox id="Chk_Caninos" height="25" label="Caninos"/>
@@ -918,7 +933,9 @@
 		<s:CheckBox id="Chk_Equinos" height="25" label="Equinos"/>
 		<s:CheckBox id="Chk_Felinos" height="25" label="Felinos"/>
 		<s:CheckBox id="Chk_Porcinos" height="25" label="Porcinos"/>
-		<s:CheckBox id="Chk_Otro_Criadero" height="25" label="Otro"/>
+		<s:CheckBox id="Chk_Otro_Criadero" height="25" label="Otro"
+					click="Chk_Otro_Criadero_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Criadero" visible.CRIADERO="false"/>
 	</s:VGroup>
 	
 	<s:Label id="Lbl_Documento_1" includeIn="CRIADERO" visible="false" x="53" y="82"
@@ -1199,11 +1216,12 @@
 		<s:CheckBox id="Chk_General" height="25" label="General"/>
 		<s:CheckBox id="Chk_Ortopedica" height="25" label="Ortopedica"/>
 		<s:CheckBox id="Chk_Otro_Vet_Cirugia" height="25" label="Otro"/>
+		<s:TextInput id="Txt_Otro_Ciru_Vet"/>
 	</s:VGroup>
 	
-	<s:CheckBox id="Chk_Consulta_Especialista" includeIn="VETERINARIA" x="53" y="366"
+	<s:CheckBox id="Chk_Consulta_Especialista" includeIn="VETERINARIA" x="53" y="400"
 				label="CONSULTA ESPECIALISTA" enabled="false"/>
-	<s:VGroup id="Vgp_Vet_Consulta_Esp" includeIn="VETERINARIA" x="63" y="392" enabled="false">
+	<s:VGroup id="Vgp_Vet_Consulta_Esp" includeIn="VETERINARIA" x="63" y="426" enabled="false">
 		<s:CheckBox id="Chk_Anestesiología" height="25" label="Anestesiología"/>
 		<s:CheckBox id="Chk_Cardiología" height="25" label="Cardiología"/>
 		<s:CheckBox id="Chk_Dermatología" height="25" label="Dermatología"/>
@@ -1218,26 +1236,29 @@
 		<s:CheckBox id="Chk_Nutrición" height="25" label="Nutrición"/>
 		<s:CheckBox id="Chk_Reproducción" height="25" label="Reproducción"/>
 		<s:CheckBox id="Chk_Otro_Vet_Consulta_Esp" height="25" label="Otro"/>
+		<s:TextInput id="Txt_Otro_Cons_Vet"/>
 	</s:VGroup>
 	
-	<s:CheckBox id="Chk_Hospitalizacion" includeIn="VETERINARIA" x="53" y="830"
-				label="HOPITALIZACIÓN" enabled="false"/>
-	<s:VGroup id="Vgp_Vet_Hospital" includeIn="VETERINARIA" x="63" y="856" enabled="false">
+	<s:CheckBox id="Chk_Hospitalizacion" includeIn="VETERINARIA" x="53" y="898"
+				label="HOSPITALIZACIÓN" enabled="false"/>
+	<s:VGroup id="Vgp_Vet_Hospital" includeIn="VETERINARIA" x="63" y="924" enabled="false">
 		<s:CheckBox id="Chk_Contagiosas" height="25" label="Infectocontagiosas"/>
 		<s:CheckBox id="Chk_UCI" height="25" label="UCI"/>
 		<s:CheckBox id="Chk_24Horas" height="25" label="24 Horas"/>
 		<s:CheckBox id="Chk_12Horas" height="25" label="12 Horas"/>
 		<s:CheckBox id="Chk_Otro_Vet_Hospital" height="25" label="Otro"/>
+		<s:TextInput id="Txt_Otro_Hosp_Vet"/>
 	</s:VGroup>
 	
-	<s:CheckBox id="Chk_Imagen" includeIn="VETERINARIA" x="53" y="1015" label="IMAGENEOLOGÍA"
+	<s:CheckBox id="Chk_Imagen" includeIn="VETERINARIA" x="53" y="1117" label="IMAGENEOLOGÍA"
 				enabled="false"/>
-	<s:VGroup id="Vgp_Vet_Imagen" includeIn="VETERINARIA" x="63" y="1041" enabled="false">
+	<s:VGroup id="Vgp_Vet_Imagen" includeIn="VETERINARIA" x="63" y="1143" enabled="false">
 		<s:CheckBox id="Chk_Ecografia" height="25" label="Ecografia"/>
 		<s:CheckBox id="Chk_Cardiografia" height="25" label="Eco Cardiografia"/>
 		<s:CheckBox id="Chk_Endoscopia" height="25" label="Endoscopia"/>
 		<s:CheckBox id="Chk_Rayos" height="25" label="Rayos X"/>
 		<s:CheckBox id="Chk_Otro_Vet_Imagen" height="25" label="Otro"/>
+		<s:TextInput id="Txt_Otro_Imag_Vet"/>
 	</s:VGroup>
 	
 	<s:Label id="Lbl_Documento_8" includeIn="VETERINARIA" visible="false" x="53" y="82"

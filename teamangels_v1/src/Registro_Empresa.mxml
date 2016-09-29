@@ -4,8 +4,11 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:Formularios="Formularios.*"
 			   xmlns:empresaservice="services.empresaservice.*"
+			   xmlns:establecimientosservice="services.establecimientosservice.*"
+			   xmlns:valueObjects="valueObjects.*"
 			   minWidth="955" minHeight="600"
-			   creationComplete="application1_creationCompleteHandler(event)" xmlns:valueObjects="valueObjects.*">
+			   creationComplete="application1_creationCompleteHandler(event)" currentState="Empresa"
+			   height.Establecimientos="760">
 	
 	<fx:Script>
 		<![CDATA[
@@ -17,8 +20,11 @@
 			import spark.events.IndexChangeEvent;
 			
 			import valueObjects.Empresa;
+			import valueObjects.Establecimientos;
 			
-			
+			private var Documento_Empresa:String;
+			private var Nombre_Empresa:String;
+			private var Resultado:Object;
 			
 			//SE DESACTIVAN LOS CAMPOS
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
@@ -167,7 +173,7 @@
 					&& Primer_Apellido_Repre.type==ValidationResultEvent.VALID
 					&& Telefono_Representante.type==ValidationResultEvent.VALID
 					&& Email_Representante.type==ValidationResultEvent.VALID
-				
+					
 				){
 					rsp=true;
 				}else{
@@ -176,7 +182,7 @@
 				return rsp;
 			}		
 			
-		
+			
 			//FUNCION DE GUARDAR Y ACTUALIZAR
 			private var EditarGuad:Boolean=false;
 			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
@@ -187,16 +193,16 @@
 					if(ValidarTodo()){
 						
 						getEmpresaByIDResult.token = empresaService.getEmpresaByID(Reg_Empresa.Txt_Nit.text);
-												
+						
 					}
-				
+					
 				}else{
 					
 					EditarGuad=true;
 					
 					if(ValidarTodo()){
 						
-					
+						
 						var Reg2:Empresa = new Empresa();
 						
 						Reg2.Documento_Empresa = Reg_Empresa.Txt_Nit.text;
@@ -250,7 +256,7 @@
 						
 						getAllEmpresaResult.token = empresaService.getAllEmpresa();
 					}
-				
+					
 				}	
 			}
 			
@@ -316,7 +322,7 @@
 					empresaService.commit();
 					
 					getAllEmpresaResult.token = empresaService.getAllEmpresa();
-			
+					
 				}
 				
 			}
@@ -347,7 +353,7 @@
 				Reg_Empresa.Txt_Tel_Representante.editable=false;
 				Reg_Empresa.Txt_Email_Representante.editable=false;
 				
-			
+				
 			}
 			
 			
@@ -356,9 +362,33 @@
 			{
 				Limpiar();
 				
+				currentState="Establecimientos";
+				desactivarcontroles();
+				
+				
+				getAllEmpresaByUltimo_RegistroResult.token = empresaService.getAllEmpresaByUltimo_Registro();
+										
+
 			}
 			
-		
+			
+			protected function getAllEmpresaByUltimo_RegistroResult_resultHandler(event:ResultEvent):void
+			{
+				Resultado = getAllEmpresaByUltimo_RegistroResult.lastResult;
+				
+				if(Resultado!= null){
+					
+					Documento_Empresa=Resultado["Documento_Empresa"];
+					Nombre_Empresa=Resultado["Nombre_Empresa"];
+					
+				}else{
+					
+					Documento_Empresa="";
+					Nombre_Empresa="";
+				}
+			}
+			
+			
 			protected function Btn_Editar_clickHandler(event:MouseEvent):void
 			{
 				EditarGuad=true;
@@ -440,12 +470,375 @@
 				}
 				
 			}	
-		
 			
-		
+			
+			protected function getAllEmpresaByUltimo_Registro():void
+			{
+				
+			}
+			
+			
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			// CODIGO DEL OTRO ESTADO: ESTABLECIMIENTOS.............................................................................................................................................
+			
+			
+			// FUNCION DONDE ACTIVA Y LIMPIA LOS CONTROLES.
+			protected function Btn_Nuevo_Establemiento_clickHandler(event:MouseEvent):void
+			{
+				Btn_Editar.enabled=false;
+				ActivarControles();
+				Limpiar_Establecimiento();
+			}
+			
+			// FUNCION DONDE GUARDA Y AL MISMO TIEMPO EDITA CON LA CONDICION.
+			private var GuardarEditado:Boolean=false;
+			protected function Btn_Guardar_Establecimiento_clickHandler(event:MouseEvent):void
+			{
+				if(GuardarEditado==false){
+					
+					if(ValidarTodo_Establecimiento()){
+						
+						var Reg:Establecimientos = new Establecimientos();
+						
+						Reg.Tipo_Establecimiento = Data_Model_Estab.Tipo_Estab;
+						Reg.Documento_Empresa = Documento_Empresa;
+						Reg.Nombre_Empresa = Nombre_Empresa;
+						Reg.Clase_Establecimiento = Data_Model_Estab.Clase_Estab;
+						Reg.Nombre_Comercial = Data_Model_Estab.Nombre_Comercial;
+						Reg.Email = Data_Model_Estab.Email;
+						Reg.Direccion_Establecimiento = Data_Model_Estab.Direccion_Estab;
+						Reg.Telefono_Uno = Data_Model_Estab.Telefono1;
+						Reg.Numero_Uno = Data_Model_Estab.Numero1;
+						Reg.Telefono_Dos = Data_Model_Estab.Telefono2;
+						Reg.Numero_Dos = Data_Model_Estab.Numero2;
+						Reg.Web_Site = Data_Model_Estab.Web_Site;
+						Reg.Tipo_Cuenta_Uno = Data_Model_Estab.Tipo_Cuenta_Uno;
+						Reg.Codigo_Banco_Uno = Data_Model_Estab.Tipo_Banco_Uno
+						Reg.Banco_Uno = Data_Model_Estab.Banco_Uno
+						Reg.Numero_Cuenta_Uno = Data_Model_Estab.Numero_Cuenta_Uno;
+						Reg.Tipo_Cuenta_Dos = Data_Model_Estab.Tipo_Cuenta_Dos;
+						Reg.Codigo_Banco_Dos = Data_Model_Estab.Tipo_Banco_Dos
+						Reg.Banco_Dos = Data_Model_Estab.Banco_Dos;
+						Reg.Numero_Cuenta_Dos = Data_Model_Estab.Numero_Cuenta_Dos;
+						Reg.Tipo_Cuenta_Tres = Data_Model_Estab.Tipo_Cuenta_Tres;
+						Reg.Codigo_Banco_Tres = Data_Model_Estab.Tipo_Banco_Tres
+						Reg.Banco_tres = Data_Model_Estab.Banco_Tres;
+						Reg.Numero_Cuenta_Tres = Data_Model_Estab.Numero_Cuenta_Tres;
+						Reg.Fecha = new Date();
+						Reg.Usuario = "ADMIN"; 
+						
+						createEstablecimientosResult.token = establecimientosService.createEstablecimientos(Reg);
+						establecimientosService.commit();
+					}
+					
+					
+					
+				}else{
+					
+					GuardarEditado=true
+					
+					if(ValidarTodo_Establecimiento()){
+						
+						var Reg2:Establecimientos = new Establecimientos();
+						
+						Reg2.Id = Data_Model_Estab.Id;
+						Reg2.Tipo_Establecimiento = Data_Model_Estab.Tipo_Estab;
+						Reg2.Clase_Establecimiento = Data_Model_Estab.Clase_Estab;
+						Reg2.Nombre_Comercial = Data_Model_Estab.Nombre_Comercial;
+						Reg2.Email = Data_Model_Estab.Email;
+						Reg2.Direccion_Establecimiento = Data_Model_Estab.Direccion_Estab;
+						Reg2.Telefono_Uno = Data_Model_Estab.Telefono1;
+						Reg2.Numero_Uno = Data_Model_Estab.Numero1;
+						Reg2.Telefono_Dos = Data_Model_Estab.Telefono2;
+						Reg2.Numero_Dos = Data_Model_Estab.Numero2;
+						Reg2.Web_Site = Data_Model_Estab.Web_Site;
+						Reg2.Tipo_Cuenta_Uno = Data_Model_Estab.Tipo_Cuenta_Uno;
+						Reg2.Codigo_Banco_Uno = Data_Model_Estab.Tipo_Banco_Uno
+						Reg2.Banco_Uno = Data_Model_Estab.Banco_Uno
+						Reg2.Numero_Cuenta_Uno = Data_Model_Estab.Numero_Cuenta_Uno;
+						Reg2.Tipo_Cuenta_Dos = Data_Model_Estab.Tipo_Cuenta_Dos;
+						Reg2.Codigo_Banco_Dos = Data_Model_Estab.Tipo_Banco_Dos
+						Reg2.Banco_Dos = Data_Model_Estab.Banco_Dos;
+						Reg2.Numero_Cuenta_Dos = Data_Model_Estab.Numero_Cuenta_Dos;
+						Reg2.Tipo_Cuenta_Tres = Data_Model_Estab.Tipo_Cuenta_Tres;
+						Reg2.Codigo_Banco_Tres = Data_Model_Estab.Tipo_Banco_Tres
+						Reg2.Banco_tres = Data_Model_Estab.Banco_Tres;
+						Reg2.Numero_Cuenta_Tres = Data_Model_Estab.Numero_Cuenta_Tres;
+						Reg2.Fecha = new Date();
+						Reg2.Usuario = "ADMIN"; 
+						
+						updateEstablecimientosResult.token = establecimientosService.updateEstablecimientos(Reg2);
+						establecimientosService.commit();
+						
+					}
+					
+					Limpiar_Establecimiento();
+					Btn_Editar.enabled=false;
+					GuardarEditado=false;
+					
+				}
+				
+				getAllEstablecimientosResult.token = establecimientosService.getAllEstablecimientos();
+			}
+			
+			// RESULTADO DEL METODO CREATE.
+			protected function createEstablecimientosResult_resultHandler(event:ResultEvent):void
+			{
+				Limpiar_Establecimiento();
+				getAllEstablecimientosResult.token = establecimientosService.getAllEstablecimientos();
+			}
+			
+			// FUNCION DONDE ACTIVA LOS CAMPOS PARA EDITAR.	
+			protected function Btn_Editar_Establecimiento_clickHandler(event:MouseEvent):void
+			{
+				GuardarEditado=true;
+				ActivarControles();
+			}
+			
+			
+			// FUNCION DE LA LISTA DONDE CARGA LA INFORMACION A LOS CAMPOS.
+			protected function Lst_Establecimientos_changeHandler(event:IndexChangeEvent):void
+			{
+				Btn_Editar.enabled=true;
+				
+				Data_Model_Estab.Id=Lst_Establecimientos.selectedItem.Id;
+				Form_Estab.Ddl_Tipo_Establecimiento.selectedItem=Lst_Establecimientos.selectedItem.Tipo_Establecimiento;				
+				CargarClaseEstab(Lst_Establecimientos.selectedItem.Clase_Establecimiento);				
+				Data_Model_Estab.Nombre_Comercial=Lst_Establecimientos.selectedItem.Nombre_Comercial;
+				Data_Model_Estab.Email=Lst_Establecimientos.selectedItem.Email;
+				Data_Model_Estab.Direccion_Estab=Lst_Establecimientos.selectedItem.Direccion_Establecimiento;
+				Form_Estab.Ddl_Telefono1.selectedItem=Lst_Establecimientos.selectedItem.Telefono_Uno;
+				Data_Model_Estab.Numero1=Lst_Establecimientos.selectedItem.Numero_Uno;
+				Form_Estab.Ddl_Telefono2.selectedItem=Lst_Establecimientos.selectedItem.Telefono_Dos;
+				Data_Model_Estab.Numero2=Lst_Establecimientos.selectedItem.Numero_Dos;
+				Data_Model_Estab.Web_Site=Lst_Establecimientos.selectedItem.Web_Site;
+				
+				Form_Estab.Ddl_Tipo_Cuenta1.selectedItem=Lst_Establecimientos.selectedItem.Tipo_Cuenta_Uno;
+				CargarBanco1(Lst_Establecimientos.selectedItem.Codigo_Banco_Uno);	
+				Data_Model_Estab.Numero_Cuenta_Uno=Lst_Establecimientos.selectedItem.Numero_Cuenta_Uno;
+				
+				Form_Estab.Ddl_Tipo_Cuenta2.selectedItem=Lst_Establecimientos.selectedItem.Tipo_Cuenta_Dos;
+				if(Lst_Establecimientos.selectedItem.Codigo_Banco_Dos==null){
+					Form_Estab.Ddl_Banco2.selectedIndex=-1;
+				}else{
+					CargarBanco2(Lst_Establecimientos.selectedItem.Codigo_Banco_Dos);	
+				}				
+				Data_Model_Estab.Numero_Cuenta_Dos=Lst_Establecimientos.selectedItem.Numero_Cuenta_Dos;
+				
+				Form_Estab.Ddl_Tipo_Cuenta3.selectedItem=Lst_Establecimientos.selectedItem.Tipo_Cuenta_Tres;				
+				if(Lst_Establecimientos.selectedItem.Codigo_Banco_Tres==null){
+					
+					Form_Estab.Ddl_Banco3.selectedIndex=-1;
+				}else{
+					CargarBanco3(Lst_Establecimientos.selectedItem.Codigo_Banco_Tres);
+				}	
+				Data_Model_Estab.Numero_Cuenta_Tres=Lst_Establecimientos.selectedItem.Numero_Cuenta_Tres;
+			}
+			
+			// CARGA LA CLASE DE ESTABLECIMIENTO.
+			protected function CargarClaseEstab(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Estab.Ddl_Clase_Establecimiento.dataProvider.length; i++){
+					data = Form_Estab.Ddl_Clase_Establecimiento.dataProvider.getItemAt(i);
+					if(data["Clase_Establecimiento"] == valor){
+						Form_Estab.Ddl_Clase_Establecimiento.selectedIndex = i;
+						Form_Estab.Ddl_Clase_Establecimiento.errorString = "";
+					}
+				}
+			}
+			
+			
+			// CARGA EL BANCO UNO.
+			protected function CargarBanco1(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Estab.Ddl_Banco1.dataProvider.length; i++){
+					data = Form_Estab.Ddl_Banco1.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Estab.Ddl_Banco1.selectedIndex = i;
+						Form_Estab.Ddl_Banco1.errorString = "";
+					}
+				}
+			}
+			
+			// CARGA EL BANCO DOS.
+			protected function CargarBanco2(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Estab.Ddl_Banco2.dataProvider.length; i++){
+					data = Form_Estab.Ddl_Banco2.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Estab.Ddl_Banco2.selectedIndex = i;
+						Form_Estab.Ddl_Banco2.errorString = "";
+					}
+				}
+			}
+			
+			// CARGA EL BANCO TRES.
+			protected function CargarBanco3(valor:String):void{
+				var data:Object;
+				for(var i:Number=0; i<Form_Estab.Ddl_Banco3.dataProvider.length; i++){
+					data = Form_Estab.Ddl_Banco3.dataProvider.getItemAt(i);
+					if(data["Codigo"] == valor){
+						Form_Estab.Ddl_Banco3.selectedIndex = i;
+						Form_Estab.Ddl_Banco3.errorString = "";
+					}
+				}
+			}
+			
+			// FUNCION DEL GETALL DE CLIENTE EN LA LISTA.
+			protected function Lst_Establecimientos_creationCompleteHandler(event:FlexEvent):void
+			{
+				getAllEstablecimientosResult.token = establecimientosService.getAllEstablecimientos();
+			}
+			
+			// FUNCION DONDE DESACTIVA TODOS LOS CONTROLES.
+			private function desactivarcontroles():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.openButton.enabled=false;
+				Form_Estab.Ddl_Clase_Establecimiento.openButton.enabled=false;
+				Form_Estab.Txt_Nombre_Comercial.editable=false;
+				Form_Estab.Txt_Email.editable=false;
+				Form_Estab.Txt_Direccion.editable=false;
+				Form_Estab.Ddl_Telefono1.openButton.enabled=false;
+				Form_Estab.Txt_Numero_Telefono1.editable=false;
+				Form_Estab.Ddl_Telefono2.openButton.enabled=false;
+				Form_Estab.Txt_Numero_Telefono2.editable=false;				
+				Form_Estab.Txt_Web_Site.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=false;
+				Form_Estab.Ddl_Banco1.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta1.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta2.openButton.enabled=false;
+				Form_Estab.Ddl_Banco2.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta2.editable=false;
+				Form_Estab.Ddl_Tipo_Cuenta3.openButton.enabled=false;
+				Form_Estab.Ddl_Banco3.openButton.enabled=false;
+				Form_Estab.Txt_Num_Cuenta3.editable=false;			
+				
+			}
+			
+			// FUNCION DONDE ACTIVA TODOS LOS CONTROLES.
+			private function ActivarControles():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.openButton.enabled=true;
+				Form_Estab.Ddl_Clase_Establecimiento.openButton.enabled=true;
+				Form_Estab.Txt_Nombre_Comercial.editable=true;
+				Form_Estab.Txt_Email.editable=true;
+				Form_Estab.Txt_Direccion.editable=true;
+				Form_Estab.Ddl_Telefono1.openButton.enabled=true;
+				Form_Estab.Txt_Numero_Telefono1.editable=true;
+				Form_Estab.Ddl_Telefono2.openButton.enabled=true;
+				Form_Estab.Txt_Numero_Telefono2.editable=true;		
+				Form_Estab.Txt_Web_Site.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta1.openButton.enabled=true;
+				Form_Estab.Ddl_Banco1.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta1.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta2.openButton.enabled=true;
+				Form_Estab.Ddl_Banco2.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta2.editable=true;
+				Form_Estab.Ddl_Tipo_Cuenta3.openButton.enabled=true;
+				Form_Estab.Ddl_Banco3.openButton.enabled=true;
+				Form_Estab.Txt_Num_Cuenta3.editable=true;
+			}
+			
+			// FUNCION DONDE LIMPIA TODOS LOS CAMPOS.
+			private function Limpiar_Establecimiento():void{
+				
+				Form_Estab.Ddl_Tipo_Establecimiento.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Establecimiento.errorString="";
+				Form_Estab.Ddl_Clase_Establecimiento.selectedIndex=-1;
+				Form_Estab.Ddl_Clase_Establecimiento.errorString="";
+				Form_Estab.Txt_Nombre_Comercial.text="";
+				Form_Estab.Txt_Nombre_Comercial.errorString="";
+				Form_Estab.Txt_Email.text="";
+				Form_Estab.Txt_Email.errorString="";
+				Form_Estab.Txt_Direccion.text="";
+				Form_Estab.Txt_Direccion.errorString="";
+				Form_Estab.Ddl_Telefono1.selectedIndex=-1;
+				Form_Estab.Ddl_Telefono1.errorString="";
+				Form_Estab.Txt_Numero_Telefono1.text="";
+				Form_Estab.Txt_Numero_Telefono1.errorString="";
+				Form_Estab.Ddl_Telefono2.selectedIndex=-1;
+				Form_Estab.Ddl_Telefono2.errorString="";
+				Form_Estab.Txt_Numero_Telefono2.text="";
+				Form_Estab.Txt_Numero_Telefono2.errorString="";
+				Form_Estab.Txt_Web_Site.text="";	
+				Form_Estab.Txt_Web_Site.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta1.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta1.errorString="";
+				Form_Estab.Ddl_Banco1.selectedIndex=-1;
+				Form_Estab.Ddl_Banco1.errorString="";
+				Form_Estab.Txt_Num_Cuenta1.text="";
+				Form_Estab.Txt_Num_Cuenta1.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta2.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta2.errorString="";
+				Form_Estab.Ddl_Banco2.selectedIndex=-1;
+				Form_Estab.Ddl_Banco2.errorString="";
+				Form_Estab.Txt_Num_Cuenta2.text="";
+				Form_Estab.Txt_Num_Cuenta2.errorString="";
+				
+				Form_Estab.Ddl_Tipo_Cuenta3.selectedIndex=-1;
+				Form_Estab.Ddl_Tipo_Cuenta3.errorString="";
+				Form_Estab.Ddl_Banco3.selectedIndex=-1;
+				Form_Estab.Ddl_Banco3.errorString="";
+				Form_Estab.Txt_Num_Cuenta3.text="";
+				Form_Estab.Txt_Num_Cuenta3.errorString="";
+				
+			}			
+			
+			// FUNCION DONDE VALIDA TODOS LOS CAMPOS.
+			private function ValidarTodo_Establecimiento():Boolean{
+				
+				var Tipo_Establecimiento:ValidationResultEvent=Validacion_Estab.validate();				
+				var Clase_Establecimiento:ValidationResultEvent=Validacion_Clase_Estab.validate();				
+				var Nombre_Comercial:ValidationResultEvent=ValidacionNombreComerial.validate();
+				var Email:ValidationResultEvent=ValidarEmail.validate();
+				var Direccion:ValidationResultEvent=ValidacionDireccionEstablecimiento.validate();
+				var Telefono1:ValidationResultEvent=Validacion_Tipo_Telefono.validate();
+				var NumeroTelefono:ValidationResultEvent=ValidacionTelefono.validate();
+				var Tipo_Cuenta:ValidationResultEvent=Validacion_Tipo_Cuenta.validate();				
+				var Banco:ValidationResultEvent=Validacion_Banco.validate();				
+				var Numero_Cuenta:ValidationResultEvent=ValidacionNumeroCuenta.validate();
+				
+				
+				var rsp:Boolean=false;
+				
+				if( Tipo_Establecimiento.type==ValidationResultEvent.VALID
+					
+					&& Clase_Establecimiento.type==ValidationResultEvent.VALID
+					&& Nombre_Comercial.type==ValidationResultEvent.VALID
+					&& Email.type==ValidationResultEvent.VALID
+					&& Direccion.type==ValidationResultEvent.VALID
+					&& Telefono1.type==ValidationResultEvent.VALID
+					&& NumeroTelefono.type==ValidationResultEvent.VALID	
+					&& Tipo_Cuenta.type==ValidationResultEvent.VALID
+					&& Banco.type==ValidationResultEvent.VALID
+					&& Numero_Cuenta.type==ValidationResultEvent.VALID
+					
+				){
+					rsp=true;
+				}else{
+					rsp=false;
+				}
+				return rsp;
+			}
+			
+			
+			
+			
+			
+			
 			
 		]]>
 	</fx:Script>
+	<s:states>
+		<s:State name="Empresa"/>
+		<s:State name="Establecimientos"/>
+	</s:states>
+	
+	
 	<fx:Declarations>
 		<s:CallResponder id="createEmpresaResult" result="createEmpresaResult_resultHandler(event)"/>
 		<empresaservice:EmpresaService id="empresaService"
@@ -460,6 +853,34 @@
 			</Data>			
 		</fx:Model>	
 		
+		
+		<fx:Model id="Data_Model_Estab">
+			<Data>
+				<Id></Id>
+				<Tipo_Estab>{Form_Estab.Ddl_Tipo_Establecimiento.selectedItem}</Tipo_Estab>
+				<Clase_Estab>{Form_Estab.Ddl_Clase_Establecimiento.selectedItem.Clase_Establecimiento}</Clase_Estab>
+				<Nombre_Comercial>@{Form_Estab.Txt_Nombre_Comercial.text}</Nombre_Comercial>
+				<Email>@{Form_Estab.Txt_Email.text}</Email>
+				<Direccion_Estab>@{Form_Estab.Txt_Direccion.text}</Direccion_Estab>
+				<Telefono1>{Form_Estab.Ddl_Telefono1.selectedItem}</Telefono1>
+				<Numero1>@{Form_Estab.Txt_Numero_Telefono1.text}</Numero1>
+				<Telefono2>{Form_Estab.Ddl_Telefono2.selectedItem}</Telefono2>
+				<Numero2>@{Form_Estab.Txt_Numero_Telefono2.text}</Numero2>
+				<Web_Site>@{Form_Estab.Txt_Web_Site.text}</Web_Site>				
+				<Tipo_Cuenta_Uno>{Form_Estab.Ddl_Tipo_Cuenta1.selectedItem}</Tipo_Cuenta_Uno>
+				<Tipo_Banco_Uno>{Form_Estab.Ddl_Banco1.selectedItem.Codigo}</Tipo_Banco_Uno>
+				<Banco_Uno>{Form_Estab.Ddl_Banco1.selectedItem.Banco}</Banco_Uno>
+				<Numero_Cuenta_Uno>@{Form_Estab.Txt_Num_Cuenta1.text}</Numero_Cuenta_Uno>
+				<Tipo_Cuenta_Dos>{Form_Estab.Ddl_Tipo_Cuenta2.selectedItem}</Tipo_Cuenta_Dos>
+				<Tipo_Banco_Dos>{Form_Estab.Ddl_Banco2.selectedItem.Codigo}</Tipo_Banco_Dos>
+				<Banco_Dos>{Form_Estab.Ddl_Banco2.selectedItem.Banco}</Banco_Dos>
+				<Numero_Cuenta_Dos>@{Form_Estab.Txt_Num_Cuenta2.text}</Numero_Cuenta_Dos>
+				<Tipo_Cuenta_Tres>{Form_Estab.Ddl_Tipo_Cuenta3.selectedItem}</Tipo_Cuenta_Tres>
+				<Tipo_Banco_Tres>{Form_Estab.Ddl_Banco3.selectedItem.Codigo}</Tipo_Banco_Tres>
+				<Banco_Tres>{Form_Estab.Ddl_Banco3.selectedItem.Banco}</Banco_Tres>
+				<Numero_Cuenta_Tres>@{Form_Estab.Txt_Num_Cuenta3.text}</Numero_Cuenta_Tres>
+			</Data>			
+		</fx:Model>
 		
 		<mx:StringValidator
 			id="ValidacionNit"
@@ -528,7 +949,7 @@
 			property="text"
 			requiredFieldError="Este campo es obligatorio"
 			triggerEvent=""/>
-	
+		
 		
 		<s:NumberValidator id="ValidacionTipo_Documento"
 						   source="{Reg_Empresa.Ddl_Tipo_Documento}"
@@ -566,35 +987,163 @@
 			missingAtSignError="Necesita una @ en su email" 
 			missingPeriodInDomainError="Necesita un nombre de dominio"
 			triggerEvent=""/>
+		
 		<s:CallResponder id="getAllEmpresaResult"/>
 		<s:CallResponder id="updateEmpresaResult"/>
 		<s:CallResponder id="getEmpresaByIDResult" result="getEmpresaByIDResult_resultHandler(event)"/>
-		<valueObjects:Empresa id="Data_Service_Empresa"/>
-	
+		<s:CallResponder id="getAllEmpresaByUltimo_RegistroResult" result="getAllEmpresaByUltimo_RegistroResult_resultHandler(event)"/>
 		
+		<valueObjects:Empresa id="Data_Service_Empresa"/>
+		
+		<!---->
+		<!---->
+		<!---->
+		<!---->
+		<!---->
+		<!---->
+		
+		
+		<s:NumberValidator id="Validacion_Estab"
+						   source="{Form_Estab.Ddl_Tipo_Establecimiento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Clase_Estab"
+						   source="{Form_Estab.Ddl_Clase_Establecimiento}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionNombreComerial"
+			source="{Form_Estab.Txt_Nombre_Comercial}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<mx:EmailValidator
+			id="ValidarEmail"
+			source="{Form_Estab.Txt_Email}"
+			requiredFieldError="Este campo es obligatorio"
+			property="text"
+			invalidCharError="Caracteres inválidos" 
+			invalidDomainError= "El dominio no es válido" 
+			missingAtSignError="Necesita una @ en su email" 
+			missingPeriodInDomainError="Necesita un nombre de dominio"
+			triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionDireccionEstablecimiento"
+			source="{Form_Estab.Txt_Direccion}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Telefono"
+						   source="{Form_Estab.Ddl_Telefono1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionTelefono"
+			source="{Form_Estab.Txt_Numero_Telefono1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Tipo_Cuenta"
+						   source="{Form_Estab.Ddl_Tipo_Cuenta1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<s:NumberValidator id="Validacion_Banco"
+						   source="{Form_Estab.Ddl_Banco1}"
+						   property="selectedIndex"
+						   allowNegative="false"
+						   negativeError="Este campo es obligatorio"
+						   triggerEvent=""/>
+		
+		
+		<mx:StringValidator
+			id="ValidacionNumeroCuenta"
+			source="{Form_Estab.Txt_Num_Cuenta1}"
+			property="text"
+			requiredFieldError="Este campo es obligatorio"
+			triggerEvent=""/>
+		
+		<s:CallResponder id="createEstablecimientosResult" result="createEstablecimientosResult_resultHandler(event)"/>
+		<establecimientosservice:EstablecimientosService id="establecimientosService"
+														 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+														 showBusyCursor="true"/>
+		<s:CallResponder id="getAllEstablecimientosResult"/>
+		<s:CallResponder id="updateEstablecimientosResult"/>
+
 		
 	</fx:Declarations>
 	
 	
 	
 	
-<Formularios:Registro_Empresa y="50" id="Reg_Empresa">
-</Formularios:Registro_Empresa>
-	<s:HGroup x="24" y="20" width="200" height="25">
-		<s:Button id="Btn_Nuevo" label="Nuevo" click="Btn_Nuevo_clickHandler(event)"/>
-		<s:Button id="Btn_Editar" label="Editar" click="Btn_Editar_clickHandler(event)"/>
-		<s:Button id="Btn_Buscar" label="Buscar" click="Btn_Buscar_clickHandler(event)"/>
+	<Formularios:Registro_Empresa id="Reg_Empresa" includeIn="Empresa" y="50">
+	</Formularios:Registro_Empresa>
+	<s:HGroup includeIn="Empresa" x="24" y="20" width="200" height="25">
+		<s:Button id="Btn_Nuevo" label.Empresa="Nuevo" click.Empresa="Btn_Nuevo_clickHandler(event)"/>
+		<s:Button id="Btn_Editar" label.Empresa="Editar" click.Empresa="Btn_Editar_clickHandler(event)"/>
+		<s:Button id="Btn_Buscar" label.Empresa="Buscar" click.Empresa="Btn_Buscar_clickHandler(event)"/>
 	</s:HGroup>
-<s:Button id="Btn_Guardar" x="250" y="800" width="90" label="GUARDAR" click="Btn_Guardar_clickHandler(event)"/>
+	<s:Button id="Btn_Guardar" includeIn="Empresa" x="250" y="800" width="90" label="GUARDAR"
+			  click="Btn_Guardar_clickHandler(event)"/>
 	
-	<s:List id="Lst_Buscar_Empresa" x="627" y="54" width="318" height="54" creationComplete="Lst_Buscar_Empresa_creationCompleteHandler(event)"
-		change="Lst_Buscar_Empresa_changeHandler(event)"	labelField="Nombre_Empresa">
-		<s:AsyncListView list="{getAllEmpresaResult.lastResult}"/>
+	<s:List id="Lst_Buscar_Empresa" includeIn="Empresa" x="627" y="54" width="318" height="54"
+			change="Lst_Buscar_Empresa_changeHandler(event)"
+			creationComplete="Lst_Buscar_Empresa_creationCompleteHandler(event)"
+			labelField="Nombre_Empresa">
+		<s:AsyncListView list.Empresa="{getAllEmpresaResult.lastResult}"/>
 	</s:List>
-	<s:Label x="627" y="41" text="Empresa" id="Lbl_Empresa"/>
-	<s:Label id="Lbl_Mensaje" x="641" y="135"/>
-	<s:Button id="Btn_Ok"  x="670" y="150" width="50" label="OK" click="Btn_Ok_clickHandler(event)">
+	<s:Label id="Lbl_Empresa" includeIn="Empresa" x="627" y="41" text="Empresa"/>
+	<s:Label id="Lbl_Mensaje" includeIn="Empresa" x="641" y="135"/>
+	<s:Button id="Btn_Ok" includeIn="Empresa" x="670" y="150" width="50" label="OK"
+			  click="Btn_Ok_clickHandler(event)">
 		
-	</s:Button>	
+	</s:Button>
+	
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	
+	
+	<s:Label includeIn="Establecimientos" y="23" left="80" fontFamily="Georgia" fontSize="20"
+			 text="REGISTRO ESTABLECIMIENTOS"/>
+	<Formularios:Registro_Establecimiento id="Form_Estab" includeIn="Establecimientos" y="103"
+										  left="80">
+	</Formularios:Registro_Establecimiento>
+	<s:Button id="Btn_Nuevo_Establemiento" includeIn="Establecimientos" y="65" left="100" width="90" label="NUEVO"
+			  click.Establecimientos="Btn_Nuevo_Establemiento_clickHandler(event)"/>
+	<s:Button id="Btn_Editar_Establecimiento" includeIn="Establecimientos" x="199" y="66" width="90" label="EDITAR"
+			  click.Establecimientos="Btn_Editar_Establecimiento_clickHandler(event)" enabled="false"/>
+	<s:Button id="Btn_Guardar_Establecimiento" includeIn="Establecimientos" x="636" y="709" width="90"
+			  label="GUARDAR"  click.Establecimientos="Btn_Guardar_Establecimiento_clickHandler(event)"/>
+	<s:List id="Lst_Establecimientos" includeIn="Establecimientos" x="766" y="103" width="400"
+			height="606" change="Lst_Establecimientos_changeHandler(event)"
+			creationComplete="Lst_Establecimientos_creationCompleteHandler(event)"
+			labelField="Nombre_Comercial">
+		<s:AsyncListView list.Establecimientos="{getAllEstablecimientosResult.lastResult}"/>
+	</s:List>
 	
 </s:Application>

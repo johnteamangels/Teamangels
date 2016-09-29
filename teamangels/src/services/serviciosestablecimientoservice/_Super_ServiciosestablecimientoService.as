@@ -1,8 +1,8 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - EmpresaService.as.
+ * of this service wrapper you may modify the generated sub-class of this class - ServiciosestablecimientoService.as.
  */
-package services.empresaservice
+package services.serviciosestablecimientoservice
 {
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
@@ -21,25 +21,25 @@ import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
 import mx.rpc.remoting.RemoteObject;
-import valueObjects.Empresa;
+import valueObjects.Servicios_establecimiento;
 
 import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_ServiciosestablecimientoService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
-    private var _empresaRPCDataManager : mx.data.RPCDataManager;
+    private var _servicios_establecimientoRPCDataManager : mx.data.RPCDataManager;
     private var managersArray : Array = new Array();
 
-    public const DATA_MANAGER_EMPRESA : String = "Empresa";
+    public const DATA_MANAGER_SERVICIOS_ESTABLECIMIENTO : String = "Servicios_establecimiento";
 
     public function getDataManager(dataManagerName:String) : mx.data.RPCDataManager
     {
         switch (dataManagerName)
         {
-             case (DATA_MANAGER_EMPRESA):
-                return _empresaRPCDataManager;
+             case (DATA_MANAGER_SERVICIOS_ESTABLECIMIENTO):
+                return _servicios_establecimientoRPCDataManager;
             default:
                 return null;
         }
@@ -74,7 +74,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
      */
     public function commit(itemsOrCollections:Array=null, cascadeCommit:Boolean=false):mx.rpc.AsyncToken
     {
-        return _empresaRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
+        return _servicios_establecimientoRPCDataManager.dataStore.commit(itemsOrCollections, cascadeCommit);
     }
 
     /**
@@ -102,7 +102,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
         if (itemsOrCollections == null)
         {
             // Revert all changes
-            return _empresaRPCDataManager.dataStore.revertChanges();
+            return _servicios_establecimientoRPCDataManager.dataStore.revertChanges();
         }
         else
         {
@@ -119,7 +119,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
                 }
                 else if (changeItem is mx.collections.ListCollectionView)
                 {
-                    anyChangeItemReverted ||= _empresaRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
+                    anyChangeItemReverted ||= _servicios_establecimientoRPCDataManager.dataStore.revertChangesForCollection(mx.collections.ListCollectionView(changeItem));
                 }
                 else
                 {
@@ -131,93 +131,87 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     }
 
     // Constructor
-    public function _Super_EmpresaService()
+    public function _Super_ServiciosestablecimientoService()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
 
         // initialize RemoteClass alias for all entities returned by functions of this service
-        valueObjects.Empresa._initRemoteClassAlias();
+        valueObjects.Servicios_establecimiento._initRemoteClassAlias();
 
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresa");
-         operation.resultElementType = valueObjects.Empresa;
-        operations["getAllEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getEmpresaByID");
-         operation.resultType = valueObjects.Empresa;
-        operations["getEmpresaByID"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "createEmpresa");
-         operation.resultType = String;
-        operations["createEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "updateEmpresa");
-        operations["updateEmpresa"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "deleteEmpresa");
-        operations["deleteEmpresa"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getAllServicios_establecimiento");
+         operation.resultElementType = valueObjects.Servicios_establecimiento;
+        operations["getAllServicios_establecimiento"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getServicios_establecimientoByID");
+         operation.resultType = valueObjects.Servicios_establecimiento;
+        operations["getServicios_establecimientoByID"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "createServicios_establecimiento");
+         operation.resultType = int;
+        operations["createServicios_establecimiento"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "updateServicios_establecimiento");
+        operations["updateServicios_establecimiento"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "deleteServicios_establecimiento");
+        operations["deleteServicios_establecimiento"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "count");
          operation.resultType = int;
         operations["count"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getEmpresa_paged");
-         operation.resultElementType = valueObjects.Empresa;
-        operations["getEmpresa_paged"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresaByNit");
-         operation.resultType = Object;
-        operations["getAllEmpresaByNit"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAllEmpresaByUltimo_Registro");
-         operation.resultType = Object;
-        operations["getAllEmpresaByUltimo_Registro"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getServicios_establecimiento_paged");
+         operation.resultElementType = valueObjects.Servicios_establecimiento;
+        operations["getServicios_establecimiento_paged"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "EmpresaService";
+        _serviceControl.source = "ServiciosestablecimientoService";
         _serviceControl.endpoint = "gateway.php";
         var managedAssociation : mx.data.ManagedAssociation;
         var managedAssocsArray : Array;
-        // initialize Empresa data manager
-        _empresaRPCDataManager = new mx.data.RPCDataManager();
-        managersArray.push(_empresaRPCDataManager);
+        // initialize Servicios_establecimiento data manager
+        _servicios_establecimientoRPCDataManager = new mx.data.RPCDataManager();
+        managersArray.push(_servicios_establecimientoRPCDataManager);
 
         managedAssocsArray = new Array();
 
-        _empresaRPCDataManager.destination = "empresaRPCDataManager";
-        _empresaRPCDataManager.service = _serviceControl;        
-        _empresaRPCDataManager.identities =  "Documento_Empresa";      
-        _empresaRPCDataManager.itemClass = valueObjects.Empresa; 
+        _servicios_establecimientoRPCDataManager.destination = "servicios_establecimientoRPCDataManager";
+        _servicios_establecimientoRPCDataManager.service = _serviceControl;        
+        _servicios_establecimientoRPCDataManager.identities =  "Id";      
+        _servicios_establecimientoRPCDataManager.itemClass = valueObjects.Servicios_establecimiento; 
 
 
 
         var dmOperation : mx.data.ManagedOperation;
         var dmQuery : mx.data.ManagedQuery;
 
-        dmQuery = new mx.data.ManagedQuery("getEmpresa_paged");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
+        dmOperation = new mx.data.ManagedOperation("deleteServicios_establecimiento", "delete");
+        dmOperation.parameters = "id";
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmQuery = new mx.data.ManagedQuery("getAllServicios_establecimiento");
+        dmQuery.propertySpecifier = "Id,Id_Establecimiento,Id_Servicio,Detalle_Servicio,Fecha_Reg";
+        dmQuery.parameters = "";
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmQuery);
+
+        dmOperation = new mx.data.ManagedOperation("getServicios_establecimientoByID", "get");
+        dmOperation.parameters = "Id";
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("updateServicios_establecimiento", "update");
+        dmOperation.parameters = "item";
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmOperation = new mx.data.ManagedOperation("createServicios_establecimiento", "create");
+        dmOperation.parameters = "item";
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmOperation);     
+
+        dmQuery = new mx.data.ManagedQuery("getServicios_establecimiento_paged");
+        dmQuery.propertySpecifier = "Id,Id_Establecimiento,Id_Servicio,Detalle_Servicio,Fecha_Reg";
         dmQuery.countOperation = "count";
         dmQuery.pagingEnabled = true;
         dmQuery.positionalPagingParameters = true;
         dmQuery.parameters = "startIndex,numItems";
-        _empresaRPCDataManager.addManagedOperation(dmQuery);
-
-        dmOperation = new mx.data.ManagedOperation("updateEmpresa", "update");
-        dmOperation.parameters = "item";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("deleteEmpresa", "delete");
-        dmOperation.parameters = "id";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmOperation = new mx.data.ManagedOperation("getEmpresaByID", "get");
-        dmOperation.parameters = "Documento_Empresa";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
-
-        dmQuery = new mx.data.ManagedQuery("getAllEmpresa");
-        dmQuery.propertySpecifier = "Id,Documento_Empresa,Dv_Empresa,Tipo_Empresa,Tipo_Regimen,Razon_Social,Primer_Nombre_Em,Segundo_Nombre_Em,Primer_Apellido_Em,Segundo_Apellido_Em,Nombre_Completo_Em,Nombre_Empresa,Telefono_Empresa,Direccion_Empresa,Email_Empresa,Codigo_Doc_Representante,Tipo_Doc_Representante,Documento_Representante,Primer_Nombre_Rep,Segundo_Nombre_Rep,Primer_Apellido_Rep,Segundo_Apellido_Rep,Nombre_Completo_Rep,Telefono_Representante,Email_Representante,Fecha,Usuario";
-        dmQuery.parameters = "";
-        _empresaRPCDataManager.addManagedOperation(dmQuery);
-
-        dmOperation = new mx.data.ManagedOperation("createEmpresa", "create");
-        dmOperation.parameters = "item";
-        _empresaRPCDataManager.addManagedOperation(dmOperation);     
+        _servicios_establecimientoRPCDataManager.addManagedOperation(dmQuery);
 
         _serviceControl.managers = managersArray;
 
@@ -228,13 +222,13 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "EmpresaService";
+        destination = "ServiciosestablecimientoService";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'getAllEmpresa' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getAllServicios_establecimiento' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -244,15 +238,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAllEmpresa() : mx.rpc.AsyncToken
+    public function getAllServicios_establecimiento() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllServicios_establecimiento");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getEmpresaByID' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'getServicios_establecimientoByID' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -262,15 +256,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getEmpresaByID(itemID:String) : mx.data.ItemReference
+    public function getServicios_establecimientoByID(itemID:int) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEmpresaByID");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getServicios_establecimientoByID");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(itemID) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'createEmpresa' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'createServicios_establecimiento' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -280,15 +274,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function createEmpresa(item:valueObjects.Empresa) : mx.data.ItemReference
+    public function createServicios_establecimiento(item:valueObjects.Servicios_establecimiento) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("createServicios_establecimiento");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'updateEmpresa' operation. It returns an mx.data.ItemReference whose 
+      * This method is a generated wrapper used to call the 'updateServicios_establecimiento' operation. It returns an mx.data.ItemReference whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -298,15 +292,15 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.data.ItemReference whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function updateEmpresa(item:valueObjects.Empresa) : mx.data.ItemReference
+    public function updateServicios_establecimiento(item:valueObjects.Servicios_establecimiento) : mx.data.ItemReference
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateServicios_establecimiento");
 		var _internal_token:mx.data.ItemReference = _internal_operation.send(item) as mx.data.ItemReference;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'deleteEmpresa' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'deleteServicios_establecimiento' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -316,9 +310,9 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteEmpresa(itemID:String) : mx.rpc.AsyncToken
+    public function deleteServicios_establecimiento(itemID:int) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteEmpresa");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteServicios_establecimiento");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(itemID) ;
         return _internal_token;
     }
@@ -342,7 +336,7 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getEmpresa_paged' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getServicios_establecimiento_paged' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -352,45 +346,9 @@ internal class _Super_EmpresaService extends com.adobe.fiber.services.wrapper.Re
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getEmpresa_paged() : mx.rpc.AsyncToken
+    public function getServicios_establecimiento_paged() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getEmpresa_paged");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllEmpresaByNit' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllEmpresaByNit(documento:String) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresaByNit");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(documento) ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'getAllEmpresaByUltimo_Registro' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function getAllEmpresaByUltimo_Registro() : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAllEmpresaByUltimo_Registro");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getServicios_establecimiento_paged");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }

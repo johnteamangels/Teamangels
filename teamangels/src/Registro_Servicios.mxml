@@ -3,7 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:Formularios="Formularios.*"
-			   minWidth="955" minHeight="600">
+			   height="830" minWidth="955" minHeight="600">
 	
 	<fx:Script>
 		<![CDATA[
@@ -15,7 +15,7 @@
 	<fx:Declarations>
 		
 	</fx:Declarations>
-	<Formularios:Servicios_Establecimiento x="1" y="1">
-	</Formularios:Servicios_Establecimiento>
+	<Formularios:Servicios_Establecimiento2 x="1" y="1">
+	</Formularios:Servicios_Establecimiento2>
 	
 </s:Application>

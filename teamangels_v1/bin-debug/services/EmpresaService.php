@@ -53,6 +53,54 @@ class EmpresaService {
 	 *
 	 * @return array
 	 */
+	
+	public function getAllEmpresaByUltimo_Registro() {
+
+		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename WHERE  Id = (SELECT MAX(Id) FROM empresa) ");		
+		$this->throwExceptionOnError();
+			
+		mysqli_stmt_execute($stmt);
+		$this->throwExceptionOnError();
+		
+		$rows = array();
+		
+		mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+		
+	   if(mysqli_stmt_fetch($stmt)) {
+	      return $row;
+		} else {
+	      return null;
+		}
+	} 
+	
+	
+	 //public function getAllEmpresaByUlt_RegByCliente($Documento_Empresa, $Documento_Empresa2) {
+
+		 //$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename WHERE Documento_Empresa = ? AND Id = (SELECT MAX(Id) FROM empresa WHERE Documento_Empresa = ?) ");		
+		 //$this->throwExceptionOnError();
+		
+		 //mysqli_stmt_bind_param($stmt, 'ss', $Documento_Empresa, $Documento_Empresa2);		
+		 //$this->throwExceptionOnError();
+		
+		 //mysqli_stmt_execute($stmt);
+		 //$this->throwExceptionOnError();
+		
+		 //$rows = array();
+		
+		 //mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+		
+	     //while (mysqli_stmt_fetch($stmt)) {
+	       //$row->Fecha = new DateTime($row->Fecha);
+	       //$rows[] = $row;
+	       //$row = new stdClass();
+	       //mysqli_stmt_bind_result($stmt, $row->Id, $row->Documento_Empresa, $row->Dv_Empresa, $row->Tipo_Empresa, $row->Tipo_Regimen, $row->Razon_Social, $row->Primer_Nombre_Em, $row->Segundo_Nombre_Em, $row->Primer_Apellido_Em, $row->Segundo_Apellido_Em, $row->Nombre_Completo_Em, $row->Nombre_Empresa, $row->Telefono_Empresa, $row->Direccion_Empresa, $row->Email_Empresa, $row->Codigo_Doc_Representante, $row->Tipo_Doc_Representante, $row->Documento_Representante, $row->Primer_Nombre_Rep, $row->Segundo_Nombre_Rep, $row->Primer_Apellido_Rep, $row->Segundo_Apellido_Rep, $row->Nombre_Completo_Rep, $row->Telefono_Representante, $row->Email_Representante, $row->Fecha, $row->Usuario);
+	     //}
+		
+		 //mysqli_stmt_free_result($stmt);
+	     //mysqli_close($this->connection);
+	
+	     //return $rows;
+	 //}
 	 
 	public function getAllEmpresaByNit($documento) {
 

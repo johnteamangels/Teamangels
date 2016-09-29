@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:serviciosestablecimientoservice="services.serviciosestablecimientoservice.*"
+		 xmlns:establecimientosservice="services.establecimientosservice.*"
+		 width="1046" height="800" creationComplete="group1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import valueObjects.Servicios_establecimiento;
+			
+			private var ResultadoEstablecimiento:Object;
+			private var ResultadoEstablecimiento2:Object;
+			private var Id_Establecimiento2:Number=0;
+			
+			[Bindable]
+			public var servicios:Array;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				Chk_Criadero.enabled=false;
+				Chk_Farmacia.enabled=false;
+				Chk_Guarderia.enabled=false;
+				Chk_Laboratorio.enabled=false;
+				Chk_Peluqueria.enabled=false;
+				Chk_Spa.enabled=false;
+				Chk_Tienda.enabled=false;
+				Chk_Veterinaria.enabled=false;
+				
+			}
+			
+			
+			protected function Btn_Nuevo_clickHandler(event:MouseEvent):void
+			{
+				
+				Txt_Numero_Documento.editable=true;
+				Btn_Buscar.enabled=true;
+				
+				Chk_Criadero.enabled=true;
+				Chk_Farmacia.enabled=true;
+				Chk_Guarderia.enabled=true;
+				Chk_Laboratorio.enabled=true;
+				Chk_Peluqueria.enabled=true;
+				Chk_Spa.enabled=true;
+				Chk_Tienda.enabled=true;
+				Chk_Veterinaria.enabled=true;
+				
+			
+			}
+			
+			protected function Btn_Buscar_clickHandler(event:MouseEvent):void
+			{
+				getAllEstablecimientosByDocumento_EmpresaResult.token = establecimientosService.getAllEstablecimientosByDocumento_Empresa(Txt_Numero_Documento.text);
+				getAllEstablecimientosByDocumentoResult.token = establecimientosService.getAllEstablecimientosByDocumento(Txt_Numero_Documento.text);
+			}
+			
+			protected function getAllEstablecimientosByDocumento_EmpresaResult_resultHandler(event:ResultEvent):void
+			{
+				ResultadoEstablecimiento = getAllEstablecimientosByDocumento_EmpresaResult.lastResult;
+				
+				if(ResultadoEstablecimiento != null){
+					
+					Txt_Nombre_Empresa.text=ResultadoEstablecimiento["Nombre_Empresa"];
+					
+				}else{
+					
+					Txt_Nombre_Empresa.text="";
+				}
+				
+			}
+			
+			protected function getAllEstablecimientosByDocumentoResult_resultHandler(event:ResultEvent):void
+			{
+				Lst_Establecimientos.dataProvider=getAllEstablecimientosByDocumentoResult.lastResult;
+							
+			}
+			
+			
+			protected function Lst_Establecimientos_changeHandler(event:IndexChangeEvent):void
+			{
+				ResultadoEstablecimiento2 = getAllEstablecimientosByDocumentoResult.lastResult;
+				
+				if(ResultadoEstablecimiento2 != null){
+					
+					Id_Establecimiento2=ResultadoEstablecimiento2["Id"];
+					
+				}else{
+					
+					Id_Establecimiento2=0;
+				}
+			}
+			
+			
+			protected function Chk_Criadero_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Criadero.selected==true){
+					
+					Panel_Criadero.visible=true;
+					
+				}else{
+					
+					Panel_Criadero.visible=false;
+				}
+				
+			}
+			
+			protected function Chk_Otro_Criadero_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Criadero.selected==true){
+					
+					Txt_Otro_Criadero.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Criadero.visible=false;
+				}
+				
+			}
+			
+			protected function Chk_Farmacia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Farmacia.selected==true){
+					
+					Panel_Farmacia.visible=true;
+					
+				}else{
+					
+					Panel_Farmacia.visible=false;
+				}
+				
+			}
+			
+			protected function Chk_Otro_Farmacia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Farmacia.selected==true){
+					
+					Txt_Otro_Farmacia.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Farmacia.visible=false;
+				}
+			}
+			
+			protected function Chk_Guarderia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Guarderia.selected==true){
+					
+					Panel_Guarderia.visible=true;
+					
+				}else{
+					
+					Panel_Guarderia.visible=false;
+				}
+			}
+			
+			protected function Chk_Canina_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Canina.selected==true){
+					
+					Chk_Can_Campestre.enabled=true;
+					Chk_Can_Urbana.enabled=true;
+					Chk_Can_Otro.enabled=true;
+					
+				}else{
+					
+					Chk_Can_Campestre.enabled=false;
+					Chk_Can_Urbana.enabled=false;
+					Chk_Can_Otro.enabled=false;
+					
+				}
+				
+			}
+			
+			protected function Chk_Can_Otro_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Can_Otro.selected==true){
+					
+					Txt_Otro_Can_Guarderia.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Can_Guarderia.visible=false;
+				}
+			}
+			
+			protected function Chk_Felina_clickHandler(event:MouseEvent):void
+			{
+				
+				if(Chk_Felina.selected==true){
+					
+					Chk_Fel_Campestre.enabled=true;
+					Chk_Fel_Urbana.enabled=true;
+					Chk_Fel_Otro.enabled=true;
+					
+				}else{
+					
+					Chk_Fel_Campestre.enabled=false;
+					Chk_Fel_Urbana.enabled=false;
+					Chk_Fel_Otro.enabled=false;
+					
+				}
+			}
+			
+			
+			protected function Chk_Fel_Otro_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Fel_Otro.selected==true){
+					
+					Txt_Otro_Fel_Guarderia.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Fel_Guarderia.visible=false;
+				}
+				
+			}
+			
+			protected function Chk_Laboratorio_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Laboratorio.selected==true){
+					
+					Panel_Laboratorio.visible=true;
+					
+				}else{
+					
+					Panel_Laboratorio.visible=false;
+				}
+			}
+			
+			protected function Chk_Otro_Laboratorio_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Laboratorio.selected==true){
+					
+					Txt_Otro_Laboratorio.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Laboratorio.visible=false;
+				}
+				
+			}
+			
+			protected function Chk_Peluqueria_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Peluqueria.selected==true){
+					
+					Panel_Peluqueria.visible=true;
+					
+				}else{
+					
+					Panel_Peluqueria.visible=false;
+				}
+			}
+			
+			protected function Chk_Otro_Peluqueria_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Peluqueria.selected==true){
+					
+					Txt_Otro_Peluqueria.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Peluqueria.visible=false;
+				}
+			}
+			
+			protected function Chk_Spa_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Spa.selected==true){
+					
+					Panel_Spa.visible=true;
+					
+				}else{
+					
+					Panel_Spa.visible=false;
+				}
+			}
+			
+			protected function Chk_Otro_Spa_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Spa.selected==true){
+					
+					Txt_Otro_Spa.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Spa.visible=false;
+				}
+			}
+			
+			protected function Chk_Tienda_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Tienda.selected==true){
+					
+					Panel_Tienda.visible=true;
+					
+				}else{
+					
+					Panel_Tienda.visible=false;
+				}
+			}
+			
+			protected function Chk_Otro_Tienda_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Tienda.selected==true){
+					
+					Txt_Otro_Tienda.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Tienda.visible=false;
+				}
+			}
+			
+			protected function Chk_Veterinaria_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Veterinaria.selected==true){
+					
+					Panel_Veterinaria.visible=true;
+					
+				}else{
+					
+					Panel_Veterinaria.visible=false;
+				}
+			}
+			
+			
+			protected function Chk_Cirugia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Cirugia.selected==true){
+					
+					Vgp_Vet_Cirugia.enabled=true;
+					
+				}else{
+					
+					Vgp_Vet_Cirugia.enabled=false;
+					
+					Chk_Esterilizacion.selected=false;
+					Chk_General.selected=false;
+					Chk_Ortopedica.selected=false;
+					Chk_Otro_Vet_Cirugia.selected=false;
+					Txt_Otro_Ciru_Vet.visible=false;
+					Txt_Otro_Ciru_Vet.text="";
+				}
+				
+			}
+			
+			protected function Chk_Otro_Vet_Cirugia_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Vet_Cirugia.selected==true){
+					
+					Txt_Otro_Ciru_Vet.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Ciru_Vet.visible=false;
+				}
+			}
+			
+			protected function Chk_Consulta_Especialista_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Consulta_Especialista.selected==true){
+					
+					Vgp_Vet_Consulta_Esp.enabled=true;
+					
+				}else{
+					
+					Vgp_Vet_Consulta_Esp.enabled=false;
+					
+					Chk_Anestesiologia.selected=false;
+					Chk_Cardiologia.selected=false;
+					Chk_Dermatologia.selected=false;
+					Chk_Etologia.selected=false;
+					Chk_Fisioterapia.selected=false;
+					Chk_Gastroenterologia.selected=false;
+					Chk_Odontologia.selected=false;
+					Chk_Oftamologia.selected=false;
+					Chk_Ortopedia.selected=false;
+					Chk_Urologia.selected=false;
+					Chk_Neurologia.selected=false;
+					Chk_Nutricion.selected=false;
+					Chk_Reproduccion.selected=false;
+					Chk_Otro_Vet_Consulta_Esp.selected=false;
+					
+					Txt_Otro_Cons_Vet.visible=false;
+					Txt_Otro_Cons_Vet.text="";
+				}
+			}
+			
+			protected function Chk_Otro_Vet_Consulta_Esp_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Vet_Consulta_Esp.selected==true){
+					
+					Txt_Otro_Cons_Vet.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Cons_Vet.visible=false;
+				}
+			}
+			
+			protected function Chk_Hospitalizacion_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Hospitalizacion.selected==true){
+					
+					Vgp_Vet_Hospital.enabled=true;
+					
+				}else{
+					
+					Vgp_Vet_Hospital.enabled=false;
+					
+					Chk_Contagiosas.selected=false;
+					Chk_UCI.selected=false;
+					Chk_24Horas.selected=false;
+					Chk_12Horas.selected=false;					
+					Chk_Otro_Vet_Hospital.selected=false;					
+					
+					Txt_Otro_Hosp_Vet.visible=false;
+					Txt_Otro_Hosp_Vet.text="";
+				}
+				
+			}
+			
+			protected function Chk_Otro_Vet_Hospital_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Vet_Hospital.selected==true){
+					
+					Txt_Otro_Hosp_Vet.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Hosp_Vet.visible=false;
+				}
+			}
+			
+			protected function Chk_Imagen_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Imagen.selected==true){
+					
+					Vgp_Vet_Imagen.enabled=true;
+					
+				}else{
+					
+					Vgp_Vet_Imagen.enabled=false;
+					
+					Chk_Ecografia.selected=false;
+					Chk_Cardiografia.selected=false;
+					Chk_Endoscopia.selected=false;
+					Chk_Rayos.selected=false;					
+					Chk_Otro_Vet_Imagen.selected=false;					
+					
+					Txt_Otro_Imag_Vet.visible=false;
+					Txt_Otro_Imag_Vet.text="";
+				}
+			}
+			
+			protected function Chk_Otro_Vet_Imagen_clickHandler(event:MouseEvent):void
+			{
+				if(Chk_Otro_Vet_Imagen.selected==true){
+					
+					Txt_Otro_Imag_Vet.visible=true;
+					
+				}else{
+					
+					Txt_Otro_Imag_Vet.visible=false;
+				}
+			}
+			
+			
+			protected function Btn_Guardar_clickHandler(event:MouseEvent):void
+			{
+				servicios = new Array();
+				
+				// Veterinaria
+				if(Chk_Consulta_General.selected == true){servicios.push("1");}
+				if(Chk_Consulta_Especialista.selected == true){
+					if(Chk_Anestesiologia.selected == true){servicios.push("2");}
+					if(Chk_Cardiologia.selected == true){servicios.push("3");}
+					if(Chk_Dermatologia.selected == true){servicios.push("4");}
+					if(Chk_Etologia.selected == true){servicios.push("5");}
+					if(Chk_Fisioterapia.selected == true){servicios.push("6");}
+					if(Chk_Gastroenterologia.selected == true){servicios.push("7");}
+					if(Chk_Odontologia.selected == true){servicios.push("8");}
+					if(Chk_Oftamologia.selected == true){servicios.push("9");}
+					if(Chk_Ortopedia.selected == true){servicios.push("10");}
+					if(Chk_Urologia.selected == true){servicios.push("11");}
+					if(Chk_Neurologia.selected == true){servicios.push("12");}
+					if(Chk_Nutricion.selected == true){servicios.push("13");}
+					if(Chk_Reproduccion.selected == true){servicios.push("14");}
+					if(Chk_Otro_Vet_Consulta_Esp.selected == true){servicios.push("15");
+						var OtroCE:String = Txt_Otro_Cons_Vet.text;
+					}
+				}
+				
+				if(Chk_Cirugia.selected == true){
+					if(Chk_Esterilizacion.selected == true){servicios.push("16");}
+					if(Chk_General.selected == true){servicios.push("17");}
+					if(Chk_Ortopedica.selected == true){servicios.push("18");}					
+					if(Chk_Otro_Vet_Cirugia.selected == true){servicios.push("19");
+						var OtroCirugia:String = Txt_Otro_Ciru_Vet.text;
+					}
+				}
+				
+				if(Chk_Hospitalizacion.selected == true){
+					if(Chk_Contagiosas.selected == true){servicios.push("20");}
+					if(Chk_UCI.selected == true){servicios.push("21");}
+					if(Chk_24Horas.selected == true){servicios.push("22");}
+					if(Chk_12Horas.selected == true){servicios.push("23");}					
+					if(Chk_Otro_Vet_Hospital.selected == true){servicios.push("24");
+						var OtroHospitalizacion:String = Txt_Otro_Hosp_Vet.text;
+					}
+				}
+				
+				if(Chk_Urgencias.selected == true){servicios.push("25");}
+				
+				if(Chk_Imagen.selected == true){
+					if(Chk_Ecografia.selected == true){servicios.push("26");}
+					if(Chk_Cardiografia.selected == true){servicios.push("27");}
+					if(Chk_Endoscopia.selected == true){servicios.push("28");}
+					if(Chk_Rayos.selected == true){servicios.push("29");}					
+					if(Chk_Otro_Vet_Imagen.selected == true){servicios.push("30");
+						var OtroImagenologia:String = Txt_Otro_Imag_Vet.text;
+					}
+				}
+				
+				if(Chk_Chip.selected == true){servicios.push("31");}
+				if(Chk_Vacunacion.selected == true){servicios.push("32");}
+				
+				// Farmacia
+				if(Chk_Antipulgas.selected == true){servicios.push("33");}
+				if(Chk_Desparacitante.selected == true){servicios.push("34");}
+				if(Chk_Medicamento.selected == true){servicios.push("35");}
+				if(Chk_Suplemento.selected == true){servicios.push("36");}
+				if(Chk_Otro_Farmacia.selected == true){servicios.push("37");
+					var OtroFarmacia:String = Txt_Otro_Farmacia.text;
+				}
+				
+				// Laboratorio
+				if(Chk_Analisis_Liq.selected == true){servicios.push("38");}
+				if(Chk_Citologia_Vet.selected == true){servicios.push("39");}
+				if(Chk_Diagnostico_Hor.selected == true){servicios.push("40");}
+				if(Chk_Examenes_Ind.selected == true){servicios.push("41");}
+				if(Chk_Hematologia_Vet.selected == true){servicios.push("42");}
+				if(Chk_Hispatologia.selected == true){servicios.push("43");}
+				if(Chk_Microbiologia.selected == true){servicios.push("44");}
+				if(Chk_Parasitologia.selected == true){servicios.push("45");}
+				if(Chk_Perfiles_Diagnosticos.selected == true){servicios.push("46");}
+				if(Chk_PD_Grandes_Especies.selected == true){servicios.push("47");}
+				if(Chk_Pruebas_Coa.selected == true){servicios.push("48");}
+				if(Chk_PEV_Bovinos.selected == true){servicios.push("49");}
+				if(Chk_PEV_Equinos.selected == true){servicios.push("50");}
+				if(Chk_PEV_Caninos.selected == true){servicios.push("51");}
+				if(Chk_PEV_Felinos.selected == true){servicios.push("52");}
+				if(Chk_Quimica_Sanguinea.selected == true){servicios.push("53");}
+				if(Chk_Toxicologia.selected == true){servicios.push("54");}
+				if(Chk_Uroanalisis.selected == true){servicios.push("55");}
+				if(Chk_Otro_Laboratorio.selected == true){servicios.push("56");
+					var OtroLaboratorio:String = Txt_Otro_Laboratorio.text;
+				}
+				
+				
+				// Tienda
+				if(Chk_Agromercado.selected == true){servicios.push("57");}
+				if(Chk_Alimento.selected == true){servicios.push("58");}
+				if(Chk_Aseo_Mascotas.selected == true){servicios.push("59");}
+				if(Chk_Higiene_Oral.selected == true){servicios.push("60");}
+				if(Chk_Juguetes.selected == true){servicios.push("61");}
+				if(Chk_Servicio_Domicilio.selected == true){servicios.push("62");}
+				if(Chk_Snack.selected == true){servicios.push("63");}
+				if(Chk_Otro_Tienda.selected == true){servicios.push("64");
+					var OtroTienda:String = Txt_Otro_Tienda.text;
+				}
+				
+				// Peluqueria
+				if(Chk_Corte_Estandar.selected == true){servicios.push("65");}
+				if(Chk_Corte_Exibicion.selected == true){servicios.push("66");}
+				if(Chk_Otro_Peluqueria.selected == true){servicios.push("67");
+					var OtroPeluqueria:String = Txt_Otro_Peluqueria.text;
+				}
+				
+				// SPA
+				if(Chk_Aromaterapia.selected == true){servicios.push("68");}
+				if(Chk_Hidroterapia.selected == true){servicios.push("69");}
+				if(Chk_Otro_Spa.selected == true){servicios.push("70");
+					var OtroSpa:String = Txt_Otro_Spa.text;
+				}
+				
+				// Guarderia
+				if(Chk_Canina.selected == true){
+					if(Chk_Can_Campestre.selected == true){servicios.push("71");}
+					if(Chk_Can_Urbana.selected == true){servicios.push("72");}
+				}
+				
+				if(Chk_Felina.selected == true){
+					if(Chk_Fel_Campestre.selected == true){servicios.push("73");}
+					if(Chk_Fel_Urbana.selected == true){servicios.push("74");}
+				}
+				
+				// Criadero
+				if(Chk_Bovinos.selected == true){servicios.push("75");}
+				if(Chk_Caninos.selected == true){servicios.push("76");}
+				if(Chk_Caprinos.selected == true){servicios.push("77");}
+				if(Chk_Equinos.selected == true){servicios.push("78");}
+				if(Chk_Felinos.selected == true){servicios.push("79");}
+				if(Chk_Porcinos.selected == true){servicios.push("80");}
+				if(Chk_Otro_Criadero.selected == true){servicios.push("81");
+					var OtroCriadero:String = Txt_Otro_Criadero.text;
+				}
+				
+				if(servicios.length!=0){
+					
+					//this.addElement(busyIndicator);
+					
+					for(var i:int =0; i <servicios.length; i++){
+						
+						var Data:Servicios_establecimiento = new Servicios_establecimiento();
+						
+						Data.Id_Establecimiento = Id_Establecimiento2;
+						Data.Id_Servicio = servicios[i];
+						Data.Detalle_Servicio = "";
+						Data.Fecha_Reg = new Date();
+						
+						
+						if(servicios[i] == "15"){Data.Detalle_Servicio = OtroCE;}
+						if(servicios[i] == "19"){Data.Detalle_Servicio = OtroCirugia;}
+						if(servicios[i] == "24"){Data.Detalle_Servicio = OtroHospitalizacion;}
+						if(servicios[i] == "30"){Data.Detalle_Servicio = OtroImagenologia;}
+						if(servicios[i] == "37"){Data.Detalle_Servicio = OtroFarmacia;}
+						if(servicios[i] == "56"){Data.Detalle_Servicio = OtroLaboratorio;}
+						if(servicios[i] == "64"){Data.Detalle_Servicio = OtroTienda;}
+						if(servicios[i] == "67"){Data.Detalle_Servicio = OtroPeluqueria;}
+						if(servicios[i] == "70"){Data.Detalle_Servicio = OtroSpa;}
+						if(servicios[i] == "81"){Data.Detalle_Servicio = OtroCriadero;}
+						
+						
+						createServicios_establecimientoResult.token = serviciosestablecimientoService.createServicios_establecimiento(Data);
+						serviciosestablecimientoService.commit();
+						
+						
+					}
+				}
+				
+				
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		
+		<s:CallResponder id="getAllEstablecimientosByDocumento_EmpresaResult" result="getAllEstablecimientosByDocumento_EmpresaResult_resultHandler(event)"/>
+		<establecimientosservice:EstablecimientosService id="establecimientosService"
+														 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+														 showBusyCursor="true"/>
+		
+		<s:CallResponder id="getAllEstablecimientosByDocumentoResult" result="getAllEstablecimientosByDocumentoResult_resultHandler(event)"/>
+		
+		<s:CallResponder id="createServicios_establecimientoResult"/>
+		<serviciosestablecimientoservice:ServiciosestablecimientoService id="serviciosestablecimientoService"
+																		 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+																		 showBusyCursor="true"/>
+	
+		
+	
+		
+		
+		
+	</fx:Declarations>
+	
+	<s:Label x="48" y="39" fontSize="24" fontStyle="italic" text="Registro Servicios"
+			 textDecoration="none"/>
+	
+	<s:Button id="Btn_Nuevo" x="52" y="98" width="90" label="NUEVO"
+			  click="Btn_Nuevo_clickHandler(event)"/>
+	
+	<s:Button id="Btn_Editar" x="156" y="98" width="90" label="EDITAR"/>
+	
+	<s:Label id="Lbl_Documento"  x="53" y="147" text="Numero Documento"/>
+	<s:TextInput id="Txt_Numero_Documento"  x="53" y="161" width="200" editable="false" restrict="0-9"/>
+	<s:Button id="Btn_Buscar" x="253" y="161" height="22" label="Buscar"
+			  click="Btn_Buscar_clickHandler(event)" enabled="false"/>
+	
+	<s:Label id="Lbl_Nombre" x="53" y="197" text="Nombre Empresa"/>
+	<s:TextInput id="Txt_Nombre_Empresa" x="53" y="211"	 width="350" editable="false"/>
+	
+	<s:List id="Lst_Establecimientos" x="53" y="250" width="350" height="504"
+			change="Lst_Establecimientos_changeHandler(event)" labelField="Nombre_Comercial">
+	</s:List>
+	
+	<s:CheckBox id="Chk_Criadero" x="448" y="140" label="CRIADERO"
+				click="Chk_Criadero_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Farmacia" x="448" y="170" label="FARMACIA"
+				click="Chk_Farmacia_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Guarderia" x="448" y="200" label="GUARDERIA"
+				click="Chk_Guarderia_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Laboratorio" x="608" y="140" label="LABORATORIO"
+				click="Chk_Laboratorio_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Peluqueria" x="608" y="170" label="PELUQUERIA"
+				click="Chk_Peluqueria_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Spa" x="608" y="200" label="SPA"
+				click="Chk_Spa_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Tienda" x="763" y="140" label="TIENDA" 
+				click="Chk_Tienda_clickHandler(event)"/>
+	
+	<s:CheckBox id="Chk_Veterinaria" x="763" y="170" label="VETERINARIA"
+				click="Chk_Veterinaria_clickHandler(event)"/>
+	
+	<mx:Panel id="Panel_Criadero" x="444" y="250" width="440" height="510" paddingBottom="10"
+			  paddingLeft="20" paddingRight="10" paddingTop="15" title="                                                               CRIADERO" visible="false">
+		<s:CheckBox id="Chk_Bovinos" x="15" y="20" height="25" label="Bovinos"/>
+		<s:CheckBox id="Chk_Caninos" x="15" y="50" height="25" label="Caninos"/>
+		<s:CheckBox id="Chk_Caprinos" x="15" y="80" height="25" label="Caprinos"/>
+		<s:CheckBox id="Chk_Equinos" x="15" y="110" height="25" label="Equinos"/>
+		<s:CheckBox id="Chk_Felinos" x="150" y="20" height="25" label="Felinos"/>
+		<s:CheckBox id="Chk_Porcinos" x="150" y="50" height="25" label="Porcinos"/>
+		<s:CheckBox id="Chk_Otro_Criadero" x="150" y="80" height="25" label="Otro"
+					click="Chk_Otro_Criadero_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Criadero" x="150" y="110" visible="false"/>		
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Farmacia" x="444" y="250" width="440" height="510" paddingBottom="10"
+			  paddingLeft="20" paddingRight="10" paddingTop="15" title="                                                               FARMACIA" visible="false">		
+		<s:CheckBox id="Chk_Antipulgas" x="15" y="20" height="25" label="Antipulgas y Antigarrapatas"/>
+		<s:CheckBox id="Chk_Desparacitante" x="15" y="50" height="25" label="Desparacitantes"/>
+		<s:CheckBox id="Chk_Medicamento" x="15" y="80" height="25" label="Medicamentos"/>
+		<s:CheckBox id="Chk_Suplemento" x="15" y="110" height="25" label="Suplementos"/>
+		<s:CheckBox id="Chk_Otro_Farmacia" x="15" y="140" height="25" label="Otro"
+					click="Chk_Otro_Farmacia_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Farmacia" x="15" y="170" visible="false"/>	
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Guarderia" visible="false" x="444" y="250" width="440" height="510"
+			  layout="absolute" paddingBottom="10" paddingLeft="20" paddingRight="10"
+			  paddingTop="15" title="                                                               GUARDERIA">		
+		<s:CheckBox id="Chk_Canina" x="20" y="15" label="CANINA" click="Chk_Canina_clickHandler(event)"/>
+		<s:CheckBox id="Chk_Can_Campestre" x="40" y="39" height="25" label="Campestre"
+					enabled="false"/>
+		<s:CheckBox id="Chk_Can_Urbana" x="40" y="70" height="25" label="Urbana" enabled="false"/>
+		<s:CheckBox id="Chk_Can_Otro" x="40" y="101" height="25" label="Otro"
+					click="Chk_Can_Otro_clickHandler(event)" enabled="false"/>
+		<s:TextInput id="Txt_Otro_Can_Guarderia" x="40" y="132" visible="false"/>
+		
+		<s:CheckBox id="Chk_Felina" x="20" y="160" label="FELINA" click="Chk_Felina_clickHandler(event)"/>			
+		<s:CheckBox id="Chk_Fel_Campestre" x="40" y="184" height="25" label="Campestre"
+					enabled="false"/>
+		<s:CheckBox id="Chk_Fel_Urbana" x="40" y="215" height="25" label="Urbana" enabled="false"/>
+		<s:CheckBox id="Chk_Fel_Otro" x="40" y="246" height="25" label="Otro"
+					click="Chk_Fel_Otro_clickHandler(event)" enabled="false"/>				
+		<s:TextInput id="Txt_Otro_Fel_Guarderia" x="40" y="277" visible="false"/>	
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Laboratorio" x="444" y="250" width="440" height="510" paddingBottom="10"
+			  paddingLeft="20" paddingRight="10" paddingTop="15" title="                                                               LABORATORIO" visible="false">		
+		<s:CheckBox id="Chk_Analisis_Liq" x="15" y="20" height="25" label="Analisis de Liquidos"/>
+		<s:CheckBox id="Chk_Citologia_Vet" x="15" y="50" height="25"
+					label="Citologia Veterinaria"/>
+		<s:CheckBox id="Chk_Diagnostico_Hor" x="15" y="80" height="25"
+					label="Diagnostico Hormonal"/>
+		<s:CheckBox id="Chk_Examenes_Ind" x="15" y="110" height="25"
+					label="Examenes Individuales"/>
+		<s:CheckBox id="Chk_Hematologia_Vet" x="15" y="140" height="25"
+					label="Hematologia Veterinaria"/>
+		<s:CheckBox id="Chk_Hispatologia" x="15" y="170" height="25" label="Hispatologia"/>
+		<s:CheckBox id="Chk_Microbiologia" x="15" y="200" height="25" label="Microbiologia"/>
+		<s:CheckBox id="Chk_Parasitologia" x="15" y="230" height="25" label="Parasitologia"/>
+		<s:CheckBox id="Chk_Perfiles_Diagnosticos" x="15" y="260" height="25"
+					label="Perfiles Diagnosticos"/>
+		<s:CheckBox id="Chk_PD_Grandes_Especies" x="15" y="290" height="25"
+					label="Perfiles Diagnosticos en Grandes Especies"/>
+		<s:CheckBox id="Chk_Pruebas_Coa" x="300" y="20" height="25"
+					label="Pruebas de Coagulación"/>
+		<s:CheckBox id="Chk_PEV_Bovinos" x="300" y="50" height="25"
+					label="Pruebas de Enfermedades Virales Bovinos"/>
+		<s:CheckBox id="Chk_PEV_Equinos" x="300" y="80" height="25"
+					label="Pruebas de Enfermedades Virales Equinos"/>
+		<s:CheckBox id="Chk_PEV_Caninos" x="300" y="110" height="25"
+					label="Pruebas de Enfermedades Virales Caninos"/>
+		<s:CheckBox id="Chk_PEV_Felinos" x="300" y="140" height="25"
+					label="Pruebas de Enfermedades Virales Felinos"/>
+		<s:CheckBox id="Chk_Quimica_Sanguinea" x="300" y="170" height="25"
+					label="Quimica Sanguinea"/>
+		<s:CheckBox id="Chk_Toxicologia" x="300" y="200" height="25" label="Toxicologia"/>
+		<s:CheckBox id="Chk_Uroanalisis" x="300" y="230" height="25" label="Uroanalisis"/>
+		<s:CheckBox id="Chk_Otro_Laboratorio" x="300" y="260" height="25" label="Otro"
+					click="Chk_Otro_Laboratorio_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Laboratorio" x="300" y="290" visible="false"/>
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Peluqueria" x="444" y="250" width="440" height="510" paddingBottom="10"
+			  paddingLeft="20" paddingRight="10" paddingTop="15" title="                                                               PELUQUERIA" visible="false">		
+		<s:CheckBox id="Chk_Corte_Estandar" x="15" y="20" height="25" label="Corte Standar"/>
+		<s:CheckBox id="Chk_Corte_Exibicion" x="15" y="50" height="25" label="Corte Exibición"/>
+		<s:CheckBox id="Chk_Otro_Peluqueria" x="15" y="80" height="25" label="Otro"
+					click="Chk_Otro_Peluqueria_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Peluqueria" x="15" y="110" visible="false"/>	
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Spa" x="444" y="250" width="440" height="510" paddingBottom="10"
+			  paddingLeft="20" paddingRight="10" paddingTop="15" title="                                                               SPA" visible="false">		
+		<s:CheckBox id="Chk_Aromaterapia" x="15" y="20" height="25" label="Aromaterapia"/>
+		<s:CheckBox id="Chk_Hidroterapia" x="15" y="50" height="25" label="Hidroterapia"/>
+		<s:CheckBox id="Chk_Otro_Spa" x="15" y="80" height="25" label="Otro"
+					click="Chk_Otro_Spa_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Spa" x="15" y="110" visible="false"/>
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Tienda" visible="false" x="444" y="250" width="440" height="510"
+			  horizontalAlign="left" paddingBottom="10" paddingLeft="20" paddingRight="10"
+			  paddingTop="15" title="                                                               TIENDA" verticalAlign="top">		
+		<s:CheckBox id="Chk_Agromercado" x="15" y="50" height="25" label="Agromercado"/>
+		<s:CheckBox id="Chk_Alimento" x="15" y="80" height="25" label="Alimento"/>
+		<s:CheckBox id="Chk_Aseo_Mascotas" x="15" y="110" height="25" label="Aseo Mascota"/>
+		<s:CheckBox id="Chk_Higiene_Oral" x="15" y="140" height="25" label="Higiene Oral"/>
+		<s:CheckBox id="Chk_Juguetes" x="250" y="20" height="25" label="Juguetes"/>
+		<s:CheckBox id="Chk_Servicio_Domicilio" x="250" y="50" height="25"
+					label="Servicio a Domicilio"/>
+		<s:CheckBox id="Chk_Snack" x="250" y="80" height="25" label="Snack"/>
+		<s:CheckBox id="Chk_Otro_Tienda" x="250" y="110" height="25" label="Otro"
+					click="Chk_Otro_Tienda_clickHandler(event)"/>
+		<s:TextInput id="Txt_Otro_Tienda" x="250" y="140" visible="false"/>
+	</mx:Panel>
+	
+	<mx:Panel id="Panel_Veterinaria"  x="444" y="250" width="440" height="510"
+			  horizontalAlign="left" layout="absolute" paddingBottom="10" paddingLeft="20"
+			  paddingRight="10" paddingTop="15" title="                                                               VETERINARIA" verticalAlign="top" visible="false">	
+		
+		<s:CheckBox id="Chk_Consulta_General" x="20" y="15" label="CONSULTA GENERAL"/>
+		<s:CheckBox id="Chk_Chip" x="20" y="40" label="IMPLANTACION / LECTURA CHIP"/>
+		<s:CheckBox id="Chk_Urgencias" x="20" y="65" label="URGENCIAS"/>
+		<s:CheckBox id="Chk_Vacunacion" x="20" y="90" label="VACUNACIÓN"/>
+		
+		<s:CheckBox id="Chk_Cirugia" x="20" y="115" label="CIRUGIA"
+					click="Chk_Cirugia_clickHandler(event)"/>		
+		<s:VGroup id="Vgp_Vet_Cirugia" x="35" y="135" enabled="false">
+			<s:CheckBox id="Chk_Esterilizacion" height="25" label="Esterilización"/>
+			<s:CheckBox id="Chk_General" height="25" label="General"/>
+			<s:CheckBox id="Chk_Ortopedica" height="25" label="Ortopedica"/>
+			<s:CheckBox id="Chk_Otro_Vet_Cirugia" height="25" label="Otro"
+						click="Chk_Otro_Vet_Cirugia_clickHandler(event)"/>
+			<s:TextInput id="Txt_Otro_Ciru_Vet" visible="false"/>
+		</s:VGroup>
+		
+		<s:CheckBox id="Chk_Consulta_Especialista" x="20" y="295" label="CONSULTA ESPECIALISTA"
+					click="Chk_Consulta_Especialista_clickHandler(event)"/>
+		<s:VGroup id="Vgp_Vet_Consulta_Esp" x="35" y="319" enabled="false">
+			<s:CheckBox id="Chk_Anestesiologia" height="25" label="Anestesiología"/>
+			<s:CheckBox id="Chk_Cardiologia" height="25" label="Cardiología"/>
+			<s:CheckBox id="Chk_Dermatologia" height="25" label="Dermatología"/>
+			<s:CheckBox id="Chk_Etologia" height="25" label="Etología"/>
+			<s:CheckBox id="Chk_Fisioterapia" height="25" label="Fisioterapia"/>
+			<s:CheckBox id="Chk_Gastroenterologia" height="25" label="Gastroenterología"/>
+			<s:CheckBox id="Chk_Odontologia" height="25" label="Odontología"/>
+			<s:CheckBox id="Chk_Oftamologia" height="25" label="Oftamología"/>
+			<s:CheckBox id="Chk_Ortopedia" height="25" label="Ortopedia"/>
+			<s:CheckBox id="Chk_Urologia" height="25" label="Nefrología y Urología"/>
+			<s:CheckBox id="Chk_Neurologia" height="25" label="Neurología"/>
+			<s:CheckBox id="Chk_Nutricion" height="25" label="Nutrición"/>
+			<s:CheckBox id="Chk_Reproduccion" height="25" label="Reproducción"/>
+			<s:CheckBox id="Chk_Otro_Vet_Consulta_Esp" height="25" label="Otro"
+						click="Chk_Otro_Vet_Consulta_Esp_clickHandler(event)"/>
+			<s:TextInput id="Txt_Otro_Cons_Vet" visible="false"/>
+		</s:VGroup>
+		
+		<s:CheckBox id="Chk_Hospitalizacion" x="20" y="789" label="HOSPITALIZACIÓN"
+					click="Chk_Hospitalizacion_clickHandler(event)"/>
+		<s:VGroup id="Vgp_Vet_Hospital" x="35" y="813" enabled="false">
+			<s:CheckBox id="Chk_Contagiosas" height="25" label="Infectocontagiosas"/>
+			<s:CheckBox id="Chk_UCI" height="25" label="UCI"/>
+			<s:CheckBox id="Chk_24Horas" height="25" label="24 Horas"/>
+			<s:CheckBox id="Chk_12Horas" height="25" label="12 Horas"/>
+			<s:CheckBox id="Chk_Otro_Vet_Hospital" height="25" label="Otro"
+						click="Chk_Otro_Vet_Hospital_clickHandler(event)"/>
+			<s:TextInput id="Txt_Otro_Hosp_Vet" visible="false"/>
+		</s:VGroup>
+		
+		<s:CheckBox id="Chk_Imagen" x="20" y="1003" label="IMAGENEOLOGÍA"
+					click="Chk_Imagen_clickHandler(event)"/>
+		<s:VGroup id="Vgp_Vet_Imagen" x="35" y="1027" enabled="false">
+			<s:CheckBox id="Chk_Ecografia" height="25" label="Ecografia"/>
+			<s:CheckBox id="Chk_Cardiografia" height="25" label="Eco Cardiografia"/>
+			<s:CheckBox id="Chk_Endoscopia" height="25" label="Endoscopia"/>
+			<s:CheckBox id="Chk_Rayos" height="25" label="Rayos X"/>
+			<s:CheckBox id="Chk_Otro_Vet_Imagen" height="25" label="Otro"
+						click="Chk_Otro_Vet_Imagen_clickHandler(event)"/>
+			<s:TextInput id="Txt_Otro_Imag_Vet" visible="false"/>
+		</s:VGroup>
+	</mx:Panel>
+	
+	<s:Button id="Btn_Guardar" x="805" y="773" label="GUARDAR"
+			  click="Btn_Guardar_clickHandler(event)"/>
+	
+	
+</s:Group>

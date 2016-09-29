@@ -22,6 +22,11 @@
 			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/EmpresaService.php</location>
 		</link>
 		<link>
+			<name>services/EstablecimientosService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/EstablecimientosService.php</location>
+		</link>
+		<link>
 			<name>services/MascotasService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels_v1/bin-debug/services/MascotasService.php</location>
@@ -35,6 +40,11 @@
 			<name>services/ServiciocriadereroService.php</name>
 			<type>1</type>
 			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/ServiciocriadereroService.php</location>
+		</link>
+		<link>
+			<name>services/ServiciosestablecimientoService.php</name>
+			<type>1</type>
+			<location>D:/xampp/htdocs/Teamangels/teamangels/bin-debug/services/ServiciosestablecimientoService.php</location>
 		</link>
 	</linkedResources>
 </projectDescription>

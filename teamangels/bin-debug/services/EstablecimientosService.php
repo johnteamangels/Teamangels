@@ -105,7 +105,7 @@ class EstablecimientosService {
 	
 	    return $rows;
 	}
-	
+	 
 	public function getAllEstablecimientos() {
 
 		$stmt = mysqli_prepare($this->connection, "SELECT * FROM $this->tablename");		
