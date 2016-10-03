@@ -488,12 +488,12 @@
 					if(Chk_Etologia.selected == true){servicios.push("5");}
 					if(Chk_Fisioterapia.selected == true){servicios.push("6");}
 					if(Chk_Gastroenterologia.selected == true){servicios.push("7");}
-					if(Chk_Odontologia.selected == true){servicios.push("8");}
-					if(Chk_Oftamologia.selected == true){servicios.push("9");}
-					if(Chk_Ortopedia.selected == true){servicios.push("10");}
-					if(Chk_Urologia.selected == true){servicios.push("11");}
-					if(Chk_Neurologia.selected == true){servicios.push("12");}
-					if(Chk_Nutricion.selected == true){servicios.push("13");}
+					if(Chk_Odontologia.selected == true){servicios.push("11");}
+					if(Chk_Oftamologia.selected == true){servicios.push("12");}
+					if(Chk_Ortopedia.selected == true){servicios.push("13");}
+					if(Chk_Urologia.selected == true){servicios.push("8");}
+					if(Chk_Neurologia.selected == true){servicios.push("9");}
+					if(Chk_Nutricion.selected == true){servicios.push("10");}
 					if(Chk_Reproduccion.selected == true){servicios.push("14");}
 					if(Chk_Otro_Vet_Consulta_Esp.selected == true){servicios.push("15");
 						var OtroCE:String = Txt_Otro_Cons_Vet.text;
@@ -510,28 +510,28 @@
 				}
 				
 				if(Chk_Hospitalizacion.selected == true){
-					if(Chk_Contagiosas.selected == true){servicios.push("20");}
-					if(Chk_UCI.selected == true){servicios.push("21");}
-					if(Chk_24Horas.selected == true){servicios.push("22");}
-					if(Chk_12Horas.selected == true){servicios.push("23");}					
+					if(Chk_Contagiosas.selected == true){servicios.push("22");}
+					if(Chk_UCI.selected == true){servicios.push("23");}
+					if(Chk_24Horas.selected == true){servicios.push("21");}
+					if(Chk_12Horas.selected == true){servicios.push("20");}					
 					if(Chk_Otro_Vet_Hospital.selected == true){servicios.push("24");
 						var OtroHospitalizacion:String = Txt_Otro_Hosp_Vet.text;
 					}
 				}
 				
-				if(Chk_Urgencias.selected == true){servicios.push("25");}
+				if(Chk_Urgencias.selected == true){servicios.push("31");}
 				
 				if(Chk_Imagen.selected == true){
-					if(Chk_Ecografia.selected == true){servicios.push("26");}
-					if(Chk_Cardiografia.selected == true){servicios.push("27");}
-					if(Chk_Endoscopia.selected == true){servicios.push("28");}
-					if(Chk_Rayos.selected == true){servicios.push("29");}					
-					if(Chk_Otro_Vet_Imagen.selected == true){servicios.push("30");
+					if(Chk_Ecografia.selected == true){servicios.push("25");}
+					if(Chk_Cardiografia.selected == true){servicios.push("26");}
+					if(Chk_Endoscopia.selected == true){servicios.push("27");}
+					if(Chk_Rayos.selected == true){servicios.push("28");}					
+					if(Chk_Otro_Vet_Imagen.selected == true){servicios.push("29");
 						var OtroImagenologia:String = Txt_Otro_Imag_Vet.text;
 					}
 				}
 				
-				if(Chk_Chip.selected == true){servicios.push("31");}
+				if(Chk_Chip.selected == true){servicios.push("30");}
 				if(Chk_Vacunacion.selected == true){servicios.push("32");}
 				
 				// Farmacia
@@ -556,8 +556,8 @@
 				if(Chk_PD_Grandes_Especies.selected == true){servicios.push("47");}
 				if(Chk_Pruebas_Coa.selected == true){servicios.push("48");}
 				if(Chk_PEV_Bovinos.selected == true){servicios.push("49");}
-				if(Chk_PEV_Equinos.selected == true){servicios.push("50");}
-				if(Chk_PEV_Caninos.selected == true){servicios.push("51");}
+				if(Chk_PEV_Equinos.selected == true){servicios.push("51");}
+				if(Chk_PEV_Caninos.selected == true){servicios.push("50");}
 				if(Chk_PEV_Felinos.selected == true){servicios.push("52");}
 				if(Chk_Quimica_Sanguinea.selected == true){servicios.push("53");}
 				if(Chk_Toxicologia.selected == true){servicios.push("54");}
@@ -568,50 +568,51 @@
 				
 				
 				// Tienda
-				if(Chk_Agromercado.selected == true){servicios.push("57");}
-				if(Chk_Alimento.selected == true){servicios.push("58");}
-				if(Chk_Aseo_Mascotas.selected == true){servicios.push("59");}
-				if(Chk_Higiene_Oral.selected == true){servicios.push("60");}
-				if(Chk_Juguetes.selected == true){servicios.push("61");}
-				if(Chk_Servicio_Domicilio.selected == true){servicios.push("62");}
-				if(Chk_Snack.selected == true){servicios.push("63");}
-				if(Chk_Otro_Tienda.selected == true){servicios.push("64");
+				if(Chk_Accesorios.selected == true){servicios.push("57");}
+				if(Chk_Agromercado.selected == true){servicios.push("58");}
+				if(Chk_Alimento.selected == true){servicios.push("59");}
+				if(Chk_Aseo_Mascotas.selected == true){servicios.push("60");}
+				if(Chk_Higiene_Oral.selected == true){servicios.push("61");}
+				if(Chk_Juguetes.selected == true){servicios.push("62");}
+				if(Chk_Servicio_Domicilio.selected == true){servicios.push("63");}
+				if(Chk_Snack.selected == true){servicios.push("64");}
+				if(Chk_Otro_Tienda.selected == true){servicios.push("65");
 					var OtroTienda:String = Txt_Otro_Tienda.text;
 				}
 				
 				// Peluqueria
-				if(Chk_Corte_Estandar.selected == true){servicios.push("65");}
-				if(Chk_Corte_Exibicion.selected == true){servicios.push("66");}
-				if(Chk_Otro_Peluqueria.selected == true){servicios.push("67");
+				if(Chk_Corte_Estandar.selected == true){servicios.push("66");}
+				if(Chk_Corte_Exibicion.selected == true){servicios.push("67");}
+				if(Chk_Otro_Peluqueria.selected == true){servicios.push("68");
 					var OtroPeluqueria:String = Txt_Otro_Peluqueria.text;
 				}
 				
 				// SPA
-				if(Chk_Aromaterapia.selected == true){servicios.push("68");}
-				if(Chk_Hidroterapia.selected == true){servicios.push("69");}
-				if(Chk_Otro_Spa.selected == true){servicios.push("70");
+				if(Chk_Aromaterapia.selected == true){servicios.push("69");}
+				if(Chk_Hidroterapia.selected == true){servicios.push("70");}
+				if(Chk_Otro_Spa.selected == true){servicios.push("71");
 					var OtroSpa:String = Txt_Otro_Spa.text;
 				}
 				
 				// Guarderia
 				if(Chk_Canina.selected == true){
-					if(Chk_Can_Campestre.selected == true){servicios.push("71");}
-					if(Chk_Can_Urbana.selected == true){servicios.push("72");}
+					if(Chk_Can_Campestre.selected == true){servicios.push("72");}
+					if(Chk_Can_Urbana.selected == true){servicios.push("73");}
 				}
 				
 				if(Chk_Felina.selected == true){
-					if(Chk_Fel_Campestre.selected == true){servicios.push("73");}
-					if(Chk_Fel_Urbana.selected == true){servicios.push("74");}
+					if(Chk_Fel_Campestre.selected == true){servicios.push("74");}
+					if(Chk_Fel_Urbana.selected == true){servicios.push("75");}
 				}
 				
 				// Criadero
-				if(Chk_Bovinos.selected == true){servicios.push("75");}
-				if(Chk_Caninos.selected == true){servicios.push("76");}
-				if(Chk_Caprinos.selected == true){servicios.push("77");}
-				if(Chk_Equinos.selected == true){servicios.push("78");}
-				if(Chk_Felinos.selected == true){servicios.push("79");}
-				if(Chk_Porcinos.selected == true){servicios.push("80");}
-				if(Chk_Otro_Criadero.selected == true){servicios.push("81");
+				if(Chk_Bovinos.selected == true){servicios.push("76");}
+				if(Chk_Caninos.selected == true){servicios.push("77");}
+				if(Chk_Caprinos.selected == true){servicios.push("78");}
+				if(Chk_Equinos.selected == true){servicios.push("79");}
+				if(Chk_Felinos.selected == true){servicios.push("80");}
+				if(Chk_Porcinos.selected == true){servicios.push("81");}
+				if(Chk_Otro_Criadero.selected == true){servicios.push("82");
 					var OtroCriadero:String = Txt_Otro_Criadero.text;
 				}
 				
@@ -623,7 +624,7 @@
 						
 						var Data:Servicios_establecimiento = new Servicios_establecimiento();
 						
-						Data.Id_Establecimiento = Id_Establecimiento2;
+						Data.Id_Establecimiento = 1;
 						Data.Id_Servicio = servicios[i];
 						Data.Detalle_Servicio = "";
 						Data.Fecha_Reg = new Date();
@@ -632,13 +633,13 @@
 						if(servicios[i] == "15"){Data.Detalle_Servicio = OtroCE;}
 						if(servicios[i] == "19"){Data.Detalle_Servicio = OtroCirugia;}
 						if(servicios[i] == "24"){Data.Detalle_Servicio = OtroHospitalizacion;}
-						if(servicios[i] == "30"){Data.Detalle_Servicio = OtroImagenologia;}
+						if(servicios[i] == "29"){Data.Detalle_Servicio = OtroImagenologia;}
 						if(servicios[i] == "37"){Data.Detalle_Servicio = OtroFarmacia;}
 						if(servicios[i] == "56"){Data.Detalle_Servicio = OtroLaboratorio;}
-						if(servicios[i] == "64"){Data.Detalle_Servicio = OtroTienda;}
-						if(servicios[i] == "67"){Data.Detalle_Servicio = OtroPeluqueria;}
-						if(servicios[i] == "70"){Data.Detalle_Servicio = OtroSpa;}
-						if(servicios[i] == "81"){Data.Detalle_Servicio = OtroCriadero;}
+						if(servicios[i] == "65"){Data.Detalle_Servicio = OtroTienda;}
+						if(servicios[i] == "68"){Data.Detalle_Servicio = OtroPeluqueria;}
+						if(servicios[i] == "71"){Data.Detalle_Servicio = OtroSpa;}
+						if(servicios[i] == "82"){Data.Detalle_Servicio = OtroCriadero;}
 						
 						
 						createServicios_establecimientoResult.token = serviciosestablecimientoService.createServicios_establecimiento(Data);
@@ -822,7 +823,8 @@
 	
 	<mx:Panel id="Panel_Tienda" visible="false" x="444" y="250" width="440" height="510"
 			  horizontalAlign="left" paddingBottom="10" paddingLeft="20" paddingRight="10"
-			  paddingTop="15" title="                                                               TIENDA" verticalAlign="top">		
+			  paddingTop="15" title="                                                               TIENDA" verticalAlign="top">	
+		<s:CheckBox id="Chk_Accesorios" x="15" y="50" height="25" label="Accesorios"/>
 		<s:CheckBox id="Chk_Agromercado" x="15" y="50" height="25" label="Agromercado"/>
 		<s:CheckBox id="Chk_Alimento" x="15" y="80" height="25" label="Alimento"/>
 		<s:CheckBox id="Chk_Aseo_Mascotas" x="15" y="110" height="25" label="Aseo Mascota"/>
